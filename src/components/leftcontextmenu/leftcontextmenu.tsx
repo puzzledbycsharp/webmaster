@@ -114,13 +114,13 @@ export function createContextMenu(menu: ContentMenu | undefined, pathname: strin
     for (const item of reverseArray) {
     //  console.log("item item" + item.items?.length);
   //    console.log("item.text" + item.text);
-      if (item && item.items) {
+      if (item && item.items && item.items.length > 0) {
 
 //        console.log("item && item.items");
         tempHeader = item;
         foundMatch = false;
         // item.items?.forEach(item2 => {
-        for (const item2 of item?.items) {
+        for (const item2 of item.items) {
           // console.log("item2.href:" + item2.href);
           // console.log("item2.text:" + item2.text);
           // console.log("(pathname:" + pathname);
