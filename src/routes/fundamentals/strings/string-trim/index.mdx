@@ -1,0 +1,449 @@
+---
+title: Walkthrough of the String Trim Function
+---
+
+# Walkthrough of the String Trim Function
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../assets/fundamentals/strings/trim/string-trim-page-header-banner-medium.webp" imageSrcSet="../../assets/fundamentals/strings/trim/string-trim-page-header-banner-small.webp 250w, ../../assets/fundamentals/strings/trim/string-trim-page-header-banner-medium.webp 500w, ../../assets/fundamentals/strings/trim/string-trim-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Walkthrough of the String Trim Function Banner Image" widthImage = "2304" heightImage = "1728" />
+
+### What is String Trim?
+String trim removes space, tabs and various lengths of whitespace at the beginning or end of a string. This is good for user inputs, or forms where users may have accidentally put a space or copied some text from somewhere else that had a space in it. The other function overloads of trim allow us to find and remove any character or set of character at the beginning or end of a string.
+
+##### Syntax
+###### Function Overload 1
+
+```cs
+public string Trim()
+```
+
+This is the primary trim function which doesn't take any parameters and it is understood that till remove leading and trailing whitespace. See Example below.
+
+```cs                    
+string userInput = " SomeName LastName ";//User input with some white space at the beginning and end.
+string trimmedOutput = userInput.Trim();//Call trim function with no parameter to remove the white space
+Console.WriteLine(trimmedOutput);//Write to screen
+```
+
+###### Output
+
+```
+SomeName LastName
+```
+This code snippet removes the spaces at the beginning and end of the string but perserving the space in the middle of the string.
+
+###### Function Overload 2
+```cs
+public string Trim(char trimChar)
+```
+
+This overload allows the user to provide a character to remove at the beginning and end. If there was some text that had special characters that we need to remove this would be good to use for that. Example below.
+
+```cs
+string userInput = "#CSharpDevelopers!";//User input with two special characters 
+string trimmedOutput = userInput.Trim('#');//Call trim function with # has a removal input
+Console.WriteLine(trimmedOutput);//Write to screen
+```
+
+###### Output
+
+```
+CSharpDevelopers!
+```
+As you can see, if the input was a hashtag the hashtag could be removed by using the trim function and passing a # character. This case had two special characters hashtag and a exclamation point but only the hashtag is removed.
+
+##### Function Overload 3
+```cs
+public string Trim(char[] trimChars)
+```
+This last version of the function is the most flexable as a array of different characters can be provided to remove from the before and after the string. See example below
+
+```cs
+string userInput = "#CSharpDevelopers!";//User input with two special characters 
+string trimmedOutput = userInput.Trim(new char[] { '#', '!' });//Call trim function with #,! has a removal input
+Console.WriteLine(trimmedOutput);//Write to screen
+```
+###### Output
+
+```
+CSharpDevelopers
+```
+    
+This trim function has removed both the inputs '#' in the beginning and also '!' at the end.
+
+### Exceptions
+There are no exceptions that can come from this function because the input is only char or array of characters. Even if null is passed no exception is thrown.
+
+###### When Might This Function Be Used?
+Unwanted Text and Repeated Patterns
+This function is great to trim unwanted text when there are single characters to remove like white space, tabs, special characters or returns. It is typically used to quickly remove white space. This can be from user input from the UI, or from a databases.
+###### Alternative Methods of Trim Function
+ONe way to remove unwanter characters is to use string replace, but if you have to be sure that the characters that you want to remove are only in the beginning and end of the string. Since this method scans the entire string and not just the leading and ending characters it could potentially remove text that you didn't want to. There is an example below
+
+```cs
+string userInput = "#CSharpDevelopers!";//User input with two special characters 
+string trimmedOutput = userInput.Replace("#", "");//replace all instances of #
+trimmedOutput = trimmedOutput.Replace("!", "");
+Console.WriteLine(trimmedOutput);//Write to screen
+```
+###### Output
+
+```
+CSharpDevelopers
+```
+### How does String Trim Work?
+The are many ways to approach writing a trim function. The text is looped through twice. The first pass the text is grouped into whitespace and non whitespace. The grouping of whitespace is consider to have the potential to be trimmed, but not all whitespace may be trimmed if it is inbetween text. Then each grouping is checked to see if it at the beggining or the end and also has the potential to be trimmed. See example below.
+
+
+    
+```cs
+string userInput = " SimpleFirstName MiddleName SimpleLastName ";//User input with some white space at the beginning and end.
+string trimmedOutput = TrimText(userInput);//Custom Trim function with no parameter to remove the white space
+Console.WriteLine(trimmedOutput);//Write to screen
+
+string TrimText(string originalText)
+{
+    string newText = "";//Start with an empty string
+    Dictionary<int, Group> textGroupedDict = GetFirstPass(originalText);//Group the text between whitespace and non whitespace
+    foreach (int groupIndex in textGroupedDict.Keys)//Loop through all groups
+    {
+        Group textGroup = textGroupedDict[groupIndex];//Select the group
+        if (textGroup.IsTrimPossible && groupIndex == 0)
+        {
+            //If the group is at the beginning and flagged as possible to trim then do not add to the final text
+        }
+        else if (textGroup.IsTrimPossible && groupIndex == textGroupedDict.Count - 1)
+        {
+            //If the group is at the end and flagged as possible to trim then do not add to the final text
+        }
+        else
+        {
+            newText += textGroup.GroupText;//Add all text that is not at the begginning and end and is flagged to be trimmed can be added
+        }
+    }
+    return newText;
+}
+
+Dictionary<int, Group> GetFirstPass(string originalText)
+{
+    int groupCount = 0;//Number assigned to each group
+    Dictionary<int, Group> groupDict = new Dictionary<int, Group>();//Group of text
+    bool isPreviewWhiteSpace = false;//Track if previous character was whitespace or not
+    int index = 0;//Index of the characters
+    foreach (char letter in originalText)
+    {
+        bool isCurrentWhiteSpace = false;
+        if (char.IsWhiteSpace(letter))
+        {
+            isCurrentWhiteSpace = true;
+        }
+        else
+        {
+            isCurrentWhiteSpace = false;
+        }
+        if ((isCurrentWhiteSpace == isPreviewWhiteSpace) || (isCurrentWhiteSpace && index == 0))//If current and previous is whitespace or whitespace is at the beginning to flag as potential for trimming
+        {
+            AddToGroupDict(groupDict, groupCount, letter, true);
+        }
+        else if (isCurrentWhiteSpace == true && isPreviewWhiteSpace == false)//If current is whitespace and previous was not then flag as potential for trimming
+        {
+            groupCount++;
+            AddToGroupDict(groupDict, groupCount, letter, true);
+        }
+        else // all other cases at to a group but do not flag for trimming
+        {
+            groupCount++;
+            AddToGroupDict(groupDict, groupCount, letter, false);
+        }
+        isPreviewWhiteSpace = isCurrentWhiteSpace;
+        index++;
+    }
+    return groupDict;
+}
+
+void AddToGroupDict(Dictionary<int, Group> groupDict, int groupCount, char letter, bool isTrimPossible)
+{
+    if (!groupDict.ContainsKey(groupCount))//If the groupCount does not exist then create a new group
+    {
+        Group group = new Group(groupCount, letter, isTrimPossible);
+        groupDict[groupCount] = group;
+    }
+    else //If the groupCount exists already then add the letters and index to the 
+    {
+        groupDict[groupCount].AddCharacter(letter);
+    }
+}
+
+class Group
+{
+    public Group(int groupId, char letter, bool isTrimPossible)
+    {
+        GroupText = "";
+        GroupId = groupId;
+        IsTrimPossible = isTrimPossible;
+        AddCharacter(letter);
+    }
+    public int GroupId { get; set; } //Unique dictionary identifer 
+    public string GroupText { get; set; } //Store all characters in a string that belongs to the group
+    public bool IsTrimPossible { get; set; } //Flag for trimming in the second pass
+    public override bool Equals(object? obj)
+    {
+        return obj is Group group &&
+                GroupId == group.GroupId;
+    }
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(GroupId);
+    }
+    public void AddCharacter(char letter)
+    {
+        GroupText += letter;
+    }
+}
+```
+
+    
+###### Output
+
+```
+SimpleFirstName Middle SimpleLastName
+```
+        
+The white space was trimmed from the begginning and the end from this sample code.
+
+What if I don't want to trim the whitespace but a character. Then I need to do something similar to the previous example but instead of looking for a whitespace, it looks for a character. See full code example below.
+
+
+    
+```cs
+string userInput = "#SimpleHasTagName!";//User input with some white space at the beginning and end.
+string trimmedOutput = TrimText(userInput,'#');//Custom Trim function with no parameter to remove the white space
+Console.WriteLine(trimmedOutput);//Write to screen
+string TrimText(string originalText, char charToTrim)
+{
+    string newText = "";//Start with an empty string
+    Dictionary<int, Group> textGroupedDict = GetFirstPass(originalText, charToTrim);//Group the text between whitespace and non whitespace
+    foreach (int groupIndex in textGroupedDict.Keys)//Loop through all groups
+    {
+        Group textGroup = textGroupedDict[groupIndex];//Select the group
+        if (textGroup.IsTrimPossible && groupIndex == 0)
+        {
+            //If the group is at the beginning and flagged as possible to trim then do not add to the final text
+        }
+        else if (textGroup.IsTrimPossible && groupIndex == textGroupedDict.Count - 1)
+        {
+            //If the group is at the end and flagged as possible to trim then do not add to the final text
+        }
+        else
+        {
+            newText += textGroup.GroupText;//Add all text that is not at the begginning and end and is flagged to be trimmed can be added
+        }
+    }
+    return newText;
+}
+
+Dictionary<int, Group> GetFirstPass(string originalText,char charToTrim)
+{
+    int groupCount = 0;//Number assigned to each group
+    Dictionary<int, Group> groupDict = new Dictionary<int, Group>();//Group of text
+    bool isPreviousCharToTrim = false;//Track if previous character was a character to trim  or not
+    int index = 0;//Index of the characters
+    foreach (char letter in originalText)
+    {
+        bool isCurrentCharToTrim = false;
+        if (letter == charToTrim)
+        {
+            isCurrentCharToTrim = true;
+        }
+        else
+        {
+            isCurrentCharToTrim = false;
+        }
+        if ((isCurrentCharToTrim == isPreviousCharToTrim) || (isCurrentCharToTrim && index == 0))//If current and previous is a character to trim or a character to trim is at the beginning to flag as potential for trimming
+        {
+            AddToGroupDict(groupDict, groupCount, letter, true);
+        }
+        else if (isCurrentCharToTrim == true && isPreviousCharToTrim == false)//If current is a character to trim  and previous was not then flag as potential for trimming
+        {
+            groupCount++;
+            AddToGroupDict(groupDict, groupCount, letter, true);
+        }
+        else // all other cases at to a group but do not flag for trimming
+        {
+            groupCount++;
+            AddToGroupDict(groupDict, groupCount, letter, false);
+        }
+        isPreviousCharToTrim = isCurrentCharToTrim;
+        index++;
+    }
+    return groupDict;
+}
+
+void AddToGroupDict(Dictionary<int, Group> groupDict, int groupCount, char letter, bool isTrimPossible)
+{
+    if (!groupDict.ContainsKey(groupCount))//If the groupCount does not exist then create a new group
+    {
+        Group group = new Group(groupCount, letter, isTrimPossible);
+        groupDict[groupCount] = group;
+    }
+    else //If the groupCount exists already then add the letters and index to the 
+    {
+        groupDict[groupCount].AddCharacter(letter);
+    }
+}
+
+class Group
+{
+    public Group(int groupId, char letter, bool isTrimPossible)
+    {
+        GroupText = "";
+        GroupId = groupId;
+        IsTrimPossible = isTrimPossible;
+        AddCharacter(letter);
+    }
+    public int GroupId { get; set; } //Unique dictionary identifer 
+    public string GroupText { get; set; } //Store all characters in a string that belongs to the group
+    public bool IsTrimPossible { get; set; } //Flag for trimming in the second pass
+    public override bool Equals(object? obj)
+    {
+        return obj is Group group &&
+                GroupId == group.GroupId;
+    }
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(GroupId);
+    }
+    public void AddCharacter(char letter)
+    {
+        GroupText += letter;
+    }
+}
+```
+
+###### Output
+
+```
+SimpleHasTagName!
+```
+We see that the hashtag was trimmed from the begginng and nothing else was trimmed. Next let's take a look at an example where we can pass an array of characters to the trimming function.
+
+
+    
+```cs
+string userInput = "#SimpleHasTagName!";//User input with some white space at the beginning and end.
+string trimmedOutput = TrimText(userInput, new char[] { '#', '!' });//Custom Trim function with no parameter to remove the white space
+Console.WriteLine(trimmedOutput);//Write to screen
+
+string TrimText(string originalText, char[] charsToTrim)
+{
+    string newText = "";//Start with an empty string
+    Dictionary<int, Group> textGroupedDict = GetFirstPass(originalText, charsToTrim);//Group the text between whitespace and non whitespace
+    foreach (int groupIndex in textGroupedDict.Keys)//Loop through all groups
+    {
+        Group textGroup = textGroupedDict[groupIndex];//Select the group
+        if (textGroup.IsTrimPossible && groupIndex == 0)
+        {
+            //If the group is at the beginning and flagged as possible to trim then do not add to the final text
+        }
+        else if (textGroup.IsTrimPossible && groupIndex == textGroupedDict.Count - 1)
+        {
+            //If the group is at the end and flagged as possible to trim then do not add to the final text
+        }
+        else
+        {
+            newText += textGroup.GroupText;//Add all text that is not at the begginning and end and is flagged to be trimmed can be added
+        }
+    }
+    return newText;
+}
+
+Dictionary<int, Group> GetFirstPass(string originalText, char[] charsToTrim)
+{
+    int groupCount = 0;//Number assigned to each group
+    Dictionary<int, Group> groupDict = new Dictionary<int, Group>();//Group of text
+    bool isPreviousCharToTrim = false;//Track if previous character was a character to trim  or not
+    int index = 0;//Index of the characters
+    foreach (char letter in originalText)
+    {
+        bool isCurrentCharToTrim = false;
+        foreach (char charToTrim in charsToTrim)//added a loop to check if the current letter has any of the characters to trim
+        {
+            if (letter == charToTrim)
+            {
+                isCurrentCharToTrim = true;
+                break;//If we find any characters to trim then exit the loop
+            }
+            else
+            {
+                isCurrentCharToTrim = false;
+            }
+        }
+        if ((isCurrentCharToTrim == isPreviousCharToTrim) || (isCurrentCharToTrim && index == 0))//If current and previous is a character to trim or a character to trim is at the beginning to flag as potential for trimming
+        {
+            AddToGroupDict(groupDict, groupCount, letter, true);
+        }
+        else if (isCurrentCharToTrim == true && isPreviousCharToTrim == false)//If current is a character to trim  and previous was not then flag as potential for trimming
+        {
+            groupCount++;
+            AddToGroupDict(groupDict, groupCount, letter, true);
+        }
+        else // all other cases at to a group but do not flag for trimming
+        {
+            groupCount++;
+            AddToGroupDict(groupDict, groupCount, letter, false);
+        }
+        isPreviousCharToTrim = isCurrentCharToTrim;
+        index++;
+    }
+    return groupDict;
+}
+
+void AddToGroupDict(Dictionary<int, Group> groupDict, int groupCount, char letter, bool isTrimPossible)
+{
+    if (!groupDict.ContainsKey(groupCount))//If the groupCount does not exist then create a new group
+    {
+        Group group = new Group(groupCount, letter, isTrimPossible);
+        groupDict[groupCount] = group;
+    }
+    else //If the groupCount exists already then add the letters and index to the 
+    {
+        groupDict[groupCount].AddCharacter(letter);
+    }
+}
+
+class Group
+{
+    public Group(int groupId, char letter, bool isTrimPossible)
+    {
+        GroupText = "";
+        GroupId = groupId;
+        IsTrimPossible = isTrimPossible;
+        AddCharacter(letter);
+    }
+    public int GroupId { get; set; } //Unique dictionary identifer 
+    public string GroupText { get; set; } //Store all characters in a string that belongs to the group
+    public bool IsTrimPossible { get; set; } //Flag for trimming in the second pass
+    public override bool Equals(object? obj)
+    {
+        return obj is Group group &&
+               GroupId == group.GroupId;
+    }
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(GroupId);
+    }
+    public void AddCharacter(char letter)
+    {
+        GroupText += letter;
+    }
+}
+```
+
+Output
+
+```
+SimpleHasTagName
+```
+This updated sample code trims multiple characters from the begginng and end just like the native csharp examples.

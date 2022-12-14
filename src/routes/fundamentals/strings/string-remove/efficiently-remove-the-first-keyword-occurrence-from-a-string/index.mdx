@@ -1,0 +1,81 @@
+---
+title: Efficiently Remove The First Keyword Occurrence From A String
+---
+
+# Efficiently Remove The First Keyword Occurrence From A String
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-small.webp 250w, ../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-medium.webp 500w, ../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Efficiently Remove The First Keyword Occurrence From A String Banner Image" widthImage = "2304" heightImage = "1728" />
+## Introduction
+
+Sometimes in a given string there is input that causes issues in the code or just duplicated data because the source is a user generated date. It can often happen in data files, databases or even on file directory structures. As a programmer, these inputs are often out of our control but we sometimes need to handle these cases so that other parts of the code are not affected down stream. Often times just removing offending sub section will be enough. So let's look at some example below.
+
+### CSV File Header Example
+
+example:traffic_stops,traffic_violations,stops,speeding_tickets,stops,failure_to_obey_traffic_signs
+
+If given the following header from a CSV file that we are parse through. We see that there are two 'stops' headers and we want to eliminate the first 'stops'
+
+Steps in include assigning what keyword we want to remove. Then use that keyword to obtain it's length or number of characters to remove from the main string. Next use string IndexOf to obtain the start index of the keyword. Now that we've gathered all the information needed to pass the parameters to string remove. Passing the startIndex and the removeLength to remove the first occurrence of this keyword.
+
+
+### CSV Remove First Keyword Example
+
+```cs
+string csvHeaders = "traffic_violations,stops,speeding_tickets,stops,failure_to_obey_traffic_signs";
+
+string csvRemoveString = "stops";//Keyword to remove from the string
+int removeLength = csvRemoveString.Length;//Number of characters to remove from the string
+int startIndex = csvHeaders.IndexOf("stops");//Start index to where we want to remove
+string updatedHeader = csvHeaders.Remove(startIndex, removeLength);//Remove the substring
+Console.WriteLine($"original:{csvHeaders}");
+Console.WriteLine($"updatedHeader:{updatedHeader}");
+```
+
+###### Code Output
+
+```
+original:traffic_violations,stops,speeding_tickets,stops,failure_to_obey_traffic_signs
+updatedHeader:traffic_violations,,speeding_tickets,stops,failure_to_obey_traffic_signs
+```
+
+With this updatedHeader we are given the output that is desired. There is an double comma in the place where the keyword used to be. Let's look at another example.
+
+### File Path Example
+
+Another use case we may need to remove duplicate entries can come from a file path. it could be a user defined folder structure or even an automated folder structure. Care may need to be taken, if such as use case comes and may cause an issue later in the code. Consider the following example.
+
+C://traffic_violation/sign/signage/failure_to_obey/data.csv
+
+Suppose we see the following file path and we want to remove the first occurrence of the keyword sign. The previous code has been rearranged into a reusable function.
+
+### File Path Code Example
+
+```cs
+string csvHeaders = @"C:\\traffic_violation\sign\signage\failure_to_obey\data.csv";
+
+string removeText = @"\sign";//Keyword to remove from the string
+string updatedText = RemoveFirstOccurrence(csvHeaders, removeText);
+Console.WriteLine($"original:{csvHeaders}");
+Console.WriteLine($"updatedHeader:{updatedText}");
+string RemoveFirstOccurrence(string text, string removeText)
+{
+    int removeLength = removeText.Length;//Number of characters to remove from the string
+    int startIndex = text.IndexOf(removeText);//Start index to where we want to remove
+    string updatedHeader = text.Remove(startIndex, removeLength);//Remove the substring
+    return updatedHeader;
+}
+```
+
+###### Code Output
+
+```
+original:C:\\traffic_violation\sign\signage\failure_to_obey\data.csv
+updatedHeader:C:\\traffic_violation\signage\failure_to_obey\data.csv
+```
+
+### Conclusion
+
+Remove provides easy readability, compact form, and speed to make this a good choice to solve this use case. There can be more compact ways of writing the code by stacking the function calls on top of one another but that approach will make readability suffer. Often is better to go step by step so that we don't accidentally introduce bugs and keep it readable.

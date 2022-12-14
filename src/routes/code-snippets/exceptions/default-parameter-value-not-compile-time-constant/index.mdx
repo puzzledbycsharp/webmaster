@@ -1,0 +1,349 @@
+---
+title: Fix For Default Parameter Value Not Compile Time Constant Error
+---
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+
+# Fix For Default Parameter Value Not Compile Time Constant Error
+
+
+<ImageWrapper imageSource="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-medium.webp" imageSrcSet="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-small.webp 250w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-medium.webp 500w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Fix For Default Parameter Value Not Compile Time Constant Error Banner" widthImage = "2304" heightImage = "1728" />
+
+### Introduction
+
+This compile exception ‘CS1736: Default parameter value must be a compile-time constant’ occurs when you try to assign a optional parameter value that is not a constant or is not the correct default value. It works with numerical data types and strings in the list of parameters but not for objects or structs. Different objects have different default values and it is important to know which ones are valid parameter values to use on a given type. To undetand this further, I will first tell you about constant time constants.
+
+#### Understanding Compile Time Constants
+
+Constants are known at compile time and do not change. Below are some examples
+```cs
+const double multiplier = 32;
+const int hours = 19;
+const string userName = "MyUserName";
+```
+
+Only built in types can be marked as constant, [such as numbers as int, float, double, char, bool, and strings.](https://www.c-sharpcorner.com/article/runtime-and-compiletime-constants-in-c-sharp/) 
+
+#### Default Values
+Default values are the values assigned to optional parameters. [Every optional paramter has a default value](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments), in case the function call does not pass a argument to the optional paramter. 
+
+```cs
+public void StartCountDownTimer(int hours = 6, int minutes = 40, int seconds = 30)
+{
+    // some logic
+}
+public void MathamicalFormulaFunction(double multiplier = 32)
+{
+    //some logic
+}
+public void LogDebugStatements(string log = "Debug")
+{
+    //some logic
+}
+
+```
+
+These examples are valid uses for optional parameters for these datatypes because the value will still be the same at compile time and run time. 
+
+
+You can not assign any variable to the optional parameter if it is a object or struct type.For example, if DATETIMECONSTANT was definied as a global variable and then there was a parameter 'DateTime myDate = DATETIMECONSTANT' This is invalid and the code will throw an compile error because the value will change at different types when you compile. It is not a constant value.
+```cs
+DateTime DATETIMECONSTANT = DateTime.Now;
+
+public void MyDateTimeFunction(DateTime myDate = DATETIMECONSTANT)
+{
+    //some logic
+}
+```
+This is a invalid use of optional parameter and will IDE will flag this as an error.
+
+### Struct Color Example
+
+<ImageWrapper imageSource="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp" imageSrcSet="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-small.webp 250w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp 500w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "cs1736 default parameter value for datetime must be a compile time constant" widthImage = "597" heightImage = "124" />
+
+This current code creates a graphics image with randomly generated points, but if I try to add a default value or optional parameter, then I get the following exception message. Color is not a built in type and so we need to assign it to the correct default value or change it to a nullable type.
+
+#### CS1736: Default parameter value for 'color' must be a compile-time constant
+
+
+It is coming from `Color color = Color.Aqua`
+
+
+```cs
+private static void AddPoints(Graphics graphics, Color color = Color.Aqua)
+{
+    using (SolidBrush brushColor = new SolidBrush(color))
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            Size iconSize = new Size(PointWidth, PointHeight);
+            int randomX = GenerateRandomInt(ImageWidth);
+            int randomY = GenerateRandomInt(ImageHeight);
+            PointF pointF = new PointF(randomX, randomY);
+            RectangleF rect = new RectangleF(pointF, iconSize);
+            graphics.FillEllipse(brushColor, rect);
+        }
+    }
+}
+```
+
+## Color Solution with Default Keyword
+
+As you can see Color.Aqua is not the correct default type for struct. A structs default value is when all of members are at their default values. In this case, we can use default keyword and this lets the compile know to use the default Color value which will initialize all the structs members to default values. [In C# 7.1 and greater versions you can use the default literal.](https://www.kunal-chowdhury.com/2017/08/default-literal-in-csharp-7.1.html#:~:text=The%20default%20literal%20in%20C%23,like%20default(T)%20only.)
+
+`Color myColor = default;` Default for Color is shown below.
+
+<ImageWrapper imageSource="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/color-default-value-medium.webp" imageSrcSet="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/color-default-value-small.webp 250w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/color-default-value-medium.webp 500w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/color-default-value-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "struct color default value" widthImage = "235" heightImage = "182" />
+
+Fix for Color by default keyword is below.
+
+```cs
+private static void AddPoints(Graphics graphics, Color color = default)
+{
+    if (color != null)
+    {
+        using (SolidBrush brushColor = new SolidBrush(color))
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Size iconSize = new Size(PointWidth, PointHeight);
+                int randomX = GenerateRandomInt(ImageWidth);
+                int randomY = GenerateRandomInt(ImageHeight);
+                PointF pointF = new PointF(randomX, randomY);
+                RectangleF rect = new RectangleF(pointF, iconSize);
+                graphics.FillEllipse(brushColor, rect);
+            }
+        }
+    }
+}
+```
+
+## Color Solution with Nullable
+
+Another solution to this is to change the parameter Color to Color? [which is a nullable type in .NET 6 and above](https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references) and then setting it to equal null. Null is a default value then the compiler will allow this type of optional parameter. This is changed to the following in the function
+
+Updated line is changed to 'Color? color = null'
+
+```cs
+private static void AddPoints(Graphics graphics, Color? color = null)
+{
+    if (color != null)
+    {
+        using (SolidBrush brushColor = new SolidBrush(color.Value))
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Size iconSize = new Size(PointWidth, PointHeight);
+                int randomX = GenerateRandomInt(ImageWidth);
+                int randomY = GenerateRandomInt(ImageHeight);
+                PointF pointF = new PointF(randomX, randomY);
+                RectangleF rect = new RectangleF(pointF, iconSize);
+                graphics.FillEllipse(brushColor, rect);
+            }
+        }
+    }
+}
+```
+##### Full Code Color Sample
+
+```cs
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+namespace GraphicsToImage
+{
+    class Program
+    {
+        static int PointWidth = 10;
+        static int PointHeight = 10;
+        static int ImageWidth = 256;
+        static int ImageHeight = 256;
+        static void Main(string[] args)
+        {
+            using (Bitmap buffer = new Bitmap(ImageWidth, ImageHeight))
+            {
+                using (Graphics graphics = Graphics.FromImage(buffer))
+                {
+                    AddPoints(graphics, Color.AliceBlue);
+                }
+                buffer.Save(@"C:\temp\MyImage.png", ImageFormat.Png);
+            }
+        }
+        private static void AddPoints(Graphics graphics, Color color = default)
+        {
+            if (color != null)
+            {
+                using (SolidBrush brushColor = new SolidBrush(color))
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Size iconSize = new Size(PointWidth, PointHeight);
+                        int randomX = GenerateRandomInt(ImageWidth);
+                        int randomY = GenerateRandomInt(ImageHeight);
+                        PointF pointF = new PointF(randomX, randomY);
+                        RectangleF rect = new RectangleF(pointF, iconSize);
+                        graphics.FillEllipse(brushColor, rect);
+                    }
+                }
+            }
+        }
+        private static void AddPoints(Graphics graphics, Color? color = null)
+        {
+            if (color != null)
+            {
+                using (SolidBrush brushColor = new SolidBrush(color.Value))
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Size iconSize = new Size(PointWidth, PointHeight);
+                        int randomX = GenerateRandomInt(ImageWidth);
+                        int randomY = GenerateRandomInt(ImageHeight);
+                        PointF pointF = new PointF(randomX, randomY);
+                        RectangleF rect = new RectangleF(pointF, iconSize);
+                        graphics.FillEllipse(brushColor, rect);
+                    }
+                }
+            }
+        }
+        private static int GenerateRandomInt(int max)
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(0, max + 1);
+            return randomNumber;
+        }
+    }
+}
+```
+
+### Struct DateTime Example
+
+
+<ImageWrapper imageSource="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp" imageSrcSet="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-small.webp 250w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp 500w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "cs1736 default parameter value for datetime must be a compile time constant" widthImage = "427" heightImage = "122" />
+
+This following code example takes in a DateTime object and converts it into a timestamp string. It currently trying to assign an optional parameter for getting current time if no dateTime is provided and we get the error
+
+#### CS1736: Default parameter value for 'dateTime' must be a compile-time constant
+
+CS1736 error is coming from 'DateTime dateTime = DateTime.Now' in line 1.
+
+```cs
+public static string GenerateTimeStamp(DateTime dateTime = DateTime.Now)
+{
+    string timeStamp = $"{dateTime.Year}{dateTime.Month}{dateTime.Day}{dateTime.Hour}{dateTime.Minute}{dateTime.Millisecond}";
+    return timeStamp;
+}
+```
+
+## DateTime Solution with Default Keyword for Default Parameter
+
+DateTime.Now is not the correct default paramter for the DateTime object. This is like Color is also a struct type. So in order for DateTime to have a default state all it’s variables inside the struct also need to be in their default state. We can see below the follow code snippet and image that show default values for the DateTime struct. Default keyword is available in C# 7.1 and above.
+
+```cs
+DateTime defaultDateTime = default;
+```
+
+<ImageWrapper imageSource="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/datetime-default-value-medium.webp" imageSrcSet="../../assets/code-snippets/default-parameter-value-not-compile-time-constant/datetime-default-value-small.webp 250w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/datetime-default-value-medium.webp 500w, ../../assets/code-snippets/default-parameter-value-not-compile-time-constant/datetime-default-value-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "struct color default value" widthImage = "307" heightImage = "248" />
+
+Fix for DateTime by default keyword is below
+
+```cs
+public static string GenerateTimeStamp(DateTime? dateTime = null)
+{
+    if (dateTime != null)
+    {
+        string timeStamp = $"{dateTime.Value.Year}{dateTime.Value.Month}{dateTime.Value.Day}{dateTime.Value.Hour}{dateTime.Value.Minute}{dateTime.Value.Millisecond}";
+        return timeStamp;
+    }
+    else
+    {
+        return "";
+    }
+}
+```
+
+### DateTime Solution with Nullable
+
+A simple solution also be to change the DateTime type to a nullable type of DateTime?. This will allow us to set the optional parameter to null is technically a constant. See the following for code snippet for updated.
+
+```cs
+public static string GenerateTimeStamp(DateTime? dateTime = null)
+{
+    string timeStamp = $"{dateTime.Value.Year}{dateTime.Value.Month}{dateTime.Value.Day}{dateTime.Value.Hour}{dateTime.Value.Minute}{dateTime.Value.Millisecond}";
+    return timeStamp;
+}
+```
+
+## DateTime Solution With Function Overload
+
+DateTime Solution With Function Overload
+
+```cs
+public static string GenerateTimeStamp()
+{
+    return GenerateTimeStamp(DateTime.Now);
+}
+public static string GenerateTimeStamp(DateTime dateTime)
+{
+    string timeStamp = $"{dateTime.Year}{dateTime.Month}{dateTime.Day}{dateTime.Hour}{dateTime.Minute}{dateTime.Millisecond}";
+    return timeStamp;
+}
+```
+
+##### Full Code DateTime Sample
+
+```cs
+using System;
+namespace DateTimeDefaultParameter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DateTime dateTime = DateTime.Now;
+            Console.WriteLine($"The Current TimeStamp is {GenerateTimeStamp(dateTime)}");
+            Console.WriteLine($"The Current TimeStamp is {GenerateTimeStamp()}");
+        }
+
+        public static string GenerateTimeStamp(DateTime dateTime = DateTime.Now)
+        {
+            string timeStamp = $"{dateTime.Year}{dateTime.Month}{dateTime.Day}{dateTime.Hour}{dateTime.Minute}{dateTime.Millisecond}";
+            return timeStamp;
+        }
+
+        public static string GenerateTimeStamp(DateTime dateTime = default)
+        {
+            string timeStamp = $"{dateTime.Year}{dateTime.Month}{dateTime.Day}{dateTime.Hour}{dateTime.Minute}{dateTime.Millisecond}";
+            return timeStamp;
+        }
+
+        public static string GenerateTimeStamp(DateTime? dateTime = null)
+        {
+            if (dateTime != null)
+            {
+                string timeStamp = $"{dateTime.Value.Year}{dateTime.Value.Month}{dateTime.Value.Day}{dateTime.Value.Hour}{dateTime.Value.Minute}{dateTime.Value.Millisecond}";
+                return timeStamp;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string GenerateTimeStamp()
+        {
+            return GenerateTimeStamp(DateTime.Now);
+        }
+        public static string GenerateTimeStamp(DateTime dateTime)
+        {
+            string timeStamp = $"{dateTime.Year}{dateTime.Month}{dateTime.Day}{dateTime.Hour}{dateTime.Minute}{dateTime.Millisecond}";
+            return timeStamp;
+        }
+    }
+}
+```
+
+### Conclusion
+
+Using the default keyword is best way to solve this compile error if .NET version is greater than 7.1 one. If you have version 6 or greater then the next best option is to use a nullable. If you are using .NET 6 or less then to use a function overload would be best.

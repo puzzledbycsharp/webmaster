@@ -1,0 +1,65 @@
+---
+title: Copying Files Via Project Script On Build
+---
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+
+# Copying Files Via Project Script On Build
+
+<ImageWrapper imageSource="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-medium.webp" imageSrcSet="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-small.webp 250w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-medium.webp 500w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Copying Files Via Project Script On Build Banner Image" widthImage = "2304" heightImage = "1728" />
+
+
+One way to copy files to output folder is to edit the .csproj file and add a command copy files from a certain directory into the output folder.
+
+For example, I have some DLLs at C:\temp\CopyFilesViaProjectScript\Lib that I would like to copy to the output folder when the project is built.
+
+<ImageWrapper imageSource="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-medium.webp" imageSrcSet="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-small.webp 250w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-medium.webp 500w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />
+
+### Files To Copy Loacation
+
+My project solution is at the following location C:\temp\CopyFilesViaProjectScript\
+
+<ImageWrapper imageSource="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-medium.webp" imageSrcSet="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-small.webp 250w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-medium.webp 500w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />
+
+
+### Solution Location
+
+Right click on the project you would like to edit and select Edit Project File.
+
+<ImageWrapper imageSource="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-medium.webp" imageSrcSet="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-small.webp 250w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-medium.webp 500w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />
+
+
+### Edit Project File
+
+The default project file has the following
+
+```
+    <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+            <OutputType>Exe</OutputType>
+            <TargetFramework>netcoreapp3.1</TargetFramework>
+            </PropertyGroup>
+```
+
+I‘m going to add the following to the project lines.
+
+```
+    <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+                <OutputType>Exe</OutputType>
+                <TargetFramework>netcoreapp3.1</TargetFramework>
+            </PropertyGroup>
+            <ItemGroup>
+                <Content Include="..\lib\*.dll">
+                <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                <Visible>false</Visible>
+                <Link>%(Filename)%(Extension)</Link>
+                </Content>
+            </ItemGroup>
+    </Project>
+```
+
+After building the solution or project, you can see that TestLibrary32Bit.dll, TestLibrary64Bit.dll, and TestLibraryAnyCPU.dll were copied to output folder.
+<ImageWrapper imageSource="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-medium.webp" imageSrcSet="../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-small.webp 250w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-medium.webp 500w, ../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />

@@ -1,0 +1,25 @@
+---
+title: Open A File Programmatically
+---
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+
+# Open A File Programmatically
+
+<ImageWrapper imageSource="../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-medium.webp" imageSrcSet="../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-small.webp 250w, ../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-medium.webp 500w, ../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Open A File Programmatically Banner Image" widthImage = "2304" heightImage = "1728" />
+### Introduction
+
+When testing an app or writing programs that generate files, you may want automate opening the file in code than manually opening those files. The normal process may go like this. Run the program then once the program is complete and then open windows explorer and navigate to the where the file is located.
+
+The following code checks if the file exists on the hard drive before trying to open the file programmatically.
+
+```cs
+string textFilePath = @"C:\Temp\testFile.xlsx";
+FileInfo excelFileInfo = new FileInfo(textFilePath);
+if (excelFileInfo.Exists)
+{
+    System.Diagnostics.Process.Start(excelFileInfo.FullName);
+}
+```

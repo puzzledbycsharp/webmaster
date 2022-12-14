@@ -1,0 +1,195 @@
+---
+title: Best Ways To Use String Remove
+---
+
+# Best Ways To Use String Remove
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../assets/fundamentals/strings/remove/string-remove-page-header-banner-medium.webp" imageSrcSet="../../assets/fundamentals/strings/remove/string-remove-page-header-banner-small.webp 250w, ../../assets/fundamentals/strings/remove/string-remove-page-header-banner-medium.webp 500w, ../../assets/fundamentals/strings/remove/string-remove-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Remove Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## What is String Remove?
+
+String remove is a takes an existing string and based on the start index and length for removal then will return a string with that section removed. The function overloads allow two options. To give a start index and the rest of the string is removed or to give a start index. String remove is the inverse of the substring method.
+
+##### Syntax
+
+###### Function Overload 1
+
+```cs
+    public string Remove(int startIndex)
+```
+
+This is the simplest form of string remove with just one parameter. Start index is provided and it will remove text from that point on to the end of the string. See an example usage below.
+
+```cs
+string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
+int index = 17;//Start index to remove
+string updatedText = text.Remove(index);//Removing from the index to the end of the string and leaving the rest.
+Console.WriteLine(updatedText);//Write to screen
+```
+
+Output
+```
+user_name,user_id
+```
+
+The example above, if we just wanted to see the user information and exclude the rest then we put the start index right at the comma point and the string remove function will remove the rest will be returned. Next we'll look at the next function overload.
+
+###### Function Overload 2
+
+```cs
+public string Remove(int startIndex, int count)
+```
+
+This second function overload takes an index and also the count from the index in which to remove. Check out code snippet below.
+
+```cs
+string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
+int index = 37;//Start index to remove
+int count = 5;//How many characters to remove
+string updatedText = text.Remove(index, count);//Removing from the index and count 
+Console.WriteLine(updatedText);//Write to screen
+```
+
+Output
+
+```
+user_name,user_id,latitude,longitude,map_data,point
+```
+
+This example, we remove the null, from the string by starting on the n of the null and the count extending to the comma.
+
+### Exceptions
+
+###### Index Out of Range
+
+This exception occurs when the start index does not exist within the original string either less than 0 or greater than the length of the string. See same code below.
+
+```cs
+string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
+int index = 358;//Start index to remove
+string updatedText = text.Remove(index);//Removing from the index to the end of the string and leaving the rest.
+Console.WriteLine(updatedText);//Write to screen
+```
+
+Result
+<ImageWrapper imageSource="../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-medium.webp" imageSrcSet="../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-small.webp 250w, ../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-medium.webp 500w, ../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Out of Range Exception Image" widthImage = "539" heightImage = "236" />
+
+In this example, the start index is greater than the length of the string so an exeption is thrown. Next we need to add proection against this use case so it is handled in the code.
+
+###### Protection Against Index Out of Range Exception
+
+To handle this use case, a wrapper function will be created and the bounds of the index will be checked before calling the string remove function. Examine the code below.
+
+```cs
+string RemoveText(int index, string originalText)
+{
+    if (index < 0 || index > originalText.Length - 1)//check the bounds of the string
+    {
+        return originalText;//return original string if startIndex is out of the bounds
+    }
+    string newText = originalText.Remove(index);//safe to call this now
+    return newText;
+}
+string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
+int startIindex = 358;//Start index to remove
+string updatedText = RemoveText(startIindex, text);//Removing from the index to the end of the string and leaving the rest.
+Console.WriteLine(updatedText);//Write to screen
+```
+Output
+
+```
+user_name,user_id,latitude,longitude,null,map_data,point
+```
+
+Notice that the output is what we started with. This means that the index was out of bounds and the use case handled and we didn't alter the string. This is expected, that now no exception is thrown.
+
+### When Might This Function Be Used?
+
+###### Unwanted Text and Repeated Patterns
+This function is great for remove unwanted text at certain index positions when the pattern repeats. Even dynamically with indexOf to find character at certain position then remove the unwanted characters.
+###### Readability
+Having a function that says remove makes it clear what is happening in the code. This is important when working other people and everyone is working on the same code base to have readable code.
+
+#### Alternative Methods of Remove
+
+There are other ways of remove text from a string. Using the string replace method can be used but it is not a precise as picking specific sections to remove text from. It has an advantage of being compact, if you know which characters or strings you want to want eliminate ahead of time. See example below.
+
+```cs
+string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
+string updatedText = text.Replace("null,", "");//replace all instances of null, in the string to empty
+Console.WriteLine(updatedText);//Write to screen
+```
+
+### How String Remove Works
+
+Below are two examples on how this function may work. At the core, this function loops through all the characters in the string and includes and excludes the text based on the start index. Function overload one, shows that all the characters are loop through until and added too a new string until the startIndex is reached. Function overload two, includes all character until the start index is reached. Then it all include all characters of the after start index plus the count.
+
+###### Function Overload 1 Example
+
+```cs
+string RemoveText(string originalText, int startIndex)
+{
+    if (startIndex < 0 || startIndex > originalText.Length - 1)//check the bounds of the string
+    {
+        return originalText;//return original string if startIndex is out of the bounds
+    }
+    string newText = "";
+    for (int i = 0; i < originalText.Length; i++)//loop through each character
+    {
+        if (i < startIndex)//add characters to a new string until it less than the remove index
+        {
+            newText += originalText[i];//add text to the new string
+        }
+    }
+    return newText;
+}
+string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
+int startIndex = 17;//Start index to remove
+string updatedText = RemoveText(text, startIndex);//Removing from the index to the end of the string and leaving the rest.
+Console.WriteLine(updatedText);//Write to screen
+```
+
+Output
+
+```
+user_name,user_id
+```
+
+###### Function Overload 2 Example
+
+```cs
+string RemoveText(string originalText, int startIndex, int count)
+{
+    if (startIndex < 0 || startIndex > originalText.Length - 1)//check the bounds of the string
+    {
+        return originalText;//return original string if startIndex is out of the bounds
+    }
+    string newText = "";
+    for (int i = 0; i < originalText.Length; i++)//loop through each character
+    {
+        if (i < startIndex)//add characters to a new string until it less than the remove index
+        {
+            newText += originalText[i];//add text to the new string
+        }
+        else if (i >= startIndex + count)//add characters to the new string after the start plus the count
+        {
+            newText += originalText[i];//add text to the new string
+        }
+    }
+    return newText;
+}
+string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
+int startIndex = 37;//Start index to remove
+int count = 5;
+string updatedText = RemoveText(text, startIndex, count);//Removing from the index to the end of the string and leaving the rest.
+Console.WriteLine(updatedText);//Write to screen
+```
+
+Output
+
+```
+user_name,user_id,latitude,longitude,map_data,point
+```

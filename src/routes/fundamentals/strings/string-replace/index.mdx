@@ -1,0 +1,67 @@
+---
+title: String Replace In Depth
+---
+
+# String Replace In Depth
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../assets/fundamentals/strings/replace/string-replace-page-header-banner-medium.webp" imageSrcSet="../../assets/fundamentals/strings/replace/string-replace-page-header-banner-small.webp 250w, ../../assets/fundamentals/strings/replace/string-replace-page-header-banner-medium.webp 500w, ../../assets/fundamentals/strings/replace/string-replace-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Replace In Depth Banner Image" widthImage = "2304" heightImage = "1728" />
+## What is String Replace?
+
+String replace is a string and character substitute with another string or character. It finds the provided characters then removes those characters and inserts a new set of characters in it's place. This function replaces all characters that it can find, which is powerful so it's important to use precise text for it to find and replace.
+
+#### Syntax
+
+###### Function Overload 1
+
+```cs
+public string Replace(char findChar, char replaceChar);
+```
+
+This first overload takes in the first parameter finds the all the times that the character exists in the string and replaces it with the second parameter character. Use single quotes or char variables to pass to this function. See example below.
+
+```cs
+string trafficTicketsMetrics = "Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %";//Starting text with a header of a comma seperated list
+string trafficTicketsMetricsUpdated = trafficTicketsMetrics.Replace('%', '!');//replacing % for !
+Console.WriteLine("Original:" + trafficTicketsMetrics);//Print the original string to screen
+Console.WriteLine("Updated:" + trafficTicketsMetricsUpdated);//Print the update string to screen
+```
+
+Output
+
+```
+Original:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %
+Updated:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket !,Failure To Obey Traffic Sign !
+```
+
+###### Function Overload 2
+
+```cs
+public string Replace(string findText, string? replaceText);
+```
+
+The most commonly used function overload that replaces a string or multiple characters with another string. Since is is powerful, being specific is important that other areas of the string are not replaced accidentally. So it's best to use when there are repeated patterns or even it can be used to remove characters. See example below.
+
+```cs
+string trafficTicketsMetrics = "Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %,Unwanted#";//Starting text with a header of a comma seperated list
+string trafficTicketsMetricsUpdated = trafficTicketsMetrics.Replace("%", "percent");//replacing % for percent in all parts of the string
+trafficTicketsMetricsUpdated = trafficTicketsMetricsUpdated.Replace("Unwanted#", "");//Replaced the text Unwanted# and replacing it with an empty string effectively just removing the text
+Console.WriteLine("Original:" + trafficTicketsMetrics);//Print the original string to screen
+Console.WriteLine("Updated:" + trafficTicketsMetricsUpdated);//Print the update string to screen
+```
+
+Output
+
+```
+Original:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %,Unwanted#
+Updated:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket percent,Failure To Obey Traffic Sign percent,
+
+```
+
+######  Function Overload 3
+
+```cs
+public string Replace(string findText, string? replaceText, StringComparison stringComparison);
+```

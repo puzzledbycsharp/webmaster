@@ -1,0 +1,397 @@
+---
+title: Convert A List To String With A Delimiter
+---
+
+# Convert A List To String With A Delimiter
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp" imageSrcSet="../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-small.webp 250w, ../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp 500w, ../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A List To String With A Delimiter Banner Image" widthImage = "2304" heightImage = "1728" />
+## Introduction
+While working with lists it often necessary to convert them into a string. With each item separated by a delimiter or character. This is helpful if there a file or database to write the data to and it is in a consistent format that can be easily reversed and put into a list or loop through. There are different ways to achieve this and we are going to look at the pros and cons of each such as string join, LINQ aggregate, stringbuilder append join or string concatenation. Let's look at string join first.
+
+### String Join Method
+String join provides a function overload to take in a string which the delimiter and a list. This will insert the delimiter between each of the list items. This will help to quickly generate a comma separate row or seperate the data by another character.
+
+###### String Join Method Example Code
+
+  
+```cs
+List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+string commaSeperated = string.Join(",", stringList);//Convert list to a comma seperated string
+Console.WriteLine(commaSeperated);//Print the string
+```
+
+  
+###### Code Output
+```
+first,second,third,fourth,fifth
+```
+    
+This is the expected output of the data with a comma in-between each item. Also note that the comma is not at the end but only in-between.
+
+###### String Join Method Speed Test Code
+We need also test the speed of the code. We will do to this by calling the method 100 million times and average the speed over 10 tests. While in reality we wouldn't call it this many times. This is just to stress test it and see in the long run how the performance is.
+
+
+  
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StringJoinSpeedTest());
+}
+Console.WriteLine($"String Join Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double StringJoinSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = string.Join(",", stringList);//Convert list to a comma seperated string
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+  
+###### Code Output
+
+  
+```
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 748ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 756ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 777ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 775ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 792ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 796ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 758ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 776ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 3s 773ms
+String Join Average speed:3799ms, In 10 tests
+```
+
+    
+The speed test for string join is about 3.7 seconds. This will be baseline in which we test the other methods. Typically the string based methods have reliably good speed but we'll see as we test the other methods.
+
+###### String Join Method Readability
+This method read will as it joining together the list by the delimiter. Also, that it is joining the values together into a single string so it reads well.
+
+###### How Concise Is String Join Method
+It is really compact with only one line of code and there's not much setup with just two parameters which is ideal.
+
+### LINQ's Aggregate Method
+Another build in method that we can use convert a list to a delimited based string is to use LINQ's Aggregate. LINQ provides a lot of built in functionality in a compact form and allows use to write the code similarly to writing SQL statements.
+
+###### LINQ's Aggregate Method Example Code
+```cs
+List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+string commaSeperated = stringList.Aggregate((word, nextWord) => word + "," + nextWord);//Convert list to a comma seperated string
+Console.WriteLine(commaSeperated);//Print the string
+```
+  
+###### Code Output
+
+first,second,third,fourth,fifth
+
+    
+As we can see this yields the same result as string join which is good.
+
+###### LINQ's Aggregate Method Speed Test Code
+Next we'll test LINQ's aggregate function on speed. Sometimes the LINQ functions can be on the slower side, but let's examine the code below.
+
+
+  
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(LINQAggregateSpeedTest());
+}
+Console.WriteLine($"LINQ Aggregate Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double LINQAggregateSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = stringList.Aggregate((word, nextWord) => word + "," + nextWord);//Convert list to a comma seperated string
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+      
+
+  
+```
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 562ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 193ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 133ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 245ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 62ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 11s 987ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 11s 895ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 17ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 101ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 12s 36ms
+LINQ Aggregate Average speed:12124ms, In 10 tests
+```
+
+        
+###### Code Output
+The average speed is around 12 seconds which is way slower than the string join method. So far string join is the fastest method.
+
+###### LINQ's Aggregate Method Readability
+Naming the method aggregate gives the impression that this is a mathematical expression but it is meant to be summing all the parts together. The name is ok but could have been named better.
+
+###### How Concise Is LINQ's Aggregate Method
+It is only one line of code but there is a setup involved for the delegate function but it is still very compact and setup isn't hard to read.
+
+### StringBuilder Append Method
+Next we'll use StringBuilder to convert the list to a delimited based string but to do that we'll need to write our own function. The advantage of StringBuilder is that it performs well and is usually used when the we have a large number text we're working with. Let's see an example.
+
+###### StringBuilder's Append Method Example Code
+```cs
+using System.Text;
+List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+string commaSeperated = ConvertListToSTring(",", stringList);//Convert list to a comma seperated string
+Console.WriteLine(commaSeperated);//Print the string
+string ConvertListToSTring(string delimiter, List<string> list)
+{
+    StringBuilder sb = new StringBuilder();//Create a new StrinbBuilder object
+    foreach (string item in list)//Loop through the list on each item
+    {
+        if (sb.Length == 0)//If the StringBuilder object is empty then only add the item itself. 
+        {
+            sb.Append(item);//Add the item to the StringBuilder object
+        }
+        else
+        {
+            sb.Append(delimiter + item);//If not the first item in the StringBuilter then add a delimiter before the item.
+        }
+    }
+    return sb.ToString();//Convert the StringBuilder to a string
+}
+```
+  
+###### Code Output
+```
+first,second,third,fourth,fifth
+```
+    
+###### StringBuilder's Append Method Speed Test Code
+Next we'll test the speed of StringBuilder and so far string join is the fastest method. We'll see if StringBuilder will be able to beat that.
+
+
+  
+```cs
+using System.Diagnostics;
+using System.Text;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StringBuilderAppendSpeedTest());
+}
+Console.WriteLine($"StringBuilder Append Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double StringBuilderAppendSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = ConvertListToSTring(",", stringList);//Convert list to a comma seperated string
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+string ConvertListToSTring(string delimiter, List<string> list)
+{
+    StringBuilder sb = new StringBuilder();//Create a new StrinbBuilder object
+    foreach (string item in list)//Loop through the list on each item
+    {
+        if (sb.Length == 0)//If the StringBuilder object is empty then only add the item itself. 
+        {
+            sb.Append(item);//Add the item to the StringBuilder object
+        }
+        else
+        {
+            sb.Append(delimiter + item);//If not the first item in the StringBuilter then add a delimiter before the item.
+        }
+    }
+    return sb.ToString();//Convert the StringBuilder to a string
+}
+```
+
+      
+###### Code Output
+
+  
+```
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 15s 220ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 727ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 774ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 326ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 403ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 538ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 791ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 570ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 434ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 14s 477ms
+StringBuilder Append Average speed:14626ms, In 10 tests
+```
+
+        
+With an average speed of 14 seconds, this makes StringBuilder the a slow method.
+
+###### StringBuilder's Append Method Readability
+This is very readability as we can see each step taken in how the new string is formed. This also gives us more control if needed to do more or add more and different kinds of strings then we have flexibility
+
+###### How Concise Is StringBuilder's Append Method
+This method is not concise because we have to write it ourselves and maintain and update it if something were to go wrong.
+
+###### String Concatenation Method
+The last of the methods show here is with string concatenation. This one of the simplest methods to use and it is similar to the StringBuilder approach. This works by adding a string on top of itself and over time the string grows. Each time we add to the string it creates a new string since string is immutable and can't be changed.
+
+###### String Concatenation Example Code
+
+  
+```cs
+List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+string commaSeperated = ConvertListToSTringByStringConcatenation(",", stringList);//Convert list to a comma seperated string
+Console.WriteLine(commaSeperated);//Print the string
+string ConvertListToSTringByStringConcatenation(string delimiter, List<string> list)
+{
+    string commaSeperated = "";
+    foreach (string item in list)//Loop through the list on each item
+    {
+        if (string.IsNullOrEmpty(commaSeperated))//If the string is empty then only add the item itself. 
+        {
+            commaSeperated = item;//Add the item to the string. This creates a new string.
+        }
+        else
+        {
+            commaSeperated += delimiter + item;//If not the first item in the string then add a delimiter before the item. This creates a new string.
+        }
+    }
+    return commaSeperated;
+}
+``` 
+
+
+  
+###### Code Output
+```
+first,second,third,fourth,fifth
+```
+    
+This works and we get our list just as we wanted. Note that we did have write our own code in this case and it could possible be inefficient.
+
+###### String's Concatenation Method Speed Test Code
+Next is the speed test and our guess is that this method could be inefficient because of the new string creation every time we add to the existing string. But now let's test to speed to see if our assumption holds true.
+
+  
+    
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StringConcentationAppendSpeedTest());
+}
+Console.WriteLine($"String Concatenation Append Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double StringConcentationAppendSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = ConvertListToSTringByStringConcatenation(",", stringList);//Convert list to a comma seperated string
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+string ConvertListToSTringByStringConcatenation(string delimiter, List<string> list)
+{
+    string commaSeperated = "";
+    foreach (string item in list)//Loop through the list on each item
+    {
+        if (string.IsNullOrEmpty(commaSeperated))//If the string is empty then only add the item itself. 
+        {
+            commaSeperated = item;//Add the item to the string. This creates a new string.
+        }
+        else
+        {
+            commaSeperated += delimiter + item;//If not the first item in the string then add a delimiter before the item. This creates a new string.
+        }
+    }
+    return commaSeperated;
+}
+```    
+
+  
+      
+###### Code Output
+
+  
+```
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 9s 134ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 902ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 9s 328ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 822ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 943ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 762ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 755ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 775ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 760ms
+alteredText:first,second,third,fourth,fifth, Function calls:100000000, In 0m 8s 746ms
+String Concatenation Append Average speed:8893ms, In 10 tests
+```
+
+
+        
+We see an average speed of about 8 seconds which isn't the worst as we were expecting but not that fast either.
+
+###### String's Concatenation Method Readability
+It is readability in that we can see what is going on at each step just like in the StringBuilder case.
+
+###### How Concise Is String's Concatenation Append Method
+This is not very concise as it takes some lines to loop through. Even though it is not compact, it is flexibly and can be alter to suit the needs of the user.
+
+### Conclusion
+Overall Rank,	Method,	Speed,	Concise,	Readability(1-5)
+
+1,	String Join,	3799ms,	1 line,	4
+
+2,	String Concatenation,	8893ms,	17 lines,	4
+
+3,	LINQ Aggregate,	12124ms,	1 line,	3
+
+4,	StringBuilder Append,	14626ms,	17 lines,	4
+
+The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest, it is compact on one line and also easy to setup. It is a go to method of doing this operation because it as build in function to C#. The next best method is string concatenation because of it's speed. Even though we need to write it and maintain it, the speed that we get makes up for that. It is flexible since we add to it if needed. LINQ Aggregate and String Builder Append are pretty slow so it is not recommend using them for this use case because their speed is over 10 seconds.

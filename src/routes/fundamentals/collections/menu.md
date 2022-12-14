@@ -1,0 +1,17 @@
+# Home
+
+## Collections
+- [Collections](./index.mdx)
+- [Array vs List vs Linked List](array-vs-list-vs-linked-list/index.mdx)
+- [Dictionary Best Practices And What To Avoid](dictionary-best-practices-and-what-to-avoid/index.mdx)
+- [List vs Dictionary Collection Types](list-vs-dictionary/index.mdx)
+- [List](list/index.mdx)
+
+## List
+- [List](list/index.mdx)
+- [A Functional Look At List](list/functional-look-at-list/index.mdx)
+- [Access Items From A List By Index](list/access-items-from-a-list-by-index/index.mdx)
+- [Convert A List To String With A Delimiter](list/convert-list-to-string-with-a-delimiter/index.mdx)
+- [Best Way To Sort A List](list/best-way-to-sort-a-list/index.mdx)
+- [How To Find An Item In The List](list/how-to-find-an-item-in-the-list/index.mdx)
+- [How To Initialize A List](list/how-to-initialize-a-list/index.mdx)

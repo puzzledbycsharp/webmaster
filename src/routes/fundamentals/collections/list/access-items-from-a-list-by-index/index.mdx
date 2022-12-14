@@ -1,0 +1,167 @@
+---
+title: Access Items From A List By Index
+---
+
+# Access Items From A List By Index
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp" imageSrcSet="../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-small.webp 250w, ../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp 500w, ../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Access Items From A List By Index Banner Image" widthImage = "2304" heightImage = "1728" />
+## Introduction
+A list has an underlying data structure of a array so the elements of the array can be accessed by an indexer. But only if that index exists on the array can the element's data be accessed. This is useful to know as there are times when we only want to access certain elements such as the last or first element so we don't want to loop through the entire list. C# provides two solid ways to accessing the data by the index. The indexer and the ElementAt function. They work in similar ways but indexer only works on certain IEnumerable types but ElementAt will work on any IEnumerable type which includes list.
+
+## Get Item In List By Indexer
+Using the indexer is the go to method of getting an element's data. It is easy to use and many collection types in C# have an indexer. If you know the location or index address of the element you want to get data then you pass that integer value to the indexer and it will return the data almost instantaneously. See below on several use cases of how we can quickly get the first, last and value in between with the indexer.
+
+###### Get Item In List By Indexer Code Example
+```cs
+List<string> masterList = new List<string>() { "first", "second", "third", "fourth", "fifth" };
+Console.WriteLine("Starting Value:" + masterList[0]);//Starting value is at index = 0
+Console.WriteLine("Last Value:" + masterList[masterList.Count - 1]);//Last Value is at index = 4
+Console.WriteLine("Second Value:" + masterList[1]);//Second Value is at index = 1
+```
+  
+###### Code Output
+```
+Starting Value:first
+Last Value:fifth
+Second Value:second
+```
+    
+This works well in getting exactly what we want. We don't have to loop through the list to get any individual elements.
+
+###### Get Item By List Indexer Speed Test
+We also want to test the speed of the indexer. In this test, we perform a set indexer operations 100 million times then do that test 10 times to get the average. Let's examine the code below.
+
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ListIndexerSpeedTest());
+}
+Console.WriteLine($"List Indexer Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double ListIndexerSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    List<string> masterList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Items in the list
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = masterList[0];//Get First item in the list
+        alteredText = masterList[1];//Get the second item in the list
+        alteredText = masterList[masterList.Count - 1];//Get the last item in the list
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+  
+###### Code Output
+```
+alteredText:fifth, Function calls:100000000, In 0m 0s 613ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 580ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 574ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 574ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 574ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 573ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 574ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 573ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 575ms
+alteredText:fifth, Function calls:100000000, In 0m 0s 574ms
+List Indexer Average speed:579ms, In 10 tests
+```
+    
+Results are in and average speed to get items from a indexer 100 million times is about half a second. Which this is pretty fast. This will be the baseline in which we can compare.
+
+###### Get Item In List By Indexer Readability
+Indexer is one of those properties that you just have to know. It's not very readability but it comes up very often that you will pick up on it very quickly. It has been around a long time but more recently there are other C# properties that are similar in structure so it could be confusing to new users.
+
+### Get Item In List By ElementAt
+ElementAt is very similar to the Indexer for list. ElementAt allows to access an item from the list by an index value. ElementAt is available on any collection type that is a IEnumerable type. ElementAt reads really well because it says what it does which is different that than the Indexer. So let's look at example.
+
+```cs
+List<string> masterList = new List<string>() { "first", "second", "third", "fourth", "fifth" };
+Console.WriteLine("Starting Value:" + masterList.ElementAt(0));//Starting value is at index = 0
+Console.WriteLine("Last Value:" + masterList.ElementAt(masterList.Count - 1));//Last Value is at index = 4
+Console.WriteLine("Second Value:" + masterList.ElementAt(1));//Second Value is at index = 1
+```
+  
+###### Code Output
+```
+Starting Value:first
+Last Value:fifth
+Second Value:second
+```
+    
+This code also give exactly what we want in a straight forward manner. Next we'll test the speed of the function.
+
+###### Get Item By List ElementAt Speed Test
+We will also perform the same speed test as for Indexer. We would expect ElementAt to be slightly slower since it a more general implementation across different collections types.
+
+
+  
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ElementAtSpeedTest());
+}
+Console.WriteLine($"ElementAt Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double ElementAtSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    List<string> masterList = new List<string>() { "first", "second", "third", "fourth", "fifth" };
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = masterList.ElementAt(0);
+        alteredText = masterList.ElementAt(1);
+        alteredText = masterList.ElementAt(masterList.Count - 1);
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+      
+###### Code Output
+```
+alteredText:fifth, Function calls:100000000, In 0m 6s 467ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 359ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 364ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 396ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 445ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 356ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 387ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 408ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 436ms
+alteredText:fifth, Function calls:100000000, In 0m 6s 351ms
+ElementAt Average speed:6397ms, In 10 tests
+```
+        
+This method is extremely slow. It doesn't compare to Indexer.
+
+###### Get Item In List By ElementAt Readability
+This method reads well as we're not wondering what is happening. It read a element at the following index which is good.
+
+### Conclusion
+Overall Rank,	Method,	Speed,	Concise	Readability(1-5),
+
+1,	List's Indexer,	579ms,	1 line,	2
+
+2,	ElementAt,	6397ms,	1 line,	4
+
+The best way to access an item of a list is to use the Indexer property. It is extremely fast and once used to the syntax, it becomes a go to property to use on collection types. ElementAt although it reads well, it far to slow to recommend to use, unless you have no choice.

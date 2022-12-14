@@ -1,0 +1,299 @@
+---
+title: Using String Insert Effectively
+---
+
+# Using String Insert Effectively
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../assets/fundamentals/strings/insert/string-insert-page-banner-medium.webp" imageSrcSet="../../assets/fundamentals/strings/insert/string-insert-page-banner-small.webp 250w, ../../assets/fundamentals/strings/insert/string-insert-page-banner-medium.webp 500w, ../../assets/fundamentals/strings/insert/string-insert-page-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Insert Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## What is String Insert?
+
+The insert method puts a single string in-between a section of the string. With the first parameter of index, it lets you pick the at what point to insert a string. the second parameter is the string you want to insert. Both of these parameters must be a valid input. The size of the string you want o insert doesn't really matter just as long as it is inserted in the valid range of the existing string.
+
+###### Syntax
+
+```cs
+public string Insert(int index, string value)
+```
+
+Notice that the function call allows for a index of the current string where the insert will start. Then in the next parameter you can pass the string you want to insert. Let's see an example, by looking at the code below.
+
+
+```cs
+string debugStatement = "Error Generated at  for function";//Starting string
+DateTime timestamp = DateTime.Now;//Date that we want to insert
+int index = 19;//Start index of the insert
+string completedStatement = debugStatement.Insert(index, timestamp.ToString()); //Call the insert function
+Console.WriteLine(completedStatement);//Display result
+```
+
+Output
+
+```
+    Error Generated at 5/1/2022 2:15:46 PM  for function
+```
+
+This code snippet simple takes an existing string and inserts a date between the at and for text.
+
+#### String Insert Exceptions
+
+It's important to note when exceptions can happen and when they might happen so that we can guard the code against such cases. The first is index out of range exception
+
+###### Index Out of Range Exception
+
+This exception comes when the index provided is either less than 0 or greater than the length of the original string. See code sameple below that will generate such error.
+
+```cs
+string debugStatement = "Error Generated at  for function";//Starting string
+DateTime timestamp = DateTime.Now;//Date that we want to insert
+int index = -1;//Start index of the insert which will cause an exception
+string completedStatement = debugStatement.Insert(index2, timestamp.ToString());//Call the insert function
+Console.WriteLine(completedStatement);//Display result
+```
+
+Result
+
+<ImageWrapper imageSource="../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-medium.webp" imageSrcSet="../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-small.webp 250w, ../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-medium.webp 500w, ../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Argument Out of Range Exception Image" widthImage = "982" heightImage = "236" />
+
+As you can see index is less than 0 which is not a valid index in the original string. To handle this case will have a wrapper function over the string insert method to handle such cases. Check out the code below.
+
+
+```cs
+//Protection Against String Insert Index Out of Range Exception
+string debugStatement = "Error Generated at  for function";//Starting string//Starting string
+DateTime timestamp = DateTime.Now;//Date that we want to insert
+int index = -1;//Start index of the insert which will cause an exception
+string completedStatement = InsertText(index, debugStatement, timestamp.ToString());//Call the updated insert function
+Console.WriteLine("Result1:" + completedStatement);//Display result
+
+index = 100;//Start index that is outside the length of the original string
+completedStatement = InsertText(index, debugStatement, timestamp.ToString());//Call the updated insert function
+Console.WriteLine("Result2:" + completedStatement);//Display result
+
+string InsertText(int index, string originalText, string textToInsert)
+{
+    if (index < 0 || index > originalText.Length - 1)
+    {
+        return originalText;
+    }
+    string newText = originalText.Insert(index, textToInsert);
+    return newText;
+}
+```
+
+In the insert text wrapper function we handle both the case of index being less than 0 and also when the insert index is greater than the length - 1 of the original string.
+
+### Null Exception
+
+Null Exception happens when the string we want insert is null. If it was just an empty string it would be ok and there wouldn't be a exception so we must guard the code against a null value. See code below to see how the error can be caused.
+
+```cs
+string debugStatement = "Error Generated at  for function";//Starting string
+string? timestamp = null;//Date that we want to insert but since it is null an exception will be thrown
+int index = 19;//Start index of the insert which will cause an exception
+string completedStatement = debugStatement.Insert(index, timestamp);//Call the updated insert function
+Console.WriteLine(completedStatement);//Display result
+```
+
+Result
+<ImageWrapper imageSource="../../assets/fundamentals/strings/insert/string-insert-null-exception-medium.webp" imageSrcSet="../../assets/fundamentals/strings/insert/string-insert-null-exception-small.webp 250w, ../../assets/fundamentals/strings/insert/string-insert-null-exception-medium.webp 500w, ../../assets/fundamentals/strings/insert/string-insert-null-exception-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "ArgumentNull Exception Image" widthImage = "682" heightImage = "229" />
+
+To resolve this issue. We are going to add a null check to that parameter so that use case will be handled. Now adding that check to the preview created InsertText wrapper function. Inspect the code below.
+
+```cs
+string debugStatement = "Error Generated at  for function";//Starting string//Starting string
+string? timestamp = null;//Date that we want to insert but since it is null an exception will be thrown
+int index = 19;//Start index of the insert which will cause an exception
+string completedStatement = InsertText(index, debugStatement, timestamp);//Call the updated insert function
+Console.WriteLine(completedStatement);//Display result
+string InsertText(int index, string originalText, string textToInsert)
+{
+    if (index < 0 || index > originalText.Length - 1)
+    {
+        return originalText;
+    }
+    if(string.IsNullOrEmpty(textToInsert))//Add null check 
+    {
+        return originalText;
+    }
+    string newText = originalText.Insert(index, textToInsert);
+    return newText;
+}
+```
+
+Output
+
+```
+Error Generated at 5/1/2022 2:15:46 PM  for function
+```
+
+### When Might This Function Be Used?
+
+###### Fixed position or repeated patterns
+Cases when it known where the insert index will be all the time and also if there . For example, date time when it known that the day, month or year are a fixed position and length. Also, look for repeated patterns where you might could use the indexyOf to find a certain character or set of characters to find the insert point.
+###### Readablitiy
+Another consideration when using this function is how this might keep the code simple ane readable so whenever you can keep the code simple so that others can who might work on the code can come in a quickly understand what is going on that is a good thing. So having this function describes what is doing is useful for readabiblity.
+
+### Alternate String Insert Methods
+
+There are other ways of inserting a string into a string because often times when we just don't need to insert one string we need to insert multiple strings at a time. So below are some ways in which we can insert multiple strings into a string at one time.
+
+###### String Replace
+Place holders for strings can be put in string then we use string replace insert at the place holder for that we want to replace. See example below.
+
+```cs
+string GetQuery(int fileId, string fileType, int userId)
+{
+    string query = @"select 
+                    * 
+                    from 
+                    file_main 
+                    where 
+                    file_id = [FILE_SCOPE] 
+                    and file_type = [TYPE] 
+                    and user_id = [USER]";
+    query = query.Replace("[FILE_SCOPE]", fileId.ToString());//Replace [FILE_SCOPE] with fileId variable
+    query = query.Replace("[TYPE]", fileType);//Replace [TYPE] with fileType variable
+    query = query.Replace("[USER]", userId.ToString());//Replace [USER] with userId variable
+    return query;
+}
+int fileId = 2318;
+string fileType = "CSV";//CSV is a common file type
+int userId = 3248;
+string queryComplete = GetQuery(fileId, fileType, userId);
+Console.WriteLine(queryComplete);
+```
+
+Output
+```
+select
+    *
+from
+    file_main
+where
+    file_id = 2318
+    and file_type = CSV
+    and user_id = 3248
+              
+```
+
+###### String Format
+
+String format use places holders in curly braclys starting with 0,1,..n to how many paramters you want to insert into the string. A simple example is below.
+
+```cs
+string GetQuery(string lastName, string userType)
+{
+    string query = @"select 
+                    * 
+                    from 
+                    user_main 
+                    where 
+                    last_name = {0}
+                    and user_type = {1}";
+    string finalQuery = string.Format(query, lastName, userType);
+    return finalQuery;
+}
+string lastName = "Shepard";
+string userType = "ADMIN";
+string queryComplete = GetQuery(lastName, userType);
+Console.WriteLine(queryComplete);
+```
+
+Output
+
+```
+select
+*
+from
+user_main
+where
+last_name = Shepard
+and user_type = ADMIN
+```
+
+###### String Concatenation
+
+This type of string insert can be used to combine different strings or insert variables into strings but it can be tedious to construct when as sections and varibles increase.
+
+```cs
+string GetQuery(string lastName, string userType)
+{
+    string query = "select " +
+                    " * " + 
+                    " from" +
+                    " user_main " +
+                    " where " +
+                    " last_name = " + lastName +
+                    " and user_type = " + userType;
+    string finalQuery = string.Format(query, lastName, userType);
+    return finalQuery;
+}
+string lastName = "Shepard";
+string userType = "ADMIN";
+string queryComplete = GetQuery(lastName, userType);
+Console.WriteLine(queryComplete);
+```
+
+Output
+```
+select  *  from user_main  where  last_name = Shepard and user_type = ADMIN 
+```
+
+###### String Interpolation
+
+This way allows to place the variables in line similar to concatenation but it is easier because there is less formating needed
+
+```cs
+string GetQuery(int fileId, string fileType, int userId)
+{
+    string query = $"select * from file_main where file_id = {fileId} and file_type = {fileType} and user_id = {userId}";
+    return query;
+}
+int fileId = 2318;
+string fileType = "CSV";//CSV is a common file type
+int userId = 3248;
+string queryComplete = GetQuery(fileId, fileType, userId);
+Console.WriteLine(queryComplete);
+```
+
+Output
+```
+select * from file_main where file_id = 2318 and file_type = CSV and user_id = 3248
+```
+
+### How String Insert Works
+
+There can be may ways to create a string insert function. One way is to use substring to take the substring to the index and take the substring of the index to the end of the string. Then take the text we want to insert and concantenate inbetween the two substrings. See code snippet below.
+
+```cs
+string InsertInString(string originalText, int index, string textToInsert)
+{
+    if (index < 0 || index > originalText.Length - 1)//Add index check
+    {
+        return originalText;
+    }
+    if (string.IsNullOrEmpty(textToInsert))//Add null check 
+    {
+        return originalText;
+    }
+    string firstHalf = originalText.Substring(0, index);//Substring of the first half the text
+    string secondHalf = originalText.Substring(index, (originalText.Length) - index); //Substring of the second half the text
+    string final = firstHalf + textToInsert + secondHalf;//Concatenate all the strings together
+    return final;
+}
+string debugStatement = "Error Generated at  for function";//Starting string
+DateTime timestamp = DateTime.Now;//Date that we want to insert
+int index = 19;//Start index of the insert which will cause an exception
+string completedStatement = InsertInString(debugStatement, index, timestamp.ToString());//Call the insert function
+Console.WriteLine(completedStatement);//Display result
+```
+
+Output
+
+```
+Error Generated at 5/8/2022 3:42:16 PM for function 
+```

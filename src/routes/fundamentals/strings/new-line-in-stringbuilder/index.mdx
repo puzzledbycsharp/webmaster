@@ -1,0 +1,36 @@
+---
+title: New Line In StringBuilder
+---
+
+# New Line In StringBuilder
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+
+New line is a special sequences that can be inserted into a string. Represented as '\n' this works as if you pressed return on the keyboard. This can be inserted into any StringBuilder object. It is useful to know to automate the sequence.
+
+In the example, below we are looping through an object of type car. With each loop the car variables are written to a StringBuilder instance with a new line ('\n') at the end.
+
+```cs
+List<Car> carList = GetCarData();
+StringBuilder sb = new StringBuilder();
+foreach (Car car in carList)
+{
+    sb.Append($"Make:{car.Make}, Model:{car.Model}, Color:{car.Color}\n");
+}
+Console.WriteLine(sb.ToString());
+```
+
+New Line Console Output
+
+```
+Make:Hyundai, Model:Sonata, Color:Black
+Make:Toyata, Model:Corolla, Color:White
+Make:Telsa, Model:Model S, Color:Cyan
+Make:Honda, Model:CR-V, Color:Black
+Make:BMW, Model:X3, Color:Blue
+Make:Acura, Model:MDX, Color:Red
+Make:Honda, Model:Pilot, Color:Dark Blue
+Make:Ford, Model:Focus, Color:Yellow
+```

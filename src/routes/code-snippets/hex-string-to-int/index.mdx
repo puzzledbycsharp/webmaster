@@ -1,0 +1,105 @@
+---
+title: Hex To Int Conversion
+---
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+
+# Hex String To Int
+
+
+<ImageWrapper imageSource="../../assets/code-snippets/hex-to-string/hex-string-to-int-medium.webp" imageSrcSet="../../assets/code-snippets/hex-to-string/hex-string-to-int-small.webp 250w, ../../assets/code-snippets/hex-to-string/hex-string-to-int-medium.webp 500w, ../../assets/code-snippets/hex-to-string/hex-string-to-int-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "hex string to int banner" widthImage = "2304" heightImage = "1728" />
+### Introduction
+
+
+Hex is a base 16 number system and the C# has build in function that can convert a string hex value into a int value. See code snippet below.
+
+###### Code Snippet
+
+```cs
+static void Main(string[] args)
+{
+    Console.WriteLine($"HexValue:9C, IntegerValue:{StringHexToInt("9C")}");
+    Console.WriteLine($"HexValue:F3, IntegerValue:{StringHexToInt("F3")}");
+    Console.WriteLine($"HexValue:3B, IntegerValue:{StringHexToInt("3B")}");
+    Console.WriteLine($"HexValue:33D, IntegerValue:{StringHexToInt("33D")}");
+    Console.WriteLine($"HexValue:2E, IntegerValue:{StringHexToInt("2E")}");
+}
+private static int StringHexToInt(string hexValue)
+{
+    int integerValue = 0;
+    if (int.TryParse(hexValue, System.Globalization.NumberStyles.HexNumber, CultureInfo.CurrentCulture, out integerValue))
+    {
+        return integerValue;
+    }
+    return 0;
+}
+```
+
+###### Output
+```
+HexValue:9C, IntegerValue:156
+HexValue:F3, IntegerValue:243
+HexValue:3B, IntegerValue:59
+HexValue:33D, IntegerValue:829
+HexValue:2E, IntegerValue:46
+```
+Coressponding int to hex conversion
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+9. 9
+10. A
+11. B
+12. C
+13. D
+14. E
+15. F
+
+C# also mimics this conversion table in the code. See code snippet below.
+
+```cs
+Console.WriteLine($"HexValue:0, IntegerValue:{StringHexToInt("0")}");
+Console.WriteLine($"HexValue:1, IntegerValue:{StringHexToInt("1")}");
+Console.WriteLine($"HexValue:2, IntegerValue:{StringHexToInt("2")}");
+Console.WriteLine($"HexValue:3, IntegerValue:{StringHexToInt("3")}");
+Console.WriteLine($"HexValue:4, IntegerValue:{StringHexToInt("4")}");
+Console.WriteLine($"HexValue:5, IntegerValue:{StringHexToInt("5")}");
+Console.WriteLine($"HexValue:6, IntegerValue:{StringHexToInt("6")}");
+Console.WriteLine($"HexValue:7, IntegerValue:{StringHexToInt("7")}");
+Console.WriteLine($"HexValue:8, IntegerValue:{StringHexToInt("8")}");
+Console.WriteLine($"HexValue:9, IntegerValue:{StringHexToInt("9")}");
+Console.WriteLine($"HexValue:A, IntegerValue:{StringHexToInt("A")}");
+Console.WriteLine($"HexValue:B, IntegerValue:{StringHexToInt("B")}");
+Console.WriteLine($"HexValue:C, IntegerValue:{StringHexToInt("C")}");
+Console.WriteLine($"HexValue:D, IntegerValue:{StringHexToInt("D")}");
+Console.WriteLine($"HexValue:E, IntegerValue:{StringHexToInt("E")}");
+Console.WriteLine($"HexValue:F, IntegerValue:{StringHexToInt("F")}");
+```
+
+Console Output:
+
+```
+HexValue:0, IntegerValue:0
+HexValue:1, IntegerValue:1
+HexValue:2, IntegerValue:2
+HexValue:3, IntegerValue:3
+HexValue:4, IntegerValue:4
+HexValue:5, IntegerValue:5
+HexValue:6, IntegerValue:6
+HexValue:7, IntegerValue:7
+HexValue:8, IntegerValue:8
+HexValue:9, IntegerValue:9
+HexValue:A, IntegerValue:10
+HexValue:B, IntegerValue:11
+HexValue:C, IntegerValue:12
+HexValue:D, IntegerValue:13
+HexValue:E, IntegerValue:14
+HexValue:F, IntegerValue:15
+    ```
