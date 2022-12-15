@@ -7,6 +7,7 @@ import { SubscribeForm } from '~/components/subscribeform/subscribeform';
 import { MobileSocialShare } from '~/components/mobilesocialshare/mobilesocialshare';
 import  LeftContextMenu  from '~/components/leftcontextmenu/leftcontextmenu';
 import Header from '~/components/header/header';
+import Footer from '~/components/footer/footer';
 
 export default component$(() => {
 
@@ -56,6 +57,7 @@ export default component$(() => {
         </div>
 
       </section>
+      <Footer />
     </main>
   );
 });
