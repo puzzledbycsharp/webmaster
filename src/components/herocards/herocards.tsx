@@ -354,7 +354,7 @@ export const Child = component$(() => {
         
 <div class="max-w-sm bg-customdark1 border border-customdark2 rounded-lg shadow-md mx-auto">
     <a href={item.url}>
-        <img class="rounded-t-lg" src={item.image} alt="" />
+        <img class="rounded-t-lg" src={item.image} alt={item.title + " Image"} loading="lazy" />
     </a>
     <div class="p-5">
         <a href={item.url}>
@@ -368,6 +368,7 @@ export const Child = component$(() => {
     </div>
 </div>
     </>
+    
   ))
   : null}
 
