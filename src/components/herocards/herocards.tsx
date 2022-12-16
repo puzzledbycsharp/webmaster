@@ -425,7 +425,7 @@ export const Child = component$(() => {
     </a>
     <div class="p-5">
         <a href={item.url} aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title.replace(" | Puzzled By CSharp", "")}</h5>
+            <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title.replace(" | Puzzled By CSharp", "")}</h3>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.description}</p>
         <a href={item.url} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center border-2 bg-customdark1  hover:bg-customdark6 hover:text-customdark5 px-5 mx-3 lg:mx-0 text-sm leading-5 rounded-md font-semibold text-customdark7 duration-300" aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>

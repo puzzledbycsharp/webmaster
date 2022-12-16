@@ -3,9 +3,9 @@ import { component$ } from '@builder.io/qwik';
 export default component$(() => {
 
   return (
-    <footer>        <h6 class="w-24  whitespace-nowrap mx-auto justify-center">
+    <footer>        <h3 class="w-24  whitespace-nowrap mx-auto justify-center">
     Follow me at
-  </h6>
+  </h3>
       <div class="flex flex-row justify-center mx-auto">
 
         <div class="w-16">
