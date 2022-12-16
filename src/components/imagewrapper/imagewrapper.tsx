@@ -5,8 +5,8 @@ interface ItemProps {
   imageSrcSet?: string;
   imageSizes?: string;
   altImage?: string;
-  widthImage?: number;
-  heightImage?: number;
+  widthImage?: string;
+  heightImage?: string;
 
 }
 
