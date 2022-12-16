@@ -7,14 +7,14 @@ interface ItemProps {
   altImage?: string;
   widthImage?: string;
   heightImage?: string;
-
+classInfo?:string;
 }
 
 
 export const ImageWrapper = component$((props: ItemProps) => {
 
   return (
-    <img src={props.imageSource} srcSet={props.imageSrcSet} sizes={props.imageSizes} width={props.widthImage} height={props.heightImage} alt={props.altImage} loading="lazy"  />
+    <img src={props.imageSource} srcSet={props.imageSrcSet} sizes={props.imageSizes} width={props.widthImage} height={props.heightImage} alt={props.altImage} class={props.classInfo} loading="lazy"  />
 
 
 );

@@ -303,7 +303,7 @@ export default component$(() => {
       description:'The best method for getting the first n characters is span slice. Performance is the best metric to determine to which is best because it affects the end users.'
     },    { 
       location:'fundamentals/strings/string-substring/get-a-substring-between-two-strings', 
-      url: '',
+      url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/get-a-substring-between-two-strings/',
       title:'Get A Substring Between Two Strings | Puzzled By CSharp',
       dateCreated:'2022-08-09T00:08:56+00:00',
       dateModified:'2022-08-09T00:08:56+00:00',
@@ -417,19 +417,19 @@ export const Child = component$(() => {
         <>
         
 <div class="max-w-sm bg-customdark1 border border-customdark2 rounded-lg shadow-md mx-auto">
-    <a href={item.url}>
+    <a href={item.url}  aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>
         {/* <img class="rounded-t-lg" src={item.image} alt={item.title + " Image"}  /> */}
 
-        <ImageWrapper imageSource={item.image} imageSrcSet={item.imageSmall +" 250w, "+ item.image + " 500w, " +item.imageLarge +" 1000w "} imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = {item.title.replace(" | Puzzled By CSharp", "") + " Image"} widthImage = "6000" heightImage = "4000" />
+        <ImageWrapper imageSource={item.image} imageSrcSet={item.imageSmall +" 250w, "+ item.image + " 500w, " +item.imageLarge +" 1000w "} imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = {item.title.replace(" | Puzzled By CSharp", "") + " Image"} widthImage = "6000" heightImage = "4000" classInfo='rounded-t-lg'/>
 
     </a>
     <div class="p-5">
-        <a href={item.url}>
+        <a href={item.url} aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title.replace(" | Puzzled By CSharp", "")}</h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.description}</p>
-        <a href={item.url} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center border-2 bg-customdark1  hover:bg-customdark6 hover:text-customdark5 px-5 mx-3 lg:mx-0 text-sm leading-5 rounded-md font-semibold text-customdark7 duration-300">
-            Read more
+        <a href={item.url} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center border-2 bg-customdark1  hover:bg-customdark6 hover:text-customdark5 px-5 mx-3 lg:mx-0 text-sm leading-5 rounded-md font-semibold text-customdark7 duration-300" aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>
+            Read more in article
             <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </a>
     </div>

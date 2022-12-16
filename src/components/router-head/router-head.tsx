@@ -286,7 +286,7 @@ const state = useStore<SharedRouteState>({
     description:'The best method for getting the first n characters is span slice. Performance is the best metric to determine to which is best because it affects the end users.'
   },    { 
     location:'fundamentals/strings/string-substring/get-a-substring-between-two-strings', 
-    url: '',
+    url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/get-a-substring-between-two-strings/',
     title:'Get A Substring Between Two Strings | Puzzled By CSharp',
     dateCreated:'2022-08-09T00:08:56+00:00',
     dateModified:'2022-08-09T00:08:56+00:00',
@@ -399,7 +399,7 @@ if(routeData){
       {head.meta.map((m) => (
         <meta {...m} />
       ))}
-
+<meta name="description"  content={routeData.description}></meta>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content={routeData.description}/>
     <meta name="twitter:creator" content="@puzzledbycsharp"/>
@@ -474,9 +474,13 @@ if(routeData.location != '' && loc.href.includes( routeData.location))
 {
   return routeData;
 }
-}    
+else if(routeData.location == '' && loc.href.includes( routeData.location)){
+return routeData;
+}
+
   
   return null;
+}
 }
 
 export function structuredDataSingle(routeData: MyRouteData){
