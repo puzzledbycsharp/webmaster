@@ -5,18 +5,13 @@ interface TableProps {
   rows?: string;
 }
 
-interface Rows {
-  header?: string;
-  rows?: string;
-}
 
 
 export const Table = component$((props: TableProps) => {
 
   const headers = props.header?.split(',');
   const rows = props.header?.split(';');
-  for (const row of rows) {
-  }
+console.log(rows);
   return (
     <>
       <table class="table-auto">
