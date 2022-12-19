@@ -7,21 +7,22 @@ export const FacebookButtonScript = component$(() => {
   useClientEffect$(() => {
   
     
-// //     const id =  'facebook-jssdk'; 
-// //         const s = 'script';
-// //     let js = document.getElementsByTagName(s)[0];
-// //     const  fjs = document.getElementsByTagName(s)[0];
-// //     if (document.getElementById(id)) return;
-// //     js = document.createElement(s); 
-// //     js.id = id;
-// //     js.type = 'text/partytown';
-// //     js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-// //     if(fjs){
-// //       //fjs.parentNode?.insertBefore(js, fjs);
-// //      document.head.appendChild(js);
-// //       //js.innerHTML = `console.log("New partytown script!")`;
-// // //document.head.appendChild(script);
-// //     }
+    const id =  'facebook-jssdk'; 
+        const s = 'script';
+    let js = document.getElementsByTagName(s)[0];
+    const  fjs = document.getElementsByTagName(s)[0];
+    if (document.getElementById(id)) return;
+    js = document.createElement(s); 
+    js.id = id;
+    //js.type = 'text/partytown';
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    //js.src = "/assets/fb.js";
+    if(fjs){
+      fjs.parentNode?.insertBefore(js, fjs);
+     //document.head.appendChild(js);
+      //js.innerHTML = `console.log("New partytown script!")`;
+//document.head.appendChild(script);
+    }
 // if(document)
 // {
 
