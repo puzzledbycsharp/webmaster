@@ -19,7 +19,7 @@ export default component$(() => {
       <head>
         <meta charSet="utf-8" />
         <RouterHead />
-        {/* <script type="text/partytown" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0"></script> */}
+        <script type="text/partytown" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0"></script>
         <QwikPartytown debug={true} forward={['dataLayer.push']} logCalls={true} 
         logGetters={true}
         logSetters={true}
