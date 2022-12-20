@@ -22,21 +22,16 @@ export default component$(() => {
         {/* <script  src="/assets/fb.js"></script> */}
 
         {/* <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script> */}
-        <script key="google-analytics" type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD" />
+        <script  type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD" />
+
     <script
-      key="google-analytics-config"
-      type="text/partytown"
-      dangerouslySetInnerHTML={{
-        __html: `  window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      
-        gtag('config', 'G-RRXD2EJNWD');`
-      }}
-    />
+  type="text/partytown"
+  dangerouslySetInnerHTML={'window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag(\'js\', new Date());  gtag(\'config\', \'G-RRXD2EJNWD\');'}
+/>
+
         <QwikPartytown 
         // debug={true}
-          forward={['dataLayer.push', 'gtag']} 
+          forward={['dataLayer.push','gtag']} 
         // logCalls={true} 
         // logGetters={true}
         // logSetters={true}
