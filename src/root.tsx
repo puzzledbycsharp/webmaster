@@ -65,18 +65,18 @@ export default component$(() => {
         // logStackTraces={true}
         //  logScriptExecution={ true}
 
-         resolveUrl ={ function (url, location, type) {
-          if (type === 'script') {
-            if (
-              url.hostname.includes('www.clarity.ms') 
-            ) {
-            const proxyUrl = new URL('https://main--benevolent-kitsune-f87868.netlify.app/api/');
-            proxyUrl.searchParams.append('url', url.href);
-            return proxyUrl;
-            }
-          }
-          return url;
-        }}
+        //  resolveUrl ={ function (url, location, type) {
+        //   if (type === 'script') {
+        //     if (
+        //       url.hostname.includes('www.clarity.ms') 
+        //     ) {
+        //     const proxyUrl = new URL('https://main--benevolent-kitsune-f87868.netlify.app/api/');
+        //     proxyUrl.searchParams.append('url', url.href);
+        //     return proxyUrl;
+        //     }
+        //   }
+        //   return url;
+        // }}
 
         />
       </head>
