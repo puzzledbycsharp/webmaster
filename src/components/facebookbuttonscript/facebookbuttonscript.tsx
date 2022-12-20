@@ -46,7 +46,7 @@ export const FacebookButtonScript = component$(() => {
 
   return (
 <>
-
+<div  id="fb-root"></div>
 <div class="fb-share-button" 
 data-href={loc.href}
 data-layout="button">
