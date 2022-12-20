@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
-//import { QwikPartytown } from './components/partytown/partytown';
+import { QwikPartytown } from './components/partytown/partytown';
 import { RouterHead } from './components/router-head/router-head';
 
 import './global.css';
@@ -20,9 +20,23 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <RouterHead />
         {/* <script  src="/assets/fb.js"></script> */}
-        {/* <QwikPartytown 
+
+        {/* <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script> */}
+        <script key="google-analytics" type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD" />
+    <script
+      key="google-analytics-config"
+      type="text/partytown"
+      dangerouslySetInnerHTML={{
+        __html: `  window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'G-RRXD2EJNWD');`
+      }}
+    />
+        <QwikPartytown 
         // debug={true}
-        //  forward={['dataLayer.push']} 
+          forward={['dataLayer.push', 'gtag']} 
         // logCalls={true} 
         // logGetters={true}
         // logSetters={true}
@@ -45,7 +59,7 @@ export default component$(() => {
         //   return url;
         // }}
 
-        /> */}
+        />
       </head>
       <body lang="en">
         <RouterOutlet />

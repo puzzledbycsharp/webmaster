@@ -5,7 +5,6 @@ export const FacebookButtonScript = component$(() => {
 
   const loc = useLocation();
   useClientEffect$(() => {
-  
     
     const id =  'facebook-jssdk'; 
         const s = 'script';
