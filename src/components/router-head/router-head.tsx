@@ -398,6 +398,10 @@ if(routeData){
 
 {/* <style> @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); </style> */}
 
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'self'; img-src https://*; child-src 'none';" />
+
       {head.meta.map((m) => (
         <meta {...m} />
       ))}

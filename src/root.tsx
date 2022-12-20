@@ -55,7 +55,7 @@ export default component$(() => {
 
         <QwikPartytown
           // debug={true}
-          forward={['dataLayer.push', 'gtag', 'facebook-jssdk','clarity']}
+          forward={['dataLayer.push', 'gtag', 'facebook-jssdk']}
         // logCalls={true} 
         // logGetters={true}
         // logSetters={true}
