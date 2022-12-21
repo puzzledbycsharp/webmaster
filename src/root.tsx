@@ -19,9 +19,9 @@ export default component$(() => {
       <head>
         <meta charSet="utf-8" />
         <RouterHead />
-        {/* <script  src="/assets/fb.js"></script> */}
 
-        {/* <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script> */}
+
+        <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script>
 
         {/* <script
           type="text/partytown"
@@ -35,8 +35,9 @@ export default component$(() => {
           dangerouslySetInnerHTML={'window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag(\'js\', new Date());  gtag(\'config\', \'G-RRXD2EJNWD\');'}
         />
         {/* <script
+
           type="text/partytown"
-          dangerouslySetInnerHTML={'(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'facebook-jssdk\'));'}
+          dangerouslySetInnerHTML={'(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0"; js.crossorigin="anonymous"; fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'facebook-jssdk\'));'}
         /> */}
 
         <script
@@ -57,16 +58,16 @@ dangerouslySetInnerHTML={' setTimeout(() => {let errors = document.querySelector
       /> */}
 
         <QwikPartytown
-          // debug={true}
-          forward={['dataLayer.push', 'gtag', 'facebook-jssdk']}
-        logCalls={true} 
-        logGetters={true}
-        logSetters={true}
-        logImageRequests={ true}
-         logMainAccess={ true}
-         logSendBeaconRequests={ true}
-        logStackTraces={true}
-         logScriptExecution={ true}
+//           debug={true}
+          forward={['dataLayer.push', 'gtag']}
+        // logCalls={true} 
+        // logGetters={true}
+        // logSetters={true}
+        // logImageRequests={ true}
+        //  logMainAccess={ true}
+        //  logSendBeaconRequests={ true}
+        // logStackTraces={true}
+        //  logScriptExecution={ true}
 
         //  resolveUrl ={ function (url, location, type) {
         //   if (type === 'script') {
@@ -84,6 +85,7 @@ dangerouslySetInnerHTML={' setTimeout(() => {let errors = document.querySelector
         />
       </head>
       <body lang="en">
+
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>
