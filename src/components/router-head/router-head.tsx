@@ -379,7 +379,7 @@ const state = useStore<SharedRouteState>({
 });
 
   const routeData = filterMetaData(state.data, loc);
-  // console.log(routeData);
+   console.log(routeData);
 if(routeData){
   return (
     <>
@@ -473,20 +473,20 @@ else{
 export function filterMetaData(routeDatas:  MyRouteData [], loc:RouteLocation) {
   // console.log("in filterMetaData");
   for (const routeData of routeDatas) {
-    // console.log("routedata.location:"+routeData.location);
-    // console.log("loc.href:"+loc.href);
+     console.log("routedata.location:"+routeData.location);
+     console.log("loc.href:"+loc.href);
 
 if(routeData.location != '' && loc.href.includes( routeData.location))
 {
   return routeData;
 }
-else if(routeData.location == '' && loc.href.includes( routeData.location)){
+else if(routeData.location === '' && loc.href.includes( routeData.location) && (loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/') ){
 return routeData;
 }
 
   
-  return null;
 }
+return null;
 }
 
 export function structuredDataSingle(routeData: MyRouteData){
