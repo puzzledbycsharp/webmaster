@@ -6,6 +6,7 @@ title: How To Find An Item In The List
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-small.webp 250w, ../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-medium.webp 500w, ../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How to find an item in the listBanner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -1289,18 +1290,7 @@ Dictionaary Search Method Average speed:7ms, In 10 tests
 Yes, that is correct the dictionary can perform the same test as the list in 7 milliseconds.
 
 ### Conclusion
-Overall, Rank,	Method,	Speed,	Concise,	Readability(1-5)
 
-1,	Dictionary Collection Type,	7ms,	8 lines,	4,
-
-2,	List Find Method,	11562ms,	3 lines,	4
-
-3,	Base Case Loop Method,	14739ms,	11 lines,	4
-
-4,	List IndexOf Method,	18067ms,	6 lines,	3
-
-5,	List FindAll Method,	23130ms,	9 lines,	3
-
-6,	Enumerable Where Method,	58872ms,	9 lines,	3
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Dictionary Collection Type,7ms,8 lines,4;2,List Find Method,11562ms,3 lines,4;3,Base Case Loop Method,14739ms,11 lines,4;4,List IndexOf Method,18067ms,6 lines,3;5,List FindAll Method,23130ms,9 lines,3;6,Enumerable Where Method,58872ms,9 lines,3" />
 
 The best method for finding an item in a list is List Find, however, the best collection type for finding an item is the dictionary. If starting from scratch and search for items was the main use case then dictionary is the better choice. But often is the case you may have not designed the system in use and have no choice to but to use a list. List Find is the best of the list methods because it is the fastest list method. It's easy to use and set up and also very compact. Next third best method is writing our own method to loop through the list and pick the item that we want. It may seem like more work doing it that way but there is flexibility it crafting exactly what we want. The IndexOf Method, FindAll, Enumerable Where are all too slow to recommend to use and should be avoided for this use case of finding an item in the list.

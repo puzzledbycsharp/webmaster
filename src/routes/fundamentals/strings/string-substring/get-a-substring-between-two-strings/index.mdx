@@ -6,6 +6,7 @@ title: Get A Substring Between Two Strings
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-medium.webp" imageSrcSet="../../../../assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-small.webp 250w, ../../../../assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-medium.webp 500w, ../../../../assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get A Substring Between Two Strings Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -463,17 +464,6 @@ Regex Average speed:67127ms, In 10 tests
 Wow, regex is incredibly slow, taking about a 1 minute in the test. Even though it is compact avoid this method if you can because it not worth the performance hit in the long term.
 
 ### Conclusion
-
-Overall, Rank,	Method,	Speed,	Concise,	Readability(1-5)
-
-1,	Span Slice,	2092ms,	5 lines,	3
-
-2,	String Split,	9753ms,	3 lines,	2
-
-3,	Range Operator,	10234ms,	4 lines,	3
-
-4,	String Substring,	10139ms,	5 lines,	4
-
-5,	Regex,	67127ms,	1 lines,	1
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,2092ms,5 lines,3;2,String Split,9753ms,3 lines,2;3,Range Operator,10234ms,4 lines,3;4,String Substring,10139ms,5 lines,4;5,Regex,67127ms,1 lines,1" />
 
 The most effective function for getting a substring between two strings is span slice. The speed is the most important factor in comparing the methods because that has the biggest impact on the end user. Span Slice is by far the fastest if that set up works for you use case. It has some limitations so be aware of those. Next best is string split. It next best in performance but also the compact form and speed up productivity since you would be writing less code. The set up is one line and the function call is one so it the most compact. Third best is the range operator and it is really close to substring but range operator edges out substring because it can save an additional line in the set up and the syntax is compact so it would work well in the long time. Regex was extremely slow in our testing and it should be avoided because there are much faster methods out there that do the same thing.

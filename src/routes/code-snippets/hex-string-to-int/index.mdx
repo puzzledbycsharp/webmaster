@@ -4,7 +4,7 @@ title: Hex To Int Conversion
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
-
+import{Table} from "~/components/table/table";
 
 # Hex String To Int
 
@@ -46,21 +46,7 @@ HexValue:33D, IntegerValue:829
 HexValue:2E, IntegerValue:46
 ```
 Coressponding int to hex conversion
-1. 1
-2. 2
-3. 3
-4. 4
-5. 5
-6. 6
-7. 7
-8. 8
-9. 9
-10. A
-11. B
-12. C
-13. D
-14. E
-15. F
+<Table header ="#,Hex,Int" rows="1,1,1;2,2,2;3,3,3;4,4,4;5,5,5;6,6,6;7,7,7;8,8,8;9,9,9;10,A,10;11,B,11;12,C,12;13,D,13;14,E,14;15,F,15" />
 
 C# also mimics this conversion table in the code. See code snippet below.
 

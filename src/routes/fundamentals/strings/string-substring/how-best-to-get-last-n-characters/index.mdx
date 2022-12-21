@@ -6,6 +6,7 @@ title: How Best To Get Last N Characters
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/strings/substring/how-best-to-get-last-n-characters/how-best-to-get-last-n-characters-medium.webp" imageSrcSet="../../../../assets/fundamentals/strings/substring/how-best-to-get-last-n-characters/how-best-to-get-last-n-characters-small.webp 250w, ../../../../assets/fundamentals/strings/substring/how-best-to-get-last-n-characters/how-best-to-get-last-n-characters-medium.webp 500w, ../../../../assets/fundamentals/strings/substring/how-best-to-get-last-n-characters/how-best-to-get-last-n-characters-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How Best To Get Last N Characters Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
@@ -316,12 +317,7 @@ Remove comes in at 1455ms which very close to substring which is enough to say t
 
 ######  Readability Analysis For Remove
 ### Conclusion
-Overall, Rank,	Method,	Speed,	Concise,	Readability(1-5)
 
-1,	String Substring,	1448ms,	11 lines,	5
-
-2,	String Remove,	1455ms,	11 lines,	4
-
-3,	Span Slice,	2862ms,	11 lines,	3
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,String Substring,1448ms,11 lines,5;2,String Remove,1455ms,11 lines,4;3,Span Slice,2862ms,11 lines,3" />
 
 Best way to get last n characters is to use string substring. It has one of the fastest methods. It is also very readable that it does exactly what it says it does and you don't have to guess. Substring beats remove by being more readable even though the setup for the function pararametrs is exactly the same. Remove comes off as removing characters rather than getting a subset of characters even though that's what it does in this case. Span slice had a disappointing showing in this use case. Performance is the biggest factor in the code and it was too slow in this case. It has been faster in other use cases so keep in mind to use the best tools for each use case.

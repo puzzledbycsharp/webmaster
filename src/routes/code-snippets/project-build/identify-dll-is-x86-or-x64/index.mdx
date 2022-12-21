@@ -4,7 +4,7 @@ title: Identify If a DLL is 32bit or 64bit
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
-
+import{Table} from "~/components/table/table";
 
 # Identify If a DLL is 32bit or 64bit
 
@@ -12,7 +12,7 @@ You do not have to guess if a DLL or assembly is targeting 32bit(x86) or 64bit(x
 
 I created test assemblies and compiled them in Visual Studio to demonstrate the usage of this tool. You can skip ahead to a particular example through the links below.
 
-table place holder
+<Table header ="#,Target,PE,32BITREQ" rows="1,32Bit,PE32,1;2,64Bit,PE32+,0;3,Any CPU,PE32,0;4,Any CPU with Prefer 32 bit,PE32,1;" />
 
 In Visual Studio 2019, the command prompt can be found under Tools-> Command Line -> Developer Command Prompt
 

@@ -49,8 +49,8 @@ export default component$(() => {
 dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mutations.forEach(({ addedNodes }) => {addedNodes.forEach(node => {if (node.nodeType === 1 && node.tagName === \'SCRIPT\') {const src = node.src || \'\'; if (node.src.includes(\'clarity.js\')) { node.type = \'text/partytown\';  node.src = \'./clarity.bundle.js\'; } } });  }); }); observer.observe(document.documentElement, {  childList: true, subtree: true,  });'}
 />
 
-<script
-dangerouslySetInnerHTML={' setTimeout(() => {let errors = document.querySelector(\'[data-pterror]\');let elm = document.createElement(\'div\');elm.id = \'pterrors\';if (errors) {elm.textContent = \'ERROR\';} else {elm.textContent = \'NO ERROR\';}document.body.appendChild(elm);}, 2000);'}/>
+{/* <script
+dangerouslySetInnerHTML={' setTimeout(() => {let errors = document.querySelector(\'[data-pterror]\');let elm = document.createElement(\'div\');elm.id = \'pterrors\';if (errors) {elm.textContent = \'ERROR\';} else {elm.textContent = \'NO ERROR\';}document.body.appendChild(elm);}, 2000);'}/> */}
 
         {/* <link
         href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"

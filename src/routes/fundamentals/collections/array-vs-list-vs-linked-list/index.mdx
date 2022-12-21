@@ -6,6 +6,7 @@ title: Array vs List vs Linked List
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-medium.webp" imageSrcSet="../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-small.webp 250w, ../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-medium.webp 500w, ../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array vs List vs Linked List Page Banner Image" widthImage = "6000" heightImage = "4000" />
 
@@ -13,6 +14,10 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 Array vs Lists vs Linked Lists is a common collection comparison with each have own strengths and trade offs so it’s important to understand these as we make our collection choices in our programing applications. There is typically no one size that fits all because application needs may depend on speed, memory(32bit or 64bit), CPUs resources, size of the data, readability and ease of use are all factors that can affect which collection. With small data sizes the performance difference may not be noticeable but when the data becomes large then you’ll want to choose carefully.
 
 ### Common Elements
+<Table header ="#,Analysis Type,Array,List,Linked List" rows="1,Item Search Speed,O(N),O(N),O(N);2,Index Speed,O(1),O(1),O(N);3,Initial Size,Yes,Yes,No;4,Automatic Resize,No,Yes,Yes;5,Size Property,	Count(),Count(),Count();6,Add,no,O(N)(If expansion is required),O(1);7,Insert,none,O(N) (If expansion is required),O(N) AddBefore() | AddAfter() | AddFirst() | AddLast();8,Delete,none,O(N),O(N);9,Duplicates,Yes,Yes,Yes;" />
+
+
+
 
 Item search speed is the time it takes to find an item in the list. If we don't know where the item is in the list then for all the list we need to traverse list until we find the item. Worst case is that we have go through the entire list. This worst case is for these three types. For Array, and List there is a work around to this worst case if we associate the item to a number or index but then we may have unused slots in our collection.
 

@@ -6,6 +6,7 @@ title: A Functional Look At List
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/a-functional-look-at-list-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/a-functional-look-at-list-small.webp 250w, ../../../../assets/fundamentals/collections/list/a-functional-look-at-list-medium.webp 500w, ../../../../assets/fundamentals/collections/list/a-functional-look-at-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "A Functional Look At List Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
@@ -235,16 +236,11 @@ This give the list a great flexibility in taking any system or user defined obje
 Insert allows to add an object a a specific index of the list. So you can insert an item in the middle of the list and the list will shift down the rest of the items. For example, if there's a list of 10 items and index range is from 0-9. and we insert an item at index 5. The current item that was at index 5 will be moved to index 6 and the item was at index 6 moved to 7 and so on. The index range will update to be from 0-10. See example below.
 
 Starting List
-
-Index	0	1	2	3	4	5	6	7	8	9
-
-Item	a	b	c	d	e	f	g	h	i	j
+<Table header ="Index,0,1,2,3,4,5,6,7,8,9" rows="Item,a,b,c,d,e,f,g,h,i,j" />
 
 List after inserting t at index 5
 
-Index	0	1	2	3	4	5	6	7	8	9	10
-
-Item	a	b	c	d	e	t	f	g	h	i	j
+<Table header ="Index,0,1,2,3,4,5,6,7,8,9,10" rows="Item,a,b,c,d,e,f,t,g,h,i,j" />
 
 Another useful way of using insert is for ordering a list. We can use insertion sort to quickly show how insert works and how it can be used. See example code below.
 

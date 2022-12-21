@@ -6,6 +6,7 @@ title: Get Substring After Finding A Keyword
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/strings/substring/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-medium.webp" imageSrcSet="../../../../assets/fundamentals/strings/substring/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-small.webp 250w, ../../../../assets/fundamentals/strings/substring/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-medium.webp 500w, ../../../../assets/fundamentals/strings/substring/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get Substring After Finding A Keyword Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -274,14 +275,6 @@ This is pretty compact at only 2 lines so this means less typing.
 Readable suffers a little since that is short and it doesn't really describe what is happening that well. Probably would have to debug this to understand better what is happening.
 
 ### Conclusion
-
-Overall Rank,	Method,	Speed,	Concise	Readability(1-5)
-
-1,	Span Slice,	3780ms,	3 lines,	4
-
-2,	String Split,	4815ms,	2 lines,	3
-
-3,	String Substring,	6629ms,	3 lines,	5
-
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,3780ms,3 lines,4;2,String Split,4815ms,2 lines,3;3,String Substring,6629ms,3 lines,5" />
 
 The overall best way to solve this problem statement is with Span Slice because of the huge performance gain and we weight the performance so much because that would most impact the customer. Also, while slice may not be as readability and concise as the other two methods it still isn't that bad. Concise and readability are more productivity metrics for the developer and they are important to the developmental process. If another developer has harder time reading your code then impacts the productivity of the whole team. While having the less lines of code that does the same improves productivity and you get more done.

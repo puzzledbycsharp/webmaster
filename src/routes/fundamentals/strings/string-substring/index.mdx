@@ -6,6 +6,7 @@ title: Substring
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/substring/string-substring-banner-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/substring/string-substring-banner-small.webp 250w, ../../../assets/fundamentals/strings/substring/string-substring-banner-medium.webp 500w, ../../../assets/fundamentals/strings/substring/string-substring-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Substring Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -35,11 +36,7 @@ The next function overload has two parameters. The start index where the startin
 ###### Example 1
 
 ###### String Index for User Name
-
-
-0	1	2	3	4	5	6	7	8	9	10
-
-W	i	l	l	i	a	m		D	o	e
+<Table header ="0,1,2,3,4,5,6,7,8,9,10" rows="W,i,l,l,i,a,m,,D,o,e" />
 
 For example, if we have a the user name William Doe and for this string starts at 0 and ends at index 16. If We only wanted the last name then we give a start index of 7 from the below table. Start index will be the start of the new string that is created. Then we can get only the last name.
 
@@ -77,12 +74,7 @@ Output
 
 Substring did not modify the variable userName as even after the function call it remains unchanged. Always keep in mind that any of the string function will return a string and not modify the original.
 
-
-0	1	2	3	4	5	6	7	8	9	10
-
-W	i	l	l	i	a	m		D	o	e
-
-J	o	h	n		D	o	e
+<Table header ="0,1,2,3,4,5,6,7,8,9,10" rows="W,i,l,l,i,a,m,,D,o,e;J,o,h,n,,D,o,e" />
 
 Suppose that you had a list of names each where the space before the last name was at different positions then we can assume anymore than start index will be the same. We will find the space before the last name by using IndexOf. We could write our own function to find it but it better to find a csharp method that can do job first than create our own. See below.
 

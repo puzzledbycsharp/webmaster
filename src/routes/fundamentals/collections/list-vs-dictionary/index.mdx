@@ -6,6 +6,7 @@ title: List vs Dictionary Collection Types
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/collections/list-vs-dictionary/list-vs-dictionary-medium.webp" imageSrcSet="../../../assets/fundamentals/collections/list-vs-dictionary/list-vs-dictionary-small.webp 250w, ../../../assets/fundamentals/collections/list-vs-dictionary/list-vs-dictionary-medium.webp 500w, ../../../assets/fundamentals/collections/list-vs-dictionary/list-vs-dictionary-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "List vs Dictionary Collection Types Page Banner Image" widthImage = "6000" heightImage = "4000" />
 
@@ -13,16 +14,7 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 List and Dictionary are useful collection types. They are easy accessibility and convenient to use. There are advantages to use these types over an array or hash tables. There are also a lot of different variations and even concurrent versions but for now we will cover the most basic types. Next we’ll start with the list collection.
 
-#	Analysis Type	List	Dictionary
-1	Item Search Speed	O(N)	O(1)
-2	Index Speed	O(1)	O(1)
-3	Initial Size	Yes	Yes
-4	Automatic Resize	O(1)	O(1)
-5	Size Property	Count()	Count()
-6	Add	O(N)(If expansion is required)	O(N)(If expansion is required)
-7	Insert	O(N) (If expansion is required)	none
-8	Delete	O(N)	O(1)
-9	Duplicates	Yes	Keys, No, Values, Yes
+<Table header ="#,Analysis Type,List,Dictionary" rows="1,Item Search Speed,O(N),O(1);2,Index Speed,O(1),O(1);3,Initial Size,Yes,Yes;4,Automatic Resize,O(1),O(1);5,Size Property,Count(),Count();6,Add,O(N)(If expansion is required),O(N)(If expansion is required);7,Insert,O(N)(If expansion is required),none;8,Delete,O(N),O(1);9,Duplicates,Yes,Keys:No | Values:Yes" />
 
 ### LIST Description
 

@@ -6,6 +6,7 @@ title: Get A Substring Before Or After A Certain Character
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/strings/substring/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-medium.webp" imageSrcSet="../../../../assets/fundamentals/strings/substring/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-small.webp 250w, ../../../../assets/fundamentals/strings/substring/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-medium.webp 500w, ../../../../assets/fundamentals/strings/substring/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get A Substring Before Or After A Certain Character Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -18,10 +19,7 @@ This scenario is common in parsing strings, user data, database data, automatic 
 First step is to dynamically find a certain character's index using IndexOf then with the index use a the start of a new substring. The rest of the characters are taken and return as a new substring.
 
 ###### Starting String
-
-0	1	2	3	4	5	6	7	8
-
-s	i	x	t	y	-	t	w	o
+<Table header ="0,1,2,3,4,5,6,7,8" rows="s,i,x,t,y,-,t,w,o" />
 
 ### Approach
 
@@ -112,9 +110,7 @@ compoundNumber:849-458-3939, number:***-***-458-3939
 ```
 
 ###### Starting Phone Number Example
-
-0	1	2	3	4	5	6	7	8	9	10	11
-3	2	4	-	3	8	0	-	3	2	8	9
+<Table header ="0,1,2,3,4,5,6,7,8,9,10,11" rows="3,2,4,-,3,8,0,-,3,2,8,9" />
 
 #### What Went Wrong When There Are Multiple Hyphens?
 

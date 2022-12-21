@@ -6,6 +6,7 @@ title: Convert A List To String With A Delimiter
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-small.webp 250w, ../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp 500w, ../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A List To String With A Delimiter Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
@@ -384,14 +385,6 @@ It is readability in that we can see what is going on at each step just like in 
 This is not very concise as it takes some lines to loop through. Even though it is not compact, it is flexibly and can be alter to suit the needs of the user.
 
 ### Conclusion
-Overall Rank,	Method,	Speed,	Concise,	Readability(1-5)
-
-1,	String Join,	3799ms,	1 line,	4
-
-2,	String Concatenation,	8893ms,	17 lines,	4
-
-3,	LINQ Aggregate,	12124ms,	1 line,	3
-
-4,	StringBuilder Append,	14626ms,	17 lines,	4
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,String Join,3799ms,1 line,4;2,String Concatenation,8893ms,17 lines,4;3,LINQ Aggregate,12124ms,1 line,3;4,StringBuilder Append,14626ms,17 lines,4;" />
 
 The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest, it is compact on one line and also easy to setup. It is a go to method of doing this operation because it as build in function to C#. The next best method is string concatenation because of it's speed. Even though we need to write it and maintain it, the speed that we get makes up for that. It is flexible since we add to it if needed. LINQ Aggregate and String Builder Append are pretty slow so it is not recommend using them for this use case because their speed is over 10 seconds.

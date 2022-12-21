@@ -6,6 +6,7 @@ title: Analysis Of Getting First N Characters Methods
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../../assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-medium.webp" imageSrcSet="../../../../../assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-small.webp 250w, ../../../../../assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-medium.webp 500w, ../../../../../assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Analysis Of Getting First N Character Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -284,10 +285,6 @@ Slice Average speed:500ms, In 10 tests
 We see that slice is the fastest at 500ms. We can see the span enhancements have paid off. Understanding when to use span will be key as it does have strengths and weaknesses.
 
 ### Conclusion
-
-Overall Rank	Method	Speed	Concise	Readability(1-5)
-1	Span Slice	500ms	10 lines	4
-2	String Substring	944ms	10 lines	5
-3	String Remove	944	11 lines	3
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,500ms,10 lines,4;2,String Substring,944ms,10 lines,5;3,String Remove,944ms,11 lines,3" />
 
 The best method for getting the first n characters is span slice. Performance is the most important metric to determination to best method because it affects the end user the most. It is the fastest by over 200ms to the next function. Although for slice is not as readable as substring because understanding of span is needed while string understand is most like already there. Substring is second because it slower than slice although it is the most readable and easiest to set up.The Remove method is the slowest of the three methods and also suffers from readability issues. It not as intuitive as substring and slice.

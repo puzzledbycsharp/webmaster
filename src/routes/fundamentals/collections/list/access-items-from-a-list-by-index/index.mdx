@@ -6,6 +6,7 @@ title: Access Items From A List By Index
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-small.webp 250w, ../../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp 500w, ../../../../assets/fundamentals/collections/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Access Items From A List By Index Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
@@ -158,10 +159,8 @@ This method is extremely slow. It doesn't compare to Indexer.
 This method reads well as we're not wondering what is happening. It read a element at the following index which is good.
 
 ### Conclusion
-Overall Rank,	Method,	Speed,	Concise	Readability(1-5),
 
-1,	List's Indexer,	579ms,	1 line,	2
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,List's Indexer,579ms,1 line,2;2,ElementAt,6397ms,1 line,4;" />
 
-2,	ElementAt,	6397ms,	1 line,	4
 
 The best way to access an item of a list is to use the Indexer property. It is extremely fast and once used to the syntax, it becomes a go to property to use on collection types. ElementAt although it reads well, it far to slow to recommend to use, unless you have no choice.

@@ -6,6 +6,7 @@ title: Best Way To Sort A List
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-small.webp 250w, ../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-medium.webp 500w, ../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Way To Sort A List Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
@@ -530,12 +531,7 @@ List Sort Average speed:18541ms, In 10 tests
 ```
       
 ## Conclusion
-Overall Rank,	Method,	Speed,	Concise	Readability(1-5),	Memory Consumption (1-5)
 
-1,	LINQ's Order By Sort,	13220ms,	1 lines,	4,	4
-
-2,	LINQ's Order By Primary and Secondary Key Sort,	14085ms,	1 lines,	4,	4
-
-3,	List's Sort,	18541ms,	20 lines,	2,	1,
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5),Memory Consumption (1-5)" rows="1,LINQ's Order By Sort,13220ms,1 lines,4,4;2,LINQ's Order By Primary and Secondary Key Sort,14085ms,1 lines,4,4;3,List's Sort,18541ms,20 lines,2,1;" />
 
 The best sorting method in C# is LINQ's order by function. It is the fastest method, it is compact by taking up only one line of code. It is also easy to read, but it does consume memory as it returns an new list. For the vast majority of use cases this will serve you proposes. The second best method is again by LINQ and if you have a second key that you want to sort with then this also is good method. The third best is list's sort method. It has a more complicated set up and is the slowest of all the methods, but if you have a more complicated sort that needs to done and involves more than 2 columns then this would be the best custom way to go.
