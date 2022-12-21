@@ -34,7 +34,7 @@ export const Copyurl = component$(() => {
   
   return (
 <>
-<button class="flex flex-row" onClick$={() => {
+<button class="flex flex-row" aria-label="Copy Url Button" onClick$={() => {
          store.check = true;
          if(props != null && props.url !=null &&  props.url.length > 0 ){
            navigator.clipboard.writeText(props.url);
