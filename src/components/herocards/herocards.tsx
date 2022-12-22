@@ -157,10 +157,10 @@ export default component$(() => {
       title:'New Line in StringBuilder | Puzzled By CSharp',
       dateCreated:'2021-12-24T00:08:56+00:00',
       dateModified:'2021-12-24T00:08:56+00:00',
-      twitterImage:'',
-      image:'',
-      imageSmall:'',
-      imageLarge:'',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/new-line-in-stringbuilder-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/strings/new-line-in-stringbuilder-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/new-line-in-stringbuilder-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/new-line-in-stringbuilder-large.webp',
       description:'New line is a special sequences that can be inserted into a string. Represented as backslash n this works as if you pressed return on the keyboard.'
     },
     { 
