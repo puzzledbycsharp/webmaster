@@ -473,8 +473,8 @@ else{
 export function filterMetaData(routeDatas:  MyRouteData [], loc:RouteLocation) {
   // console.log("in filterMetaData");
   for (const routeData of routeDatas) {
-     console.log("routedata.location:"+routeData.location);
-     console.log("loc.href:"+loc.href);
+   //  console.log("routedata.location:"+routeData.location);
+     //console.log("loc.href:"+loc.href);
 
 if(routeData.location != '' && loc.href.includes( routeData.location))
 {
