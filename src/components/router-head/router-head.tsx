@@ -116,10 +116,10 @@ const state = useStore<SharedRouteState>({
     title:'String vs StringBuilder Comparison | Puzzled By CSharp',
     dateCreated:'2021-12-24T00:08:56+00:00',
     dateModified:'2021-12-24T00:08:56+00:00',
-    twitterImage:'',
-    image:'',
-    imageSmall:'',
-    imageLarge:'',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-large.webp',
     description:'String vs StringBuilder are similar and in most cases we will use string but we need a more efficient option in StringBuilder.'
   },
   { 
@@ -379,7 +379,7 @@ const state = useStore<SharedRouteState>({
 });
 
   const routeData = filterMetaData(state.data, loc);
-   console.log(routeData);
+   //console.log(routeData);
 if(routeData){
   return (
     <>

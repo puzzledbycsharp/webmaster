@@ -133,10 +133,10 @@ export default component$(() => {
       title:'String vs StringBuilder Comparison | Puzzled By CSharp',
       dateCreated:'2021-12-24T00:08:56+00:00',
       dateModified:'2021-12-24T00:08:56+00:00',
-      twitterImage:'',
-      image:'',
-      imageSmall:'',
-      imageLarge:'',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/string-vs-stringbuilder-comparison-large.webp',
       description:'String vs StringBuilder are similar and in most cases we will use string but we need a more efficient option in StringBuilder.'
     },
     { 
@@ -393,7 +393,7 @@ export default component$(() => {
       description:'I&#8217;m a software engineer with nine years of experience. This site is intended for programmers from all skill set levels in C#/CSharp programming language.'
     }
   ]
-});
+  });
 
   useContextProvider(MyContext, state);
   return (
