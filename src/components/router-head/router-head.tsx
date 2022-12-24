@@ -424,7 +424,6 @@ if(routeData){
     <meta name="twitter:creator" content="@puzzledbycsharp"/>
       <meta name="twitter:title" content={routeData.title}/>
       <meta name="twitter:image" content={routeData.twitterImage}/>
-        <meta name="description" content={routeData.description}/>
           <meta property="og:type" content="blog"/>
             <meta property="og:title" content={routeData.title}/>
             <meta property="og:description" content={routeData.description}/>
