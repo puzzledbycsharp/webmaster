@@ -13,7 +13,11 @@ import{Table} from "~/components/table/table";
 ### Introduction
 
 
-Hex is a base 16 number system and the C# has build in function that can convert a string hex value into a int value. See code snippet below.
+Hex is a base 16 number system and C# has a built in function that can convert a string hex value into a int value. Hexadecimal is not a bult in type so you'll see the hexadecimal in the form of a string.
+
+### What is a hexadecimal 
+
+[It is a numbering system that goes from digits 0-9 and then to A-F with a single digit.](https://www.techtarget.com/whatis/definition/hexadecimal#:~:text=Hexadecimal%20is%20a%20numbering%20system,%2C%20D%2C%20E%20and%20F.) That is means that the numbering is reprented by 16 symbols. It can be converted into binary, int forms but this will only look at a hex to int form.  
 
 ###### Code Snippet
 
@@ -88,4 +92,43 @@ HexValue:C, IntegerValue:12
 HexValue:D, IntegerValue:13
 HexValue:E, IntegerValue:14
 HexValue:F, IntegerValue:15
-    ```
+```
+
+### Hex To Float
+
+Another hex conversion we can do is hex to float. [This method takes in a hexdecstring and converts it to an float.](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-between-hexadecimal-strings-and-numeric-types) See code sample below.
+
+
+```cs
+using System.Globalization;
+
+Console.WriteLine($"HexValue:9C, IntegerValue:{StringHexToFloat("9C")}");//Output value to the console
+Console.WriteLine($"HexValue:F3, IntegerValue:{StringHexToFloat("F3")}");//Output value to the console
+Console.WriteLine($"HexValue:3B, IntegerValue:{StringHexToFloat("3B")}");//Output value to the console
+Console.WriteLine($"HexValue:33D, IntegerValue:{StringHexToFloat("33D")}");//Output value to the console
+Console.WriteLine($"HexValue:2E, IntegerValue:{StringHexToFloat("2E")}");//Output value to the console
+
+
+float StringHexToFloat(string hexValue)
+{
+    if (uint.TryParse(hexValue, System.Globalization.NumberStyles.AllowHexSpecifier, CultureInfo.CurrentCulture, out uint number))//convert hex into a number
+    {
+        byte[] byteArr = BitConverter.GetBytes(number);//Convert number into a byte array
+        float floatValue = BitConverter.ToSingle(byteArr, 0);//Use byteArray and convert it into a float
+        return floatValue;
+    }
+    return 0;
+}
+
+```
+Console Output:
+
+```
+HexValue:9C, IntegerValue:2.19E-43
+HexValue:F3, IntegerValue:3.4E-43
+HexValue:3B, IntegerValue:8.3E-44
+HexValue:33D, IntegerValue:1.162E-42
+HexValue:2E, IntegerValue:6.4E-44
+```
+
+

@@ -15,3 +15,4 @@
 - [Best Way To Sort A List](list/best-way-to-sort-a-list/index.mdx)
 - [How To Find An Item In The List](list/how-to-find-an-item-in-the-list/index.mdx)
 - [How To Initialize A List](list/how-to-initialize-a-list/index.mdx)
+- [Clone A List In Depth Review](list/clone-a-list-in-depth-review/index.mdx)

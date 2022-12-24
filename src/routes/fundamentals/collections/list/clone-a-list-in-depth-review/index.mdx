@@ -1,0 +1,860 @@
+---
+title: Clone A List In Depth Review
+---
+
+# Clone A List In Depth Review
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-small.webp 250w, ../../../../assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-medium.webp 500w, ../../../../assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Clone A List In Depth Review Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+When making a clone of list it is important to understand the difference between a shallow and deep copy of a list and when they should be used.
+
+Before we can get into details of the different ways of cloning a list, we need to go through the different data types and how each one is affected by the shallow and deep copy methods.
+
+###  Data Types
+
+Before getting into the shallow or deep copies. You need to have a understanding of the types and how they are stored in memory. The two of concern is value types and reference types. 
+
+
+##### Values Types
+
+[When value types are assigned data then the variable contains the instance of the type.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types) This means that whenever we assign a variable of a value type it will always have a unquue instance of the type.
+
+For exmaple, say we have two variables num1 and num2 and we assign num1 to num2. Since they are value types num1 and num2 will get their own instance of type int and they are not linked to each other. So even if I chnage num2, it will not change num1.
+
+```cs
+
+int num1 = 4889;//Assign num1 first value
+int num2 = num1;//Assign num1 to num2
+
+Console.WriteLine($"Before Change num1:{num1},num2:{num2} ");
+num2 = 30;//Assign a new value to num2, this will not change num1
+Console.WriteLine($"After Change num1:{num1},num2:{num2} ");
+
+```
+
+###### Code Output
+```
+Before Change num1:4889,num2:4889
+After Change num1:4889,num2:30
+```
+
+From this example you can see that the value types are unquiee and can not affect one another by change one even though I assigned one to the other.
+
+Here is a list of some examples of the value types below. But they include numeric types, enums, and structs [You can find the full list of value types here.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#83-value-types)
+
+1. int
+2. bool
+4. 3float
+5. double
+6. struct
+
+
+##### Reference Types
+
+Reference types are the reference point that to the object. This differs from value types that instead of point the value in memory, the reference type points to the address in memory where instance of the object and it values reside. This means that in our code that two variables can be assigned memory reference. Let's look at an example.
+
+This example I created two car variables and assigned car1 to car2. What happens change car2 and what would expect to happen?
+
+```cs
+Car car1 = new Car("SuperM", "M3");//Create New Car instance
+Car car2 = car1;//assign car1 to car2
+
+Console.WriteLine($"Before Change car1.Make:{car1.Make}, car1.Model:{car1.Model}");//Print result
+Console.WriteLine($"Before Change car2.Make:{car2.Make}, car2.Model:{car2.Model}");//Print result
+car2.Make = "ModelT";//Change car2 make name
+car2.Model = "M9";//Change car2 model name
+Console.WriteLine($"After Change car1.Make:{car1.Make}, car1.Model:{car1.Model}");//Print result
+Console.WriteLine($"After Change car2.Make:{car2.Make}, car2.Model:{car2.Model}");//Print result
+
+public class Car
+{
+    public Car(string make, string model)
+    {
+        Make = make;
+        Model = model;
+    }
+
+    public string Make { get; set; }
+    public string Model { get; set; }
+}
+
+```
+###### Code Output
+
+```
+Before Change car1.Make:SuperM, car1.Model:M3
+Before Change car2.Make:SuperM, car2.Model:M3
+After Change car1.Make:ModelT, car1.Model:M9
+After Change car2.Make:ModelT, car2.Model:M9
+```
+We see how this differs from value types. When assign reference to the different variable they are linked or in otherwords pointing the same address in memory. Changing one then changes the other. This becomes the basis for our analysis for shallow and deep copying of a list because a list or any collection type is a reference type.  
+
+
+### Shallow Copy
+
+A shallow copy of a list is where each object in the list is copied from the old to new so that the value types are assigned a new instance. [This is known as field by field copy.](https://en.wikipedia.org/wiki/Object_copying#Shallow_copy). For fields that are reference types, only the memopry reference is copied. The advantage of this is that it is quick and saves memory consuption but not creating new objects but only a copying the reference. The disadvantage is that if we need to two seperate lists and you want to change one of the list's contents without changing the other then shallow copy will not work. 
+
+
+### List Constructor Method
+
+C# provdes a built in clone method through the List constructor. It is a shallow copy method so it is quick. I would recommend this method to mostly value types in the list. Let's look at some examples.
+
+For this example, we'll create a list of transations that in list set 1 they are odd and use the list constructor to copy list set 1 to list set 2 then changes the values of list 2 to event numbers and see how the lists look after the change. Since the lists hold a value types each item in the list will be it's own instance.
+
+##### List Constructor Value Type Example
+```cs
+List<int> transactionsSet1 = new List<int>() { 1,3,5,7,9,11,13,15};//create a list of bank transations
+List<int> transactionsSet2 = new List<int>(transactionsSet1);//Clone set1 to set2
+
+Console.WriteLine($"Before Change set1 {string.Join(",",transactionsSet1)}");//Print result
+Console.WriteLine($"Before Change set2 {string.Join(",",transactionsSet2)}");//Print result
+
+transactionsSet2[0] = 2;//set item to new value
+transactionsSet2[1] = 4;//set item to new value
+transactionsSet2[2] = 6;//set item to new value
+transactionsSet2[3] = 8;//set item to new value
+transactionsSet2[4] = 10;//set item to new value
+transactionsSet2[6] = 12;//set item to new value
+transactionsSet2[7] = 14;//set item to new value
+
+Console.WriteLine($"After Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"After Change set2 {string.Join(",", transactionsSet2)}");//Print result
+
+```
+
+###### Code Output
+```
+Before Change set1 1,3,5,7,9,11,13,15
+Before Change set2 1,3,5,7,9,11,13,15
+After Change set1 1,3,5,7,9,11,13,15
+After Change set2 2,4,6,8,10,11,12,14
+```
+
+As you can see from this output the two lists are distinct and seperate because I'm only working with value types. Next see how things change when we use reference types.
+
+##### List Constructor Reference Type Example
+
+Next I created a Transaction class which holds the price and timestamp. Since when I create a class with fields it considered a reference type. Since the List constructor method produces a shallow copy we would expect that that when I do the same test as a before that list1 would be affected to. Let's look at the example.
+
+```cs
+List<Transaction> transactionsSet1 = new List<Transaction>();
+transactionsSet1.Add(new Transaction(1));//create new item
+transactionsSet1.Add(new Transaction(3));//create new item
+transactionsSet1.Add(new Transaction(5));//create new item
+
+List<Transaction> transactionsSet2 = new List<Transaction>(transactionsSet1);
+
+Console.WriteLine($"Before Change set1 {string.Join(",",transactionsSet1)}");//Print result
+Console.WriteLine($"Before Change set2 {string.Join(",",transactionsSet2)}");//Print result
+transactionsSet2[0].Price = 2;//set item to new value
+transactionsSet2[1].Price = 4;//set item to new value
+transactionsSet2[2].Price = 6;//set item to new value
+Console.WriteLine($"After Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"After Change set2 {string.Join(",", transactionsSet2)}");//Print result
+
+class Transaction
+{
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+```
+###### Code Output
+```
+Before Change set1 1,3,5
+Before Change set2 1,3,5
+After Change set1 2,4,6
+After Change set2 2,4,6
+```
+
+This confirms that that list2 is a is indeed a shallow copy of list 1 because we see the both lits are changed when we change one. Next we'll test the speed of the method.
+
+##### List Constructor Speed Test
+
+For this test we use the follow parameters to test all the clone methods to compare the speed of each. In general, I expect shallow copy methods to be faster than deep ones because shallow copy isn't creating new object but only creating a new reference that points to the same object in memory.
+
+10000 number in the list
+
+25000 number times the method is called
+
+10 number of tests
+
+So one test is completed when 10 number times the method is called is completed. 
+
+```cs
+
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ListConstructorMethodSpeedTest());
+}
+Console.WriteLine($"List Constructor Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double ListConstructorMethodSpeedTest()
+{
+
+    int numberOfFunctionCalls = 25000;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Stop();
+        List<Transaction> transactionList1 = GetInitialTransactionList();//Get intial random generated list
+        stopwatch.Start();
+        List<Transaction> transactionList2 = new List<Transaction>(transactionList1);//Use list constructor clone method
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> carList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 10000;
+    int maxTransactionNumber = 100000;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        carList.Add(new Transaction(GetRandomInt(maxTransactionNumber)));//Add a new Car to the list
+    }
+    return carList;
+}
+
+int GetRandomInt(int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(maxNumber);//Get a random number between 0 and the maxnumber
+    return randomInt;
+}
+
+class Transaction
+{
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+```
+
+###### Code Output
+```
+Function calls:25000, In 0m 0s 82ms
+Function calls:25000, In 0m 0s 80ms
+Function calls:25000, In 0m 0s 80ms
+Function calls:25000, In 0m 0s 88ms
+Function calls:25000, In 0m 0s 82ms
+Function calls:25000, In 0m 0s 80ms
+Function calls:25000, In 0m 0s 85ms
+Function calls:25000, In 0m 0s 84ms
+Function calls:25000, In 0m 0s 101ms
+Function calls:25000, In 0m 0s 109ms
+List Constructor Method Average speed:87ms, In 10 tests
+```
+
+As we can see from this test that the List constructor is fast at an average of 87ms. Next we'll look at memory consumption of the new list.
+
+##### List Constructor Memory Test
+
+To look at memory used by the newly created list we're going to use a method called GC.GetTotalMemory to get the memory usage before and after the list creation.
+
+Parameters of the Test
+1. 1000000 objects in the list
+2. 100000 max value of int in the list
+
+
+```cs
+List<Transaction> transactionsSet1 = GetInitialTransactionList();
+long memoryUsageBefore = GC.GetTotalMemory(false);//Get memory size before test
+List<Transaction> transactionsSet2 = new List<Transaction>(transactionsSet1);//Using List Constructor Clone Method
+long memoryUsageAfter = GC.GetTotalMemory(false);//Get memory size after test
+long memroyInBytes = memoryUsageAfter - memoryUsageBefore;//Get total memory usage by the test in bytes
+double memoryInMB = Math.Round(((double)memroyInBytes) / (1024.0 * 1024.0), 2);//Convert bytes to MB
+Console.WriteLine($"Difference In Memory is { memoryInMB} MB");//Print result
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> carList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 1000000;
+    int maxTransactionNumber = 100000;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        carList.Add(new Transaction(GetRandomInt(maxTransactionNumber)));//Add a new Car to the list
+    }
+    return carList;
+
+}
+
+int GetRandomInt(int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(maxNumber);//Get a random number between 0 and the maxnumber
+    return randomInt;
+}
+```
+
+###### Code Output
+```
+Difference In Memory is 7.63 MB
+```
+
+THe memory usage from the list is about 8 MB which is pretty small for a list the size of 1 million objects. This is what we expect to get a good trade off in performance and memory consuption.
+
+### ToList Method
+
+Another method we can use to get a shallow copy is to use the ToList method. [It is a LINQ method that is often used for forcing a query to immeditly execute.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.tolist?view=net-7.0) But we can use it clone a list as well.
+
+##### ToLIst Reference Type Example
+
+Since a value type example of this method would be redundant because value types will always behave the same in shallow and deep copies. I will not repeat that example for the rest of the methods. Instead, I will quickly verify that this is a shallow copy metho by the a reference type example.
+
+```cs
+
+List<Transaction> transactionsSet1 = new List<Transaction>();
+transactionsSet1.Add(new Transaction(1));//create new item
+transactionsSet1.Add(new Transaction(3));//create new item
+transactionsSet1.Add(new Transaction(5));//create new item
+
+List<Transaction> transactionsSet2 = transactionsSet1.ToList();//Using ToList Clone Method
+
+Console.WriteLine($"Before Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"Before Change set2 {string.Join(",", transactionsSet2)}");//Print result
+transactionsSet2[0].Price = 2;//set item to new value
+transactionsSet2[1].Price = 4;//set item to new value
+transactionsSet2[2].Price = 6;//set item to new value
+Console.WriteLine($"After Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"After Change set2 {string.Join(",", transactionsSet2)}");//Print result
+
+```
+###### Code Output
+```
+Before Change set1 1,3,5
+Before Change set2 1,3,5
+After Change set1 2,4,6
+After Change set2 2,4,6
+```
+
+This verifies that this a shallow copy method since both lists were modified when I only modified one of them.
+
+##### ToList Speed Test
+
+I will continue the speed test used in the previous example and will only show the code differences below for this current test.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ToListMethodSpeedTest());
+}
+Console.WriteLine($"ToList Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double ToListMethodSpeedTest()
+{
+
+    int numberOfFunctionCalls = 25000;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Stop();
+        List<Transaction> transactionList1 = GetInitialTransactionList();//Get intial random generated list
+        stopwatch.Start();
+        List<Transaction> transactionList2 = transactionList1.ToList();//Use ToList method
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+###### Code Output
+```
+Function calls:25000, In 0m 0s 109ms
+Function calls:25000, In 0m 0s 109ms
+Function calls:25000, In 0m 0s 106ms
+Function calls:25000, In 0m 0s 112ms
+Function calls:25000, In 0m 0s 109ms
+Function calls:25000, In 0m 0s 132ms
+Function calls:25000, In 0m 0s 130ms
+Function calls:25000, In 0m 0s 118ms
+Function calls:25000, In 0m 0s 114ms
+Function calls:25000, In 0m 0s 109ms
+ToList Method Average speed:115ms, In 10 tests
+```
+
+With an average speed of 115ms we can see that this method is slower than the List constructor method for doing the same thing.
+
+##### ToList Method Memory Test
+
+We'll test the ToList with the same parameters as the previous example. Below is the change in code. 
+
+```cs
+List<Transaction> transactionsSet1 = GetInitialTransactionList();
+long memoryUsageBefore = GC.GetTotalMemory(false);//Get memory size before test
+List<Transaction> transactionsSet2 = transactionsSet1.ToList();//Using ToList Clone Method
+long memoryUsageAfter = GC.GetTotalMemory(false);//Get memory size after test
+long memroyInBytes = memoryUsageAfter - memoryUsageBefore;//Get total memory usage by the test in bytes
+double memoryInMB = Math.Round(((double)memroyInBytes) / (1024.0 * 1024.0), 2);//Convert bytes to MB
+Console.WriteLine($"Difference In Memory is { memoryInMB} MB");//Print result
+
+```
+###### Code Output
+```
+Difference In Memory is 7.63 MB
+```
+
+The memory consuption is the same as for List constructor because both are shallow copy methods.
+
+### Deep Copy
+
+Deep copy is value types is the same a shallow copy. In both cases the there's a new instance of the value to each variable. For exmaple, if there's int and it assigned to another int then both will become seperate instances and can not affect one another. The difference between deep and shallow clone copies is when dealing with reference types. While shallow copies only create new reference pointer that point to the same object. Deep copy creates new reference pointer pointing to a new object all together. This insures that a deep copy of a list even if changed will not affect. When clone a list and you do not want it to affect the list it was clone from then you should use a deep clone copy. The trade off comes from speed and memory consuption since a deep copy is creating a new object. With each new created object is a memory and speed over head.
+
+### Constructor Copy Method
+
+This is one way to create a deep clone copy of the list is the create a constructor that takes in the object and then creates a new object of every field in the object. Next we'll need to loop through all the objects of list one then clone all the objects from list to to list 2 using the constructor.
+
+```cs
+List<Transaction> transactionsSet1 = new List<Transaction>();
+transactionsSet1.Add(new Transaction(1));//create new item
+transactionsSet1.Add(new Transaction(3));//create new item
+transactionsSet1.Add(new Transaction(5));//create new item
+
+List<Transaction> transactionsSet2 = new List<Transaction>();
+foreach (Transaction item in transactionsSet1)
+{
+    transactionsSet2.Add(new Transaction(item));
+}
+
+Console.WriteLine($"Before Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"Before Change set2 {string.Join(",", transactionsSet2)}");//Print result
+transactionsSet2[0].Price = 2;//set item to new value
+transactionsSet2[1].Price = 4;//set item to new value
+transactionsSet2[2].Price = 6;//set item to new value
+Console.WriteLine($"After Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"After Change set2 {string.Join(",", transactionsSet2)}");//Print result
+
+
+class Transaction
+{
+    public Transaction(Transaction transaction)
+    {
+        if(transaction == null)
+        {
+            return;
+        }
+        //deep copy clone method
+        Price = transaction.Price;//value type creates a new instance on assignment
+        TimeStamp = transaction.TimeStamp;//string creates a new instance on assignment
+    }
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+```
+
+###### Code Output
+
+```
+Before Change set1 1,3,5
+Before Change set2 1,3,5
+After Change set1 1,3,5
+After Change set2 2,4,6
+```
+
+This returns exactly what we wanted. I'm able to modifiy one list objects without affecting the other.
+
+##### Constructor Copy Speed Test
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ConstructorCopyMethodSpeedTest());
+}
+Console.WriteLine($"Constructor Copy Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double ConstructorCopyMethodSpeedTest()
+{
+
+    int numberOfFunctionCalls = 25000;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Stop();
+        List<Transaction> transactionList1 = GetInitialTransactionList();//Get intial random generated list
+        stopwatch.Start();
+        List<Transaction> transactionsSet2 = new List<Transaction>();
+        foreach (Transaction item in transactionList1)
+        {
+            transactionsSet2.Add(new Transaction(item));
+        }
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+class Transaction
+{
+    public Transaction(Transaction transaction)
+    {
+        if (transaction == null)
+        {
+            return;
+        }
+        //deep copy method
+        Price = transaction.Price;//value type creates a new instance on assignment
+        TimeStamp = transaction.TimeStamp;//string creates a new instance on assignment
+    }
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+```
+###### Code Output
+```
+Function calls:25000, In 0m 19s 883ms
+Function calls:25000, In 0m 19s 817ms
+Function calls:25000, In 0m 19s 763ms
+Function calls:25000, In 0m 20s 361ms
+Function calls:25000, In 0m 20s 395ms
+Function calls:25000, In 0m 20s 255ms
+Function calls:25000, In 0m 19s 479ms
+Function calls:25000, In 0m 19s 585ms
+Function calls:25000, In 0m 19s 455ms
+Function calls:25000, In 0m 19s 608ms
+Constructor Copy Method Average speed:19861ms, In 10 tests
+```
+
+With an average speed of 19 seconds the copy constructor is incredible slow when the shallow copy methods take less than a second to complete the same test.
+
+##### Constructor Copy Memory Test
+
+I'll use the same test parameters as with the shallow copy tests to measure the memory consuption
+
+```cs
+List<Transaction> transactionsSet1 = GetInitialTransactionList();
+long memoryUsageBefore = GC.GetTotalMemory(false);//Get memory size before test
+List<Transaction> transactionsSet2 = new List<Transaction>();
+foreach (Transaction item in transactionsSet1)
+{
+    transactionsSet2.Add(new Transaction(item));//create deep clone of object
+}
+long memoryUsageAfter = GC.GetTotalMemory(false);//Get memory size after test
+long memroyInBytes = memoryUsageAfter - memoryUsageBefore;//Get total memory usage by the test in bytes
+double memoryInMB = Math.Round(((double)memroyInBytes) / (1024.0 * 1024.0), 2);//Convert bytes to MB
+Console.WriteLine($"Difference In Memory is { memoryInMB} MB");//Print result
+
+class Transaction
+{
+    public Transaction(Transaction transaction)
+    {
+        if (transaction == null)
+        {
+            return;
+        }
+        //deep copy method
+        Price = transaction.Price;//value type creates a new instance on assignment
+        TimeStamp = transaction.TimeStamp;//string creates a new instance on assignment
+    }
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+```
+
+###### Code Output
+```
+Difference In Memory is 34.62 MB
+```
+We can see that this is much bigger size increase compared to a shallow copy. It is almost 5 times bigger than the same sized list fromt he shallow copy.
+
+### ICloneable Interface Method
+
+This method requires to extend the class with the ICloneable interface then to overload the clone method. ICloneable depends on how it is implementated wheither or not is a deep or shallow copy. Which is when you'll need to understand the different types and what time of clone you want to do. For this example, I'm using ICloneable to create a deep copy. Then we'll be loop through the and call the clone method. Example below.
+
+```cs
+
+
+List<Transaction> transactionsSet1 = new List<Transaction>();
+transactionsSet1.Add(new Transaction(1));//create new item
+transactionsSet1.Add(new Transaction(3));//create new item
+transactionsSet1.Add(new Transaction(5));//create new item
+
+List<Transaction> transactionsSet2 = new List<Transaction>();
+
+foreach (Transaction item in transactionsSet1)
+{
+    transactionsSet2.Add((Transaction)item.Clone());//Call clone for a deep copy of this
+}
+
+Console.WriteLine($"Before Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"Before Change set2 {string.Join(",", transactionsSet2)}");//Print result
+transactionsSet2[0].Price = 2;//set item to new value
+transactionsSet2[1].Price = 4;//set item to new value
+transactionsSet2[2].Price = 6;//set item to new value
+Console.WriteLine($"Before Change set1 {string.Join(",", transactionsSet1)}");//Print result
+Console.WriteLine($"Before Change set2 {string.Join(",", transactionsSet2)}");//Print result
+
+class Transaction : ICloneable
+{
+    public Transaction()
+    {
+
+    }
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public object Clone()
+    {
+        Transaction transaction = new Transaction();
+        transaction.Price = Price;
+        transaction.TimeStamp = TimeStamp;
+        return transaction;
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+
+```
+
+###### Code Output
+```
+Before Change set1 1,3,5
+Before Change set2 1,3,5
+After Change set1 1,3,5
+After Change set2 2,4,6
+```
+
+As we can see this method also produce a deep copy of the list. 
+
+##### ICloneable Interface Method Speed Test
+
+We'll conduct the same speed test as before in the other examples. Since this is a deep copy implementatation, it is expected to be slower than a shallow copy method.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ICloneableInterfaceMethodSpeedTest());
+}
+Console.WriteLine($"ICloneable Interface  Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double ICloneableInterfaceMethodSpeedTest()
+{
+
+    int numberOfFunctionCalls = 25000;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Stop();
+        List<Transaction> transactionList1 = GetInitialTransactionList();//Get intial random generated list
+        stopwatch.Start();
+        List<Transaction> transactionsSet2 = new List<Transaction>();
+        foreach (Transaction item in transactionList1)
+        {
+            transactionsSet2.Add((Transaction)item.Clone());//Call clone for a deep copy of this
+        }
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+
+class Transaction : ICloneable
+{
+    public Transaction()
+    {
+
+    }
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public object Clone()
+    {
+        Transaction transaction = new Transaction();
+        transaction.Price = Price;
+        transaction.TimeStamp = TimeStamp;
+        return transaction;
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+```
+
+###### Code Output
+```
+Function calls:25000, In 0m 20s 3ms
+Function calls:25000, In 0m 20s 62ms
+Function calls:25000, In 0m 20s 144ms
+Function calls:25000, In 0m 20s 8ms
+Function calls:25000, In 0m 19s 995ms
+Function calls:25000, In 0m 19s 990ms
+Function calls:25000, In 0m 19s 983ms
+Function calls:25000, In 0m 20s 46ms
+Function calls:25000, In 0m 19s 933ms
+Function calls:25000, In 0m 19s 901ms
+ICloneable Interface  Method Average speed:20007ms, In 10 tests
+```
+This is very slow as expected but only one slightly slower than the copy constructor method.
+
+##### ICloneable Interface Method Memory Test
+
+This method will be tested against 100 million objects to see what the memory consuption before and after the deep copy is made.
+
+```cs
+
+List<Transaction> transactionsSet1 = GetInitialTransactionList();
+long memoryUsageBefore = GC.GetTotalMemory(false);//Get memory size before test
+List<Transaction> transactionsSet2 = new List<Transaction>();
+foreach (Transaction item in transactionsSet1)
+{
+    transactionsSet2.Add((Transaction)item.Clone());//Call clone for a deep copy of this
+}
+long memoryUsageAfter = GC.GetTotalMemory(false);//Get memory size after test
+long memroyInBytes = memoryUsageAfter - memoryUsageBefore;//Get total memory usage by the test in bytes
+double memoryInMB = Math.Round(((double)memroyInBytes) / (1024.0 * 1024.0), 2);//Convert bytes to MB
+Console.WriteLine($"Difference In Memory is { memoryInMB} MB");//Print result
+
+
+class Transaction : ICloneable
+{
+    public Transaction()
+    {
+
+    }
+    public Transaction(int price)
+    {
+        Price = price;
+        TimeStamp = DateTime.Now;
+    }
+
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public object Clone()
+    {
+        Transaction transaction = new Transaction();
+        transaction.Price = Price;
+        transaction.TimeStamp = TimeStamp;
+        return transaction;
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+
+```
+
+###### Code Output
+```
+Difference In Memory is 34.6 MB
+```
+
+This memory number is the same as the previous deep copy method and this is about 5 times what shallow copy would create.
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Clone Type,Speed,Memory Consumption" rows="1,List Constructor,Shallow Copy,87ms,7.63MB;2,ToList,Shallow Copy,115ms,7.63MB;3,Constructor Copy,Deep Copy,19861ms,34.62MB;4,ICloneable Interface,Deep Copy,20007ms,34.6MB;" />
+
+For overall, List Constructor is the best method to clone a list. It is fast, easy to setup and doesn't consume much memory. Use this if you are only working with value types and don't need a deep copy. 
+
+Second best method is the ToList method, it is also fast but requires the extra library of LINQ to set it up.
+
+If you working with reference type objects in the list then constructor copy is best method to use. Even though it is slow and consume more memory. it will be worth it to have a deep copy of your lists so that they are completely seperate from each other. 
+

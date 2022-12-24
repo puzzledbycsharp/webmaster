@@ -391,6 +391,18 @@ export default component$(() => {
       imageSmall:'https://puzzledbycsharp.com/assets/about-small.webp',
       imageLarge:'https://puzzledbycsharp.com/assets/about-large.webp',
       description:'I&#8217;m a software engineer with nine years of experience. This site is intended for programmers from all skill set levels in C#/CSharp programming language.'
+    },  
+    { 
+      location:'fundamentals/collections/list/clone-a-list-in-depth-review', 
+      url: 'https://puzzledbycsharp.com/fundamentals/collections/list/clone-a-list-in-depth-review/',
+      title:'Clone A List In Depth Review | Puzzled By CSharp',
+      dateCreated:'2022-12-23T00:11:56+00:00',
+      dateModified:'2022-12-23T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-large.webp',
+      description:'Cloning a list is matter of understanding the differences in shallow, deep copies and the difference between value and reference types.'
     }
   ]
   });

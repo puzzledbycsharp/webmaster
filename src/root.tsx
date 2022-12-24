@@ -23,10 +23,6 @@ export default component$(() => {
 
         <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script>
 
-        {/* <script
-          type="text/partytown"
-          dangerouslySetInnerHTML={' document.head.insertAdjacentHTML("beforeend", `<style>@import url(\'https://fonts.googleapis.com/css2?family=Poppins&display=swap\');</style>`) '}
-        /> */}
 
         <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD" />
 
@@ -34,11 +30,7 @@ export default component$(() => {
           type="text/partytown"
           dangerouslySetInnerHTML={'window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag(\'js\', new Date());  gtag(\'config\', \'G-RRXD2EJNWD\');'}
         />
-        {/* <script
 
-          type="text/partytown"
-          dangerouslySetInnerHTML={'(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0"; js.crossorigin="anonymous"; fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'facebook-jssdk\'));'}
-        /> */}
 
         <script
           type="text/partytown"
@@ -49,13 +41,6 @@ export default component$(() => {
 dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mutations.forEach(({ addedNodes }) => {addedNodes.forEach(node => {if (node.nodeType === 1 && node.tagName === \'SCRIPT\') {const src = node.src || \'\'; if (node.src.includes(\'clarity.js\')) { node.type = \'text/partytown\';  node.src = \'./clarity.bundle.js\'; } } });  }); }); observer.observe(document.documentElement, {  childList: true, subtree: true,  });'}
 />
 
-{/* <script
-dangerouslySetInnerHTML={' setTimeout(() => {let errors = document.querySelector(\'[data-pterror]\');let elm = document.createElement(\'div\');elm.id = \'pterrors\';if (errors) {elm.textContent = \'ERROR\';} else {elm.textContent = \'NO ERROR\';}document.body.appendChild(elm);}, 2000);'}/> */}
-
-        {/* <link
-        href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
-        rel="stylesheet"
-      /> */}
 
         <QwikPartytown
 //           debug={true}
