@@ -404,6 +404,55 @@ export default component$(() => {
       imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-large.webp',
       description:'Cloning a list is matter of understanding the differences in shallow, deep copies and the difference between value and reference types.'
     }
+    ,  
+    { 
+      location:'fundamentals/collections/collections', 
+      url: 'https://puzzledbycsharp.com/fundamentals/collections/',
+      title:'Collections | Puzzled By CSharp',
+      dateCreated:'2022-12-23T00:11:56+00:00',
+      dateModified:'2022-12-23T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-large.webp',
+      description:'Collections are an essential data type in csharp. It is one the most used types because data must be ordered, organized and then used in an efficient manner.'
+    }
+    ,{ 
+      location:'fundamentals/collections/collections/list', 
+      url: 'https://puzzledbycsharp.com/fundamentals/collections/list/',
+      title:'List | Puzzled By CSharp',
+      dateCreated:'2022-12-23T00:11:56+00:00',
+      dateModified:'2022-12-23T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-large.webp',
+      description:'List are the backbone of collections and often the most used. They are versatile and flexible, they increase and decrease the underline array automatically.'
+    }
+    ,{ 
+      location:'fundamentals/strings', 
+      url: 'https://puzzledbycsharp.com/strings/',
+      title:'Strings | Puzzled By CSharp',
+      dateCreated:'2022-12-23T00:11:56+00:00',
+      dateModified:'2022-12-23T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-large.webp',
+      description:'Strings are some of the first data types to learn in the csharp so it becomes important to manipulate strings, and to parsing strings'
+    }
+    ,{ 
+      location:'code-snippets', 
+      url: 'https://puzzledbycsharp.com/code-snippets/',
+      title:'Code Snippets | Puzzled By CSharp',
+      dateCreated:'2022-12-23T00:11:56+00:00',
+      dateModified:'2022-12-23T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-large.webp',
+      description:'Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.'
+    }
   ]
   });
 
