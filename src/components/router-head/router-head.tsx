@@ -394,10 +394,10 @@ const state = useStore<SharedRouteState>({
     title:'Collections | Puzzled By CSharp',
     dateCreated:'2022-12-23T00:11:56+00:00',
     dateModified:'2022-12-23T00:11:56+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-twitter.webp',
-    image:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-small.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/assets/fundamentals/collections/collections-banner-image-large.webp',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/collections-banner-image-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/collections-banner-image-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/collections-banner-image-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/collections-banner-image-large.webp',
     description:'Collections are an essential data type in csharp. It is one the most used types because data must be ordered, organized and then used in an efficient manner.'
   }
   ,{ 
