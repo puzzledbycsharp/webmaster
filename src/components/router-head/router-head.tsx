@@ -458,7 +458,7 @@ if(routeData){
     <>
       {/* <title>{head.title}</title> */}
       <title>{routeData?.title}</title>
-      <link rel="canonical" href={loc.href+'/'} />
+      <link rel="canonical" href={loc.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/ico" href="/favicon.ico" />
 
@@ -510,7 +510,7 @@ else{
   return (
     <>
       <title>{head.title}</title>
-      <link rel="canonical" href={loc.href+'/'} />
+      <link rel="canonical" href={loc.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/ico" href="/favicon.ico" />
 
