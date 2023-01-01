@@ -1,34 +1,4 @@
 User-agent: *
-Disallow: /tag/
-
-User-agent: *
-Disallow: /2021/
-
-User-agent: *
-Disallow: /2020/
-
-User-agent: *
-Disallow: /forums/
-
-User-agent: *
-Disallow: /tutorials/
-
-User-agent: *
-Disallow: /tools/
-
-User-agent: *
-Disallow: /feed/
-
-User-agent: *
-Disallow: /blog-2/
-
-User-agent: *
-Disallow: /category/
-
-User-agent: *
-Disallow: /forums/
-
-User-agent: *
 Allow: /
 
 Sitemap: https://puzzledbycsharp.com/sitemap.xml
