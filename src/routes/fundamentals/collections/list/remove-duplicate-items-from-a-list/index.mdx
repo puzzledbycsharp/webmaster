@@ -1,0 +1,1129 @@
+---
+title: Remove Duplicate Items from A List
+---
+
+# Remove Duplicate Items from A List
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-small.webp 250w, ../../../../assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-medium.webp 500w, ../../../../assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Remove Duplicate Items from A List Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+A list by design allows duplicate items. It does no check on values that are stored on it. So it is usually best if you want to exclude duplicate values from entering the list in the first place but this is not always possible. So we'll look at different methods to remove duplicate items from a list and also methods that stop duplicate items from entering our list in the first place.
+
+### Motivation 
+
+Starting with a simple case. If I create an object called transaction that has a user id, price and timestamp and there are duplicates in the list then to remove those duplicates then we could use a brute force method by using list contains.
+
+This code loops through all the transactions and if it is not contained in the new list then it is added.
+
+This may work for small lists but it has a major flaw that is is not scalable. As the we loop through each transaction and check the new list. The new list grows and then checking contains on the new list each time becomes longer and longer. 
+
+### Set up
+
+To set up any of these methods and when dealing with objects. We override Equals and Hascode  so taht we can get a unqueie object. EAch of these methods calls these methods. 
+
+###### Assumptions About The Dataset
+
+Ordered Input
+
+Objects rather than simple types
+
+Given a list to filter out duplicates
+
+DateTime are involved
+
+
+###### Desired Output
+
+Ordered output
+
+Consider the date
+
+All duplicates filtered
+
+Efficient 
+
+### List Contains Method
+
+```cs
+List<Transaction> orderedStartingTransactions = GetInitialTransactionList();//Get the starting order starting list
+List<Transaction> uniqueTransactions = GetUniqueListWithListContains(orderedStartingTransactions);//Baseline list contains method of getting unique items
+Dictionary<string, List<Transaction>> transactionDictionary = GroupByDateTime(uniqueTransactions);//Group by date unique items so that they can be printed to the screen
+PrintDictionaryValues(transactionDictionary);//Print the unique into a table format
+
+List<Transaction> GetUniqueListWithListContains(List<Transaction> orderedTransactions)
+{
+    List<Transaction> uniqueTransactions = new List<Transaction>();//Create new list to hold unique transactions
+    foreach (Transaction orderedTransaction in orderedTransactions)//loop through existing ordered list
+    {
+        if (!uniqueTransactions.Contains(orderedTransaction))//If transaction does not exist in the new list then add it to the new list
+        {
+            uniqueTransactions.Add(orderedTransaction);//Add to List
+        }
+    }
+    return uniqueTransactions;
+}
+```
+
+<details>
+<summary>Supporting Code</summary>
+```cs
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+void PrintDictionaryValues(Dictionary<string, List<Transaction>> transactionDictionary)
+{
+    Console.WriteLine($"Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count   ");//Header of Table
+    foreach (string date in transactionDictionary.Keys)
+    {
+        string ids = $"  {transactionDictionary[date][0].UserId}  |  {transactionDictionary[date][1].UserId}   |  {transactionDictionary[date][2].UserId}   |  {transactionDictionary[date][3].UserId}   |  {transactionDictionary[date][4].UserId}   |  {transactionDictionary[date].Count}   ";//Row template
+        Console.WriteLine($"{date} | {ids}");//Print to screen that row
+    }
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+```
+</details>
+
+###### Code Output
+
+```
+Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
+12/1/2022 |   1000  |  1001   |  1002   |  1003   |  1005   |  8401
+12/2/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8445
+12/3/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8430
+12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8442
+```
+
+Take note of this table. It shows the follow about List contains that the order was preserve from id 0 to id 4 the id numbers are increasing. This gives us the desired result but we also need to check the performance which is the next test.
+
+#### List Contains Speed Test
+
+This is a test of the performance using the follow parameters many times over.
+
+10 tests with each test calling the function 10 times. Each function call processes a list with 250000 objects. The average time will be taken from the 10 tests. 
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ListContainsMethodSpeedTest());
+}
+Console.WriteLine($"List Contains Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double ListContainsMethodSpeedTest()
+{
+    int numberOfFunctionCalls = 10;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    List<Transaction> orderedTransactions = GetInitialTransactionList();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        List<Transaction> uniqueTransactions = GetUniqueListWithListContains(orderedTransactions);//Use list constructor method
+        stopwatch.Stop();
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<Transaction> GetUniqueListWithListContains(List<Transaction> orderedTransactions)
+{
+    List<Transaction> uniqueTransactions = new List<Transaction>();//Create new list to hold unique transactions
+    foreach (Transaction orderedTransaction in orderedTransactions)//loop through existing ordered list
+    {
+        if (!uniqueTransactions.Contains(orderedTransaction))//If transaction does not exist in the new list then add it to the new list
+        {
+            uniqueTransactions.Add(orderedTransaction);//Add to List
+        }
+    }
+    return uniqueTransactions;
+}
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+```
+
+</details>
+
+###### Code Output
+
+```
+Function calls:10, In 3m 18s 265ms
+Function calls:10, In 3m 19s 880ms
+Function calls:10, In 3m 16s 483ms
+Function calls:10, In 3m 19s 304ms
+Function calls:10, In 3m 15s 912ms
+Function calls:10, In 3m 19s 471ms
+Function calls:10, In 3m 15s 850ms
+Function calls:10, In 3m 20s 298ms
+Function calls:10, In 3m 15s 798ms
+Function calls:10, In 3m 20s 805ms
+List Contains Method Average speed:198207ms, In 10 tests
+```
+
+This output shows that this method is not efficient that it takes and average of just over 3 minutes to complete. Let's look at the other methods to see if we can improve on the perofermance 
+
+
+### LINQ Distinct Method
+
+This method uses LINQ functions. It very compact and fits into one line. Since it returns a IEnumerbale of T it needs to be converted into a List of T.
+
+```cs
+
+
+List<Transaction> orderedStartingTransactions = GetInitialTransactionList();//Get the starting order starting list
+List<Transaction> uniqueTransactions = GetUniqueListWithLINQDistinct(orderedStartingTransactions);//Baseline list contains method of getting unique items
+Dictionary<string, List<Transaction>> transactionDictionary = GroupByDateTime(uniqueTransactions);//Group by date unique items so that they can be printed to the screen
+PrintDictionaryValues(transactionDictionary);//Print the unique into a table format
+
+
+List<Transaction> GetUniqueListWithLINQDistinct(List<Transaction> orderedTransactions)
+{
+    List<Transaction> uniqueTransactions = new List<Transaction>();//Create new list to hold unique transactions
+    uniqueTransactions = orderedTransactions.Distinct().ToList();
+    return uniqueTransactions;
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+void PrintDictionaryValues(Dictionary<string, List<Transaction>> transactionDictionary)
+{
+    Console.WriteLine($"Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count   ");//Header of Table
+    foreach (string date in transactionDictionary.Keys)
+    {
+        string ids = $"  {transactionDictionary[date][0].UserId}  |  {transactionDictionary[date][1].UserId}   |  {transactionDictionary[date][2].UserId}   |  {transactionDictionary[date][3].UserId}   |  {transactionDictionary[date][4].UserId}   |  {transactionDictionary[date].Count}   ";//Row template
+        Console.WriteLine($"{date} | {ids}");//Print to screen that row
+    }
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+```
+</details>
+
+###### Code Output
+
+```
+Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
+12/1/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8435
+12/2/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8423
+12/3/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8434
+12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8438
+```
+
+This confirms that LINQ distinct will provide for us what we need. List that supported datetime in filtering out duplicates. [It appears ordered but this method doesn't not guareentee the order.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0)
+
+#### LINQ Distinct Speed Test
+
+Now I'll complete the test for the LINQ distinct method. Below is the code changes and result. It is expected that it would be faster than the List Contains method.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(LINQDistinctMethodSpeedTest());
+}
+Console.WriteLine($"LINQ Distinct Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double LINQDistinctMethodSpeedTest()
+{
+    int numberOfFunctionCalls = 10;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    List<Transaction> orderedTransactions = GetInitialTransactionList();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        List<Transaction> uniqueTransactions = GetUniqueListWithLINQDistinct(orderedTransactions);//Use list constructor method
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+List<Transaction> GetUniqueListWithLINQDistinct(List<Transaction> orderedTransactions)
+{
+    List<Transaction> uniqueTransactions = new List<Transaction>();//Create new list to hold unique transactions
+    uniqueTransactions = orderedTransactions.Distinct().ToList();
+    return uniqueTransactions;
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:10, In 0m 0s 110ms
+Function calls:10, In 0m 0s 120ms
+Function calls:10, In 0m 0s 148ms
+Function calls:10, In 0m 0s 135ms
+Function calls:10, In 0m 0s 120ms
+Function calls:10, In 0m 0s 118ms
+Function calls:10, In 0m 0s 120ms
+Function calls:10, In 0m 0s 116ms
+Function calls:10, In 0m 0s 122ms
+Function calls:10, In 0m 0s 119ms
+LINQ Distinct Method Average speed:123ms, In 10 tests
+```
+
+From this result of less than a second, this makes LINQ Distinct is a viable method and it was able to scale well. 
+
+### HashSet Method
+
+While HashSet is not a list, but it is a collection type. HashSet by default only holds distinct values so we can use this to our advatage by putting our list item into then converting the HashSet to a List. See example below.
+
+```cs
+List<Transaction> orderedStartingTransactions = GetInitialTransactionList();//Get the starting order starting list
+List<Transaction> uniqueTransactions = GetUniqueListWithHashset(orderedStartingTransactions);//Baseline list contains method of getting unique items
+Dictionary<string, List<Transaction>> transactionDictionary = GroupByDateTime(uniqueTransactions);//Group by date unique items so that they can be printed to the screen
+PrintDictionaryValues(transactionDictionary);//Print the unique into a table format
+
+
+List<Transaction> GetUniqueListWithHashset(List<Transaction> orderedTransactions)
+{
+    HashSet<Transaction> uniqueTransactions = new HashSet<Transaction>();//Create new list to hold unique transactions
+    foreach (Transaction orderedTransaction in orderedTransactions)
+    {
+        uniqueTransactions.Add(orderedTransaction);
+    }
+    return uniqueTransactions.ToList();
+}
+
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+void PrintDictionaryValues(Dictionary<string, List<Transaction>> transactionDictionary)
+{
+    Console.WriteLine($"Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count   ");//Header of Table
+    foreach (string date in transactionDictionary.Keys)
+    {
+        string ids = $"  {transactionDictionary[date][0].UserId}  |  {transactionDictionary[date][1].UserId}   |  {transactionDictionary[date][2].UserId}   |  {transactionDictionary[date][3].UserId}   |  {transactionDictionary[date][4].UserId}   |  {transactionDictionary[date].Count}   ";//Row template
+        Console.WriteLine($"{date} | {ids}");//Print to screen that row
+    }
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+```
+</details>
+
+###### Code Output
+```
+Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
+12/1/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8481
+12/2/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8458
+12/3/2022 |   1000  |  1001   |  1003   |  1004   |  1005   |  8439
+12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8444
+```
+
+This appears to be expected output with HashSet, however, there is a problem. [HashSet does not guarantee that the order is perserved](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-7.0) So if you don't need a ordered list in the output then HashSet would be good enough on it's own. 
+
+#### HashSet Speed Test
+
+Next we'll test the speed of HashSet. I will use the same testing critrea as before.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(HashSetMethodSpeedTest());
+}
+Console.WriteLine($"HashSet Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double HashSetMethodSpeedTest()
+{
+    int numberOfFunctionCalls = 10;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    List<Transaction> orderedTransactions = GetInitialTransactionList();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        List<Transaction> uniqueTransactions = GetUniqueListWithHashset(orderedTransactions);//Use list constructor method
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<Transaction> GetUniqueListWithHashset(List<Transaction> orderedTransactions)
+{
+    HashSet<Transaction> uniqueTransactions = new HashSet<Transaction>();//Create new list to hold unique transactions
+    foreach (Transaction orderedTransaction in orderedTransactions)
+    {
+        uniqueTransactions.Add(orderedTransaction);
+    }
+    return uniqueTransactions.ToList();
+}
+
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:10, In 0m 0s 114ms
+Function calls:10, In 0m 0s 165ms
+Function calls:10, In 0m 0s 120ms
+Function calls:10, In 0m 0s 120ms
+Function calls:10, In 0m 0s 122ms
+Function calls:10, In 0m 0s 115ms
+Function calls:10, In 0m 0s 114ms
+Function calls:10, In 0m 0s 116ms
+Function calls:10, In 0m 0s 115ms
+Function calls:10, In 0m 0s 116ms
+HashSet Method Average speed:122ms, In 10 tests
+```
+
+It is a fast method and is sub second and is practically equal to the LINQ Distinct method.
+
+### HashSet and List Combo Method
+
+Next I'll try to custom method that uses the distinct nature of Hashset we'll adding also to a list. This helps use to filter the incoming list and also adding each distinct entry in the our list. This also helps us solve the issue with HashSet not preserving order.
+
+```cs
+List<Transaction> orderedStartingTransactions = GetInitialTransactionList();//Get the starting order starting list
+List<Transaction> uniqueTransactions = GetUniqueListWithHashSetAndListCombo(orderedStartingTransactions);//Baseline list contains method of getting unique items
+Dictionary<string, List<Transaction>> transactionDictionary = GroupByDateTime(uniqueTransactions);//Group by date unique items so that they can be printed to the screen
+PrintDictionaryValues(transactionDictionary);//Print the unique into a table format
+
+List<Transaction> GetUniqueListWithHashSetAndListCombo(List<Transaction> orderedTransactions)
+{
+    List<Transaction> uniqueTransactionsList = new List<Transaction>();//Create new List to hold unique transactions
+    HashSet<Transaction> uniqueTransactionsSet = new HashSet<Transaction>();//Create new HashSet to hold unique transactions
+    foreach (Transaction orderedTransaction in orderedTransactions)
+    {
+        if (uniqueTransactionsSet.Add(orderedTransaction))//Check if HashSet does not contains the entry
+        {
+            //If unique then add to the HashSet
+            uniqueTransactionsList.Add(orderedTransaction);//If unique then add to the List
+        }
+    }
+    return uniqueTransactionsList;
+}
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+void PrintDictionaryValues(Dictionary<string, List<Transaction>> transactionDictionary)
+{
+    Console.WriteLine($"Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count   ");//Header of Table
+    foreach (string date in transactionDictionary.Keys)
+    {
+        string ids = $"  {transactionDictionary[date][0].UserId}  |  {transactionDictionary[date][1].UserId}   |  {transactionDictionary[date][2].UserId}   |  {transactionDictionary[date][3].UserId}   |  {transactionDictionary[date][4].UserId}   |  {transactionDictionary[date].Count}   ";//Row template
+        Console.WriteLine($"{date} | {ids}");//Print to screen that row
+    }
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+```
+</details>
+
+###### Code Output
+
+```
+Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
+12/1/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8393
+12/2/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8399
+12/3/2022 |   1000  |  1001   |  1003   |  1005   |  1006   |  8479
+12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8412
+```
+
+This is expected output and since we stored the unique items into a list the order is perserved. I only used the HashSet as a filter for the items and did not return the HashSet items.
+
+
+
+#### HashSet And List Combo Method Speed Test
+
+
+This will again be the same performance test as before.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(HashSetAndListComboMethodSpeedTest());
+}
+Console.WriteLine($"HashSet And List Combo Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double HashSetAndListComboMethodSpeedTest()
+{
+    int numberOfFunctionCalls = 10;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    List<Transaction> orderedTransactions = GetInitialTransactionList();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        List<Transaction> uniqueTransactions = GetUniqueListWithHashSetAndListCombo(orderedTransactions);//Use list constructor method
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<Transaction> GetUniqueListWithHashSetAndListCombo(List<Transaction> orderedTransactions)
+{
+    List<Transaction> uniqueTransactionsList = new List<Transaction>();//Create new List to hold unique transactions
+    HashSet<Transaction> uniqueTransactionsSet = new HashSet<Transaction>();//Create new HashSet to hold unique transactions
+    foreach (Transaction orderedTransaction in orderedTransactions)
+    {
+        if (uniqueTransactionsSet.Add(orderedTransaction))//Check if HashSet does not contains the entry
+        {
+            //If unique then add to the HashSet
+            uniqueTransactionsList.Add(orderedTransaction);//If unique then add to the List
+        }
+    }
+    return uniqueTransactionsList;
+}
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+int GetRandomInt(int maxNumber, int minNumber = 1)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+List<Transaction> GetInitialTransactionList()
+{
+    List<Transaction> transactionList = new List<Transaction>();//Create new Car List as empty
+    int numberOfObjectsToCreate = 100000;
+    int maxTransactionNumber = 100000;
+    int maxUserId = 9999;
+    int minUserId = 1000;
+    int maxDays = 5;
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        transactionList.Add(new Transaction(GetRandomInt(maxUserId, minUserId), GetRandomInt(maxTransactionNumber), GetRandomInt(maxDays)));//Add a new Transaction to the list
+    }
+    return transactionList.OrderBy(x => x.TimeStamp).ThenBy(y => y.UserId).ToList();//Order the transactions by date and then user id
+}
+
+Dictionary<string, List<Transaction>> GroupByDateTime(List<Transaction> uniqueTransactions)
+{
+    Dictionary<string, List<Transaction>> transactionDictionary = new Dictionary<string, List<Transaction>>();
+    foreach (Transaction uniqueTransaction in uniqueTransactions)
+    {
+        if (!transactionDictionary.ContainsKey(uniqueTransaction.TimeStamp.ToShortDateString()))
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()] = new List<Transaction>();//Create a new list if datetime does not exist in the dictionary
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//Add a Transaction to the list in the dictionary
+        }
+        else
+        {
+            transactionDictionary[uniqueTransaction.TimeStamp.ToShortDateString()].Add(uniqueTransaction);//The list already exists so we can just add onto it
+        }
+    }
+    return transactionDictionary;
+}
+
+class Transaction
+{
+    public Transaction(int userId, int price, int day)
+    {
+        UserId = userId;
+        Price = price;
+        TimeStamp = new DateTime(2022, 12, day);//Keep year and month fixed and let the day vary
+    }
+    public int UserId { get; set; }
+    public int Price { get; set; }
+    public DateTime TimeStamp { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Transaction transaction &&
+               UserId == transaction.UserId &&
+               TimeStamp.Day == transaction.TimeStamp.Day &&
+               TimeStamp.Month == transaction.TimeStamp.Month &&
+               TimeStamp.Year == transaction.TimeStamp.Year;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(UserId, TimeStamp.Year, TimeStamp.Month, TimeStamp.Day);
+    }
+
+    public override string? ToString()
+    {
+        return Price.ToString();
+    }
+}
+
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:10, In 0m 0s 129ms
+Function calls:10, In 0m 0s 147ms
+Function calls:10, In 0m 0s 129ms
+Function calls:10, In 0m 0s 132ms
+Function calls:10, In 0m 0s 125ms
+Function calls:10, In 0m 0s 121ms
+Function calls:10, In 0m 0s 121ms
+Function calls:10, In 0m 0s 118ms
+Function calls:10, In 0m 0s 121ms
+Function calls:10, In 0m 0s 121ms
+HashSet And List Combo Method Average speed:127ms, In 10 tests
+```
+
+This comes in line with HashSet and LINQ Distinct with no advatage in performance over the other two methods. But since I saved items into a list the order is preserved.
+
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed,Order Preserved" rows="1,HashSet and List Combo,127ms,Yes;2,HashSet,122ms,No;3,LINQ Distinct,123ms,No;4,List Contains,198207ms,Yes;" />
+
+The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order the items is preserved. If you do not care able the order then LINQ Distinct or HashSet might better since their only a few lines of code. Their performance is also is really good. Link Contains should not be used to get distinct items because it does not scale well at all and is really slow.

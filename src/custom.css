@@ -1,0 +1,10 @@
+details pre{
+    @apply mx-6;
+@apply my-10;
+@apply bg-customdark1;
+@apply border-2 border-customdark2;
+@apply text-customdark5;
+@apply p-5;
+@apply rounded-lg;
+@apply overflow-x-auto;
+}

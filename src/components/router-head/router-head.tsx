@@ -436,6 +436,18 @@ const state = useStore<SharedRouteState>({
     imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-large.webp',
     description:'Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.'
   }
+  ,{ 
+    location:'fundamentals/collections/list/remove-duplicate-items-from-a-list', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/list/remove-duplicate-items-from-a-list/',
+    title:'Remove Duplicate Items from A List | Puzzled By CSharp',
+    dateCreated:'2022-12-30T00:11:56+00:00',
+    dateModified:'2022-12-30T00:11:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-large.webp',
+    description:'The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order the items is preserved.'
+  }
 ]
 });
 
