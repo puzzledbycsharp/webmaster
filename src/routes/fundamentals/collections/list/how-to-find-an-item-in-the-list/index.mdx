@@ -119,7 +119,12 @@ double BaseCaseLoopMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
 
+<details>
+<summary>Supporting Code</summary>
+
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -197,6 +202,7 @@ public class Car
     }
 }
 ```
+</details>
 
     
 ###### Code Output
@@ -238,6 +244,11 @@ Car FindInListByFind(int vinNumber, List<Car> carList)
     return carList.Find(x => x.VinNumber == vinNumber);//Pass condition to find the object and return it. A null can be returned
 }
 
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -277,6 +288,9 @@ public class Car
     }
 }
 ```
+</details>
+
+
     
 ###### Code Output
 ```
@@ -319,7 +333,11 @@ double ListFindMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -392,8 +410,8 @@ public class Car
     }
 }
 ```
-
-        
+</details>
+    
 ###### Code Output
 ```
   Function calls:50000, In 0m 11s 757ms
@@ -435,7 +453,11 @@ Car FindInListByIndexOf(int vinNumber, List<Car> carList)
     int foundCarIndex = carList.IndexOf(car);
     return carList[foundCarIndex];
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -491,6 +513,7 @@ public class Car
     }
 }
 ```
+</details>
   
 ###### Code Output
 
@@ -532,7 +555,11 @@ double IndexOfMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -622,7 +649,7 @@ public class Car
     }
 }
 ```
-
+</details>
       
 ###### Code Output
 ```
@@ -668,8 +695,11 @@ Car FindInListByFindAll(int vinNumber, List<Car> carList)
     }
     return null;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
-
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -711,6 +741,7 @@ public class Car
     }
 }
 ```
+</details>
         
 ###### Code Output
 
@@ -753,7 +784,11 @@ double FindAllMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -832,7 +867,7 @@ public class Car
     }
 }
 ```
-
+</details>
             
 ###### Code Output
 ```
@@ -879,8 +914,11 @@ Car FindInListByEnumerableWhere(int vinNumber, List<Car> carList)
     }
     return null;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
-
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -922,7 +960,7 @@ public class Car
     }
 }
 ```
-
+</details>
           
 ###### Code Output
 ```
@@ -966,7 +1004,11 @@ double EnumerableWhereMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 List<Car> GetInitialCarList()
 {
     List<Car> carList = new List<Car>();//Create new Car List as empty
@@ -1045,6 +1087,9 @@ public class Car
     }
 }
 ```
+</details>
+
+
 
             
 ###### Code Output
@@ -1116,7 +1161,11 @@ Dictionary<int, Car> GetInitialCarDictionary()
     carDictionary.Add(car10.VinNumber, car10);//Add car reference as a key and value
     return carDictionary;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 public class Car
 {
     public Car(int vinNumber, string color, int doorNumber, string make, string model, int year)
@@ -1142,6 +1191,8 @@ public class Car
     }
 }
 ```
+</details>
+
             
 ###### Code Output
 ```
@@ -1224,7 +1275,11 @@ Car FindInDictionary(int vinNumber, Dictionary<int, Car> carDictionary)
     }
     return null;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 string GetRandomText(int numberOfCharacters)
 {
     string finalOutput = "";
@@ -1270,6 +1325,8 @@ public class Car
     }
 }
 ```
+</details>
+
 
                 
 ###### Code Output

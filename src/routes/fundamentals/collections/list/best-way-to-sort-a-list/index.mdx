@@ -144,6 +144,11 @@ double LINQOrderBySpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
 int GetRandomInt(int maxNumber)
 {
     Random random = new Random();
@@ -180,6 +185,9 @@ public class Car
     public int Year { get; set; }
 }
 ```
+</details>
+
+
 
     
 ###### Code Output
@@ -221,6 +229,11 @@ foreach (Car car in carList.OrderBy(x => x.Make).ThenBy(y => y.Model))//loop thr
 {
     Console.WriteLine($"VinNumber:{car.VinNumber}, Color:{car.Color}, DoorNumber:{car.DoorNumber}, Make:{car.Make}, Model:{car.Model}, Year:{car.Year}");//Print the value to the console
 }
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
 public class Car
 {
     public Car(int vinNumber, string color, int doorNumber, string make, string model, int year)
@@ -240,6 +253,9 @@ public class Car
     public int Year { get; set; }
 }
 ```
+</details>
+
+
   
 ###### Code Output
 ```
@@ -266,16 +282,16 @@ Next we'll test the speed of this method. We would expect it to slower than the 
   
 
 ```cs
-    using System.Diagnostics;
-    int numberOfTests = 10;//Number of tests 
-    List<double> testSpeedList = new List<double>();
-    for (int i = 0; i < numberOfTests; i++)
-    {
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
     testSpeedList.Add(LINQOrderByPrimaryAndSecondaryKeySpeedTest());
-    }
-    Console.WriteLine($"LINQ Order By Primary and Secondary Key Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
-    double LINQOrderByPrimaryAndSecondaryKeySpeedTest()
-    {
+}
+Console.WriteLine($"LINQ Order By Primary and Secondary Key Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double LINQOrderByPrimaryAndSecondaryKeySpeedTest()
+{
     int numberOfFunctionCalls = 1000;//Number of function calls made
     List<Car> carList = new List<Car>();//Can hold multple car objects
     int numberOfObjectsToCreate = 100000;
@@ -287,55 +303,62 @@ Next we'll test the speed of this method. We would expect it to slower than the 
     int maxNumberOfYear = 4;
     for (int i = 0; i < numberOfObjectsToCreate; i++)
     {
-    carList.Add(new Car(GetRandomInt(maxNumberOfVinNumber), GetRandomText(maxNumberOfColorCharacters), GetRandomInt(maxNumberofWheels), GetRandomText(maxNumberOfMakeCharacters), GetRandomText(maxNumberOfModelCharacters), GetRandomInt(maxNumberOfYear)));//Add a new Car to the list
+        carList.Add(new Car(GetRandomInt(maxNumberOfVinNumber), GetRandomText(maxNumberOfColorCharacters), GetRandomInt(maxNumberofWheels), GetRandomText(maxNumberOfMakeCharacters), GetRandomText(maxNumberOfModelCharacters), GetRandomInt(maxNumberOfYear)));//Add a new Car to the list
     }
     Stopwatch stopwatch = new Stopwatch();
     stopwatch.Start();//Start the Stopwatch timer
     List<Car> orderCarList = new List<Car>();
     for (int i = 0; i < numberOfFunctionCalls; i++)
     {
-    orderCarList = carList.OrderBy(x => x.VinNumber).ThenBy(y => y.Model).ToList();//Sort the list
+        orderCarList = carList.OrderBy(x => x.VinNumber).ThenBy(y => y.Model).ToList();//Sort the list
     }
     stopwatch.Stop();//Stop the Stopwatch timer
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
-    }
-    int GetRandomInt(int maxNumber)
-    {
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+int GetRandomInt(int maxNumber)
+{
     Random random = new Random();
     int randomInt = random.Next(maxNumber); ;
     return randomInt;
-    }
-    string GetRandomText(int numberOfCharacters)
-    {
+}
+string GetRandomText(int numberOfCharacters)
+{
     string finalOutput = "";
     string alphbet = "abcedfghijklmnopqrstuvwxyz";
     for (int i = 0; i < numberOfCharacters; i++)
     {
-    int randomIndex = GetRandomInt(alphbet.Length - 1);
+        int randomIndex = GetRandomInt(alphbet.Length - 1);
         finalOutput += alphbet[randomIndex];
-        }
-        return finalOutput;
-        }
-        public class Car
-        {
-        public Car(int vinNumber, string color, int doorNumber, string make, string model, int year)
-        {
+    }
+    return finalOutput;
+}
+public class Car
+{
+    public Car(int vinNumber, string color, int doorNumber, string make, string model, int year)
+    {
         VinNumber = vinNumber;
         Color = color;
         DoorNumber = doorNumber;
         Make = make;
         Model = model;
         Year = year;
-        }
-        public int VinNumber { get; set; }
-        public string Color { get; set; }
-        public int DoorNumber { get; set; }
-        public string Make { get; set; }
-        public string Model { get; set; }
-        public int Year { get; set; }
-        }
+    }
+    public int VinNumber { get; set; }
+    public string Color { get; set; }
+    public int DoorNumber { get; set; }
+    public string Make { get; set; }
+    public string Model { get; set; }
+    public int Year { get; set; }
+}
 ```
+</details>
+
 
       
     
@@ -458,6 +481,12 @@ double ListSortKeySpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
 int GetRandomInt(int maxNumber)
 {
     Random random = new Random();
@@ -513,6 +542,7 @@ public class Car : IComparable<Car>
     }
 }
 ```
+</details>
 
     
 ###### Code Output

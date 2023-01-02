@@ -199,8 +199,6 @@ For this test we use the follow parameters to test all the clone methods to comp
 So one test is completed when 10 number times the method is called is completed. 
 
 ```cs
-
-
 using System.Diagnostics;
 int numberOfTests = 10;//Number of tests 
 List<double> testSpeedList = new List<double>();
@@ -228,7 +226,11 @@ double ListConstructorMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 List<Transaction> GetInitialTransactionList()
 {
     List<Transaction> carList = new List<Transaction>();//Create new Car List as empty
@@ -264,8 +266,10 @@ class Transaction
         return Price.ToString();
     }
 }
-
 ```
+</details>
+
+
 
 ###### Code Output
 ```
@@ -301,7 +305,11 @@ long memoryUsageAfter = GC.GetTotalMemory(false);//Get memory size after test
 long memroyInBytes = memoryUsageAfter - memoryUsageBefore;//Get total memory usage by the test in bytes
 double memoryInMB = Math.Round(((double)memroyInBytes) / (1024.0 * 1024.0), 2);//Convert bytes to MB
 Console.WriteLine($"Difference In Memory is { memoryInMB} MB");//Print result
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 List<Transaction> GetInitialTransactionList()
 {
     List<Transaction> carList = new List<Transaction>();//Create new Car List as empty
@@ -322,6 +330,8 @@ int GetRandomInt(int maxNumber)
     return randomInt;
 }
 ```
+</details>
+
 
 ###### Code Output
 ```
@@ -539,7 +549,11 @@ double ConstructorCopyMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
+```cs
 class Transaction
 {
     public Transaction(Transaction transaction)
@@ -566,8 +580,10 @@ class Transaction
         return Price.ToString();
     }
 }
-
 ```
+</details>
+
+
 ###### Code Output
 ```
 Function calls:25000, In 0m 19s 883ms
@@ -742,8 +758,11 @@ double ICloneableInterfaceMethodSpeedTest()
     Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
+```
+<details>
+<summary>Supporting Code</summary>
 
-
+```cs
 class Transaction : ICloneable
 {
     public Transaction()
@@ -773,6 +792,8 @@ class Transaction : ICloneable
     }
 }
 ```
+</details>
+
 
 ###### Code Output
 ```

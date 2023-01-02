@@ -25,12 +25,14 @@ List<double> doubleList = new List<double>() { 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0
 List<float> floatList = new List<float>() { 1.0f, 2.0f, 3.0f, 4.0f, 5.1f, 6.2f };//floats are similar to double but the float has f at the end
 List<char> charList = new List<char>() { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'f' };//Characters are surrounded by single quotes 
 List<Car> carList = new List<Car>() { new Car(2, "SuperHType"), new Car(3, "XType"), new Car(4, "TruckXType"), new Car(4, "SUVType") };//Add any Object to the list as long as it has a defined constructor
+
 Console.WriteLine(string.Join(",", stringList));//Print list to screen
 Console.WriteLine(string.Join(",", intList));//Print list to screen
 Console.WriteLine(string.Join(",", doubleList));//Print list to screen
 Console.WriteLine(string.Join(",", floatList));//Print list to screen
 Console.WriteLine(string.Join(",", charList));//Print list to screen
 Console.WriteLine(string.Join(",", carList));//Print list to screen
+
 class Car
 {
     public Car(int wheels, string type)
@@ -70,11 +72,13 @@ List<double> doubleList = new List<double>();//create a new list of doubles
 List<float> floatList = new List<float>();//create a new list of floats
 List<char> charList = new List<char>();//create a new list of characters
 List<Car> carList = new List<Car>(); //Add any Object to the list as long as it has a defined constructor
+
 stringList.Add("first");//Add string to a list
 stringList.Add("second");//Add string to a list
 stringList.Add("third");//Add string to a list
 stringList.Add("fourth");//Add string to a list
 stringList.Add("fifth");//Add string to a list
+
 intList.Add(1);//Add int to a list
 intList.Add(2);//Add int to a list
 intList.Add(3);//Add int to a list
@@ -84,6 +88,7 @@ intList.Add(6);//Add int to a list
 intList.Add(7);//Add int to a list
 intList.Add(8);//Add int to a list
 intList.Add(9);//Add int to a list
+
 doubleList.Add(1.0);//Add double to a list
 doubleList.Add(2.0);//Add double to a list
 doubleList.Add(3.0);//Add double to a list
@@ -93,6 +98,7 @@ doubleList.Add(6.0);//Add double to a list
 doubleList.Add(7.0);//Add double to a list
 doubleList.Add(8.0);//Add double to a list
 doubleList.Add(9.0);//Add double to a list
+
 floatList.Add(1.1f);//Add float to a list
 floatList.Add(2.2f);//Add float to a list
 floatList.Add(3.3f);//Add float to a list
@@ -102,6 +108,7 @@ floatList.Add(6.6f);//Add float to a list
 floatList.Add(7.7f);//Add float to a list
 floatList.Add(8.8f);//Add float to a list
 floatList.Add(9.9f);//Add float to a list
+
 charList.Add('a');//Add character to a list
 charList.Add('b');//Add character to a list
 charList.Add('c');//Add character to a list
@@ -111,16 +118,19 @@ charList.Add('f');//Add character to a list
 charList.Add('g');//Add character to a list
 charList.Add('h');//Add character to a list
 charList.Add('i');//Add character to a list
+
 carList.Add(new Car(3, "SuperHType"));
 carList.Add(new Car(4, "CompactModel"));
 carList.Add(new Car(4, "SUVType"));
 carList.Add(new Car(4, "TruckType"));
+
 Console.WriteLine(string.Join(",", stringList));//Print list to screen
 Console.WriteLine(string.Join(",", intList));//Print list to screen
 Console.WriteLine(string.Join(",", doubleList));//Print list to screen
 Console.WriteLine(string.Join(",", floatList));//Print list to screen
 Console.WriteLine(string.Join(",", charList));//Print list to screen
 Console.WriteLine(string.Join(",", carList));//Print list to screen
+
 class Car
 {
     public Car(int wheels, string type)

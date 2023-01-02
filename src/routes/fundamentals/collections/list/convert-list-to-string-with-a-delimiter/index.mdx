@@ -171,9 +171,9 @@ Next we'll use StringBuilder to convert the list to a delimited based string but
 ```cs
 using System.Text;
 List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
-string commaSeperated = ConvertListToSTring(",", stringList);//Convert list to a comma seperated string
+string commaSeperated = ConvertListToString(",", stringList);//Convert list to a comma seperated string
 Console.WriteLine(commaSeperated);//Print the string
-string ConvertListToSTring(string delimiter, List<string> list)
+string ConvertListToString(string delimiter, List<string> list)
 {
     StringBuilder sb = new StringBuilder();//Create a new StrinbBuilder object
     foreach (string item in list)//Loop through the list on each item
@@ -220,13 +220,13 @@ double StringBuilderAppendSpeedTest()
     string alteredText = "";
     for (int i = 0; i < numberOfFunctionCalls; i++)
     {
-        alteredText = ConvertListToSTring(",", stringList);//Convert list to a comma seperated string
+        alteredText = ConvertListToString(",", stringList);//Convert list to a comma seperated string
     }
     stopwatch.Stop();//Stop the Stopwatch timer
     Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
-string ConvertListToSTring(string delimiter, List<string> list)
+string ConvertListToString(string delimiter, List<string> list)
 {
     StringBuilder sb = new StringBuilder();//Create a new StrinbBuilder object
     foreach (string item in list)//Loop through the list on each item
@@ -279,9 +279,9 @@ The last of the methods show here is with string concatenation. This one of the 
   
 ```cs
 List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
-string commaSeperated = ConvertListToSTringByStringConcatenation(",", stringList);//Convert list to a comma seperated string
+string commaSeperated = ConvertListToStringByStringConcatenation(",", stringList);//Convert list to a comma seperated string
 Console.WriteLine(commaSeperated);//Print the string
-string ConvertListToSTringByStringConcatenation(string delimiter, List<string> list)
+string ConvertListToStringByStringConcatenation(string delimiter, List<string> list)
 {
     string commaSeperated = "";
     foreach (string item in list)//Loop through the list on each item
@@ -331,13 +331,13 @@ double StringConcentationAppendSpeedTest()
     string alteredText = "";
     for (int i = 0; i < numberOfFunctionCalls; i++)
     {
-        alteredText = ConvertListToSTringByStringConcatenation(",", stringList);//Convert list to a comma seperated string
+        alteredText = ConvertListToStringByStringConcatenation(",", stringList);//Convert list to a comma seperated string
     }
     stopwatch.Stop();//Stop the Stopwatch timer
     Console.WriteLine($"alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
 }
-string ConvertListToSTringByStringConcatenation(string delimiter, List<string> list)
+string ConvertListToStringByStringConcatenation(string delimiter, List<string> list)
 {
     string commaSeperated = "";
     foreach (string item in list)//Loop through the list on each item
