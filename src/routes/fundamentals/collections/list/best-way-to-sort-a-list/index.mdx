@@ -9,10 +9,13 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-small.webp 250w, ../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-medium.webp 500w, ../../../../assets/fundamentals/collections/list/best-way-to-sort-a-list/best-way-to-sort-a-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Way To Sort A List Banner Image" widthImage = "2304" heightImage = "1728" />
+
 ## Introduction
+
 Sorting data is important to organize the data in both a visual representation and organizing it for logical based reasons in the code. It may come from a database, from user inputs, automatically generated files to parse. Most of the time it is unorganized data, and it is best to sort it. CSharp comes with build in functionality for sorting single objects and even more complex objects with many times. We'll look at List Sort and also LINQ's order by and analyze the speed, readability, concise and memory impact.
 
 ### LINQ's Order By Sort Method
+
 LINQ provides a convenient way to sort the data in ascending order(called orderby) or descending order(called orderby desc) options. Even better it allows you to select which property on the class you would like to sort by.
 
 Order by descending for numerical values will order from largest value to smallest value. While order by for numerical values will order by smallest to largest values.
@@ -20,6 +23,7 @@ Order by descending for numerical values will order from largest value to smalle
 Order by descending for string values will order from Z to A and order by will be from A to Z.
 
 ###### LINQ's Order By Sort Method Code Example
+
 ```cs
 List<Car> carList = new List<Car>();//Can hold multple car objects
 carList.Add(new Car(383958943, "blue", 4, "MakeT", "SuperM", 2014));//Add a new Car to the list
