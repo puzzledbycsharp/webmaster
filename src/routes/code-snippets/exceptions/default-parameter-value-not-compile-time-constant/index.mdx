@@ -4,6 +4,7 @@ title: Fix For Default Parameter Value Not Compile Time Constant Error
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 
 # Fix For Default Parameter Value Not Compile Time Constant Error
@@ -13,7 +14,7 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 ### Introduction
 
-This compile exception ‘CS1736: Default parameter value must be a compile-time constant’ occurs when you try to assign a optional parameter value that is not a constant or is not the correct default value. It works with numerical data types and strings in the list of parameters but not for objects or structs. Different objects have different default values and it is important to know which ones are valid parameter values to use on a given type. To undetand this further, I will first tell you about constant time constants.
+This compile exception ‘CS1736: Default parameter value must be a compile-time constant’ occurs when you try to assign a optional parameter value that is not a constant or is not the correct default value. It works with numerical data types and strings in the list of parameters but not for objects or structs. Different objects have different default values and it is important to know which ones are valid parameter values to use on a given type. To understand this further, I will first tell you about constant time constants.
 
 #### Understanding Compile Time Constants
 
@@ -27,7 +28,7 @@ const string userName = "MyUserName";
 Only built in types can be marked as constant, [such as numbers as int, float, double, char, bool, and strings.](https://www.c-sharpcorner.com/article/runtime-and-compiletime-constants-in-c-sharp/) 
 
 #### Default Values
-Default values are the values assigned to optional parameters. [Every optional paramter has a default value](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments), in case the function call does not pass a argument to the optional paramter. 
+Default values are the values assigned to optional parameters. [Every optional parameter has to have a default value](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments), in case the function call does not pass a argument to the optional paramter. 
 
 ```cs
 public void StartCountDownTimer(int hours = 6, int minutes = 40, int seconds = 30)
@@ -47,7 +48,6 @@ public void LogDebugStatements(string log = "Debug")
 
 These examples are valid uses for optional parameters for these datatypes because the value will still be the same at compile time and run time. 
 
-
 You can not assign any variable to the optional parameter if it is a object or struct type.For example, if DATETIMECONSTANT was definied as a global variable and then there was a parameter 'DateTime myDate = DATETIMECONSTANT' This is invalid and the code will throw an compile error because the value will change at different types when you compile. It is not a constant value.
 ```cs
 DateTime DATETIMECONSTANT = DateTime.Now;
@@ -59,7 +59,7 @@ public void MyDateTimeFunction(DateTime myDate = DATETIMECONSTANT)
 ```
 This is a invalid use of optional parameter and will IDE will flag this as an error.
 
-### Struct Color Example
+#### Struct Color Example
 
 <ImageWrapper imageSource="../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp" imageSrcSet="../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-small.webp 250w, ../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp 500w, ../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "cs1736 default parameter value for datetime must be a compile time constant" widthImage = "597" heightImage = "124" />
 
@@ -89,7 +89,7 @@ private static void AddPoints(Graphics graphics, Color color = Color.Aqua)
 }
 ```
 
-## Color Solution with Default Keyword
+### Color with Default Keyword Solution
 
 As you can see Color.Aqua is not the correct default type for struct. A structs default value is when all of members are at their default values. In this case, we can use default keyword and this lets the compile know to use the default Color value which will initialize all the structs members to default values. [In C# 7.1 and greater versions you can use the default literal.](https://www.kunal-chowdhury.com/2017/08/default-literal-in-csharp-7.1.html#:~:text=The%20default%20literal%20in%20C%23,like%20default(T)%20only.)
 
@@ -120,7 +120,7 @@ private static void AddPoints(Graphics graphics, Color color = default)
 }
 ```
 
-## Color Solution with Nullable
+### Color with Nullable Solution
 
 Another solution to this is to change the parameter Color to Color? [which is a nullable type in .NET 6 and above](https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references) and then setting it to equal null. Null is a default value then the compiler will allow this type of optional parameter. This is changed to the following in the function
 
@@ -221,7 +221,7 @@ namespace GraphicsToImage
 </details>
 
 
-### Struct DateTime Example
+#### Struct DateTime Example
 
 
 <ImageWrapper imageSource="../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp" imageSrcSet="../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-small.webp 250w, ../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-medium.webp 500w, ../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/cs1736-default-parameter-value-for-dateTime-must-be-a-compile-time-constant-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "cs1736 default parameter value for datetime must be a compile time constant" widthImage = "427" heightImage = "122" />
@@ -240,7 +240,7 @@ public static string GenerateTimeStamp(DateTime dateTime = DateTime.Now)
 }
 ```
 
-## DateTime Solution with Default Keyword for Default Parameter
+### DateTime with Default Keyword Solution
 
 DateTime.Now is not the correct default paramter for the DateTime object. This is like Color is also a struct type. So in order for DateTime to have a default state all it’s variables inside the struct also need to be in their default state. We can see below the follow code snippet and image that show default values for the DateTime struct. Default keyword is available in C# 7.1 and above.
 
@@ -267,7 +267,7 @@ public static string GenerateTimeStamp(DateTime? dateTime = null)
 }
 ```
 
-### DateTime Solution with Nullable
+### DateTime with Nullable Solution
 
 A simple solution also be to change the DateTime type to a nullable type of DateTime?. This will allow us to set the optional parameter to null is technically a constant. See the following for code snippet for updated.
 
@@ -279,7 +279,7 @@ public static string GenerateTimeStamp(DateTime? dateTime = null)
 }
 ```
 
-## DateTime Solution With Function Overload
+### DateTime With Function Overload Solution
 
 DateTime Solution With Function Overload
 
@@ -349,6 +349,62 @@ namespace DateTimeDefaultParameter
 ```
 </details>
 
+### Null-Coalescing Operator Solution
+
+Now we have seen some single object examples but what about some more complex objects? Cellections also need a compile time constant as well when used an optional parameter.
+
+Look at the below exmaples. They all get a compile error so this doesn't work. 
+
+```cs
+void AddToCollection(List<string> collection = new List<string>() {"name","name2","name3"})
+{
+    //some logic
+}
+void AddToCollection(List<int> collection = new List<int>() { 1,2,3})
+{
+    //some logic
+}
+void AddToCollection(int[] array = new int[] {1,2,3})
+{
+    //some logic
+}
+void AddToCollection(Dictionary<string,string> collection = new Dictionary<string, string>() { { "nameKey1", "nameValue1" } })
+{
+    //some logic
+}
+```
+
+But what we can do to get around the compile error is to set each of these lists to null then assign each of the collections to empty at the begginning of each of the functions. [This can be done by the null-coalescing operator and it's available in C# 8.0](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator) Now see the solution once we add the null coalescing operator.
+
+```cs
+void AddToCollection(List<string> collection = null)
+{
+    collection ??= new List<string>() { "name", "name2", "name3" };
+    //some logic
+}
+
+void AddToCollection(List<int> collection = null)
+{
+    collection ??= new List<int>() { 1, 2, 3 };
+    //some logic
+}
+void AddToCollection(int[] array = null)
+{
+    array ??= new int[] { 1, 2, 3 };
+    //some logic
+}
+
+void AddToCollection(Dictionary<string, string> collection = null)
+{
+    collection ??= new Dictionary<string, string>() { { "nameKey1", "nameValue1" } };
+    //some logic
+}
+```
+
 ### Conclusion
 
-Using the default keyword is best way to solve this compile error if .NET version is greater than 7.1 one. If you have version 6 or greater then the next best option is to use a nullable. If you are using .NET 6 or less then to use a function overload would be best.
+<Table header ="Overall Rank,Method,.NET VERSION" rows="1,Default Keyword,>= 7.1;2,Nullable, >= 6;3,Null-Coalescing Operator,>= 8.0;4,Function Overload, All;" />
+
+Using the default keyword is best way to solve this compile error if .NET version is greater than 7.1 one. If you have version 6 or greater then the next best option is to use a nullable. In addition to nullable using the null plus the null-coalescing operator for collection types is a great way to solve this issue. If you are using .NET 6 or less then to use a function overload would be best.
+
+Do you have any other ideas on how to solve this? Leave a comment. 
