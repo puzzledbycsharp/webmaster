@@ -448,6 +448,19 @@ const state = useStore<SharedRouteState>({
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-large.webp',
     description:'The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order the items is preserved.'
   }
+  ,{ 
+    location:'fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/',
+    title:'Understanding The Best Set Theory Methods Between Lists',
+    dateCreated:'2023-01-08T00:11:56+00:00',
+    dateModified:'2023-01-08T00:11:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-large.webp',
+    description:'The best methods for intersect, union and except are with the HashSet collection type. The HashSet functions are faster than LINQs.'
+  }
+
 ]
 });
 
