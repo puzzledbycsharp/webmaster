@@ -431,7 +431,7 @@ export default component$(() => {
     }
     ,{ 
       location:'fundamentals/strings', 
-      url: 'https://puzzledbycsharp.com/strings/',
+      url: 'https://puzzledbycsharp.com/fundamentals/strings/',
       title:'Strings | Puzzled By CSharp',
       dateCreated:'2022-12-23T00:11:56+00:00',
       dateModified:'2022-12-23T00:11:56+00:00',
