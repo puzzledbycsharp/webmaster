@@ -406,7 +406,7 @@ export default component$(() => {
     }
     ,  
     { 
-      location:'fundamentals/collections/collections', 
+      location:'fundamentals/collections', 
       url: 'https://puzzledbycsharp.com/fundamentals/collections/',
       title:'Collections | Puzzled By CSharp',
       dateCreated:'2022-12-23T00:11:56+00:00',
@@ -418,7 +418,7 @@ export default component$(() => {
       description:'Collections are an essential data type in csharp. It is one the most used types because data must be ordered, organized and then used in an efficient manner.'
     }
     ,{ 
-      location:'fundamentals/collections/collections/list', 
+      location:'fundamentals/collections/list', 
       url: 'https://puzzledbycsharp.com/fundamentals/collections/list/',
       title:'List | Puzzled By CSharp',
       dateCreated:'2022-12-23T00:11:56+00:00',
