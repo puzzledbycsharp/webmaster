@@ -16,9 +16,10 @@ import{Table} from "~/components/table/table";
 
 This compile exception ‘CS1736: Default parameter value must be a compile-time constant’ occurs when you try to assign a optional parameter value that is not a constant or is not the correct default value. It works with numerical data types and strings in the list of parameters but not for objects or structs. Different objects have different default values and it is important to know which ones are valid parameter values to use on a given type. To understand this further, I will first tell you about constant time constants.
 
-#### Understanding Compile Time Constants
+#### #### What is a Compile Time Constant?
 
-Constants are known at compile time and do not change. Below are some examples
+Values that are known and assigned at the time when the progrma is compiled and do not change are constant. Bool, numeric or string values can be constant at compile time and do not change even when the program runs. Numeric values or string values are constant at compile and remain constain. The const keyword can be added to create a compile time constant.  Below are some examples
+
 ```cs
 const double multiplier = 32;
 const int hours = 19;
@@ -27,8 +28,9 @@ const string userName = "MyUserName";
 
 Only built in types can be marked as constant, [such as numbers as int, float, double, char, bool, and strings.](https://www.c-sharpcorner.com/article/runtime-and-compiletime-constants-in-c-sharp/) 
 
-#### Default Values
-Default values are the values assigned to optional parameters. [Every optional parameter has to have a default value](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments), in case the function call does not pass a argument to the optional paramter. 
+#### What Are Default Values of a Parameters?
+
+Default values are values assigned to optional parameters in the function declaration. If function call does not pass anything those optional parameters then the default value will be assigned automatically to the optional parameter. [Every optional parameter has to have a default value](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments), in case the function call does not pass a argument to the optional paramter. 
 
 ```cs
 public void StartCountDownTimer(int hours = 6, int minutes = 40, int seconds = 30)
