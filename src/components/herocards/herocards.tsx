@@ -479,6 +479,19 @@ export default component$(() => {
       imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-large.webp',
       description:'The best methods for intersect, union and except are with the HashSet collection type. The HashSet functions are faster than LINQs.'
     }
+    ,
+    { 
+      location:'fundamentals/collections/list/convert-a-system-array-to-a-list', 
+      url: 'https://puzzledbycsharp.com/fundamentals/collections/list/convert-a-system-array-to-a-list/',
+      title:' Convert A System Array To A List',
+      dateCreated:'2023-01-12T00:11:56+00:00',
+      dateModified:'2023-01-12T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-large.webp',
+      description:'The fastest method for converting a system array to a list is to use a array cast then use ToList. It is short and compact and easy to read.'
+    }
   
   ]
   });

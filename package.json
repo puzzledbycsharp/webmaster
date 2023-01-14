@@ -1,5 +1,5 @@
 {
-  "name": "my-qwik-docs-starter",
+  "name": "PuzzledByCSharp Website",
   "description": "Basic start point to build a docs site with Qwik",
   "engines": {
     "node": ">=15.0.0"

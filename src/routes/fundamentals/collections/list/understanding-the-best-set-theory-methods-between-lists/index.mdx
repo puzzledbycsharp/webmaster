@@ -14,9 +14,9 @@ import{Table} from "~/components/table/table";
 
 Comparisions between lists can be made through built in LINQ functions such as [union, intersect, except](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-7.0#hashset-and-linq-set-operations). These operations are helpful to quickly get values that are different in one list than in another or are only in both lists or exlude from one list.
 
-Another way to c# provides built in funtions is for HashSet. It is a collection type that has intersetion, union and except operations. So we can compare between LINQ functions with the HashSet in performance and setup.   
+Another way to C# provides built in funtions is for HashSet. It is a collection type that has intersetion, union and except operations. So we can compare between LINQ functions with the HashSet in performance and setup.   
 
-So I'll go into more details about the types of relationships of comparsions we can do with lists. 
+So I'll go into more details about the types of operations to do comparsions with lists. 
 
 ### Intersection Methods
 
@@ -1228,3 +1228,5 @@ HashSet ExceptWith Method Average speed:6ms, In 10 tests
 The best methods for intersect, union and except are with the HashSet collection type. They are very fast operations even with dealing with two lists 1 million objects. These methods are best when the order of the items doesn't matter because HashSet does not guarantee, but depending on the size of the list you could just use HashSet operations then sort quickly afterwards.
 
 If you need a sorted list then and you want to keep it simple then going with the LINQ functions might be worthwhile to look into and if you the dataset you are dealing with isn't too big. 
+
+Do you have any motheds for Set Theory operations? Post in the comments

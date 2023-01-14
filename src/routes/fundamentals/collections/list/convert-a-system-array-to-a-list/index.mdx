@@ -1,0 +1,334 @@
+---
+title: Convert A System Array To A List
+---
+
+# Convert A System Array To A List
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-small.webp 250w, ../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp 500w, ../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A System Array To A List Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+System Array is an abstract class that can only instantiated through a function. From the class name itself it's hard to tell if the what type it encapsulate so you'll need plan and be sure what time it is ahead of time. [Since System Array is not in the collection namespace but it is still considered a collection since it implements IList](https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-7.0) There are other types of arrays in the collection name space so I will be refereing this array as system array to advoid confusion. With this we can convert System Array to a List so I'll go over the methods one by one and provide analysis of each one.
+
+
+### Loop Method
+
+First method to convert all the System Array items to a list is through the brute force method of looping through all the items. Then applying a cast to each item retrieved and then adding it to the list. Examine the below code.
+
+```cs
+Array systemArray = Array.CreateInstance(typeof(int), 4);//Create System Array with type int and length of 4
+systemArray.SetValue(10, 0);//Set value to 10 at index 0
+systemArray.SetValue(21, 1);//Set value to 21 at index 1
+systemArray.SetValue(32, 2);//Set value to 32 at index 2
+systemArray.SetValue(43, 3);//Set value to 43 at index 3
+List<int> list = new List<int>();
+for (int i = systemArray.GetLowerBound(0); i <= systemArray.GetUpperBound(0); i++)
+{
+    list.Add((int)systemArray.GetValue(i));//Get value from System Array then cast it to int then add it to the list.
+}
+
+Console.WriteLine("list:" + string.Join(",", list));//Print to screen
+
+```
+###### Code Output
+
+```
+list:10,21,32,43
+```
+
+This is the most basic way converting the two types but let's also test the perforance of this.
+
+#### Loop Method Speed Test
+
+In this test, I will run 10 tests which will have 100 function calls of the loop method. The loop method will run on 1 million objects. This will be the base line test for all the tests.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(GetConvertArrayToListByLoopSpeedTest());
+}
+Console.WriteLine($"Array To List By Loop Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double GetConvertArrayToListByLoopSpeedTest()
+{
+    int numberOfFunctionCalls = 100;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    Array array = GetArrayData();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        List<int> convertedList = ConvertSystemArrayToListByLoop(array);//Convert System Array to List
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<int> ConvertSystemArrayToListByLoop(Array systemArray)
+{
+    List<int> list = new List<int>();
+    for (int i = systemArray.GetLowerBound(0); i <= systemArray.GetUpperBound(0); i++)
+    {
+        list.Add((int)systemArray.GetValue(i));//Get value from System Array then cast it to int then add it to the list.
+    }
+    return list;
+}
+
+
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+Array GetArrayData()
+{
+    Array array = Array.CreateInstance(typeof(int), 1000000);
+    for (int i = array.GetLowerBound(0); i <= array.GetUpperBound(0); i++)
+    {
+        array.SetValue(GetRandomInt(0, 10000), i);
+    }
+    return array;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:100, In 0m 3s 705ms
+Function calls:100, In 0m 3s 582ms
+Function calls:100, In 0m 3s 576ms
+Function calls:100, In 0m 3s 458ms
+Function calls:100, In 0m 3s 552ms
+Function calls:100, In 0m 3s 402ms
+Function calls:100, In 0m 3s 483ms
+Function calls:100, In 0m 3s 568ms
+Function calls:100, In 0m 3s 545ms
+Function calls:100, In 0m 3s 445ms
+Array To List By Loop Method Average speed:3532ms, In 10 tests
+```
+
+From this basic loop, the average speed from the test is about 3 and half seconds. There are other ways that C# provides for us to handle this use case.
+
+### Cast and ToList Method
+
+Another way to we can solve this issue is to cast The System Array object to an array. Then convert that array to a list.
+
+```cs
+Array systemArray = Array.CreateInstance(typeof(int), 4);//Create System Array with type int and length of 4
+systemArray.SetValue(10, 0);//Set value to 10 at index 0
+systemArray.SetValue(21, 1);//Set value to 21 at index 1
+systemArray.SetValue(32, 2);//Set value to 32 at index 2
+systemArray.SetValue(43, 3);//Set value to 43 at index 3
+List<int> myList = ((int[])systemArray).ToList();
+Console.WriteLine("myList:" + String.Join(",", myList));//Print to screen
+```
+
+###### Code Output
+
+```
+myList:10,21,32,43
+```
+
+This gives us the same output as before so this cast to array succeeds. Let's check out the performance of this method.
+
+#### Cast and ToList Method Speed Test
+
+This will be the same test as before of 10 tests and 100 function calls for 1 million objects in the system array.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(GetConvertArrayToListByToListSpeedTest());
+}
+Console.WriteLine($"Convert System Array To List By Cast and ToList Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double GetConvertArrayToListByToListSpeedTest()
+{
+    int numberOfFunctionCalls = 100;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    Array array = GetArrayData();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        List<int> convertedList = ConvertArrayToListByToList(array);//Convert Array to List
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<int> ConvertArrayToListByToList(Array array)
+{
+    List<int> list = ((int[])array).ToList();//Cast it to int [] then Tolist.
+    return list;
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+Array GetArrayData()
+{
+    Array array = Array.CreateInstance(typeof(int), 1000000);
+    for (int i = array.GetLowerBound(0); i <= array.GetUpperBound(0); i++)
+    {
+        array.SetValue(GetRandomInt(0, 10000), i);
+    }
+    return array;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:100, In 0m 0s 191ms
+Function calls:100, In 0m 0s 75ms
+Function calls:100, In 0m 0s 124ms
+Function calls:100, In 0m 0s 130ms
+Function calls:100, In 0m 0s 109ms
+Function calls:100, In 0m 0s 87ms
+Function calls:100, In 0m 0s 107ms
+Function calls:100, In 0m 0s 62ms
+Function calls:100, In 0m 0s 53ms
+Function calls:100, In 0m 0s 148ms
+Convert System Array To List By Cast and ToList Method Average speed:109ms, In 10 tests
+```
+
+This method is very fast at only 109 milliseconds and is so much faster than just looping through all the records.
+
+### TypeOf and ToList Method
+
+Lastly, we'll look at the TypeOf Method. [This method filters out objects that can be cast the type and returns a IEnumerable.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.oftype?view=net-7.0) We can use this method to convert a System Array to a IEnumerable then to a list. 
+
+```cs
+Array systemArray = Array.CreateInstance(typeof(int), 4);//Create System Array with type int and length of 4
+systemArray.SetValue(10, 0);//Set value to 10 at index 0
+systemArray.SetValue(21, 1);//Set value to 21 at index 1
+systemArray.SetValue(32, 2);//Set value to 32 at index 2
+systemArray.SetValue(43, 3);//Set value to 43 at index 3
+List<int> myList = systemArray.OfType<int>().ToList();//Filter out all objects that can be cast to int then change IEnumerable type to List with ToList
+Console.WriteLine("myList:" + String.Join(",", myList));//Print to screen=
+```
+###### Code Output
+
+```
+myList:10,21,32,43
+```
+
+As expected this produces the expected result. Now lets take a look at the speed of this method.
+
+#### TypeOf and ToList Method Speed Test
+
+We'll test this in the same way as the other methods and let's see how it compares.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(GetConvertArrayToListByTYpeOfAndToListSpeedTest());
+}
+Console.WriteLine($"Convert Array To List By OfType Then ToList Method Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double GetConvertArrayToListByTYpeOfAndToListSpeedTest()
+{
+    int numberOfFunctionCalls = 100;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    Array array = GetArrayData();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        List<int> convertedList = ConvertArrayToListByTypeOfAndToList(array);//Convert Array to List
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<int> ConvertArrayToListByTypeOfAndToList(Array systemArray)
+{
+    List<int> list = systemArray.OfType<int>().ToList();//Filter out all objects that can be cast to int then change IEnumerable type to List with ToList
+    return list;
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+Array GetArrayData()
+{
+    Array array = Array.CreateInstance(typeof(int), 1000000);
+    for (int i = array.GetLowerBound(0); i <= array.GetUpperBound(0); i++)
+    {
+        array.SetValue(GetRandomInt(0, 10000), i);
+    }
+    return array;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:100, In 0m 3s 841ms
+Function calls:100, In 0m 3s 672ms
+Function calls:100, In 0m 3s 792ms
+Function calls:100, In 0m 3s 644ms
+Function calls:100, In 0m 3s 781ms
+Function calls:100, In 0m 3s 781ms
+Function calls:100, In 0m 3s 791ms
+Function calls:100, In 0m 3s 610ms
+Function calls:100, In 0m 3s 760ms
+Function calls:100, In 0m 3s 683ms
+Convert Array To List By OfType Then ToList Method Average speed:3736ms, In 10 tests
+```
+
+This ends up being the slowest method and even slower than just looping through the list ourselves.
+
+
+### Conclusion
+<Table header ="Overall Rank,Method,Speed" rows="1,Cast and ToList,109ms;2,Loop,3532ms;3,TypeOf and ToList,3736ms;" />
+
+The best method for converting a system array to a list is to cast it to array of that type then use ToList. It has really good performance that is far better than the other two methods. This call all be done on one line so it's compact and readability. Looping through the array and adding to a list is almost as slow as using TypeOf that it isn't worth it write unless you need to. Even though the typeOf and ToList can fit one line of code, it is too slow and shouldn't be used compared to the other methods.
+
+Know any other methods of doing this? Let me know in the comments.
