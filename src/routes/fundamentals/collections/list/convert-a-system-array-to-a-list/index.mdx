@@ -14,6 +14,9 @@ import{Table} from "~/components/table/table";
 
 System Array is an abstract class that can only instantiated through a function. From the class name itself it's hard to tell if the what type it encapsulate so you'll need plan and be sure what time it is ahead of time. [Since System Array is not in the collection namespace but it is still considered a collection since it implements IList](https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-7.0) There are other types of arrays in the collection name space so I will be refereing this array as system array to advoid confusion. With this we can convert System Array to a List so I'll go over the methods one by one and provide analysis of each one.
 
+#### What Methods Converts a System Array into a List?
+
+There are a few ways to do this and all of them involve a cast of some sort. One is to write our own method to loop the system array and add them to a list. The second uses a array cast then using ToList. Lastly the other method is to use TypeOf to cast the objects then use ToList to assign it to a list. All of these methods can get the result that we want but the difference in performance will be key to determine which is the best to use.
 
 ### Loop Method
 
