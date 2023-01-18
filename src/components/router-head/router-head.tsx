@@ -147,18 +147,6 @@ const state = useStore<SharedRouteState>({
     description:'New line is a special sequences that can be inserted into a string. Represented as backslash n this works as if you pressed return on the keyboard.'
   },
   { 
-    location:'fundamentals/strings/string-substring', 
-    url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/',
-    title:'How to Use Substring | Puzzled By CSharp',
-    dateCreated:'2022-03-24T00:08:56+00:00',
-    dateModified:'2022-03-24T00:08:56+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-twitter.webp',
-    image:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-small.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-large.webp',
-    description:'Substring is a function for copying a chunk of an existing string. It returns a sub section of the original string and depends on the selected index range.'
-  },
-  { 
     location:'fundamentals/strings/string-insert', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/string-insert/',
     title:'Using String Insert Effectively | Puzzled By CSharp',
@@ -170,18 +158,7 @@ const state = useStore<SharedRouteState>({
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/insert/string-insert-page-banner-large.webp',
     description:'String insert puts a single string between a section of the string. With the first parameter of index of insert and second parameter is the string to insert.'
   },
-  { 
-    location:'fundamentals/strings/string-remove', 
-    url: 'https://puzzledbycsharp.com/fundamentals/strings/string-remove/',
-    title:'Best Ways To Use String Remove | Puzzled By CSharp',
-    dateCreated:'2022-05-09T00:08:56+00:00',
-    dateModified:'2022-05-09T00:08:56+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-twitter.webp',
-    image:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-small.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-large.webp',
-    description:'String remove takes an existing string and based on the start index and length for removal then will return a string with that section removed.'
-  },
+
   { 
     location:'fundamentals/strings/string-trim', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/string-trim/',
@@ -425,6 +402,18 @@ const state = useStore<SharedRouteState>({
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-large.webp',
     description:'The fastest method for converting a system array to a list is to use a array cast then use ToList. It is short and compact and easy to read.'
   }
+  ,{ 
+    location:'fundamentals/collections/list', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/list/',
+    title:'List | Puzzled By CSharp',
+    dateCreated:'2022-12-23T00:11:56+00:00',
+    dateModified:'2022-12-23T00:11:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-large.webp',
+    description:'List are the backbone of collections and often the most used. They are versatile and flexible, they increase and decrease the underline array automatically.'
+  }
   ,  
   { 
     location:'fundamentals/collections', 
@@ -438,18 +427,7 @@ const state = useStore<SharedRouteState>({
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/collections-banner-image-large.webp',
     description:'Collections are an essential data type in csharp. It is one the most used types because data must be ordered, organized and then used in an efficient manner.'
   }
-  ,{ 
-    location:'fundamentals/collections/list', 
-    url: 'https://puzzledbycsharp.com/fundamentals/collections/list/',
-    title:'List | Puzzled By CSharp',
-    dateCreated:'2022-12-23T00:11:56+00:00',
-    dateModified:'2022-12-23T00:11:56+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-twitter.webp',
-    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-small.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-large.webp',
-    description:'List are the backbone of collections and often the most used. They are versatile and flexible, they increase and decrease the underline array automatically.'
-  }
+
   ,{ 
     location:'fundamentals/strings', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/',
@@ -473,6 +451,30 @@ const state = useStore<SharedRouteState>({
     imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-large.webp',
     description:'Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.'
+  },
+  { 
+    location:'fundamentals/strings/string-substring', 
+    url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/',
+    title:'How to Use Substring | Puzzled By CSharp',
+    dateCreated:'2022-03-24T00:08:56+00:00',
+    dateModified:'2022-03-24T00:08:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-large.webp',
+    description:'Substring is a function for copying a chunk of an existing string. It returns a sub section of the original string and depends on the selected index range.'
+  },
+  { 
+    location:'fundamentals/strings/string-remove', 
+    url: 'https://puzzledbycsharp.com/fundamentals/strings/string-remove/',
+    title:'Best Ways To Use String Remove | Puzzled By CSharp',
+    dateCreated:'2022-05-09T00:08:56+00:00',
+    dateModified:'2022-05-09T00:08:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-large.webp',
+    description:'String remove takes an existing string and based on the start index and length for removal then will return a string with that section removed.'
   }
 ]
 });
