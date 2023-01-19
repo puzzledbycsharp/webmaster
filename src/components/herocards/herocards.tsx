@@ -411,7 +411,7 @@ export default component$(() => {
     ,{ 
       location:'fundamentals/collections/list', 
       url: 'https://puzzledbycsharp.com/fundamentals/collections/list/',
-      title:'List | Puzzled By CSharp',
+      title:'Introduction To List | Puzzled By CSharp',
       dateCreated:'2022-12-23T00:11:56+00:00',
       dateModified:'2022-12-23T00:11:56+00:00',
       twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/list-banner-image-twitter.webp',
