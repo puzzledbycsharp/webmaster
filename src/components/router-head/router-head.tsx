@@ -502,6 +502,7 @@ if(routeData){
     <meta name="twitter:creator" content="@puzzledbycsharp"/>
       <meta name="twitter:title" content={routeData.title}/>
       <meta name="twitter:image" content={routeData.twitterImage}/>
+      <meta name="msvalidate.01" content="065C1A05829A556A5E9CBA4F90CFD57B" />
           <meta property="og:type" content="blog"/>
             <meta property="og:title" content={routeData.title}/>
             <meta property="og:description" content={routeData.description}/>
@@ -532,19 +533,19 @@ else{
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/ico" href="/favicon.ico" />
 
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <link
         href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
         rel="stylesheet"
-      />
+      /> */}
 
 
 
       {head.meta.map((m) => (
         <meta {...m} />
       ))}
-
+<meta name="msvalidate.01" content="065C1A05829A556A5E9CBA4F90CFD57B" />
       {head.links.map((l) => (
         <link {...l} />
       ))}
