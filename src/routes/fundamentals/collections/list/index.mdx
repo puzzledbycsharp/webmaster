@@ -1,14 +1,47 @@
 ---
-title: List
+title: Introduction to Lists
 ---
 
-# List
+# Introduction to Lists
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/collections/list/list-banner-image-medium.webp" imageSrcSet="../../../assets/fundamentals/collections/list/list-banner-image-small.webp 250w, ../../../assets/fundamentals/collections/list/list-banner-image-medium.webp 500w, ../../../assets/fundamentals/collections/list/list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "List Banner Image" widthImage = "2304" heightImage = "1728" />
 
-## Summary
+## Introduction
 
 List are the backbone of collections and often the most used. They are verstile and flexable. A step up from the standard array because list and increase and decrease the underline array automaticly. So it hard to go wrong with use a list. They are a go to data structure with it's design although not perfect there are other datastructures that complement it's design and weaknesses.
+
+### What Are Lists In C#?
+
+Lists are a collection of a type in which the underlying data structure is an array. Even though an array is of fixed length at it's creation. The list manages the array so it grows when when the lists needs to grow. [This enables list items to be accessed by an index for fast access, add items without being concerned about a limit, remove, search and sort items](https://puzzledbycsharp.com/fundamentals/collections/list/functional-look-at-list/). Lists also allow duplicates items and the order is preserved as we add items. 
+
+### Why Do We Need Lists?
+
+Lists are needed for holding a group of items of different types, sorting, searching or even looping through. For example, lists could hold different names that are pulled from the database to display on the UI. 
+
+### Are Lists An Array?
+
+A list is an array but lists manages an array so you don't need to or be concerned about array issues such as the size of the list or adding and removing items. Lists handles all these operations seemlessly. An array is a fixed sized and adding them or removing would take us writing code to do.
+
+### How To Create A List?
+
+Lists can be created with the following syntax.
+
+```cs
+List<string> names = new List<string>();
+```
+Take notice of each of the elements in this statement.
+
+- List - This is the class name. List is one of the collection class types
+- string - This is the type. Generics in C# require a type because it is a strongly type langauge so it needs to know the type at compile time. This type could be int, double, bool, or even class you create.
+- names - The variable or what this list is refered to in the code. We can add, remove, and apply all the list operations. For example, `names.Add("Bob");` will add the name 'Bob' to the list.
+- new - This keyword is telling the compiler that a new list will be added in memory so the memory allcation is handle behind the scenes.
+
+### Other Resources
+
+- [A Funcional Look At List](https://puzzledbycsharp.com/fundamentals/collections/list/functional-look-at-list/): If you're looking to get started, this has all the basics need for list.
+- [List T Class](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-7.0): Microsoft's documenation of list is quite useful. 
+- [C# List Tutorial](https://www.c-sharpcorner.com/article/c-sharp-list/): A good overview of list and basic operations needed.
+
