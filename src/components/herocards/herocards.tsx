@@ -289,18 +289,7 @@ export default component$(() => {
       imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-small.webp',
       imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-large.webp',
       description:'The most effective function for getting a substring between two strings is span slice. Speed is important factor because that has the impacts on the end user.'
-    },    { 
-      location:'fundamentals/collections/list/functional-look-at-list', 
-      url: 'https://puzzledbycsharp.com/fundamentals/collections/list/functional-look-at-list/',
-      title:'A Functional Look At List | Puzzled By CSharp',
-      dateCreated:'2022-08-23T00:11:56+00:00',
-      dateModified:'2022-08-23T00:11:56+00:00',
-      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-functional-look-at-list-twitter.webp',
-      image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-functional-look-at-list-medium.webp',
-      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-functional-look-at-list-small.webp',
-      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-functional-look-at-list-large.webp',
-      description:'List is a one of the most use collections and for good reason. When working with data it is a natural fit to add them to lists.'
-    },    { 
+    },      { 
       location:'fundamentals/collections/list/best-way-to-sort-a-list', 
       url: 'https://puzzledbycsharp.com/fundamentals/collections/list/best-way-to-sort-a-list/',
       title:'Best Way To Sort A List | Puzzled By CSharp',
