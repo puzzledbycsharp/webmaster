@@ -1,0 +1,342 @@
+---
+title:A Comparison Between IEnumerable&lt;T&gt and List&lt;T&gt;
+---
+
+# A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-small.webp 250w, ../../../../assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-medium.webp 500w, ../../../../assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "A Comparison Between IEnumerable and List Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+IEnumerable&lt;T&gt; and List&lt;T&gt; are two common data stuctures for storing data. Even when using a List&lt;T&gt;, the interface IEnumerable&lt;T&gt; is returned from LINQ functions. So this can make you wonder when should you use IEnumerable&lt;T&gt; or List&lt;T&gt; or even wonder why one is better. I'll be going through all those nuances in this article.  
+
+### Method Comparison
+
+First, I find it helpful to take a step back and look at the overall picture. There is a progression of methods between the different types and class to get to List&lt;T&gt; because of the inheritance involved. 
+
+<Table header ="IEnumerable&lt;T&gt;, ICollection&lt;T&gt;,IList&lt;T&gt;" rows="GetEnumerator,GetEnumerator,GetEnumerator;,Add,Add;,Clear,Clear;,Contains,Contains;,CopyTo,CopyTo;,Remove,Remove;,,IndexOf;,,Insert;,,RemoveAt" />
+
+From this table with methods of each type, we can see that IEnumerable&lt;T&gt; only has one method. It's a function that is limited but by the time it gets to a List&lt;T&gt; there are lot more methods. This is not the complete list. If you want see the full list visit Microsoft's documenation of [List&lt;T&gt; Class.](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-7.0) A List&lt;T&gt; implements the interfaces from both IEnumerable&lt;T&gt; and ICollection&lt;T&gt; which you can see an expanded view of the extensions below.
+
+```cs
+public class List<T> : ICollection<T>, IEnumerable<T>, IEnumerable, ICollection, IEnumerable, IReadOnlyList<T>
+{
+    //Methods
+}
+```
+
+
+A List&lt;T&gt; has a lot more functionality.  I wrote another article that introduces the main functionality of List&lt;T&gt; so if you're wondering how to use these methods. Then you can go to [Introduction To List](https://puzzledbycsharp.com/fundamentals/collections/list/). Based on the methods, we can generalize that IEnumerable&lt;T&gt; main task is to loop or iterate over the objects. [This is also read only since there are no methods to manulpliate the collection.](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerator-1?redirectedfrom=MSDN&view=net-7.0#remarks) But if you need to add, move, or remove items in the collection in addition to loop then List would be the better option. One key to coding and programming in general is to keep things as simple as possible and only use what you need. 
+
+### Performance Comparison
+
+One test that we can do is to do 10 tests that called a Filter then loop 100 times with each loop going through 1 million objects. I will give an average speed of the 10 tests. This will give an indication of how fast the methods are. Take a look at the code below.
+
+#### IEnumerable&lt;T&gt; Performance Test
+
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(GetIEnumerableFilterSpeedTest());
+}
+Console.WriteLine($"Filter With IEnumerable Loop Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double GetIEnumerableFilterSpeedTest()
+{
+    int numberOfFunctionCalls = 1000;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    IEnumerable<int> data = GetIEnumerableData();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        IEnumerable<int> filteredList = FilterWithIEnumerable(data);//Filter through IEnumerable<T>
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+IEnumerable<int> FilterWithIEnumerable(IEnumerable<int> data)
+{
+    int count = 0;
+    IEnumerable<int> filterDatas = data.Where(x => x % 2 == 0);//Filter Data on even numbers and return a IEnumerable<T>
+    foreach (int filterData in filterDatas)
+    {
+        count++;
+    }
+    return filterDatas;
+}
+
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+IEnumerable<int> GetIEnumerableData()
+{
+    List<int> ints = new List<int>();
+
+    for (int i = 0; i <= 1000000; i++)
+    {
+        ints.Add(GetRandomInt(0, 10000));
+    }
+    IEnumerable<int> converted = ints;
+    return converted;
+}
+
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+```
+</details>
+
+
+###### Code Output
+
+```
+Function calls:1000, In 0m 8s 453ms
+Function calls:1000, In 0m 8s 434ms
+Function calls:1000, In 0m 8s 434ms
+Function calls:1000, In 0m 8s 440ms
+Function calls:1000, In 0m 8s 389ms
+Function calls:1000, In 0m 8s 397ms
+Function calls:1000, In 0m 8s 436ms
+Function calls:1000, In 0m 8s 398ms
+Function calls:1000, In 0m 8s 402ms
+Function calls:1000, In 0m 8s 396ms
+Filter With IEnumerable Loop Average speed:8418ms, In 10 tests
+```
+
+Looping through an IEnumerable&lt;T&gt; yields about 4 seconds in my test. This is pretty fast considering how many looks and objects the test went through. Next, I will test List&lt;T&gt; to see how it performs.
+
+#### List&lt;T&gt; Performance Test
+
+I will perform the same test as with IEnumerable&lt;T&gt; and apply it to list. Below the resulting code.
+
+```cs
+
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(GetListLoopSpeedTest());
+}
+Console.WriteLine($"Filter With List Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double GetListLoopSpeedTest()
+{
+    int numberOfFunctionCalls = 1000;//Number of function calls made
+    Stopwatch stopwatch = new Stopwatch();
+    List<int> data = GetListData();//Get intial random generated list
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        FilterWithList(data);///Filter With List
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+void FilterWithList(List<int> ints)
+{
+
+    List<int> filterDatas = new List<int>();
+    foreach (int item in ints)
+    {
+        if(item % 2 == 0)
+        {
+            filterDatas.Add(item);
+        }
+    }
+    int counter = 0;
+    foreach (var filterData in filterDatas)
+    {
+        counter++;
+    }
+}
+
+
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<int> GetListData()
+{
+    List<int> ints = new List<int>();
+
+    for (int i = 0; i <= 1000000; i++)
+    {
+        ints.Add(GetRandomInt(0, 10000));
+    }
+    List<int> converted = ints;
+    return converted;
+}
+
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+
+
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:1000, In 0m 10s 247ms
+Function calls:1000, In 0m 10s 209ms
+Function calls:1000, In 0m 10s 170ms
+Function calls:1000, In 0m 10s 171ms
+Function calls:1000, In 0m 10s 176ms
+Function calls:1000, In 0m 10s 182ms
+Function calls:1000, In 0m 10s 250ms
+Function calls:1000, In 0m 10s 224ms
+Function calls:1000, In 0m 10s 247ms
+Function calls:1000, In 0m 10s 224ms
+Filter With List Average speed:10210ms, In 10 tests
+```
+
+From this test, the List&lt;T&gt; finishes in about 10 seconds.
+
+#### Which Method Is Faster IEnumerable&lt;T&gt; or List&lt;T&gt;?
+
+From this loop test, List&lt;T&gt; finishes in about 10 seconds and IEnumerable&lt;T&gt; finishes in about 8 secons making IEnumerable&lt;T&gt; faster as IEnumerable&lt;T&gt;.
+
+### Situational Conditions
+
+There may be times when a method might return a IEnumerable&lt;T&gt;. What should you do? There are LINQ functions which return a IEnumerable&lt;T&gt;. Should you convert it to a list or keep it as IEnumerable&lt;T&gt;. It depends on what you plan to do. Let's look at each of those.
+
+#### When IEnumerable&lt;T&gt; Has An Advantage
+
+If you intend to do just loop the items after getting an IEnumerable&lt;T&gt; then you shouldn't change the IEnumerable&lt;T&gt; to a List&lt;T&gt;. IEnumerable&lt;T&gt; is faster than List in this situation. Why waste the time doing that when you just need to loop through, it's not worth it. This is the advatange of IEnumerable&lt;T&gt; with the LINQ functions. You get a IEnumerable&lt;T&gt; from LINQ and you can just loop through the results. 
+
+```cs
+List<int> data = GetListData();//Get List of Data
+
+IEnumerable<int> filterData = data.Where(x => x % 2 == 0);//Filter Data on even numbers and return a IEnumerable&lt;T&gt;
+
+foreach 
+Console.WriteLine($"Data:{string.Join(",", filterData)}");//Print To Screen
+
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<int> GetListData()
+{
+    List<int> ints = new List<int>();
+
+    for (int i = 0; i <= 10; i++)
+    {
+        ints.Add(GetRandomInt(0, 10000));
+    }
+    List<int> converted = ints;
+    return converted;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+###### Code Output
+
+```
+Data:2322
+Data:1400
+Data:5708
+Data:7160
+Data:7960
+```
+
+
+#### When List&lt;T&gt; Has An Advantage
+
+If you plan to change the returned list after LINQ operation or sorting. Any potential modifcation to the collection then you should change the IEnumerable&lt;T&gt; to a List&lt;T&gt; by using the ToList method.
+
+```cs
+
+List<int> data = GetListData();//Get List of Data
+
+List<int> filterDatas = data.Where(x => x % 2 == 0).ToList();//Filter Data on even numbers and return a List
+
+filterDatas.Sort();//Sort list
+
+foreach (int filterData in filterDatas)
+{
+    Console.WriteLine($"Data:{filterData}");//Print To Screen
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<int> GetListData()
+{
+    List<int> ints = new List<int>();
+
+    for (int i = 0; i <= 10; i++)
+    {
+        ints.Add(GetRandomInt(0, 10000));
+    }
+    List<int> converted = ints;
+    return converted;
+}
+
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+###### Code Output
+```
+Data:66
+Data:214
+Data:5270
+Data:7530
+Data:7532
+Data:7928
+```
+
+### What Method Is Better IEnumerable or List?
+
+<Table header ="Overall Rank,Name,Method Count,Loop Speed" rows="1,IEnumerable,1,8418ms;2,List,> 9,10210ms;" />
+
+When comparing List to IEnumerable&lt;T&gt;, List has more functionality but using LINQ with IEnumerable&lt;T&gt; it has better performance than List. But this works best when you need to filter results with LINQ and then get a IEnumerable&lt;T&gt; and loop through results. If you need alter the resulting IEnumerable&lt;T&gt; result from LINQ then it would be best to convert the IEnumerable&lt;T&gt; to a List by using ToList. 

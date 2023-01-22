@@ -18,3 +18,4 @@
 - [Remove Duplicate Items from A List](list/remove-duplicate-items-from-a-list/index.mdx)
 - [Understanding The Best Set Theory Methods Between Lists](list/understanding-the-best-set-theory-methods-between-lists/index.mdx)
 - [Convert A System Array To A List](list/convert-a-system-array-to-a-list/index.mdx)
+- [A Comparison Between IEnumerable<T> and List<T>](list/a-comparison-between-ienumerable-and-list/index.mdx)

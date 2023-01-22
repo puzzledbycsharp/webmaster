@@ -14,7 +14,20 @@ export const RouterHead = component$(() => {
 // console.log("inRouterHead");
   
 const state = useStore<SharedRouteState>({
-  data:  [{ 
+  data:  [
+    { 
+      location:'fundamentals/collections/list/a-comparison-between-ienumerable-and-list', 
+      url: 'https://puzzledbycsharp.com/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/',
+      title:'A Comparison Between IEnumerable<T> and List<T>',
+      dateCreated:'2023-01-22T00:11:56+00:00',
+      dateModified:'2023-01-22T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-large.webp',
+      description:'When comparing List to IEnumerable, List has more functionality but using LINQ with IEnumerable it has better performance than List.'
+    },
+    { 
     location:'', 
     url: 'https://puzzledbycsharp.com/',
     title:'Home Page | Puzzled By CSharp',
