@@ -340,3 +340,5 @@ Data:7928
 <Table header ="Overall Rank,Name,Method Count,Loop Speed" rows="1,IEnumerable,1,8418ms;2,List,> 9,10210ms;" />
 
 When comparing List to IEnumerable&lt;T&gt;, List has more functionality but using LINQ with IEnumerable&lt;T&gt; it has better performance than List. But this works best when you need to filter results with LINQ and then get a IEnumerable&lt;T&gt; and loop through results. If you need alter the resulting IEnumerable&lt;T&gt; result from LINQ then it would be best to convert the IEnumerable&lt;T&gt; to a List by using ToList. 
+
+Have any other insights into these collection types. Let me know in the comments below.
