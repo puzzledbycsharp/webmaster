@@ -6,6 +6,7 @@
 - [Dictionary Best Practices And What To Avoid](dictionary-best-practices-and-what-to-avoid/index.mdx)
 - [List vs Dictionary Collection Types](list-vs-dictionary/index.mdx)
 - [List](list/index.mdx)
+- [Dictionary](dictionary/index.mdx)
 
 ## List
 - [List](list/index.mdx)
@@ -19,3 +20,7 @@
 - [Understanding The Best Set Theory Methods Between Lists](list/understanding-the-best-set-theory-methods-between-lists/index.mdx)
 - [Convert A System Array To A List](list/convert-a-system-array-to-a-list/index.mdx)
 - [A Comparison Between IEnumerable<T> and List<T>](list/a-comparison-between-ienumerable-and-list/index.mdx)
+
+## Dictionary
+- [Dictionary](dictionary/index.mdx)
+  [Best Way To Iterate Through A Dictionary](dictionary/best-way-to-iterate-through-a-dictionary/index.mdx)

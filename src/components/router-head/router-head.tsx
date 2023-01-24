@@ -16,6 +16,18 @@ export const RouterHead = component$(() => {
 const state = useStore<SharedRouteState>({
   data:  [
     { 
+      location:'fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary', 
+      url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/',
+      title:' Best Way To Iterate Through A Dictionary',
+      dateCreated:'2023-01-23T00:11:56+00:00',
+      dateModified:'2023-01-23T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-large.webp',
+      description:'Dictionary fastest methods are iterating over just the Keys and Values but looping through both Key and Value a list with a class container performs better'
+    },
+    { 
       location:'fundamentals/collections/list/a-comparison-between-ienumerable-and-list', 
       url: 'https://puzzledbycsharp.com/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/',
       title:'A Comparison Between IEnumerable<T> and List<T>',
@@ -404,6 +416,18 @@ const state = useStore<SharedRouteState>({
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-large.webp',
     description:'The fastest method for converting a system array to a list is to use a array cast then use ToList. It is short and compact and easy to read.'
+  }
+  ,{ 
+    location:'fundamentals/collections/dictionary', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/',
+    title:'Introduction To Dictionary | Puzzled By CSharp',
+    dateCreated:'2022-12-23T00:11:56+00:00',
+    dateModified:'2022-12-23T00:11:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
+    description:'Dictionary are fundamental type in C#. They provide fast lookup to for values found in the dictionary.'
   }
   ,{ 
     location:'fundamentals/collections/list', 

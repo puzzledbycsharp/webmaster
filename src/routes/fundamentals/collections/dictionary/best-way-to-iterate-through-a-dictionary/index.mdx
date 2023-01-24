@@ -1,0 +1,773 @@
+---
+title: Best Way To Iterate Through A Dictionary
+---
+
+# Best Way To Iterate Through A Dictionary
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-small.webp 250w, ../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-medium.webp 500w, ../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Way to Iterate Through A Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+There are mulitple ways of looping through a dictionary. You can loop through just the keys, values or both key and value if you need both at the same time. I will dive into the different way to to loop through the method and discuss the performanc implications of each. Let's look at the first example.
+
+
+### Dictionary Key-Value Pair Iteration
+
+This is the more generic way to iterate through the dictionary collection. You can do this if you need access both key and value pairs at the same time or one at the momment then later need both. This do this by creating a foreach loop and for the type put a KeyValuePair with the types of key and value. Then the rest is the variable name with dictionary after the in clause. This variable gives us access to both the key and the value. See sample code below.
+
+
+
+```cs
+Dictionary<string, string> englishFrenchDictionary = new Dictionary<string, string>() { {"one","un"},{ "two","deux" }, { "three", "trois" }, { "four", "quatre" }, { "five", "cinq" } };
+
+foreach(KeyValuePair<string,string> item in englishFrenchDictionary)//KeyValuePair keyword with the same types as the dictionary itself
+{
+    Console.WriteLine($"key:{item.Key}, value:{item.Value}");//Print out key and values the dictionary
+}
+```
+
+###### Code Output
+
+```
+key:one, value:un
+key:two, value:deux
+key:three, value:trois
+key:four, value:quatre
+key:five, value:cinq
+
+```
+
+As you can see this gives access to both the key and the value. The next step is to measure how this performs.
+
+#### Dictionary Key-Value Pair Iteration Speed Test
+
+In my test, I use the following stats to measure the performance.
+
+10 tests
+
+1000 loops per test
+
+1 million objects
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "Dictionary Key-Value Pair Iteration";//Test name to print to average
+
+void TestMethod(Dictionary<int,int> dictionary)
+{
+    int count = 0;
+    foreach (KeyValuePair<int, int> item in dictionary)//KeyValuePair keyword with the same types as the dictionary itself
+    {
+        count++;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<int, int> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+Dictionary<int,int> GetDictionaryData()
+{
+    Dictionary<int, int> testData = new Dictionary<int, int>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        int item = GetRandomInt(0, 10000000);
+        if(!testData.ContainsKey(item))
+        {
+            testData[item] = item;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:1000, In 0m 5s 530ms
+Function calls:1000, In 0m 5s 360ms
+Function calls:1000, In 0m 5s 368ms
+Function calls:1000, In 0m 5s 371ms
+Function calls:1000, In 0m 5s 349ms
+Function calls:1000, In 0m 5s 385ms
+Function calls:1000, In 0m 5s 360ms
+Function calls:1000, In 0m 5s 354ms
+Function calls:1000, In 0m 5s 346ms
+Function calls:1000, In 0m 5s 354ms
+Dictionary Key-Value Pair Iteration Average speed:5378ms, In 10 tests
+```
+
+From this test, we see that looping through the Key value pairs takes about 5.3 seconds. I will test the rest of the methods as well. Let's move on to the next way.
+
+### Dictionary Keys Iteration
+
+CSharp provides a way to loop through just the keys. We do this by accessing the Keys from the dictionary variable and this will loop through the just the keys. The syntax looks like below.
+
+```cs
+Dictionary<string, string> englishFrenchDictionary = new Dictionary<string, string>() { { "one", "un" }, { "two", "deux" }, { "three", "trois" }, { "four", "quatre" }, { "five", "cinq" } };
+
+foreach (string key in englishFrenchDictionary.Keys)//The type is the first parameter in the dictionary initialization 
+{
+    Console.WriteLine($"key:{key}");//print out keys the dictionary
+}
+```
+
+###### Code Output
+```
+key:one
+key:two
+key:three
+key:four
+key:five
+```
+
+As expected this just prints the keys. In this case, there's a english french dictionary and only the english words are printed because they are the keys.
+
+#### Dictionary Keys Iteration Speed Test
+
+This will be the same test as before. To recap, it is 10 tests and 1 thousand function calls with 1 million objects. Let's look at the performance of this method.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "Dictionary Key Iteration";//Test name to print to average
+
+void TestMethod(Dictionary<int, int> dictionary)
+{
+    int count = 0;
+    foreach (int key in dictionary.Keys)//The type is the first parameter in the dictionary initialization 
+    {
+        count++;
+    }
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<int, int> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<int, int> GetDictionaryData()
+{
+    Dictionary<int, int> testData = new Dictionary<int, int>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        int item = GetRandomInt(0, 10000000);
+        if (!testData.ContainsKey(item))
+        {
+            testData[item] = item;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+```
+</details>
+
+###### Code Output
+```
+Function calls:1000, In 0m 2s 807ms
+Function calls:1000, In 0m 2s 601ms
+Function calls:1000, In 0m 2s 601ms
+Function calls:1000, In 0m 2s 600ms
+Function calls:1000, In 0m 2s 605ms
+Function calls:1000, In 0m 2s 605ms
+Function calls:1000, In 0m 2s 595ms
+Function calls:1000, In 0m 2s 600ms
+Function calls:1000, In 0m 2s 599ms
+Function calls:1000, In 0m 2s 604ms
+Dictionary Keys Iteration Average speed:2622ms, In 10 tests
+```
+
+For dictionary dey iteration test we see that it takes about 2.6 seconds. It is faster than loop through both the key and value at the same time.
+
+### Dictionary Keys Then Dictionary Access Iteration
+
+This method uses a combination of looping through the keys then using the key to access the value from the dictionary itself while in the foreach loop. This will use the speed of Dictionary Keys method and the fast access of the dictionary to our advatange. See the syntax below.
+
+```cs
+Dictionary<string, string> englishFrenchDictionary = new Dictionary<string, string>() { { "one", "un" }, { "two", "deux" }, { "three", "trois" }, { "four", "quatre" }, { "five", "cinq" } };
+
+foreach (string key in englishFrenchDictionary.Keys)//The type is the first parameter in the dictionary initialization 
+{
+    Console.WriteLine($"key:{key}, value:{englishFrenchDictionary[key]}");//print out keys and values the dictionary
+}
+```
+
+###### Code Output
+
+```
+key:one, value:un
+key:two, value:deux
+key:three, value:trois
+key:four, value:quatre
+key:five, value:cinq
+```
+
+#### Dictionary Keys Then Dictionary Access Iteration Speed Test
+
+Next I'll perform speed test for this method. It will have the same parameters as the other tests. Below the is the test code and output.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "Dictionary Keys Then Dictionary Access Iteration";//Test name to print to average
+
+void TestMethod(Dictionary<int, int> dictionary)
+{
+    int count = 0;
+    foreach (int key in dictionary.Keys)//The type is the first parameter in the dictionary initialization 
+    {
+        int value = dictionary[key];
+        count++;
+    }
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<int, int> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<int, int> GetDictionaryData()
+{
+    Dictionary<int, int> testData = new Dictionary<int, int>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        int item = GetRandomInt(0, 10000000);
+        if (!testData.ContainsKey(item))
+        {
+            testData[item] = item;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:1000, In 0m 25s 139ms
+Function calls:1000, In 0m 26s 281ms
+Function calls:1000, In 0m 24s 464ms
+Function calls:1000, In 0m 26s 258ms
+Function calls:1000, In 0m 25s 629ms
+Function calls:1000, In 0m 26s 41ms
+Function calls:1000, In 0m 24s 334ms
+Function calls:1000, In 0m 28s 907ms
+Function calls:1000, In 0m 25s 370ms
+Function calls:1000, In 0m 27s 63ms
+Dictionary Keys Then Dictionary Access Iteration Average speed:25949ms, In 10 tests
+```
+
+This is the slowest method, the test took about 25 seconds. This is slow that it shouldn't be used in high volume cases.  
+
+
+### Dictionary Values Iteration
+
+Another way to iterate through the dictionary is to loop through it's values. We can do this by the property Values from the dictionary variable. The type of the dictionary value is assigned in the second parameter in the initialization of the dictionary. Check out the syntax below.
+
+
+```cs
+Dictionary<string, string> englishFrenchDictionary = new Dictionary<string, string>() { { "one", "un" }, { "two", "deux" }, { "three", "trois" }, { "four", "quatre" }, { "five", "cinq" } };
+
+foreach (string value in englishFrenchDictionary.Values)//The type is the second parameter in the dictionary initialization 
+{
+    Console.WriteLine($"value:{value}");//print out keys the dictionary
+}
+```
+
+###### Code Output
+
+```
+value:un
+value:deux
+value:trois
+value:quatre
+value:cinq
+```
+
+
+#### Dictionary Values Iteration Speed Test
+
+I will test this method just as before. Let's see how Values performs compared to the others.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "Dictionary Values Iteration";//Test name to print to average
+
+void TestMethod(Dictionary<int, int> dictionary)
+{
+    int count = 0;
+    foreach (int value in dictionary.Values)//The type is the second parameter in the dictionary initialization 
+    {
+        count++;
+    }
+}
+
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<int, int> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<int, int> GetDictionaryData()
+{
+    Dictionary<int, int> testData = new Dictionary<int, int>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        int item = GetRandomInt(0, 10000000);
+        if (!testData.ContainsKey(item))
+        {
+            testData[item] = item;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+
+###### Code Output
+
+```
+Function calls:1000, In 0m 2s 800ms
+Function calls:1000, In 0m 2s 610ms
+Function calls:1000, In 0m 2s 616ms
+Function calls:1000, In 0m 2s 597ms
+Function calls:1000, In 0m 2s 606ms
+Function calls:1000, In 0m 2s 603ms
+Function calls:1000, In 0m 2s 616ms
+Function calls:1000, In 0m 2s 600ms
+Function calls:1000, In 0m 2s 598ms
+Function calls:1000, In 0m 2s 598ms
+Dictionary Values Iteration Average speed:2625ms, In 10 tests
+```
+
+This performs just as well as loop through the Keys as expected it is about 2.6 seconds.
+
+### Deconstructor of Dictionary Iteration
+
+[There's a way in C# 7.0 to deconstructor the key and value into two seperate variables](https://learn.microsoft.com/en-us/archive/msdn-magazine/2016/connect/net-framework-what-s-new-in-csharp-7-0#deconstructors) This improves the readablity of the syntax of KeyValuePair type and makes explicit the key and value variables in the foreach loop. See syntax below.
+
+
+```cs
+Dictionary<string, string> englishFrenchDictionary = new Dictionary<string, string>() { { "one", "un" }, { "two", "deux" }, { "three", "trois" }, { "four", "quatre" }, { "five", "cinq" } };
+
+foreach (var (key, value) in englishFrenchDictionary)//Deconstruct dictionary into key and value variables
+{
+    Console.WriteLine($"key:{key}, value:{value}");//print out key and values the dictionary
+}
+
+```
+
+###### Code Output
+```
+key:one, value:un
+key:two, value:deux
+key:three, value:trois
+key:four, value:quatre
+key:five, value:cinq
+```
+#### Dictionary with Deconstructor Iteration Speed Test
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "Dictionary with Deconstructor";//Test name to print to average
+
+void TestMethod(Dictionary<int, int> dictionary)
+{
+    int count = 0;
+    foreach (var (key, value) in dictionary)//The type is the second parameter in the dictionary initialization 
+    {
+        count++;
+    }
+}
+
+
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<int, int> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<int, int> GetDictionaryData()
+{
+    Dictionary<int, int> testData = new Dictionary<int, int>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        int item = GetRandomInt(0, 10000000);
+        if (!testData.ContainsKey(item))
+        {
+            testData[item] = item;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:1000, In 0m 7s 212ms
+Function calls:1000, In 0m 7s 8ms
+Function calls:1000, In 0m 6s 992ms
+Function calls:1000, In 0m 7s 18ms
+Function calls:1000, In 0m 7s 0ms
+Function calls:1000, In 0m 6s 975ms
+Function calls:1000, In 0m 7s 5ms
+Function calls:1000, In 0m 6s 982ms
+Function calls:1000, In 0m 7s 22ms
+Function calls:1000, In 0m 7s 40ms
+Dictionary with Deconstructor Average speed:7026ms, In 10 tests
+```
+
+This result at around 7 seconds is slightly making this the slowest of the methods to iterate through.
+
+### List With Key Value Class Iteration
+
+This is a custom class I created to hold a dictionary and a list. As the key value pairs are being added to the dictionary, they are also being added to a list. This list will be looped though later instead of the dictionary for added performance to the iteration process. Let's looka t the code.
+
+```cs
+DictionaryContainer<string,string> englishFrenchDictionary = new DictionaryContainer<string, string>();
+englishFrenchDictionary.AddKeyValueToDictionary("one", "un");//Add key and Value to the dictionary and list
+englishFrenchDictionary.AddKeyValueToDictionary("two", "deux");//Add key and Value to the dictionary and list
+englishFrenchDictionary.AddKeyValueToDictionary("three", "trois");//Add key and Value to the dictionary and list
+englishFrenchDictionary.AddKeyValueToDictionary("four", "quatre");//Add key and Value to the dictionary and list
+englishFrenchDictionary.AddKeyValueToDictionary("five", "cinq");//Add key and Value to the dictionary and list
+
+foreach (CustomKeyValuePair<string,string> customKeyValuePair in englishFrenchDictionary.List)//Deconstruct dictionary into key and value variables
+{
+    Console.WriteLine($"key:{customKeyValuePair.Key}, value:{customKeyValuePair.Value}");//print out key and values the dictionary
+}
+
+class DictionaryContainer<TKey, TValue>
+{
+    public Dictionary<TKey, TValue> Dictionary { get; set; } = new Dictionary<TKey, TValue>();
+    public List<CustomKeyValuePair<TKey,TValue>> List { get; set; } = new List<CustomKeyValuePair<TKey, TValue>>();
+
+    public void AddKeyValueToDictionary(TKey key, TValue value)
+    {
+        if (!Dictionary.ContainsKey(key))//If key is not in the dictionary then it's safe to add it
+        {
+            Dictionary[key] = value;//Add key and value to the dictionary
+            CustomKeyValuePair<TKey, TValue> customKeyValuePair = new CustomKeyValuePair<TKey, TValue>(key, value);
+            List.Add(customKeyValuePair);//Add key value pair class to the list.
+        }
+    }
+}
+
+class CustomKeyValuePair<TKey, TValue>
+{
+    public CustomKeyValuePair(TKey key, TValue value)
+    {
+        Key = key;
+        Value = value;
+    }
+
+    public TKey Key { get; set; }
+    public TValue Value { get; set; }
+}
+
+```
+
+###### Code Output
+```
+key:one, value:un
+key:two, value:deux
+key:three, value:trois
+key:four, value:quatre
+key:five, value:cinq
+```
+
+This gives us the correct output by saving the items in a list instead and printing out the pairs from a class. Next we'll test the performance.
+
+
+#### List With Key Value Class Speed Test Iteration
+
+Next I'm going to test the speed of this method from the speed test to see how it compares with the other dictionary based methods.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "List With Key Value Class";//Test name to print to average
+
+void TestMethod(DictionaryContainer<int, int> dictionaryContainer)
+{
+    int count = 0;
+    foreach (CustomKeyValuePair<int,int> customKeyValuePair in dictionaryContainer.List)//The type is the second parameter in the dictionary initialization 
+    {
+        count++;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    DictionaryContainer<int,int> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+DictionaryContainer<int,int> GetDictionaryData()
+{
+    DictionaryContainer<int, int> dictionaryContainer = new DictionaryContainer<int, int>();
+    while (numberOfObjectsToCreate > dictionaryContainer.Dictionary.Count)
+    {
+        int item = GetRandomInt(0, 10000000);
+        dictionaryContainer.AddKeyValueToDictionary(item, item);
+    }
+    return dictionaryContainer;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+class DictionaryContainer<TKey, TValue>
+{
+    public Dictionary<TKey, TValue> Dictionary { get; set; } = new Dictionary<TKey, TValue>();
+    public List<CustomKeyValuePair<TKey, TValue>> List { get; set; } = new List<CustomKeyValuePair<TKey, TValue>>();
+
+    public void AddKeyValueToDictionary(TKey key, TValue value)
+    {
+        if (!Dictionary.ContainsKey(key))//If key is not in the dictionary then it's safe to add it
+        {
+            Dictionary[key] = value;//Add key and value to the dictionary
+            CustomKeyValuePair<TKey, TValue> customKeyValuePair = new CustomKeyValuePair<TKey, TValue>(key, value);
+            List.Add(customKeyValuePair);//Add key value pair class to the list.
+        }
+    }
+}
+
+class CustomKeyValuePair<TKey, TValue>
+{
+    public CustomKeyValuePair(TKey key, TValue value)
+    {
+        Key = key;
+        Value = value;
+    }
+
+    public TKey Key { get; set; }
+    public TValue Value { get; set; }
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:1000, In 0m 3s 572ms
+Function calls:1000, In 0m 3s 436ms
+Function calls:1000, In 0m 3s 432ms
+Function calls:1000, In 0m 3s 433ms
+Function calls:1000, In 0m 3s 427ms
+Function calls:1000, In 0m 3s 442ms
+Function calls:1000, In 0m 3s 437ms
+Function calls:1000, In 0m 3s 434ms
+Function calls:1000, In 0m 3s 431ms
+Function calls:1000, In 0m 3s 421ms
+List With Key Value Class Average speed:3447ms, In 10 tests
+```
+
+Using a list to cluster the key and value pairs in the class is pretty fast and approaching the speed of the Keys and Values of the dictionary speed.
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,Dictionary Keys,2622ms;1,Dictionary Values,2625ms;2,List With Key Value Class,3447ms;3,Dictionary Key-Value Pair,5378ms;4,Deconstructor of Dictionary,7026ms;5,Dictionary Keys Then Dictionary Access,25949ms;" />
+
+The way to iterate through a dictionary is to use the Dictionary Keys and Dictionary Values methods. They have the best performance but they they only give Keys or Values. If you want to have access to both Keys and Values at the same time then it would be best to use a list to package them tegether in a class. But if you're restricted to only a dictionary then Dictionary's Key-Value Pair method is good enough too. Next is the deconstructor of dictionary, I think this can be avoided because it is slower than the Key-Value Pair method that is natively supported in dictionary. The readablity gains from this is not worth the loss in performance. The last method on the list is extremely slow and should be avoided and that is the Dictionary Keys Then Dictionary Access method. It suffers as the dictionary grows in size. This does not scale.
+
+Do you have any other methods of iterating through a dictionary? Let me know in the comments.

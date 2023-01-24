@@ -29,6 +29,9 @@ User-agent: *
 Disallow: /forums/
 
 User-agent: *
+Disallow: /assets/
+
+User-agent: *
 Allow: /
 
 Sitemap: https://puzzledbycsharp.com/sitemap.xml
