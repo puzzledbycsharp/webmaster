@@ -8,16 +8,431 @@ import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 
-<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-small.webp 250w, ../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-medium.webp 500w, ../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Way to Iterate Through A Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-small.webp 250w, ../../../../assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-medium.webp 500w, ../../../../assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get The Dictionary Keys By Their Value Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
 
-Normally, dictionarys store key and value pairs and to access the values you need to pass in key. If you want to access the keys by searching for a set of values or paticualar value to get the key, then you'll need to loop through the keys.
+Normally, dictionarys store key and value pairs and to access the values you need to pass in key. If you want to access the keys by searching for a set of values or particular value to get the key, then you'll need to loop through the values. There two scenarios to consider when making this kind of search. First are the values unique? If not then we need to loop through the values in some fashion. So I'll go through each of these methods one by one.
+
+### When The Dictionary Values Are Unique Then Reverse The Dictionary
+
+If the values of the a dictionary are unique then the dictionary can be reversed by putting the values as keys and then the keys as the values. We can create a new dictionary or have two dictionarys. One dictionary where it's a regular keys and values and then another with the keys and values reversed. Consider the following example. 
+
+If I have a dictionary that holds the months of the year as a string as a key then the values would be the corresponding number of the month.
+
+
+### Reverse Dictionary Method Example Code
+
+```cs
+Dictionary<string, int> monthlyDictionary = new Dictionary<string, int>() { { "Jan", 1 }, { "Feb", 2 }, { "Mar", 3 }, { "April", 4 }, { "May", 5 }, { "Jun", 6 }, { "July", 7 }, { "Aug", 8 }, { "Sept", 9 }, { "Oct", 10 }, { "Nov", 11 }, { "Dec", 12 } };//initialize dictionary
+
+foreach(KeyValuePair<string,int> monthly in monthlyDictionary)//loop through key value pairs
+{
+    Console.WriteLine($"key:{monthly.Key}, value:{monthly.Value}");//print key and value pairs to screen
+}
+```
+
+###### Code Output
+```
+key:Jan, value:1
+key:Feb, value:2
+key:Mar, value:3
+key:April, value:4
+key:May, value:5
+key:Jun, value:6
+key:July, value:7
+key:Aug, value:8
+key:Sept, value:9
+key:Oct, value:10
+key:Nov, value:11
+key:Dec, value:12
+```
+If this is the baseline that we are working with and we want to find the keys based on the selected values then we just need to reverse the dictionary. We can only do this because the values are also unique. For this example, that looks like the follows.
+
+```cs
+Dictionary<int, string> monthlyDictionary = new Dictionary<int, string>() { { 1, "Jan" }, { 2, "Feb" }, { 3, "Mar" }, { 4, "April" }, { 5, "May" }, { 6, "Jun" }, { 7, "July" }, { 8, "Aug" }, { 9, "Sept" }, { 10, "Oct" }, { 11, "Nov" }, { 12, "Dec" } };//initialize dictionary
+
+//If want month 4 then we can access it by using the accessor with the number 4
+Console.WriteLine($"key:4, value:{monthlyDictionary[4]}");//print key and value pairs to screen
+```
+
+###### Code Output
+```
+key:4, value:April
+```
+This reverse of the dictionary keys and values is best if the both are unique if not then we need to loop through the values. So let's go throught the first option to loop through the values. 
+
+#### Reverse Dictionary Method Speed Test
+
+Next, I want to test the speed of this method. I will do by the following. Run 10 tests and average the speed between the tests. Each test will run a method 1000 times. Each method will have a 1 million objects of data. Since, the keys and values are reverse. For this test, I will generate a dictionary with 1 million objects then at the end adding the one entry I plan to look for to show the look up speed of the item I'm looking for. Let's examine the test code below.
+
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "Reverse Dictionary Method";//Test name to print to average
+string valueToLookFor = "Jan";
+
+string TestMethod(Dictionary<string, string> dictionary)
+{
+    string date = dictionary[valueToLookFor];//Once the Reverse Dictionary is set up and the keys and values are switched then we only need access the value. 
+    return date;
+}
+
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>();
+
+    Dictionary<int, string> monthlyDictionary = new Dictionary<int, string>() { { 1, "Jan" }, { 2, "Feb" }, { 3, "Mar" }, { 4, "April" }, { 5, "May" }, { 6, "Jun" }, { 7, "July" }, { 8, "Aug" }, { 9, "Sept" }, { 10, "Oct" }, { 11, "Nov" }, { 12, "Dec" } };//initialize dictionary
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        string month = monthlyDictionary[date.Month];
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = month;
+        }
+    }
+    testData.Add("Jan", "1/20/2020");
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 4000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Reverse Dictionary Method Average speed:0ms, In 10 tests
+```
+
+This dictionary method is extremely fast. It is less than a millisecond. This is the go to method to solve this issue, but now we'll look at methods to deal with values that duplicated. 
+
+
+### LINQ Value Loop Method
+
+If the use case is that the values are not unquie then we need to loop through all the values and find the ones we are looking through. We can write a LINQ function to loop through all the values of the dictionary and return a list of keys that match. In this example, there's a dictionary with a date as the key and then the month as the value. There are mulitple dates that map the same month as value. This code will find the dates that corespeond to the Jan dates. Examine the code below.
+
+```cs
+Dictionary<string, string> dateMonthDictionary = new Dictionary<string, string>() { { "1/20/2023", "Jan" }, { "2/04/2022", "Feb" }, { "1/08/2022", "Jan" }, { "4/13/2018", "April" }, { "3/28/2017", "Mar" }, { "4/15/2020", "April" }, { "12/24/2017", "Dec" }, { "10/18/2000", "Oct" }, { "12/20/2000", "Dec" } };
+
+string valueToLookFor = "Jan";
+List<string> keys = dateMonthDictionary.Where(x => x.Value == valueToLookFor).Select(y => y.Key).ToList();
+
+foreach (string key in keys)
+{
+    Console.WriteLine($"key:{key}, value:{valueToLookFor}");//print key pairs to screen
+}
+```
+###### Code Output
+```
+key:1/20/2023, value:Jan
+key:1/08/2022, value:Jan
+```
+
+There are two dates that have occured in Jan and they are returned by this function.
+
+#### LINQ Value Loop Speed Test
+
+This is the same test used before. There will be 10 tests and each with 1000 loops of the method. The method will have data with 1 million objects. Let's see how LINQ can process the request with 1 million objects
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "LINQ Value Loop Method";//Test name to print to average
+string valueToLookFor = "Jan";
+
+List<string> TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> keys = dictionary.Where(x => x.Value == valueToLookFor).Select(y => y.Key).ToList();//loop through each key value pair and check if the value is the match we're looking for then add each key to a list
+    return keys;
+}
+
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>();
+    Dictionary<int, string> monthlyDictionary = new Dictionary<int, string>() { { 1, "Jan" }, { 2, "Feb" }, { 3, "Mar" }, { 4, "April" }, { 5, "May" }, { 6, "Jun" }, { 7, "July" }, { 8, "Aug" }, { 9, "Sept" }, { 10, "Oct" }, { 11, "Nov" }, { 12, "Dec" } };//initialize dictionary
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        string month = monthlyDictionary[date.Month];
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = month;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 4000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+###### Code Output
+```
+Function calls:1000, In 0m 20s 864ms
+Function calls:1000, In 0m 20s 707ms
+Function calls:1000, In 0m 20s 681ms
+Function calls:1000, In 0m 20s 599ms
+Function calls:1000, In 0m 20s 951ms
+Function calls:1000, In 0m 20s 696ms
+Function calls:1000, In 0m 20s 517ms
+Function calls:1000, In 0m 20s 335ms
+Function calls:1000, In 0m 20s 575ms
+Function calls:1000, In 0m 20s 543ms
+LINQ Value Loop Method Average speed:20647ms, In 10 tests
+```
+
+This LINQ method is slow. This is because all the values need to be looped so that it can find all the matches. 
+
+### Dictionary With List Method
+
+Another way we can approach this is to have a dictionary that will allow use to store the multiple values in a list if the keys end up duplicated. This will allow us the speed of the dictionary and also the storage of a list for the values. The values will be stored as keys then each of the key will be stored in a list that have the same value. Let's look at the code to see this approach.
+
+```cs
+Dictionary<string, List<string>> dateMonthDictionary = new Dictionary<string, List<string>>();
+
+dateMonthDictionary["Jan"] = new List<string>();
+dateMonthDictionary["Jan"].Add("1/20/2023");//Add to list for this key
+dateMonthDictionary["Jan"].Add("1/08/2022");//Add to list for this key
+
+dateMonthDictionary["Feb"] = new List<string>();
+dateMonthDictionary["Feb"].Add("2/04/2022");//Add to list for this key
+
+dateMonthDictionary["April"] = new List<string>();
+dateMonthDictionary["April"].Add("4/13/2018");//Add to list for this key
+dateMonthDictionary["April"].Add("4/15/2020");//Add to list for this key
+
+dateMonthDictionary["Mar"] = new List<string>();
+dateMonthDictionary["Mar"].Add("3/28/2017");//Add to list for this key
+
+dateMonthDictionary["Dec"] = new List<string>();
+dateMonthDictionary["Dec"].Add("12/24/2017");//Add to list for this key
+dateMonthDictionary["Dec"].Add("12/20/2000");//Add to list for this key
+
+dateMonthDictionary["Oct"] = new List<string>();
+dateMonthDictionary["Oct"].Add("10/18/2000");//Add to list for this key
+
+
+string valueToLookFor = "Jan";
+List<string> keys = new List<string>();
+
+dateMonthDictionary.TryGetValue(valueToLookFor, out keys);//Get list of keys have been placed in the list
+
+foreach (string key in keys)
+{
+    Console.WriteLine($"key:{key}, value:{valueToLookFor}");//print key pairs to screen
+}
+
+```
+
+###### Code Output
+
+```
+key:1/20/2023, value:Jan
+key:1/08/2022, value:Jan
+```
+
+#### Dictionary With List Method Speed Test
+
+We'll preform the same test as the other two methods. With 10 tests and each test will loop through the method 1000 times and the method will have 1 million data points.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 1000;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//1 million test objects
+string testName = "Dictionary With List Method";//Test name to print to average
+string valueToLookFor = "Jan";
+
+List<string> TestMethod(Dictionary<string, List< string>> dictionary)
+{
+    dictionary.TryGetValue(valueToLookFor, out List<string> keys);
+    return keys;
+}
+
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, List<string>> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, List<string>> GetDictionaryData()
+{
+    int count = 0;
+    Dictionary<string, List<string>> testData = new Dictionary<string, List<string>>();
+    Dictionary<int, string> monthlyDictionary = new Dictionary<int, string>() { { 1, "Jan" }, { 2, "Feb" }, { 3, "Mar" }, { 4, "April" }, { 5, "May" }, { 6, "Jun" }, { 7, "July" }, { 8, "Aug" }, { 9, "Sept" }, { 10, "Oct" }, { 11, "Nov" }, { 12, "Dec" } };//initialize dictionary
+    while (numberOfObjectsToCreate > count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        string month = monthlyDictionary[date.Month];
+        if (!testData.ContainsKey(month))
+        {
+            testData[month] = new List<string>();
+            testData[month].Add(dateString);
+        }
+        else
+        {
+            testData[month].Add(dateString);
+        }
+        count++;
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 4000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Function calls:1000, In 0m 0s 0ms
+Dictionary With List Method Average speed:0ms, In 10 tests
+```
+
+This method returns extremely fast and we can return the muliple values almost instantly.
+
+
+
 
 ### Conclusion
 
-<Table header ="Overall Rank,Method,Speed" rows="1,Dictionary Keys,2622ms;1,Dictionary Values,2625ms;2,List With Key Value Class,3447ms;3,Dictionary Key-Value Pair,5378ms;4,Deconstructor of Dictionary,7026ms;5,Dictionary Keys Then Dictionary Access,25949ms;" />
+<Table header ="Overall Rank,Method,Speed,Unique Values Required" rows="1,Dictionary With List,0ms,No;2,Reverse Dictionary,0ms,Yes;3, LINQ Value Loop,20647ms,No;" />
 
-The way to iterate through a dictionary is to use the Dictionary Keys and Dictionary Values methods. They have the best performance but they they only give Keys or Values. If you want to have access to both Keys and Values at the same time then it would be best to use a list to package them tegether in a class. But if you're restricted to only a dictionary then Dictionary's Key-Value Pair method is good enough too. Next is the deconstructor of dictionary, I think this can be avoided because it is slower than the Key-Value Pair method that is natively supported in dictionary. The readablity gains from this is not worth the loss in performance. The last method on the list is extremely slow and should be avoided and that is the Dictionary Keys Then Dictionary Access method. It suffers as the dictionary grows in size. This does not scale.
+The best way to get keys by their values is to use a dictionary and list combo method because it still uses the incredibliy speed of the dictionary and the duplicate entries can be stored in list. This method doesn't require that the values be unquie. This is about setting the dictionary in the proper way so that you can the values you need. THe next best method is the reverse dictionary method but putting the values as the keys and the keys as values, but you'll need the values that you'll be putting into the keys need to be unique in order for this to work. But it is incredibly fast on the search for the values you want. The next mehtod of using a LINQ expression is slow and this is because LINQ has to loop through all the values to get all the associated keys.
 
-Do you have any other methods of iterating through a dictionary? Let me know in the comments.
+Do you have another methods to solve this issue? Let me know in the comments below.

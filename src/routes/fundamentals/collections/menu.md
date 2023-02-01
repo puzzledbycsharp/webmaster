@@ -24,3 +24,4 @@
 ## Dictionary
 - [Dictionary](dictionary/index.mdx)
   [Best Way To Iterate Through A Dictionary](dictionary/best-way-to-iterate-through-a-dictionary/index.mdx)
+  [Get The Dictionary Keys By Their Value](dictionary/get-the-dictionary-keys-by-their-value/index.mdx)

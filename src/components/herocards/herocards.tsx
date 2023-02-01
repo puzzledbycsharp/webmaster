@@ -33,9 +33,21 @@ export default component$(() => {
   const state = useStore<SharedRouteState>({
     data:  [
       { 
+        location:'fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value', 
+        url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/',
+        title:'Get The Dictionary Keys By Their Value',
+        dateCreated:'2023-01-31T00:11:56+00:00',
+        dateModified:'2023-01-31T00:11:56+00:00',
+        twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-twitter.webp',
+        image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-medium.webp',
+        imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-small.webp',
+        imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/get-the-dictionary-keys-by-their-value-banner-image-large.webp',
+        description:'The best way to get keys by their value from a dictionary is to use the dictionary and list combo. This gives speed and flexibility.'
+      },
+      { 
         location:'fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary', 
         url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/',
-        title:' Best Way To Iterate Through A Dictionary',
+        title:'Best Way To Iterate Through A Dictionary',
         dateCreated:'2023-01-23T00:11:56+00:00',
         dateModified:'2023-01-23T00:11:56+00:00',
         twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-twitter.webp',
