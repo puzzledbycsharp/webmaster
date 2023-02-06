@@ -16,6 +16,18 @@ export const RouterHead = component$(() => {
 const state = useStore<SharedRouteState>({
   data:  [
     { 
+      location:'fundamentals/collections/dictionary/how-to-update-dictionary-values', 
+      url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/how-to-update-dictionary-values/',
+      title:'How To Update Dictionary Values',
+      dateCreated:'2023-02-06T00:11:56+00:00',
+      dateModified:'2023-02-06T00:11:56+00:00',
+      twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-twitter.webp',
+      image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-medium.webp',
+      imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-small.webp',
+      imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-large.webp',
+      description:'TryGetValue is the best method for updating a value because it checks if the key exists and retrieves and returns the value to use right away.'
+    },
+    { 
       location:'fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value', 
       url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/',
       title:'Get The Dictionary Keys By Their Value',
