@@ -102,6 +102,15 @@
 
 	}
 
+	iframe {
+		@apply mx-2;
+		@apply my-10;
+		@apply bg-customdark1;
+		@apply border-2 border-customdark2;
+		@apply text-customdark5;
+		@apply rounded-lg;
+	}
+
 	body {
 		@apply bg-customdark1;
 		@apply text-customdark5;
