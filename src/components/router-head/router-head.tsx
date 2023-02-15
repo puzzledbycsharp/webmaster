@@ -90,7 +90,7 @@ const state = useStore<SharedRouteState>({
   { 
     location:'code-snippets/exceptions/default-parameter-value-not-compile-time-constant', 
     url: 'https://puzzledbycsharp.com/code-snippets/exceptions/default-parameter-value-not-compile-time-constant/',
-    title:'Fix Default Parameter Value Not Compile Time Constant Error',
+    title:'Fix For Default Parameter Value Not Compile Time Constant Error',
     dateCreated:'2021-12-24T00:08:56+00:00',
     dateModified:'2021-12-24T00:08:56+00:00',
     twitterImage:'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-twitter.webp',
