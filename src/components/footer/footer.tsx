@@ -3,10 +3,12 @@ import { component$ } from '@builder.io/qwik';
 export default component$(() => {
 
   return (
-    <footer>        <h3 class="w-24  whitespace-nowrap mx-auto justify-center">
-    Follow me at
-  </h3>
-      <div class="flex flex-row justify-center mx-auto">
+    <footer>     
+            <div class="flex flex-row justify-center">
+
+         <h3 class="w-24  whitespace-nowrap">Follow me at</h3>
+  </div>
+      <div class="flex flex-row justify-center">
 
         <div class="w-16">
 
@@ -24,7 +26,13 @@ export default component$(() => {
 
           <a href="https://www.pinterest.com/puzzledbycsharp/">Pinterest</a>
         </div>
+
       </div>
+      <div class="flex flex-row justify-center">
+
+
+<a href="https://puzzledbycsharp.com/privacy-policy/">Privacy Policy</a>
+</div>
     </footer>
   );
 });
