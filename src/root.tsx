@@ -20,7 +20,7 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <RouterHead />
 
-
+{/* 
          <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script>
 
 
@@ -39,12 +39,11 @@ export default component$(() => {
 
 <script 
 dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mutations.forEach(({ addedNodes }) => {addedNodes.forEach(node => {if (node.nodeType === 1 && node.tagName === \'SCRIPT\') {const src = node.src || \'\'; if (node.src.includes(\'clarity.js\')) { node.type = \'text/partytown\';  node.src = \'./clarity.bundle.js\'; } } });  }); }); observer.observe(document.documentElement, {  childList: true, subtree: true,  });'}
-/>  
+/>   */}
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-/>
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"></link>
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"></link></noscript>
 
 <script  
           type="text/partytown"
