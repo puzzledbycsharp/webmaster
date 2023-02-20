@@ -1,5 +1,5 @@
 import { component$ } from '@builder.io/qwik';
-import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
+import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister, useLocation } from '@builder.io/qwik-city';
 import { QwikPartytown } from './components/partytown/partytown';
 import { RouterHead } from './components/router-head/router-head';
 
@@ -12,8 +12,7 @@ export default component$(() => {
    *
    * Dont remove the `<head>` and `<body>` elements.
    */
-
-
+//console.log("loc:"+loc.href);
   return (
     <QwikCityProvider>
       <head>
@@ -41,22 +40,11 @@ dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mu
 />   
 
 
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"></link>
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"></link></noscript>
-
-<script  
-          type="text/partytown"
- src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"
-
- > </script>
 
 
-<script  
-  type="text/partytown"
- dangerouslySetInnerHTML={'var swiper = new Swiper(".swiper", {     preloadImages: false,  lazy: true, breakpoints: {  320: {  direction: \'horizontal\',  slidesPerView: "1.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },  },  480: {  direction: \'horizontal\',  slidesPerView: "2.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },     },  640: {  direction: \'horizontal\',  slidesPerView: "3.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },    },    768: {      direction: \'horizontal\',      slidesPerView: "4.1",      navigation: {        nextEl: \'.swiper-button-next\',        prevEl: \'.swiper-button-prev\',      },              },       1024: {      direction: \'horizontal\',      slidesPerView: "5.1",      navigation: {        nextEl: \'.swiper-button-next\',        prevEl: \'.swiper-button-prev\',      },            }  }      });'} 
-          
-          > 
-    </script>
+
+
+
 
 
 {/* <script type="text/partytown" src="http://www.youtube.com/iframe_api">
