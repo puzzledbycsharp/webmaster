@@ -65,7 +65,7 @@ dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mu
 
          resolveUrl ={ function (url, location, type) {
           if (type === 'script' && url.href === 'https://www.youtube.com/iframe_api') {
-            const proxyUrl = new URL('http://puzzledbycsharp.com/api');
+            const proxyUrl = new URL('https://puzzledbycsharp.com/api');
             proxyUrl.searchParams.append('url', url.href);
             return proxyUrl;
           }
