@@ -418,3 +418,11 @@ pre[class*="language-"] {
 .token.namespace {
 	color: #4ec9b0;
 }
+
+@media only screen and (max-width: 1000px) {
+    html body .nectar-slider-wrap[data-fullscreen="true"] .swiper-slide .button.transparent a,html body .nectar-slider-wrap[data-fullscreen="true"] .swiper-slide .button.transparent_2 a {
+        font-size: 19px!important;
+        padding: 6px 13px!important;
+        letter-spacing: 0.5px!important;
+    }
+}

@@ -6,7 +6,7 @@ export default component$(() => {
     <footer>     
             <div class="flex flex-row justify-center">
 
-         <h3 class="w-24  whitespace-nowrap">Follow me at</h3>
+         <h3 class="whitespace-nowrap">Follow Me At</h3>
   </div>
       <div class="flex flex-row justify-center">
 

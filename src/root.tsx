@@ -39,7 +39,27 @@ export default component$(() => {
 
 <script 
 dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mutations.forEach(({ addedNodes }) => {addedNodes.forEach(node => {if (node.nodeType === 1 && node.tagName === \'SCRIPT\') {const src = node.src || \'\'; if (node.src.includes(\'clarity.js\')) { node.type = \'text/partytown\';  node.src = \'./clarity.bundle.js\'; } } });  }); }); observer.observe(document.documentElement, {  childList: true, subtree: true,  });'}
-/> 
+/>  
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+
+<script  
+          type="text/partytown"
+ src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"
+
+ > </script>
+
+
+<script  
+  type="text/partytown"
+ dangerouslySetInnerHTML={'var swiper = new Swiper(".swiper", {     preloadImages: false,  lazy: true, breakpoints: {  320: {  direction: \'horizontal\',  slidesPerView: "1.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },  },  480: {  direction: \'horizontal\',  slidesPerView: "2.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },     },  640: {  direction: \'horizontal\',  slidesPerView: "3.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },    },    768: {      direction: \'horizontal\',      slidesPerView: "4.1",      navigation: {        nextEl: \'.swiper-button-next\',        prevEl: \'.swiper-button-prev\',      },              },       1024: {      direction: \'horizontal\',      slidesPerView: "5.1",      navigation: {        nextEl: \'.swiper-button-next\',        prevEl: \'.swiper-button-prev\',      },            }  }      });'} 
+          
+          > 
+    </script>
+
 
 {/* <script type="text/partytown" src="http://www.youtube.com/iframe_api">
 
@@ -48,8 +68,8 @@ dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mu
 
 
         <QwikPartytown
-//           debug={true}
-          forward={['dataLayer.push', 'gtag']}
+          //debug={true}
+          forward={['dataLayer.push', 'gtag','Swiper']}
         // logCalls={true} 
         // logGetters={true}
         // logSetters={true}
