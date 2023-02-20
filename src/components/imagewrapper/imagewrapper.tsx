@@ -8,13 +8,14 @@ interface ItemProps {
   widthImage?: string;
   heightImage?: string;
 classInfo?:string;
+lazyLoad?:boolean;
 }
 
 
 export const ImageWrapper = component$((props: ItemProps) => {
 
   return (
-    <img src={props.imageSource} srcSet={props.imageSrcSet} sizes={props.imageSizes} width={props.widthImage} height={props.heightImage} alt={props.altImage} class={props.classInfo} loading="lazy"  />
+    <img src={props.imageSource} srcSet={props.imageSrcSet} sizes={props.imageSizes} width={props.widthImage} height={props.heightImage} alt={props.altImage} class={props.classInfo} loading={props.lazyLoad ? "lazy" :"eager" } />
 
 
 );

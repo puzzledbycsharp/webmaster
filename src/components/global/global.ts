@@ -528,5 +528,5 @@ export const ROUTE_DATA = [
     imageSmall:string;
     imageLarge:string;
     description: string;
-  
+    lazyLoadImage:boolean;
   }

@@ -1,5 +1,5 @@
 import {
-  component$,
+  component$, useClientEffect$, useMount$,
 } from '@builder.io/qwik';
 import { ImageWrapper } from '../imagewrapper/imagewrapper';
 
@@ -37,7 +37,9 @@ export default component$(() => {
 export const Child = component$(() => {
 
   const myClonedArray  = Object.assign([], ROUTE_DATA);
+
   const updatedState = filterMetaData(myClonedArray);
+
 
   return (
 <>
@@ -53,7 +55,6 @@ export const Child = component$(() => {
         <>
 
 <div class="swiper-slide">
-
 
 
 <div class="max-w-sm bg-customdark1 border border-customdark2 rounded-lg shadow-md">
@@ -97,10 +98,56 @@ export const Child = component$(() => {
   );
 });
 
-export function filterMetaData(routeDatas:  MyRouteData []) {
+export function filterMetaData(routeDatas:  MyRouteData [] ) {
   const newArray : MyRouteData [] = [];
+  let  count: number = 0;
   routeDatas.sort((a, b) => a.dateModified > b.dateModified ? -1 : a.dateModified < b.dateModified ? 1 : 0);
   for (const routeData of routeDatas) {
+    routeData.lazyLoadImage = true;
+
+    useMount$(()=>{
+      if( count <= 1){
+        routeData.lazyLoadImage = false;
+      }
+    });
+    useClientEffect$(() => {
+  
+      if( window.screen.width <= 320 && count <= 1){
+        routeData.lazyLoadImage = false;
+       // console.log("window.screen.width <= 320 && count <= 1");
+      }
+    else if(window.screen.width <= 480 && count <= 2)
+    {
+      routeData.lazyLoadImage = false;
+      //console.log("window.screen.width <= 480 && count <= 2");
+
+    }
+    else if(window.screen.width <= 640 && count <= 3)
+    {
+      routeData.lazyLoadImage = false;
+      //console.log("window.screen.width <= 640 && count <= 3");
+    }
+    else if(window.screen.width <= 768 && count <= 4)
+    {
+      routeData.lazyLoadImage = false;
+     // console.log("window.screen.width <= 768 && count <= 4");
+    }
+    else if(window.screen.width <=  1024 && count <= 5)
+    {
+      routeData.lazyLoadImage = false;
+      //console.log("window.screen.width <=  1024 && count <= 5");
+    }
+    else if(window.screen.width >  1024 && count <= 5)
+    {
+      console.log("window.screen.width >  1024 && count <= 5");
+     // routeData.lazyLoadImage = false;
+    }
+    else{
+      routeData.lazyLoadImage = true;
+      //console.log("window.screen.width else");
+    }
+  });
+    count = count + 1;
 if(routeData.location === 'about' || routeData.location === '')
 {
   continue;
@@ -110,3 +157,4 @@ if(routeData.location === 'about' || routeData.location === '')
 
   return newArray;
 }
+
