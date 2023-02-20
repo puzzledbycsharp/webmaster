@@ -47,36 +47,30 @@ dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mu
 
 
 
-{/* <script type="text/partytown" src="http://www.youtube.com/iframe_api">
 
-</script>
- */}
+
 
 
         <QwikPartytown
-          //debug={true}
-          forward={['dataLayer.push', 'gtag','Swiper']}
-        // logCalls={true} 
-        // logGetters={true}
-        // logSetters={true}
-        // logImageRequests={ true}
-        //  logMainAccess={ true}
-        //  logSendBeaconRequests={ true}
-        // logStackTraces={true}
-        //  logScriptExecution={ true}
+          debug={true}
+          forward={['dataLayer.push', 'gtag','Swiper','YT']}
+        logCalls={true} 
+        logGetters={true}
+        logSetters={true}
+        logImageRequests={ true}
+         logMainAccess={ true}
+         logSendBeaconRequests={ true}
+        logStackTraces={true}
+         logScriptExecution={ true}
 
-        //  resolveUrl ={ function (url, location, type) {
-        //   if (type === 'script') {
-        //     if (
-        //       url.hostname.includes('www.clarity.ms') 
-        //     ) {
-        //     const proxyUrl = new URL('https://main--benevolent-kitsune-f87868.netlify.app/api/');
-        //     proxyUrl.searchParams.append('url', url.href);
-        //     return proxyUrl;
-        //     }
-        //   }
-        //   return url;
-        // }}
+         resolveUrl ={ function (url, location, type) {
+          if (type === 'script' && url.href === 'https://www.youtube.com/iframe_api') {
+            const proxyUrl = new URL('http://puzzledbycsharp.com/api');
+            proxyUrl.searchParams.append('url', url.href);
+            return proxyUrl;
+          }
+          return url;
+        }}
 
         />
       </head>
