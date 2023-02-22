@@ -10,30 +10,34 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 <ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Copying Files Via Project Script On Build Banner Image" widthImage = "2304" heightImage = "1728" />
 
+## Introduction
+Sometimes we need to be able to copy certain files or DLLs to the project output folder location. Visual studio allows you select files to be copied to the output location. But sometiems you may need another way when the project build happens to select a group of files from a folder and have it copied to the output location. This can be done through editing the project file. Below are the steps.
 
-One way to copy files to output folder is to edit the .csproj file and add a command copy files from a certain directory into the output folder.
+### Project Copy Script Example 
+One way to copy files to output folder is to edit the .csproj file and add a command copy files from a certain directory into the output folder. For example, I have some DLLs at C:\temp\CopyFilesViaProjectScript\Lib that I would like to copy to the output folder when the project is built. It doesn't have to be DLLS, but it could be any types of files that we want to copy.
 
-For example, I have some DLLs at C:\temp\CopyFilesViaProjectScript\Lib that I would like to copy to the output folder when the project is built.
+<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Source File Directory" widthImage = "2304" heightImage = "1728" />
 
-<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/test-lib-files-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />
+### Files To Copy Location
 
-### Files To Copy Loacation
+As an example, my project solution is at the following location C:\temp\CopyFilesViaProjectScript\ So you could place your solution anywhere.
 
-My project solution is at the following location C:\temp\CopyFilesViaProjectScript\
-
-<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/project-solution-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Solution Folder Setup" widthImage = "2304" heightImage = "1728" />
 
 
 ### Solution Location
 
-Right click on the project you would like to edit and select Edit Project File.
+Right click on the project you would like to edit and select Edit Project File. This will allow us the edit the project file. It will open in visual studio.
 
-<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/edit-project-file-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Visual Studio Edit Project File" widthImage = "2304" heightImage = "1728" />
 
 
 ### Edit Project File
 
-The default project file has the following
+The default project file has the following in Visual Studio 2019. You may need to unload the project to edit the project file. 
+
+<details>
+<summary>Visual Studio 2019</summary>
 
 ```
     <Project Sdk="Microsoft.NET.Sdk">
@@ -41,9 +45,33 @@ The default project file has the following
             <OutputType>Exe</OutputType>
             <TargetFramework>netcoreapp3.1</TargetFramework>
             </PropertyGroup>
+    </Project>
 ```
+</details>
 
-I‘m going to add the following to the project lines.
+
+This is what it looks like in Visual Studio 2022.
+
+<details>
+<summary>Visual Studio 2022</summary>
+
+```
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>open_project_file</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
+```
+</details>
+
+
+I‘m going to add the following ItemGroup to the project lines right after PropertyGroup. Content Include is the path where I am copying the files from. In this example, I have 4 files in the lib folder to copy.
 
 ```
     <Project Sdk="Microsoft.NET.Sdk">
@@ -62,4 +90,4 @@ I‘m going to add the following to the project lines.
 ```
 
 After building the solution or project, you can see that TestLibrary32Bit.dll, TestLibrary64Bit.dll, and TestLibraryAnyCPU.dll were copied to output folder.
-<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/bin-output-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Output Folder Location" widthImage = "2304" heightImage = "1728" />
