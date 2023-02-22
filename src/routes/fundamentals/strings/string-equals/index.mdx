@@ -9,19 +9,21 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/equals/string-equals-page-header-banner-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/equals/string-equals-page-header-banner-small.webp 250w, ../../../assets/fundamentals/strings/equals/string-equals-page-header-banner-medium.webp 500w, ../../../assets/fundamentals/strings/equals/string-equals-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Equals Page Banner Image" widthImage = "2304" heightImage = "1728" />
 
-### What is String Equals?
+## Introduction
 
-The function String Equals compares two string to find out if they are exactly the same. That means that the lower or upper case of each character must match the string that is it being compared to which is called case sensitive. It is used on conditional statements because it returns true or false. Very useful as often times equals is preferred over contains to limit the scope and bugs.
+String Equals is a fundamental C# method. There are different flavors the method. It can be case or case insesitive, but the list of characters would need to match. It can be called explicitly by the keyword Equals or it can be called by two equal signs(==). Which one to use can be personal preference as the first one is reads slightly better while the second is shorter and easier to type. Equals is not limited to just strings, it can be used on classes and types so just keep that in mind. 
 
-##### Syntax
+#### What is String Equals?
 
-###### Function Overload 1
+The basic String Equals compares two string to find out if they are exactly the same. That means that the lower or upper case of each character must match the string that is it being compared to which is called case sensitive. It is used on conditional statements because it returns true or false. Very useful as often times equals is preferred over contains to limit the scope and bugs.
+
+###### Syntax Function Overload 1
 
 ```cs
 public bool Equals(string? textToCompare);
 ```
 
-This is the simplest and most form of string equals which takes in a string and returns true or false to if there is an exact match. See an example below.
+This is the simplest and most basic form of string equals which takes in a string and returns true or false boolean value to see if there is an exact match. See an example below.
 
 ```cs
 string userEmail = "CSharpIsFun@gmail.com";
@@ -33,20 +35,20 @@ string userEmailCompare3 = "CSharpIsFun@gmail.com";
 Console.WriteLine($"Email1:{userEmail2} equals Email2:{userEmailCompare3} is " + userEmail2.Equals(userEmailCompare3));//Since both emails have the same text and the case of each letter is the same then they are equal
 ```
 
-###### Output
+###### Code Output
 
 ```
 Email1:CSharpIsFun@gmail.com equals Email2:csharpisfun@gmail.com is False
 Email1:CSharpIsFun@gmail.com equals Email2:CSharpIsFun@gmail.com is True
 ```
 
-###### Function Overload 2
+###### Syntax Function Overload 2
 
 ```cs
 public bool Equals(object? textToCompare);
 ```
 
-This function overload almost identical to the previous version except that the type that is passed is an object instead of a string. The object is automatically cast as string internally in the function before the comparison is made. Typically, you would not use this as csharp is a type safe language so when you don't have to use object as a type you not use it. See example below.
+This function overload almost identical to the previous version except that the type that is passed is an object instead of a string. The object is automatically cast as string internally in the function before the comparison is made. Typically, you would not use this as csharp is a type safe language so when you don't have to use object as a type you not use it, but there may be rare cases where you might use it. See example below.
 
 ```cs
 object userEmail = "CSharpIsFun@gmail.com";
@@ -57,7 +59,7 @@ object userEmailCompare3 = "CSharpIsFun@gmail.com";
 Console.WriteLine($"Email1:{userEmail2} equals Email2:{userEmailCompare3} is " + userEmail2.Equals(userEmailCompare3));//Since both emails have the same text and the case of each letter is the same then they are equal
 ```
 
-###### Output
+###### Code Output
 ```
 Email1:CSharpIsFun@gmail.com equals Email2:csharpisfun@gmail.com is False
 Email1:CSharpIsFun@gmail.com equals Email2:CSharpIsFun@gmail.com is True
@@ -92,7 +94,7 @@ for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the charact
 }
 ```
 
-###### Output
+###### Code Output
 
 ```
 Current Culture:en-US
@@ -121,7 +123,7 @@ for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the charact
 }
 ```
 
-###### Output
+###### Code Output
 
 ```
 Current Culture:en-US
@@ -147,7 +149,7 @@ for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the charact
     Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + englishLetter.Equals(englishCompareLetter, StringComparison.InvariantCulture));//Equals check with invariant culture
 }
 ```
-###### Output
+###### Code Output
 
 ```
 englishLetter:a equals englishCompareLetter:A is False
@@ -175,7 +177,7 @@ for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the charact
 }
 ```
 
-###### Output
+###### Code Output
 
 ```
 englishLetter:a equals englishCompareLetter:A is True
@@ -200,7 +202,7 @@ for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the charact
 }
 ```
 
-###### Output
+###### Code Output
 
 ```
 englishLetter:a equals englishCompareLetter:A is False
@@ -225,7 +227,7 @@ for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the charact
 }
 ```
 
-###### Output
+###### Code Output
 
 ```
 englishLetter:a equals englishCompareLetter:A is True
@@ -235,7 +237,7 @@ englishLetter:o equals englishCompareLetter:o is True
 englishLetter:u equals englishCompareLetter:U is True
 ```
 
-### Exceptions
+#### Exceptions
 
 There are no exceptions that are generated from this function. However, if you decide to override equals then you'll need be careful checking for nulls.
 
@@ -244,7 +246,7 @@ There are no exceptions that are generated from this function. However, if you d
 Exact Match Is Needed
 For the most part string equals is used in flow control. If a string is equals then some other logic is then used. User inputs from menus, drop down options are often used by string equals so that if the user select a certain opinion the corresponding logic is executed. Equals also help guard against bugs because the more specific you can be in programing the better. Some may be tempted to use contains in some cases when equals is a better.
 
-### Alternatives
+#### Alternatives
 
 One alternative to string equals is to use contains but contains should be used carefully because it can return true in cases in undesirable cases. Also there is another way of calling the equals function by using the double equals sign. This calls just the basic Equals function overload and doesn't include the other overloads with more options. See example below.
 
@@ -267,7 +269,7 @@ foreach (string item in items)
 }
 ```
 
-###### Output
+###### Code Output
 
 ```
 Contains box:storage box
@@ -328,7 +330,7 @@ IgnoreCase
 }
 ```
 
-###### Output
+###### Code Output
 
 ```
 englishLetter:a equals englishCompareLetter:A is False
@@ -337,3 +339,7 @@ englishLetter:i equals englishCompareLetter:I is False
 englishLetter:o equals englishCompareLetter:o is True
 englishLetter:u equals englishCompareLetter:U is False
 ```
+
+### Conclusion
+String Equals has good flexbility and it is essential, to learn the at least the basic forms so that you can be an effective programmer. It is good for defensive programming as you only let through what you really want and this can reduce bugs. Of course, consider the case insensitive versions as well so that they would be the main ones you need.
+
