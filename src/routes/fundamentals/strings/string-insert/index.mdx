@@ -9,7 +9,11 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/insert/string-insert-page-banner-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/insert/string-insert-page-banner-small.webp 250w, ../../../assets/fundamentals/strings/insert/string-insert-page-banner-medium.webp 500w, ../../../assets/fundamentals/strings/insert/string-insert-page-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Insert Banner Image" widthImage = "2304" heightImage = "1728" />
 
-## What is String Insert?
+## Introduction
+
+Insert is quick way to put one string into another. This is good for string manuluation, output variables into strings or combining strings together.But there is exception that can be raised with incorrect values. There a mulitple ways of doing this including, replace, format, concatenation, and Interpolation so keep in mind that C# has mutiple ways of doing the same way. Also, I'll explain how insert works, and the interworkings of how it can be done.
+
+### What is String Insert?
 
 The insert method puts a single string in-between a section of the string. With the first parameter of index, it lets you pick the at what point to insert a string. the second parameter is the string you want to insert. Both of these parameters must be a valid input. The size of the string you want o insert doesn't really matter just as long as it is inserted in the valid range of the existing string.
 
@@ -30,7 +34,7 @@ string completedStatement = debugStatement.Insert(index, timestamp.ToString()); 
 Console.WriteLine(completedStatement);//Display result
 ```
 
-Output
+###### Code Output
 
 ```
     Error Generated at 5/1/2022 2:15:46 PM  for function
@@ -124,7 +128,7 @@ string InsertText(int index, string originalText, string textToInsert)
 }
 ```
 
-Output
+###### Code Output
 
 ```
 Error Generated at 5/1/2022 2:15:46 PM  for function
@@ -167,7 +171,7 @@ string queryComplete = GetQuery(fileId, fileType, userId);
 Console.WriteLine(queryComplete);
 ```
 
-Output
+###### Code Output
 ```
 select
     *
@@ -203,7 +207,7 @@ string queryComplete = GetQuery(lastName, userType);
 Console.WriteLine(queryComplete);
 ```
 
-Output
+###### Code Output
 
 ```
 select
@@ -238,7 +242,7 @@ string queryComplete = GetQuery(lastName, userType);
 Console.WriteLine(queryComplete);
 ```
 
-Output
+###### Code Output
 ```
 select  *  from user_main  where  last_name = Shepard and user_type = ADMIN 
 ```
@@ -260,7 +264,7 @@ string queryComplete = GetQuery(fileId, fileType, userId);
 Console.WriteLine(queryComplete);
 ```
 
-Output
+###### Code Output
 ```
 select * from file_main where file_id = 2318 and file_type = CSV and user_id = 3248
 ```
@@ -292,8 +296,13 @@ string completedStatement = InsertInString(debugStatement, index, timestamp.ToSt
 Console.WriteLine(completedStatement);//Display result
 ```
 
-Output
+###### Code Output
 
 ```
 Error Generated at 5/8/2022 3:42:16 PM for function 
 ```
+
+### Conclusion
+
+String Insert gives you a quick option to put text into another. Using the index, you can use it for automated processes or string generation. It has good readabiblity as it describles exactly what it is doing. This is different from the alternate methods that can get the same result as insert but does say that it is inserting. So insert is good for beginners and it's simple with only two parameters.
+
