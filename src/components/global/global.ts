@@ -379,7 +379,7 @@ export const ROUTE_DATA = [
   { 
     location:'privacy-policy', 
     url: 'https://puzzledbycsharp.com/privacy-policy/',
-    title:'About | Puzzled By CSharp',
+    title:'Privacy Policy | Puzzled By CSharp',
     dateCreated:'2023-01-25T00:11:56+00:00',
     dateModified:'2023-01-25T00:11:56+00:00',
     twitterImage:'',

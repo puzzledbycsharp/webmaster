@@ -111,7 +111,7 @@ export function filterMetaData(routeDatas:  MyRouteData [] ) {
     }
 
     count = count + 1;
-if(routeData.location === 'about' || routeData.location === '')
+if(routeData.location === 'about' || routeData.location === ''|| routeData.location === 'privacy-policy')
 {
   continue;
 }
