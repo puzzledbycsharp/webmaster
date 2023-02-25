@@ -9,13 +9,13 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/remove/string-remove-page-header-banner-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/remove/string-remove-page-header-banner-small.webp 250w, ../../../assets/fundamentals/strings/remove/string-remove-page-header-banner-medium.webp 500w, ../../../assets/fundamentals/strings/remove/string-remove-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Remove Banner Image" widthImage = "2304" heightImage = "1728" />
 
-## What is String Remove?
+## Introduction
+
+### What is String Remove?
 
 String remove is a takes an existing string and based on the start index and length for removal then will return a string with that section removed. The function overloads allow two options. To give a start index and the rest of the string is removed or to give a start index. String remove is the inverse of the substring method.
 
-##### Syntax
-
-###### Function Overload 1
+###### Function Overload Syntax 1
 
 ```cs
     public string Remove(int startIndex)
@@ -30,7 +30,7 @@ string updatedText = text.Remove(index);//Removing from the index to the end of 
 Console.WriteLine(updatedText);//Write to screen
 ```
 
-Output
+###### Code Output
 ```
 user_name,user_id
 ```
@@ -53,7 +53,7 @@ string updatedText = text.Remove(index, count);//Removing from the index and cou
 Console.WriteLine(updatedText);//Write to screen
 ```
 
-Output
+###### Code Output
 
 ```
 user_name,user_id,latitude,longitude,map_data,point
@@ -98,7 +98,7 @@ int startIindex = 358;//Start index to remove
 string updatedText = RemoveText(startIindex, text);//Removing from the index to the end of the string and leaving the rest.
 Console.WriteLine(updatedText);//Write to screen
 ```
-Output
+###### Code Output
 
 ```
 user_name,user_id,latitude,longitude,null,map_data,point
@@ -152,7 +152,7 @@ string updatedText = RemoveText(text, startIndex);//Removing from the index to t
 Console.WriteLine(updatedText);//Write to screen
 ```
 
-Output
+###### Code Output
 
 ```
 user_name,user_id
@@ -188,7 +188,7 @@ string updatedText = RemoveText(text, startIndex, count);//Removing from the ind
 Console.WriteLine(updatedText);//Write to screen
 ```
 
-Output
+###### Code Output
 
 ```
 user_name,user_id,latitude,longitude,map_data,point

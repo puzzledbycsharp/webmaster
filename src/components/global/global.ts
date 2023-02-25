@@ -242,7 +242,7 @@ export const ROUTE_DATA = [
   },    { 
     location:'fundamentals/strings/string-substring/best-first-character-removal-function-in-a-string', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/best-first-character-removal-function-in-a-string/',
-    title:'Best First Character Removal Function In A String | Puzzled By CSharp',
+    title:'Best First Character Removal Function In A String',
     dateCreated:'2022-07-23T00:08:56+00:00',
     dateModified:'2022-07-23T00:08:56+00:00',
     twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/best-first-character-removal-function-in-a-string/best-first-character-removal-function-in-a-string-twitter.webp',
@@ -286,7 +286,7 @@ export const ROUTE_DATA = [
   },    { 
     location:'fundamentals/strings/string-substring/analysis-of-getting-first-n-characters-methods', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/analysis-of-getting-first-n-characters-methods/',
-    title:'Analysis Of Getting First N Characters Methods | Puzzled By CSharp',
+    title:'Analysis Of Getting First N Characters Methods',
     dateCreated:'2022-08-06T00:08:56+00:00',
     dateModified:'2022-08-06T00:08:56+00:00',
     twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-twitter.webp',
@@ -375,6 +375,19 @@ export const ROUTE_DATA = [
     imageLarge:'https://puzzledbycsharp.com/assets/about-large.webp',
     description:'I&#8217;m a software engineer with nine years of experience. This site is intended for programmers from all skill set levels in C#/CSharp programming language.'
   },  
+  
+  { 
+    location:'privacy-policy', 
+    url: 'https://puzzledbycsharp.com/privacy-policy/',
+    title:'About | Puzzled By CSharp',
+    dateCreated:'2023-01-25T00:11:56+00:00',
+    dateModified:'2023-01-25T00:11:56+00:00',
+    twitterImage:'',
+    image:'',
+    imageSmall:'',
+    imageLarge:'',
+    description:'This a private policy about your rights and to info you on how your information is collected from you'
+  }, 
   { 
     location:'fundamentals/collections/list/clone-a-list-in-depth-review', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/list/clone-a-list-in-depth-review/',
@@ -462,31 +475,7 @@ export const ROUTE_DATA = [
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/collections-banner-image-large.webp',
     description:'Collections are an essential data type in csharp. It is one the most used types because data must be ordered, organized and then used in an efficient manner.'
   }
-
-  ,{ 
-    location:'fundamentals/strings', 
-    url: 'https://puzzledbycsharp.com/fundamentals/strings/',
-    title:'Strings | Puzzled By CSharp',
-    dateCreated:'2022-12-23T00:11:56+00:00',
-    dateModified:'2022-12-23T00:11:56+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-twitter.webp',
-    image:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-small.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-large.webp',
-    description:'Strings are some of the first data types to learn in the csharp so it becomes important to manipulate strings, and to parsing strings'
-  }
-  ,{ 
-    location:'code-snippets', 
-    url: 'https://puzzledbycsharp.com/code-snippets/',
-    title:'Code Snippets | Puzzled By CSharp',
-    dateCreated:'2022-12-23T00:11:56+00:00',
-    dateModified:'2022-12-23T00:11:56+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-twitter.webp',
-    image:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-small.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-large.webp',
-    description:'Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.'
-  },
+  ,
   { 
     location:'fundamentals/strings/string-substring', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/',
@@ -510,6 +499,30 @@ export const ROUTE_DATA = [
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/string-remove-page-header-banner-large.webp',
     description:'String remove takes an existing string and based on the start index and length for removal then will return a string with that section removed.'
+  }
+  ,{ 
+    location:'fundamentals/strings', 
+    url: 'https://puzzledbycsharp.com/fundamentals/strings/',
+    title:'Strings | Puzzled By CSharp',
+    dateCreated:'2022-12-23T00:11:56+00:00',
+    dateModified:'2022-12-23T00:11:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/strings-banner-image-large.webp',
+    description:'Strings are some of the first data types to learn in the csharp so it becomes important to manipulate strings, and to parsing strings'
+  }
+  ,{ 
+    location:'code-snippets', 
+    url: 'https://puzzledbycsharp.com/code-snippets/',
+    title:'Code Snippets | Puzzled By CSharp',
+    dateCreated:'2022-12-23T00:11:56+00:00',
+    dateModified:'2022-12-23T00:11:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-large.webp',
+    description:'Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.'
   }
 ] as const ;
 
