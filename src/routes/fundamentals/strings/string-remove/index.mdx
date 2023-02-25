@@ -11,6 +11,8 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 ## Introduction
 
+Remove does as it says, it remove text from another string. But how does it work when a string is immutable? IT makes a copy the current string and leaves out the text to be removed. This function is good for automated processes but it often needs other string functions to search for positions of strings like IndexOf. It is compact, easy to use and very few function overloads.
+
 ### What is String Remove?
 
 String remove is a takes an existing string and based on the start index and length for removal then will return a string with that section removed. The function overloads allow two options. To give a start index and the rest of the string is removed or to give a start index. String remove is the inverse of the substring method.
@@ -65,7 +67,7 @@ This example, we remove the null, from the string by starting on the n of the nu
 
 ###### Index Out of Range
 
-This exception occurs when the start index does not exist within the original string either less than 0 or greater than the length of the string. See same code below.
+This exception occurs when the start index does not exist within the original string either less than 0 or greater than the length of the string. So it's a good idea to place if statements to check the bounds of the index so that this exception doesn't happen. See same code below.
 
 ```cs
 string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
@@ -110,12 +112,13 @@ Notice that the output is what we started with. This means that the index was ou
 
 ###### Unwanted Text and Repeated Patterns
 This function is great for remove unwanted text at certain index positions when the pattern repeats. Even dynamically with indexOf to find character at certain position then remove the unwanted characters.
+
 ###### Readability
-Having a function that says remove makes it clear what is happening in the code. This is important when working other people and everyone is working on the same code base to have readable code.
+Having a function that says remove makes it clear what is happening in the code. This is important when working other people and everyone is working on the same code base to have readable code. There are other ways of getting rid of text from a string but none of them say remove.
 
 #### Alternative Methods of Remove
 
-There are other ways of remove text from a string. Using the string replace method can be used but it is not a precise as picking specific sections to remove text from. It has an advantage of being compact, if you know which characters or strings you want to want eliminate ahead of time. See example below.
+There are other ways of remove text from a string. Using the string replace method can be used but it is not a precise as picking specific sections to remove text from. It has an advantage of being compact, if you know which characters or strings you want to want eliminate ahead of time. Or if you want all instances of that type of text delete from the string this would be good to use. See example below.
 
 ```cs
 string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
@@ -193,3 +196,6 @@ Console.WriteLine(updatedText);//Write to screen
 ```
 user_name,user_id,latitude,longitude,map_data,point
 ```
+### Conclusion
+
+String remove is compact, fast and easy to use and works well with in the system of the other string functions. It is usually not just used by itself and usually is used along side IndexOf. So remove is good at getting rid of text and a specfic position and length. 
