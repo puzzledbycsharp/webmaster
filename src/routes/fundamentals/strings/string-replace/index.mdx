@@ -6,6 +6,7 @@ title: String Replace In Depth
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/replace/string-replace-page-header-banner-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/replace/string-replace-page-header-banner-small.webp 250w, ../../../assets/fundamentals/strings/replace/string-replace-page-header-banner-medium.webp 500w, ../../../assets/fundamentals/strings/replace/string-replace-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Replace In Depth Banner Image" widthImage = "2304" heightImage = "1728" />
 ## What is String Replace?
@@ -29,7 +30,7 @@ Console.WriteLine("Original:" + trafficTicketsMetrics);//Print the original stri
 Console.WriteLine("Updated:" + trafficTicketsMetricsUpdated);//Print the update string to screen
 ```
 
-Output
+###### Code Output
 
 ```
 Original:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %
@@ -52,7 +53,7 @@ Console.WriteLine("Original:" + trafficTicketsMetrics);//Print the original stri
 Console.WriteLine("Updated:" + trafficTicketsMetricsUpdated);//Print the update string to screen
 ```
 
-Output
+###### Code Output
 
 ```
 Original:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %,Unwanted#
@@ -60,8 +61,40 @@ Updated:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops T
 
 ```
 
-######  Function Overload 3
+###### Function Overload 3
 
 ```cs
 public string Replace(string findText, string? replaceText, StringComparison stringComparison);
+```
+
+###### findText
+
+This is the text that you want to find. Depnding on which StringComparsion you pick it will be case or case insensitive.
+
+######  replaceText
+
+This is what you want to replace the findText with. It can be null or empty string as well.
+
+###### StringComparision
+
+See below table to see the different descriptions for each the StringComparision types.
+
+<Table header ="StringComparision Type, Description" rows="CurrentCulture,Based the equals on the current culture settings(default);CurrentCultureIgnoreCase,Based on the current culture but case insensitive;InvariantCulture, Based on english language rules but not any specific english speaking country;InvariantCultureIgnoreCase,Based on english language rules but case insensitive;Ordinal,Based on binary of the characters. Known to be the fastest.;OrdinalIgnoreCase,Like the Ordinal use case but case insensitive" />
+
+For more details and examples for the StringComparision, then please check out the following article:[Examining String Equals In Detail](https://puzzledbycsharp.com/fundamentals/strings/string-equals/#currentculture-option)
+
+###### Function Overload 3 Code Example
+```cs
+string trafficTicketsMetrics = "Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %,Unwanted#";//Starting text with a header of a comma seperated list
+string trafficTicketsMetricsUpdated = trafficTicketsMetrics.Replace("%", "percent", StringComparison.CurrentCulture);//replacing % for percent in all parts of the string
+trafficTicketsMetricsUpdated = trafficTicketsMetricsUpdated.Replace("Unwanted#", "");//Replaced the text Unwanted# and replacing it with an empty string effectively just removing the text
+Console.WriteLine("Original:" + trafficTicketsMetrics);//Print the original string to screen
+Console.WriteLine("Updated:" + trafficTicketsMetricsUpdated);//Print the update string to screen
+```
+
+###### Code Output
+
+```
+Original:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket %,Failure To Obey Traffic Sign %,Unwanted#
+Updated:Speeding Ticket Count,Failure To Obey Traffic Sign Count,Traffic Stops Total,Speeding Ticket percent,Failure To Obey Traffic Sign percent,
 ```
