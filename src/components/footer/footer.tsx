@@ -1,8 +1,11 @@
 import { component$ } from '@builder.io/qwik';
+import { Subscriberpushnotification } from '../subscriberpushnotification/subscriberpushnotification';
 
 export default component$(() => {
 
   return (
+    <>
+    <Subscriberpushnotification/>
     <footer>     
             <div class="flex flex-row justify-center">
 
@@ -34,5 +37,6 @@ export default component$(() => {
 <a href="https://puzzledbycsharp.com/privacy-policy/">Privacy Policy</a>
 </div>
     </footer>
+    </>
   );
 });
