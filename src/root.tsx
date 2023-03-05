@@ -19,7 +19,7 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <RouterHead />
 
-         <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script>
+         {/* <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD"></script>
 
 
         <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-RRXD2EJNWD" />
@@ -38,7 +38,7 @@ export default component$(() => {
 <script 
 dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mutations.forEach(({ addedNodes }) => {addedNodes.forEach(node => {if (node.nodeType === 1 && node.tagName === \'SCRIPT\') {const src = node.src || \'\'; if (node.src.includes(\'clarity.js\')) { node.type = \'text/partytown\';  node.src = \'./clarity.bundle.js\'; } } });  }); }); observer.observe(document.documentElement, {  childList: true, subtree: true,  });'}
 />    
-
+ */}
 
 
 
@@ -82,6 +82,7 @@ dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mu
 
         <RouterOutlet />
         <ServiceWorkerRegister />
+        <script type="text/javascript">var subscribersSiteId='b7826009-f433-41f5-ab8d-5ae92ee6e3fb';</script><script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>
       </body>
     </QwikCityProvider>
   );
