@@ -40,9 +40,8 @@ export const Child = component$(() => {
 
   const updatedState = filterMetaData(myClonedArray);
   useClientEffect$(() => {
-    // eslint-disable-next-line no-unused-vars
+/*eslint no-unused-vars: "error"*/
     const swiper = new Swiper(".swiper", {     preloadImages: false,  lazy: true, breakpoints: {  320: {  direction: 'horizontal',  slidesPerView: "1.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },  },  480: {  direction: 'horizontal',  slidesPerView: "2.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },     },  640: {  direction: 'horizontal',  slidesPerView: "3.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },    },    768: {      direction: 'horizontal',      slidesPerView: "4.1",      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },              },       1024: {      direction: 'horizontal',      slidesPerView: "5.1",      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },            }  }      });
-    /* eslint-enable no-unused-vars */
     
 });
  return (
