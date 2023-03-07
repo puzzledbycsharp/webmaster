@@ -21,22 +21,22 @@ if(routeData){
   return (
     <>
 
-    {loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/' ? <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"></link> : null}
+    {/* {loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/' ? <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"></link> : null}
 
 {loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/' ? <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"></link></noscript> : null}
 
 {loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/' ? <script  
-          type="text/partytown"
+          type="text/javasript"
  src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"
 
  > </script> : null}
 
 {loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/' ? <script  
-  type="text/partytown"
+  type="text/javasript"
  dangerouslySetInnerHTML={'var swiper = new Swiper(".swiper", {     preloadImages: false,  lazy: true, breakpoints: {  320: {  direction: \'horizontal\',  slidesPerView: "1.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },  },  480: {  direction: \'horizontal\',  slidesPerView: "2.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },     },  640: {  direction: \'horizontal\',  slidesPerView: "3.1",  navigation: {  nextEl: \'.swiper-button-next\',  prevEl: \'.swiper-button-prev\',  },    },    768: {      direction: \'horizontal\',      slidesPerView: "4.1",      navigation: {        nextEl: \'.swiper-button-next\',        prevEl: \'.swiper-button-prev\',      },              },       1024: {      direction: \'horizontal\',      slidesPerView: "5.1",      navigation: {        nextEl: \'.swiper-button-next\',        prevEl: \'.swiper-button-prev\',      },            }  }      });'} 
           
           > 
-    </script> : null}
+    </script> : null} */}
 
       {/* <title>{head.title}</title> */}
       <title>{routeData?.title}</title>

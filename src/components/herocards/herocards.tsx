@@ -1,7 +1,8 @@
 import {
-  component$} from '@builder.io/qwik';
+  component$, useClientEffect$} from '@builder.io/qwik';
 import { ImageWrapper } from '../imagewrapper/imagewrapper';
-
+import Swiper from 'swiper';
+import 'swiper/css';
 import { MyRouteData, ROUTE_DATA } from '../global/global';
 // export interface SharedRouteState {
 //   data: MyRouteData [];
@@ -38,9 +39,12 @@ export const Child = component$(() => {
   const myClonedArray  = Object.assign([], ROUTE_DATA);
 
   const updatedState = filterMetaData(myClonedArray);
-
-
-  return (
+  useClientEffect$(() => {
+    let swiper = new Swiper(".swiper", {     preloadImages: false,  lazy: true, breakpoints: {  320: {  direction: 'horizontal',  slidesPerView: "1.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },  },  480: {  direction: 'horizontal',  slidesPerView: "2.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },     },  640: {  direction: 'horizontal',  slidesPerView: "3.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },    },    768: {      direction: 'horizontal',      slidesPerView: "4.1",      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },              },       1024: {      direction: 'horizontal',      slidesPerView: "5.1",      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },            }  }      });
+  
+    
+});
+ return (
 <>
 
 
