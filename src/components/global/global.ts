@@ -1,4 +1,16 @@
 export const ROUTE_DATA = [
+  { 
+    location:'fundamentals/collections/dictionary/best-sort-method-for-dictionary-values', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/',
+    title:'Best Sort Method for Dictionary Values',
+    dateCreated:'2023-03-07T00:11:56+00:00',
+    dateModified:'2023-03-07T00:11:56+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-large.webp',
+    description:'Using a LINQ Extension method is the best way to sort a dictionary by value. It is quick and easy to implement'
+  },
     { 
       location:'fundamentals/collections/dictionary/how-to-update-dictionary-values', 
       url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/how-to-update-dictionary-values/',

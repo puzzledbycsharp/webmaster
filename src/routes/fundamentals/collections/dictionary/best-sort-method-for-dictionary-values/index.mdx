@@ -1,5 +1,5 @@
 ---
-title: Best Way To Iterate Through A Dictionary
+title: Best Sort Method for Dictionary Values
 ---
 
 # Best Sort Method for Dictionary Values
@@ -8,7 +8,7 @@ import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 
-<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-small.webp 250w, ../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-medium.webp 500w, ../../../../assets/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Way to Iterate Through A Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-large.webp 2000w" imageSizes="(max-width: 500w) 80vw, (max-width: 1000px) 25vw, (max-width: 2000px) 10vw" altImage = "Best Sort Method for Dictionary Values Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
 
@@ -16,12 +16,288 @@ While a dictionary by it's nature is not sorted and doesn't hold a order. It are
 
 ### How To Sort A Dictionary
 
-There are LINQ expressions that temporary puts the dictionary in a sort order, but when you try to use the dictionary at a another time to loop through the keys or values  
+There are LINQ expressions that puts the dictionary in a sorted order, but when you try to use the dictionary at a another time to loop through the keys or values it is a random order of the dictionary.
+
+### LINQ Query
+
+We can use the LINQ query to write an expression to order the dictionary in the loop by acending or descending order. 
+
+#### LINQ Query Example Code
+
+This code works by surrounding the expression in parentheses while in the foreach loop. This expression orders each key-value pair by values so you can still access the key and value. See an exmaple below.
+
+```cs
+Dictionary<string, DateTime> keyValuePairs = new Dictionary<string, DateTime>() { { "May", new DateTime(2023, 5, 28) }, { "Oct", new DateTime(2023, 10, 29) }, { "March", new DateTime(2023, 3, 18) } };//create dictionary
+
+foreach (var keyValuePair in (from dictionaryPair in keyValuePairs orderby dictionaryPair.Value ascending select dictionaryPair))//dictionary sort method in ascending order
+{
+    Console.WriteLine($"key:{keyValuePair.Key}, value:{keyValuePair.Value}");//print sorted dictionary key and values
+}
+```
+
+###### Code Output
+```
+key:March, value:3/18/2023 12:00:00 AM
+key:May, value:5/28/2023 12:00:00 AM
+key:Oct, value:10/29/2023 12:00:00 AM
+```
+This returns the list in accending order, which is least to greatest.
+
+The following example shows in descending order which is greatest to least.
+
+```cs
+Dictionary<string, DateTime> keyValuePairs = new Dictionary<string, DateTime>() { { "April", new DateTime(2023, 4, 12) }, { "September", new DateTime(2023, 9, 03) }, { "Feburary", new DateTime(2023, 2, 10) } };//create dictionary
+
+foreach (var keyValuePair in (from dictionaryPair in keyValuePairs orderby dictionaryPair.Value descending select dictionaryPair))//dictionary sort method in descending order
+{
+    Console.WriteLine($"key:{keyValuePair.Key}, value:{keyValuePair.Value}");//print sorted dictionary key and values
+}
+```
+
+###### Code Output
+
+```
+key:September, value:9/3/2023 12:00:00 AM
+key:April, value:4/12/2023 12:00:00 AM
+key:Feburary, value:2/10/2023 12:00:00 AM
+```
+
+#### LINQ Query Speed Test
+
+For this test, there are 10 tests that will be averaged. Each test will have 10 thousand function calls and will sort and loop through 10 thousand objects.
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10000;//Number of function calls made per test
+int numberOfObjectsToCreate = 10000;//1 million test objects
+string testName = " LINQ Query";//Test name to print to average
+
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (var keyValuePair in (from dictionaryPair in dictionary orderby dictionaryPair.Value ascending select dictionaryPair))//dictionary sort method in ascending order
+    {
+       //some logic
+    }
+}
+
+```
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:10000, In 0m 10s 566ms
+Function calls:10000, In 0m 10s 309ms
+Function calls:10000, In 0m 10s 282ms
+Function calls:10000, In 0m 10s 109ms
+Function calls:10000, In 0m 10s 626ms
+Function calls:10000, In 0m 10s 391ms
+Function calls:10000, In 0m 10s 375ms
+Function calls:10000, In 0m 10s 212ms
+Function calls:10000, In 0m 10s 100ms
+Function calls:10000, In 0m 10s 455ms
+LINQ Query Average speed:10343ms, In 10 tests
+```
+
+This test shows the basellie of about 10 seconds. 
+
+
+### LINQ Enumerable
+
+This is an extension method that we can use on the dictionary. This also creates a ordered dictionary. 
+
+
+```cs
+Dictionary<string, DateTime> keyValuePairs = new Dictionary<string, DateTime>() { { "June", new DateTime(2023, 6, 3) }, { "November", new DateTime(2023, 11, 06) }, { "January", new DateTime(2023, 1, 20) } };//create dictionary
+
+foreach (KeyValuePair<string,DateTime> keyValuePair in keyValuePairs.OrderBy(x=>x.Value))//dictionary sort method in accending order
+{
+    Console.WriteLine($"key:{keyValuePair.Key}, value:{keyValuePair.Value}");//print sorted dictionary key and values
+}
+```
+
+###### Code Output
+```
+key:January, value:1/20/2023 12:00:00 AM
+key:June, value:6/3/2023 12:00:00 AM
+key:November, value:11/6/2023 12:00:00 AM
+```
+
+This also the same example, but with descending order.
+
+```cs
+Dictionary<string, DateTime> keyValuePairs = new Dictionary<string, DateTime>() { { "July", new DateTime(2023, 7, 6) }, { "December", new DateTime(2023, 12, 8) }, { "May", new DateTime(2023, 5, 22) } };//create dictionary
+
+foreach (KeyValuePair<string, DateTime> keyValuePair in keyValuePairs.OrderByDescending(x => x.Value))//dictionary sort method in descending order
+{
+    Console.WriteLine($"key:{keyValuePair.Key}, value:{keyValuePair.Value}");//print sorted dictionary key and values
+}
+```
+
+###### Code Output
+```
+key:May, value:5/22/2023 12:00:00 AM
+key:July, value:7/6/2023 12:00:00 AM
+key:December, value:12/8/2023 12:00:00 AM
+```
+
+#### LINQ Enumerable Speed Test
+
+This will be the same test as before. Below is the sample code.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10000;//Number of function calls made per test
+int numberOfObjectsToCreate = 10000;//1 million test objects
+string testName = "LINQ Enumerable";//Test name to print to average
+
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (KeyValuePair<string, DateTime> keyValuePair in dictionary.OrderBy(x => x.Value))//dictionary sort method in accending order
+    {
+        //some logic
+    }
+}
+```
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartTest());
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest()
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+###### Code Output
+
+```
+Function calls:10000, In 0m 10s 567ms
+Function calls:10000, In 0m 10s 254ms
+Function calls:10000, In 0m 10s 96ms
+Function calls:10000, In 0m 9s 933ms
+Function calls:10000, In 0m 10s 405ms
+Function calls:10000, In 0m 10s 289ms
+Function calls:10000, In 0m 10s 206ms
+Function calls:10000, In 0m 10s 359ms
+Function calls:10000, In 0m 9s 969ms
+Function calls:10000, In 0m 10s 390ms
+LINQ Enumerable Average speed:10247ms, In 10 tests
+```
+
+We can see that this method is very close in performance to the previous method.
 
 ### Conclusion
 
-<Table header ="Overall Rank,Method,Speed" rows="1,Dictionary Keys,2622ms;1,Dictionary Values,2625ms;2,List With Key Value Class,3447ms;3,Dictionary Key-Value Pair,5378ms;4,Deconstructor of Dictionary,7026ms;5,Dictionary Keys Then Dictionary Access,25949ms;" />
+<Table header ="Overall Rank,Method,Speed" rows="1,LINQ Enumerable,10247ms;2,LINQ Query,10343ms;" />
 
-The way to iterate through a dictionary is to use the Dictionary Keys and Dictionary Values methods. They have the best performance but they they only give Keys or Values. If you want to have access to both Keys and Values at the same time then it would be best to use a list to package them tegether in a class. But if you're restricted to only a dictionary then Dictionary's Key-Value Pair method is good enough too. Next is the deconstructor of dictionary, I think this can be avoided because it is slower than the Key-Value Pair method that is natively supported in dictionary. The readablity gains from this is not worth the loss in performance. The last method on the list is extremely slow and should be avoided and that is the Dictionary Keys Then Dictionary Access method. It suffers as the dictionary grows in size. This does not scale.
+The best method is tied in performance in this case. Both LINQ methods have the same performance however, I prefer LINQ Enumerable method because it is less code and more compact and you don't need to know the query syntax. But if you already familar with the LINQ query expressions then you can use that form as well to order the dictionary values. It works just as well. 
 
-Do you have any other methods of iterating through a dictionary? Let me know in the comments.
+Do you have any other methods of sorting values of a dictionary? Let me know in the comments.
