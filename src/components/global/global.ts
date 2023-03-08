@@ -5,10 +5,10 @@ export const ROUTE_DATA = [
     title:'Check If The Key Exists In The Dictionary',
     dateCreated:'2023-03-08T00:12:24+00:00',
     dateModified:'2023-03-08T00:12:24+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-large.webp',
     description:'TryGetValue is best suited for the check if the key exists in the dictionary because it checks then returns the value too.'
   },
   { 
