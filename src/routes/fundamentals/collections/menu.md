@@ -27,3 +27,4 @@
 - [Get The Dictionary Keys By Their Value](dictionary/get-the-dictionary-keys-by-their-value/index.mdx)
 - [How To Update Dictionary Values](dictionary/how-to-update-dictionary-values/index.mdx)
 - [Best Sort Method for Dictionary Values](dictionary/best-sort-method-for-dictionary-values/index.mdx)
+- [Check If The Key Exists In The Dictionary](dictionary/check-if-the-key-exists-in-the-dictionary/index.mdx)

@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/',
+    title:'Check If The Key Exists In The Dictionary',
+    dateCreated:'2023-03-08T00:12:24+00:00',
+    dateModified:'2023-03-08T00:12:24+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp',
+    description:'TryGetValue is best suited for the check if the key exists in the dictionary because it checks then returns the value too.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/best-sort-method-for-dictionary-values', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/',
     title:'Best Sort Method for Dictionary Values',
