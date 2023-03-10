@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/',
+    title:'Dictionary Vs Hashtable Comparison',
+    dateCreated:'2023-03-09T00:11:58+00:00',
+    dateModified:'2023-03-09T00:11:58+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
+    description:'Dictionary performs much better than Hashtable. It is a clear example why it is better to use a generic collection type'
+  },
+  { 
     location:'fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/',
     title:'Check If The Key Exists In The Dictionary',

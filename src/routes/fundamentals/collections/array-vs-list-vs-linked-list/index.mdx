@@ -14,6 +14,7 @@ import{Table} from "~/components/table/table";
 Array vs Lists vs Linked Lists is a common collection comparison with each have own strengths and trade offs so it’s important to understand these as we make our collection choices in our programing applications. There is typically no one size that fits all because application needs may depend on speed, memory(32bit or 64bit), CPUs resources, size of the data, readability and ease of use are all factors that can affect which collection. With small data sizes the performance difference may not be noticeable but when the data becomes large then you’ll want to choose carefully.
 
 ### Common Elements
+
 <Table header ="#,Analysis Type,Array,List,Linked List" rows="1,Item Search Speed,O(N),O(N),O(N);2,Index Speed,O(1),O(1),O(N);3,Initial Size,Yes,Yes,No;4,Automatic Resize,No,Yes,Yes;5,Size Property,	Count(),Count(),Count();6,Add,no,O(N)(If expansion is required),O(1);7,Insert,none,O(N) (If expansion is required),O(N) AddBefore() | AddAfter() | AddFirst() | AddLast();8,Delete,none,O(N),O(N);9,Duplicates,Yes,Yes,Yes;" />
 
 
