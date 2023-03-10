@@ -1,0 +1,100 @@
+---
+title: How To Initialize A Dictionary
+---
+
+# How To Initialize A Dictionary
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Initialize A Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+C# offers several ways to initialize a dictionary at compile time. Because often times there's a dictionary that you just want to hold a few values for some look ups for other structures in the code. It may not change so it can be set and left alone. So C# offers the collection initializers to quickly do this at the where the dictionary itself is declared.
+
+
+#### Motivation 
+
+The most basic way to initialize a dictionary is to declare the dictionary and add a few add statements for each of the key value pairs that you want to add. See the example below.
+
+
+```cs
+Dictionary<string, string> salaryDictionary = new Dictionary<string, string>();
+InitializeDictionary();
+PrintDictionary();
+
+void InitializeDictionary()
+{
+    salaryDictionary.Add("Bob", "50000");//Add Key Value Pair To Dictionary
+    salaryDictionary.Add("Jil", "60000");//Add Key Value Pair To Dictionary
+    salaryDictionary.Add("John", "70000");//Add Key Value Pair To Dictionary
+    salaryDictionary.Add("Jen", "80000");//Add Key Value Pair To Dictionary
+}
+
+void PrintDictionary()
+{
+    foreach (KeyValuePair<string,string> salaryEntry in salaryDictionary)
+    {
+        Console.WriteLine($"name:{salaryEntry.Key}, yearly salary:{salaryEntry.Value}");//Print Values
+    }
+}
+```
+
+###### Code Output
+
+```
+name:Bob, yearly salary:50000
+name:Jil, yearly salary:60000
+name:John, yearly salary:70000
+name:Jen, yearly salary:80000
+```
+We can simple write code like this. But this has serveral drawbacks. There are a lot more code that we need to write to make this happen. Also, what if we make a mistake in the code or duplicate the keys then an error can occur. Then we wouldn't find out until after our programe started. There is a better way.
+
+### Collection Initializers
+
+There are two ways to use the [Collection Intializer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers#collection-initializers). The first way is called the add Collection Initializer and the second is [Index Intializer](https://www.c-sharpcorner.com/blogs/index-initializers-in-c-sharp-6).
+
+### Add Collection Initializers
+
+This lets you Initialize the dictionary on the same line as the declaration statement. The interesting thing is when this syntax is compiled. It is translated into Add statements, but in the IDE it shows just one line. Below is how it looks with previous example.
+
+```cs
+Dictionary<string, string> salaryDictionary = new Dictionary<string, string>() { { "Bob", "50000" }, { "Jil", "60000" }, { "John", "70000" }, { "Jen", "80000" } };//Initialize the dictionary with a Colleciton Initializer
+```
+
+###### Translated To By The Compiler
+```cs
+    Dictionary<string, string> salaryDictionary = new Dictionary<string, string>();
+    salaryDictionary.Add("Bob", "50000");
+    salaryDictionary.Add("Jil", "60000");
+    salaryDictionary.Add("John", "70000");
+    salaryDictionary.Add("Jen", "80000");
+```
+
+
+This does a few things. Reduces the code written. It is less prone to error. This works best if you only don't have too many entries into the dictionary to put. 
+
+### Index Intializer
+
+Another way we can do this is to the Index Initializer which is another type of Collection Initalizer. It similar to the previous example that it goes on the same line. The syntax allows an indexer to be assigned a value. See example below.
+
+```cs
+Dictionary<string, string> salaryDictionary = new Dictionary<string, string>() { ["Bob"] = "50000", ["Jil"] = "60000", ["John"] = "70000", ["Jen"] = "80000" };//Initialize the dictionary with a Index Initializer
+```
+
+###### Translated To By The Compiler
+```cs
+Dictionary<string, string> salaryDictionary = new Dictionary<string, string>();
+salaryDictionary["Bob"] =  "50000";
+salaryDictionary["Jil"] = "60000";
+salaryDictionary["John"] = "70000";
+salaryDictionary["Jen"] = "80000";
+```
+
+This syntax sets only indexes that we specify.
+
+### Conclusion
+
+Collection Initalizers give more compact and readable code. It simplifies the code so we would be more productive because of the compile checks.

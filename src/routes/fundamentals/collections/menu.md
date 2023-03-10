@@ -29,3 +29,4 @@
 - [Best Sort Method for Dictionary Values](dictionary/best-sort-method-for-dictionary-values/index.mdx)
 - [Check If The Key Exists In The Dictionary](dictionary/check-if-the-key-exists-in-the-dictionary/index.mdx)
 - [Dictionary Vs Hashtable Comparison](dictionary/dictionary-vs-hashtable-comparison/index.mdx)
+- [How To Initialize A Dictionary](dictionary/how-to-initialize-a-dictionary/index.mdx)

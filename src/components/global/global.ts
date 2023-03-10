@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/how-to-initialize-a-dictionary', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/',
+    title:'How To Initialize A Dictionary',
+    dateCreated:'2023-03-10T00:02:23+00:00',
+    dateModified:'2023-03-10T00:02:23+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
+    description:'C# provides Collection Initializers syntax to initialize dictionaries to simple, quick and readable code.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/',
     title:'Dictionary Vs Hashtable Comparison',
