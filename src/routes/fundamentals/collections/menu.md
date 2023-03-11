@@ -30,3 +30,4 @@
 - [Check If The Key Exists In The Dictionary](dictionary/check-if-the-key-exists-in-the-dictionary/index.mdx)
 - [Dictionary Vs Hashtable Comparison](dictionary/dictionary-vs-hashtable-comparison/index.mdx)
 - [How To Initialize A Dictionary](dictionary/how-to-initialize-a-dictionary/index.mdx)
+- [Get Dictionary Element By Index](dictionary/get-dictionary-element-by-index/index.mdx)

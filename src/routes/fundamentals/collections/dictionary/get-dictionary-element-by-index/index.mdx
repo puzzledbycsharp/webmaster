@@ -1,0 +1,368 @@
+---
+title: Get Dictionary Element By Index
+---
+
+# Get Dictionary Element By Index
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get Dictionary Element By Index Banner Image" widthImage = "2304" heightImage = "1728" />
+## Introduction
+
+It may surpise you that dictionary also has a method to get the element at that index. While it may sound like this is a good idea and that it is possible to do. The dictionary's was not designed with this in mind and so it should be used sparingly or an alternate collection type should be used. First let's look at how we can do this.
+
+
+### ElementAt Method
+
+ElementAt will return the dictionary element at that position with respect to the order in which it was inserted into the dictionary. This example has 4 entries and I can select each entry by ElementAt in the reverse order. See below.
+
+```cs
+Dictionary<string, string> contactInfo = new Dictionary<string, string>() { { "Liam", "383-212-2121" }, { "Olivia", "433-261-8483" }, { "Oliver", "189-833-2899" }, { "Emma", "3-212-2121" } };
+
+Console.WriteLine($"ElementAt(4):" + contactInfo.ElementAt(3).Key);
+Console.WriteLine($"ElementAt(3):" + contactInfo.ElementAt(2).Key);
+Console.WriteLine($"ElementAt(2):" + contactInfo.ElementAt(1).Key);
+Console.WriteLine($"ElementAt(1):" + contactInfo.ElementAt(0).Key);
+
+```
+
+###### Code Output
+```
+ElementAt(4):Emma
+ElementAt(3):Oliver
+ElementAt(2):Olivia
+ElementAt(1):Liam
+```
+
+This works as expected to print the items are in the reverse order.
+
+### Peformance 
+
+This most important consideration between ElementAt and Indexer. The testing methods are as follows.
+
+Below is a summary table of the results.
+
+###### Performance Summary Table
+
+<Table header ="Dictionary Size,ElementAt Speed,Indexer Speed" rows="50000,51996ms,16ms;" />
+
+Since dictionary was not optimized to use ElementAt so I'm going to test the performance of ElementAt compared to the Dictionary indexer. This test will loop through all the elements of the dictonary using the ElementAt or Indexer and see how they compare. Below are the test parameters for the comparision.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10;Objects Per Function Call,50 Thousand" />
+</details>
+
+### ElementAt Speed Test Code
+```cs
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    for (int i = 0; i < dictionary.Count; i++)
+    {
+        DateTime dateTime = dictionary.ElementAt(i).Value.AddHours(1);//Get data through the ElementAt
+        double ticks = dateTime.Ticks;
+    }
+}
+```
+
+### Indexer Speed Test Code
+
+```cs
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        DateTime dateTime = dictionary[key].AddHours(1);//Get data through the Indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+```
+
+
+###### ElementAt Code Output
+```
+Test 1:Function Calls:10, In 0m 52s 445ms
+Test 2:Function Calls:10, In 0m 51s 671ms
+Test 3:Function Calls:10, In 0m 52s 291ms
+Test 4:Function Calls:10, In 0m 51s 12ms
+Test 5:Function Calls:10, In 0m 52s 206ms
+Test 6:Function Calls:10, In 0m 51s 644ms
+Test 7:Function Calls:10, In 0m 52s 622ms
+Test 8:Function Calls:10, In 0m 52s 103ms
+Test 9:Function Calls:10, In 0m 52s 284ms
+Test 10:Function Calls:10, In 0m 51s 680ms
+Dictionary ElementAt Average Speed:51996ms, In 10 Tests
+```
+###### Indexer Code Output
+```
+Test 1:Function Calls:10, In 0m 0s 19ms
+Test 2:Function Calls:10, In 0m 0s 17ms
+Test 3:Function Calls:10, In 0m 0s 15ms
+Test 4:Function Calls:10, In 0m 0s 15ms
+Test 5:Function Calls:10, In 0m 0s 15ms
+Test 6:Function Calls:10, In 0m 0s 16ms
+Test 7:Function Calls:10, In 0m 0s 15ms
+Test 8:Function Calls:10, In 0m 0s 13ms
+Test 9:Function Calls:10, In 0m 0s 14ms
+Test 10:Function Calls:10, In 0m 0s 13ms
+Dictionary Indexer Average Speed:16ms, In 10 Tests
+```
+
+<details>
+<summary>ElemeentAt Full Code Example</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10;//Number of function calls made per test
+int numberOfObjectsToCreate = 50000;//Number test objects
+string testName = "Dictionary ElementAt";//Test name to print to average
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    for (int i = 0; i < dictionary.Count; i++)
+    {
+        DateTime dateTime = dictionary.ElementAt(i).Value.AddHours(1);//Get data through the ElementAt
+        double ticks = dateTime.Ticks;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+
+```
+</details>
+
+
+<details>
+<summary>Indexer Full Code Example</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10;//Number of function calls made per test
+int numberOfObjectsToCreate = 50000;//Number test objects
+string testName = "Dictionary Indexer";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        DateTime dateTime = dictionary[key].AddHours(1);//Get data through the Indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    keysList = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+            keysList.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+### List Alternative
+
+Another way to go about this issue is to use a list. If you have numerical indexcies that you want to hit then a list or array would better than trying to do that with a dictionary. See example code below.
+
+#### List Indexer Example Code
+```cs
+void TestMethod(List<DateTime> list)
+{
+    for (int i = 0; i < list.Count; i++)
+    {
+        DateTime dateTime = list[i].AddHours(1);//Get data through the list indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+```
+<details>
+<summary>Full List Indexer Speed Code Example</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10;//Number of function calls made per test
+int numberOfObjectsToCreate = 50000;//Number test objects
+string testName = "List Indexer";//Test name to print to average
+void TestMethod(List<DateTime> list)
+{
+    for (int i = 0; i < list.Count; i++)
+    {
+        DateTime dateTime = list[i].AddHours(1);//Get data through the list indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData.Values.ToList());//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+###### List Indexer Example Code
+```
+Test 1:Function Calls:10, In 0m 0s 5ms
+Test 2:Function Calls:10, In 0m 0s 5ms
+Test 3:Function Calls:10, In 0m 0s 3ms
+Test 4:Function Calls:10, In 0m 0s 3ms
+Test 5:Function Calls:10, In 0m 0s 5ms
+Test 6:Function Calls:10, In 0m 0s 3ms
+Test 7:Function Calls:10, In 0m 0s 3ms
+Test 8:Function Calls:10, In 0m 0s 3ms
+Test 9:Function Calls:10, In 0m 0s 3ms
+Test 10:Function Calls:10, In 0m 0s 3ms
+List Indexer Average Speed:4ms, In 10 Tests
+```
+
+List Indexer is good alternative to ElementAt because it is only takes a few milliseconds to complete the test which is still way better than ElementAt.
+
+### Conclusion
+
+ElementAt is extremely slow and should be avoided. The difference in speed between ElementAt and the indexer is night and day. From 51 seconds to just milliseconds is the difference in speed in my testing. If you need an collection type to access numeric indexes then you should use arrays or list.
+
+

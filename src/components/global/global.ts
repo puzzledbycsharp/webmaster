@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/get-dictionary-element-by-index', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/get-dictionary-element-by-index/',
+    title:'Get Dictionary Element By Index',
+    dateCreated:'2023-03-10T00:11:43+00:00',
+    dateModified:'2023-03-10T00:11:43+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    description:'ElemenatAt lets a dictionary be accessed by numeric values, but this is far not the best way.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/how-to-initialize-a-dictionary', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/',
     title:'How To Initialize A Dictionary',
