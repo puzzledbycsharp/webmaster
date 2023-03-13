@@ -1,14 +1,26 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/convert-a-list-into-a-dictionary', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/',
+    title:'Convert A List Into a Dictionary',
+    dateCreated:'2023-03-13T00:03:11+00:00',
+    dateModified:'2023-03-13T00:03:11+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-large.webp',
+    description:'The best way to convert a list to dictionary is to use the dictionary indexer. It is fast enough,has simple syntax and works with duplicates.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/',
     title:'Best Merging Method For Two Dictionaries',
     dateCreated:'2023-03-12T00:11:43+00:00',
     dateModified:'2023-03-12T00:11:43+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-large.webp',
     description:'The best dictionary merge method is the merge loop method. You can write yourself and it faster than the LINQ methods'
   },
   { 
@@ -17,10 +29,10 @@ export const ROUTE_DATA = [
     title:'Get Dictionary Element By Index',
     dateCreated:'2023-03-10T00:11:43+00:00',
     dateModified:'2023-03-10T00:11:43+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-large.webp',
     description:'ElemenatAt lets a dictionary be accessed by numeric values, but this is far not the best way.'
   },
   { 
@@ -29,10 +41,10 @@ export const ROUTE_DATA = [
     title:'How To Initialize A Dictionary',
     dateCreated:'2023-03-10T00:02:23+00:00',
     dateModified:'2023-03-10T00:02:23+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-large.webp',
     description:'C# provides Collection Initializers syntax to initialize dictionaries to simple, quick and readable code.'
   },
   { 
@@ -41,10 +53,10 @@ export const ROUTE_DATA = [
     title:'Dictionary Vs Hashtable Comparison',
     dateCreated:'2023-03-09T00:11:58+00:00',
     dateModified:'2023-03-09T00:11:58+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-large.webp',
     description:'Dictionary performs much better than Hashtable. It is a clear example why it is better to use a generic collection type'
   },
   { 
