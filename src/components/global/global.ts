@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/',
+    title:'Best Merging Method For Two Dictionaries',
+    dateCreated:'2023-03-12T00:11:43+00:00',
+    dateModified:'2023-03-12T00:11:43+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp',
+    description:'The best dictionary merge method is the merge loop method. You can write yourself and it faster than the LINQ methods'
+  },
+  { 
     location:'fundamentals/collections/dictionary/get-dictionary-element-by-index', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/get-dictionary-element-by-index/',
     title:'Get Dictionary Element By Index',

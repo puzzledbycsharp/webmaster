@@ -31,3 +31,4 @@
 - [Dictionary Vs Hashtable Comparison](dictionary/dictionary-vs-hashtable-comparison/index.mdx)
 - [How To Initialize A Dictionary](dictionary/how-to-initialize-a-dictionary/index.mdx)
 - [Get Dictionary Element By Index](dictionary/get-dictionary-element-by-index/index.mdx)
+- [Best Merging Method For Two Dictionaries](dictionary/best-merging-method-for-two-dictionaries/index.mdx)
