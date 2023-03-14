@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/',
+    title:'Two Lists of Keys and Values Mapped To a Dictionary',
+    dateCreated:'2023-03-13T00:11:34+00:00',
+    dateModified:'2023-03-13T00:11:45+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-large.webp',
+    description:'Mapping two lists to a dictionary is best down manually. It has the best performance and also can handle duplicate keys without thrown exceptions'
+  },
+  { 
     location:'fundamentals/collections/dictionary/convert-a-list-into-a-dictionary', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/',
     title:'Convert A List Into a Dictionary',
