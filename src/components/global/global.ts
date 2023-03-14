@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/how-to-change-a-dictionary-key', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/how-to-change-a-dictionary-key/',
+    title:'How To Change A Dictionary Key',
+    dateCreated:'2023-03-14T00:09:34+00:00',
+    dateModified:'2023-03-14T00:09:45+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-change-a-dictionary-key/how-to-change-a-dictionary-key-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-change-a-dictionary-key/how-to-change-a-dictionary-key-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-change-a-dictionary-key/how-to-change-a-dictionary-key-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-change-a-dictionary-key/how-to-change-a-dictionary-key-large.webp',
+    description:'Changing the dictionary key is only possible by removing the existing key and adding the new key and existing value. This has the best performance.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/',
     title:'Two Lists of Keys and Values Mapped To a Dictionary',
