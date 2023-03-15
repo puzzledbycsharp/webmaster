@@ -9,7 +9,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-large.webp',
-    description:'TO make a dictionary case insensitive it must be done in the declaration. There are three options and OrdinalIgnoreCase ist the fastest.'
+    description:'To make a dictionary case insensitive it must be done in the declaration. There are three options and OrdinalIgnoreCase is the fastest.'
   },
   { 
     location:'fundamentals/collections/dictionary/how-to-change-a-dictionary-key', 
