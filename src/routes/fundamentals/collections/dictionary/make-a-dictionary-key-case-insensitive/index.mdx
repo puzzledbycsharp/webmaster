@@ -1,0 +1,478 @@
+---
+title: Make A Dictionary Key Case Insensitive
+---
+
+# Make A Dictionary Key Case Insensitive
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Make A Dictionary Key Case Insensitive Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+Dictionary keys can be make can insensitive for variuos methods and Indexer. This comes in handy when you have the right number of characters but not the right case. You'll be able to relax the stricly string equals that is done on a key of type string. But this has to be done on the dictionary creation. I'll show you how.
+
+### CurrentCultureIgnoreCase
+
+For CurrentCultureIgnoreCase, it makes ignores the case for the current culture setting. This is good to know if the application is working multiple languages or regions then you may need to switch the current culture.
+
+#### CurrentCultureIgnoreCase Code Example
+
+This is a dictionary with animals and their lifespan. But for the animal name, I changed the case of the different characters to show that it will have a match in the dictionary and display value.
+
+```cs
+Dictionary<string, int> animalMaxAge = new Dictionary<string, int>(StringComparer.CurrentCultureIgnoreCase) {
+{"Galapagos Tortoise", 190 },
+{"Bowhead Whale", 211},
+{"Koi Fish", 226},
+{"Ocean Quahog Clam", 507},
+{"Greenland Shark", 400},
+{"Red Sea Urchin", 200}};
+
+//Print the dictionary value by index using ignore case string comparer
+Console.WriteLine($"key:GaLaPaGoS ToRtOiSe, value:{animalMaxAge["GaLaPaGoS ToRtOiSe"]}");
+Console.WriteLine($"key:BoWhEaD WhAlE, value:{animalMaxAge["BoWhEaD WhAlE"]}");
+Console.WriteLine($"key:KoI FiSh, value:{animalMaxAge["KoI FiSh"]}");
+Console.WriteLine($"key:OcEaN QuAhOg ClAm, value:{animalMaxAge["OcEaN QuAhOg ClAm"]}");
+Console.WriteLine($"key:GrEeNlAnD ShArK, value:{animalMaxAge["GrEeNlAnD ShArK"]}");
+Console.WriteLine($"key:ReD SeA UrChiN, value:{animalMaxAge["ReD SeA UrChiN"]}");
+```
+
+###### Code Output
+
+```
+key:GaLaPaGoS ToRtOiSe, value:190
+key:BoWhEaD WhAlE, value:211
+key:KoI FiSh, value:226
+key:OcEaN QuAhOg ClAm, value:507
+key:GrEeNlAnD ShArK, value:400
+key:ReD SeA UrChiN, value:200
+```
+
+#### CurrentCultureIgnoreCase Speed Test
+
+This will be a test with a dictionary that has random strings of length of 50 characters in the key and value. There will be 1 million entries in the dictionary and each entry will accessed through the Indexer. It will be looped 100 times in 1 test. There will be 10 test and the average over the 10 test will be taken. That will be considered the performance and all the StringComparer with IgnoreCase will be tested.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+
+#### CurrentCultureIgnoreCase Speed Test Code
+
+```cs
+Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.CurrentCultureIgnoreCase);
+
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        string value = dictionary[key];//Get data through the Indexer with CurrentCultureIgnoreCase
+    }
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 1m 3s 501ms
+Test 2:Function Calls:100, In 1m 3s 869ms
+Test 3:Function Calls:100, In 1m 5s 341ms
+Test 4:Function Calls:100, In 1m 5s 495ms
+Test 5:Function Calls:100, In 1m 6s 557ms
+Test 6:Function Calls:100, In 1m 5s 281ms
+Test 7:Function Calls:100, In 1m 4s 815ms
+Test 8:Function Calls:100, In 1m 4s 125ms
+Test 9:Function Calls:100, In 1m 5s 663ms
+Test 10:Function Calls:100, In 1m 4s 308ms
+CurrentCultureIgnoreCase Average Speed:64896ms, In 10 Tests
+```
+
+This test completes in about one minute and 4 seconds. This will be the baseline in which we can compare against the other StringComparer types.
+
+<details>
+<summary>Full CurrentCultureIgnoreCase Speed Test Code</summary>
+
+```cs
+
+using System;
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "CurrentCultureIgnoreCase";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        string value = dictionary[key];//Get data through the Indexer with CurrentCultureIgnoreCase
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.CurrentCultureIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+```
+</details>
+
+### InvariantCultureIgnoreCase
+
+For InvariantCultureIgnoreCase, it makes ignores the case for the current culture setting. It is based on english language but not on a particular country
+
+#### InvariantCultureIgnoreCase Code Example
+
+This will be the same test as before with 50 random character strings in the key and value. The test parameters are below.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+```cs
+Dictionary<string, int> animalMaxAge = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase) {
+            {"African Elephant", 70},
+            {"Giant Galapagos Tortoise", 177},
+            {"Blue Whale", 100},
+            {"Aldabra Giant Tortoise", 152},
+            {"Bottlenose Dolphin", 50},
+            {"Orca", 90}
+        };
+
+////Print the dictionary value by index using ignore case string comparer
+Console.WriteLine($"key:AfRiCaN ElEpHaNt, value:{animalMaxAge["AfRiCaN ElEpHaNt"]}");
+Console.WriteLine($"key:GiAnT GaLaPaGoS ToRtOiSe, value:{animalMaxAge["GiAnT GaLaPaGoS ToRtOiSe"]}");
+Console.WriteLine($"key:BlUe WhAlE, value:{animalMaxAge["BlUe WhAlE"]}");
+Console.WriteLine($"key:AlDaBrA GiAnT ToRtOiSe, value:{animalMaxAge["AlDaBrA GiAnT ToRtOiSe"]}");
+Console.WriteLine($"key:BoTtLeNoSe DoLpHin, value:{animalMaxAge["BoTtLeNoSe DoLpHin"]}");
+Console.WriteLine($"key:OrCa, value:{animalMaxAge["OrCa"]}");
+```
+
+###### Code Output
+
+```
+key:AfRiCaN ElEpHaNt, value:70
+key:GiAnT GaLaPaGoS ToRtOiSe, value:177
+key:BlUe WhAlE, value:100
+key:AlDaBrA GiAnT ToRtOiSe, value:152
+key:BoTtLeNoSe DoLpHin, value:50
+key:OrCa, value:90
+```
+
+#### InvariantCultureIgnoreCase Test Code
+
+```cs
+Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        string value = dictionary[key];//Get data through the Indexer with InvariantCultureIgnoreCase
+    }
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 1m 5s 440ms
+Test 2:Function Calls:100, In 1m 4s 383ms
+Test 3:Function Calls:100, In 1m 5s 641ms
+Test 4:Function Calls:100, In 1m 5s 89ms
+Test 5:Function Calls:100, In 1m 4s 5ms
+Test 6:Function Calls:100, In 1m 4s 927ms
+Test 7:Function Calls:100, In 1m 5s 569ms
+Test 8:Function Calls:100, In 1m 7s 726ms
+Test 9:Function Calls:100, In 1m 4s 820ms
+Test 10:Function Calls:100, In 1m 4s 461ms
+InvariantCultureIgnoreCase Average Speed:65207ms, In 10 Tests
+```
+
+This speed is around the same as CurrentCultureIgnoreCase, so we can consider them pretty much the same in performance. There's one more StringComparer to test.
+
+
+<details>
+<summary>Full InvariantCultureIgnoreCase Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "InvariantCultureIgnoreCase";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        string value = dictionary[key];//Get data through the Indexer with InvariantCultureIgnoreCase
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+
+```
+</details>
+
+
+### OrdinalIgnoreCase
+
+This option is based on binary value of the character so it's not based on a language.
+
+
+
+#### OrdinalIgnoreCase Code Example
+
+
+```cs
+Dictionary<string, int> animalMaxAge = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase) {
+            {"Mediterranean red coral", 500},
+            {"Tuatara", 100},
+            {"Lamellibrachia tube worm", 170},
+            {"Hydra", 1},
+            {"Greenland shark", 400},
+            {"Macaw", 80}
+        };
+
+////Print the dictionary value by index using ignore case string comparer
+Console.WriteLine($"key:MeDiTeRrAnEaN ReD CoRaL, value:{animalMaxAge["MeDiTeRrAnEaN ReD CoRaL"]}");
+Console.WriteLine($"key:TuAtArA, value:{animalMaxAge["TuAtArA"]}");
+Console.WriteLine($"key:LaMeLlIbRaChIa TuBe WoRm, value:{animalMaxAge["LaMeLlIbRaChIa TuBe WoRm"]}");
+Console.WriteLine($"key:HyDrA, value:{animalMaxAge["HyDrA"]}");
+Console.WriteLine($"key:GrEeNlAnD ShArK, value:{animalMaxAge["GrEeNlAnD ShArK"]}");
+Console.WriteLine($"key:MaCaW, value:{animalMaxAge["MaCaW"]}");
+
+```
+
+###### Code Output
+
+```
+key: MeDiTeRrAnEaN ReD CoRaL, value: 500
+key: TuAtArA, value: 100
+key: LaMeLlIbRaChIa TuBe WoRm, value: 170
+key: HyDrA, value: 1
+key: GrEeNlAnD ShArK, value:400
+key: MaCaW, value: 80
+```
+#### OrdinalIgnoreCase Speed Test
+
+This test is the same as what was done the previous two times. You can see the test parameters below.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+#### OrdinalIgnoreCase Speed Test Code
+
+```cs
+
+Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        string value = dictionary[key];//Get data through the Indexer with OrdinalIgnoreCase
+    }
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 8s 159ms
+Test 2:Function Calls:100, In 0m 7s 392ms
+Test 3:Function Calls:100, In 0m 7s 123ms
+Test 4:Function Calls:100, In 0m 7s 429ms
+Test 5:Function Calls:100, In 0m 7s 229ms
+Test 6:Function Calls:100, In 0m 7s 147ms
+Test 7:Function Calls:100, In 0m 7s 795ms
+Test 8:Function Calls:100, In 0m 8s 191ms
+Test 9:Function Calls:100, In 0m 7s 440ms
+Test 10:Function Calls:100, In 0m 7s 933ms
+OrdinalIgnoreCase Average Speed:7584ms, In 10 Tests
+
+This is blazing fast compared to the other StringComparer options. Almost a full minute faster.
+```
+<details>
+<summary>Full OrdinalIgnoreCase Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "OrdinalIgnoreCase";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        string value = dictionary[key];//Get data through the Indexer with OrdinalIgnoreCase
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+
+```
+</details>
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,OrdinalIgnoreCase,7584ms;2,CurrentCultureIgnoreCase,64896ms;3,InvariantCultureIgnoreCase,65207ms;" />
+
+The best StringComparer method for case insensitive dictionaries is OrdinalIgnoreCase. It is almost a full minute faster than the other two types. If your application is not considering different cultures and languages then this is the way to go.
+
+CurrentCultureIgnoreCase and InvariantCultureIgnoreCase are almost the same speed and both are over a minute in this test that they can conside be equal in performance. It would just depend on the culture settings.
+
+Know any other ways to create a case insensitive dictionary? Let me know in the comments below.
+
+

@@ -34,4 +34,5 @@
 - [Best Merging Method For Two Dictionaries](dictionary/best-merging-method-for-two-dictionaries/index.mdx)
 - [Convert A List Into a Dictionary](dictionary/convert-a-list-into-a-dictionary/index.mdx)
 - [Two Lists of Keys and Values Mapped To a Dictionary](dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/index.mdx)
-- [How To Change A Dictionary Key](dictionary/how-to-change-a-dictionary-key/index.mdx)
+- [How To Change A Dictionary Key](dictionary/how-to-change-a-dictionary-key/index.mdx)make-dictionary-key-case-insensitive
+- [Make A Dictionary Key Case Insensitive](dictionary/make-a-dictionary-key-case-insensitive/index.mdx)

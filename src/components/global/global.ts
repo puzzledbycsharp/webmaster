@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/',
+    title:'Make A Dictionary Key Case Insensitive',
+    dateCreated:'2023-03-14T00:11:55+00:00',
+    dateModified:'2023-03-14T00:11:5+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/make-a-dictionary-key-case-insensitive-large.webp',
+    description:'TO make a dictionary case insensitive it must be done in the declaration. There are three options and OrdinalIgnoreCase ist the fastest.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/how-to-change-a-dictionary-key', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/how-to-change-a-dictionary-key/',
     title:'How To Change A Dictionary Key',
