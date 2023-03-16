@@ -1,0 +1,703 @@
+---
+title: Declare A New Dictionary in Function Calls
+---
+
+# Declare A New Dictionary in Function Calls
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/declare-a-new-dictionary-in-function-calls-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/declare-a-new-dictionary-in-function-calls-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/declare-a-new-dictionary-in-function-calls-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/declare-a-new-dictionary-in-function-calls-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Declare A New Dictionary in Function Calls Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+There are times that you want to create a quick dictionary on the fly so that the reference isn't held in memory but is processed quickly by a function. A dictionary can be created and passed to a function and it wouldn't be retained in memory unless the function itself save the dictionary in memory. There are several syntaxes that can accommodate this let's look at the first.
+
+### Collection Intializer
+
+This syntax has each key value pair in curly baces with the new dictionary and the types assigned for key and values.
+
+#### Collection Intializer Example Code
+
+This creates a temporary dictionary and passes it to the function print values where the dictionary is printed to the screen.
+
+```cs
+PrintValues(new Dictionary<string, int> 
+{
+            {"Sunny", 30},
+            {"Cloudy", 20},
+            {"Rainy", 15},
+            {"Snowy", -5},
+            {"Foggy", 10}
+});//create dictionary by collection intializer
+
+void PrintValues(Dictionary<string, int> dictionary)
+{
+    int count = 1;
+    foreach (KeyValuePair<string, int> entry in dictionary)//loop through dictionary 
+    {
+        Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+    }
+}
+```
+###### Code Output
+
+```
+1. key:Sunny, value:30
+2. key:Cloudy, value:20
+3. key:Rainy, value:15
+4. key:Snowy, value:-5
+5. key:Foggy, value:10
+```
+As expected, the key and values show correctly here. Even when the dictionary is not assigned to a variable.
+
+#### Collection Intializer Test
+
+This test passes 50 key value pairs dictionary to a test function. This function is called 10 million times to get the average speed over 10 tests.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10 million;" />
+</details>
+
+#### Collection Intializer Test Code
+
+```cs
+TestMethod(new Dictionary<string, string>()
+        {
+{"^mwi{c$wS_1XhcIMCDTTjgcz.TQ5mrB8U96GfIc6LH6NHD#02)", "d[,3GS;&b{.VGVM?Je+y[%d2-^}g?{w9CpuYL?$j76jmE:i'8k"},
+{"1<={{SoG8kX_d;wroOD:S%j#6:CL,:Pzj&%({#uy7LA'ac4G.r", "y6j['^&2UE]g4lNkd$7Z*M*%.?+mX1S(zTK><ZV:&9Tzj1$47_"},
+{"i=QIez<x7J{%VQ$CNx^08hy^e]c'H9BV@2)E)dc7#j^r$ITE+Y", "1xiN@AJM=[G]VIsbF^F+.b*LhKKs6N-,>=)::IO,cMpNsH'K#C"},
+{"O4,SEkg'7{5PrLNb#p-JzN0$%0jnYgIsFrfTS^h6NMi.L[L1BP", "W%d]B8s=yvdd.}j863[IbKYSlJ03T*lf%(Ff$r50Si,+ywKkU#"},
+{"_#(=cY44dl=fZVc*F'$mx80C,i$)#Ng3Ta?5uN$@wM#;,LD+)_", "5#2)eS<j7tZ}u]DIqGXS<RI_YB!m5jK!<uTV934;Z?IlM+]<(e"},
+{"82=(Nuu}mv>y$(;k]LYE*x(10!X2sJ$F.h=k)q+:t2X0<9ivgk", "S@27<@.3}H6DO7ckZ?<OsWk5}pQr@LaM0>pD4+1(-a8YlK]RfK"},
+{"alF?b1KR(h66Ayx.9T;EO&O<^h9isgl51=Lt4)*_Nzb@,OA,Dn", "<Wa>Wk5,4KY8%7;F6R++C47l]wSs:<L]E^3Kd{[R_,U7<_&a5A"},
+//...more entries
+});
+```
+
+
+###### Code Output
+
+```
+Test 1:Function Calls:10000000, In 0m 12s 204ms
+Test 2:Function Calls:10000000, In 0m 12s 353ms
+Test 3:Function Calls:10000000, In 0m 12s 33ms
+Test 4:Function Calls:10000000, In 0m 12s 194ms
+Test 5:Function Calls:10000000, In 0m 12s 118ms
+Test 6:Function Calls:10000000, In 0m 11s 958ms
+Test 7:Function Calls:10000000, In 0m 12s 42ms
+Test 8:Function Calls:10000000, In 0m 11s 890ms
+Test 9:Function Calls:10000000, In 0m 12s 4ms
+Test 10:Function Calls:10000000, In 0m 12s 66ms
+Collection Initlizer Average Speed:12087ms, In 10 Tests
+```
+
+This is the baseline test of about 12 seconds. I will investigate how the other intializer perform. 
+
+<details>
+<summary>Full Collection Intializer Test Code</summary>
+
+```cs
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(new Dictionary<string, string>()
+        {
+{"^mwi{c$wS_1XhcIMCDTTjgcz.TQ5mrB8U96GfIc6LH6NHD#02)", "d[,3GS;&b{.VGVM?Je+y[%d2-^}g?{w9CpuYL?$j76jmE:i'8k"},
+{"1<={{SoG8kX_d;wroOD:S%j#6:CL,:Pzj&%({#uy7LA'ac4G.r", "y6j['^&2UE]g4lNkd$7Z*M*%.?+mX1S(zTK><ZV:&9Tzj1$47_"},
+{"i=QIez<x7J{%VQ$CNx^08hy^e]c'H9BV@2)E)dc7#j^r$ITE+Y", "1xiN@AJM=[G]VIsbF^F+.b*LhKKs6N-,>=)::IO,cMpNsH'K#C"},
+{"O4,SEkg'7{5PrLNb#p-JzN0$%0jnYgIsFrfTS^h6NMi.L[L1BP", "W%d]B8s=yvdd.}j863[IbKYSlJ03T*lf%(Ff$r50Si,+ywKkU#"},
+{"_#(=cY44dl=fZVc*F'$mx80C,i$)#Ng3Ta?5uN$@wM#;,LD+)_", "5#2)eS<j7tZ}u]DIqGXS<RI_YB!m5jK!<uTV934;Z?IlM+]<(e"},
+{"82=(Nuu}mv>y$(;k]LYE*x(10!X2sJ$F.h=k)q+:t2X0<9ivgk", "S@27<@.3}H6DO7ckZ?<OsWk5}pQr@LaM0>pD4+1(-a8YlK]RfK"},
+{"alF?b1KR(h66Ayx.9T;EO&O<^h9isgl51=Lt4)*_Nzb@,OA,Dn", "<Wa>Wk5,4KY8%7;F6R++C47l]wSs:<L]E^3Kd{[R_,U7<_&a5A"},
+{"q%JK{Zq+m%9s%+-!^4m!y?*>p.gEOdL>cNNeYqDz(-O4QDN)<N", "GrWlFqA$1#CoGif<;&$q6Ie;[aNuLL^*Cm*>E>0kRhZ>,GD^a?"},
+{"73da,<GdSKmD')8@=^}&%Sd,VwVyX-AXo-HeEIJPK@nceV!.0j", "-@!>_[!IZ'w%O)jU;P}dzGmID3i[638p:>:kvGqf%&4Cuup>w="},
+{"!x{PgAt8spm[xphH{4PF(n[e#V{&f7>;+pRkts(1GVXRz>,txb", "tD{3>:NF5Ka{mYtKd^eFd<XRclC*.7uXwabofyl%5#BAOs]i0)"},
+{"U>0$WA2KdlbdU?_CeRn]Es}_HtF{C;-z>bg;yl,p(ZQVK@Lsd.", "N)GP2E}x6rww5M54j8EYtczi,.oqH=y()5_c?8*v'fP'=<Y0;w"},
+{"d{LB-Gj;FFwL!:wM;O6e8eEmyvj6pDB17=V,4!C0o}?rcJJ>*=", "fCRe0LhH@0KKPniDF!3$=&<lWrIRR0$g4i:xL>?C}sYwaO#.!1"},
+{";$'dzFgw#zaIl&P%W}<a1K&?uF(_ly+#m=9PW:j6?S2$WzKOC[", "=tRkpNPP1g,muw#>P-3=e)X#d!W,x$t!yH^,MTfiXd71<'&P)c"},
+{"KwpK9g(g?YmXGIRZ+KIj+'[c]N;Bk+n;tYkltIc3YVbKyy2AVK", "OV3&We2Q?$159Q>5aX$H2r^gp{[i#ebH:,9QU=],Kwv<x+B:@,"},
+{"zb0O_@D[tuzc]q9Li9u@UuhC+[w+vU0:(IPNF9Ng)FV1tf5kd6", "<_3e}r3K>C6khwvW;DS6&J%#@Q'r,ytaDBC{y%gk9ePPH9?B}h"},
+{"$L-pRq<a$j?P)s_eJat[{CQ,oxS:^<*8U4_8noNWMPLWAJmU#:", "U@[2SWSK@w0>(a:(*+3j8;?jam5qhHztkCE:xNOr6}_ApI%SvW"},
+{"yMu)bW4$,%k6E#geI0NjO)c{m61;$neqs2_9$;<VUYu!]Zr8>4", "De{r5se8V:R^LKY4PC,70e3rXP0M@d39XF,TyrG<^-j0PBpf!&"},
+{"Bq9!)}%-h%WFh<k<HQIH:X-rv=s;EDJ,WOCAix{Sg@#?l<w0Yg", "cG(I>V{0;yr!,]kkIa@_;Pl*-8m5n=Z(+f$I'SOu:tH>1ky3hd"},
+{"T(EI&)sqbAJF_4Zi_eEPK=3:bH9XFMsSZ<!JYbc6:b.iuCB$-9", "1d*>=>bs(-e7A=SWbJn1UA9tOK?R6m^ikLkAtTeUHE0[_Z%6jR"},
+{"v>xPu+Mc&%dd<hpDnoU}f8CAC=CX[Ru>[}BO_q<xu:KB{gB.:a", "gM$EfdEVSK_Ielmi2sdc=;zuj?[BgtVO,6x(x[dTCy'iWT4VQS"},
+{"pIA5k}OMM&'y1X?1,up[jzmpRaTj%rsJP.';s(+&9D>M?,$4B=", "cCRM8,zL;<x2OFpgP-HNZFvH8grL^}1!fH}{v<Vc?)wBn&O%^'"},
+{"#B'LRp+CpwazcE3Ezk7GN4VBOGZ4oFV?VH*8^TCba4i7DAm'51", "H[s97$K7Q5Mw31'x:d*0>D!-n#Q(cJ(dA%c>({kGUKk[}9^Zq$"},
+{"q_Igf!AeCL.O5_xyz3ZjKV.OtXSvkr[VBTGu!(HDt!0&kEV'G4", "cp:=2uinVn]p6p6h}PFr@zojB:zziaD?2@0Fngd<]9OfNXP_'b"},
+{"st8'b='jY*BKcUi7[OSJ#1}FLPEmsXnm^E*2cxK1MlpQ4B7=5?", "2FAOp)jgw,nr{BqOMtzrd+#%<DCczlvILY(n;*ESrLn]J$i1i<"},
+{"v]Z.g9^8UFp:bUG;Rh5=2UUk{+GV[buN7!rnOHLzbJT;wraDP<", "n*hbL2U[D){7u{t>';}KmUubvDo4)L+jGhU'jP[<=]>t-(wd}m"},
+{"5u8j$2%Iz;?V87gKzfduoSAf>NByolTohUzcP0^U56d%t&1By}", "++6nll'HEKt&x;EF}1^)M.VtFgO;h_O&g[1zfGL*.rF,NC1+X>"},
+{"?rLQS<R'=@ec29q'w3l^uvv-H+Z+(2]i7rW-&v--}0m{)tWPF'", "<vLU;jPZ%$cE4tuZbLhSkEC+6}nqBs?1$Ze]'@gTwIpPF:UPW9"},
+{"p<hb)gN.?w}P1nQEP%67^d3O{&k$=qzYVRWMpPRwQ6GkC>fyWT", "I*KE?JRmFxe%s+w=}Xj_^%GADh@mvHE}P?&8X+>K=Mwar9z{4C"},
+{"LfV,%l=i<z5>T4X4o4rL8C9GJ^II&})ea(mdvVcv$KbNgPK*!g", "7dsj;=es>L65#UnxnOkr,IBwe0sw;{Uf=N_gMf@77xnN%6j-II"},
+{"3kC(g_&JDABQBMc#hCMqzL'=Oy-yqU$=GMO2j5fesC)>_[AY!v", "MC;.q2A{vxNlp:Mh@7Xhf&ef5o.d)iPvLBzXpf<CzmW@CoxUt?"},
+{"{Q07BE0eIP{'(Wy7+6{GW!_I+w(bf}hJ9h#ZA+Hcf4z,qUcoz$", "gKOoN@LGDHlQHiHR@CVYkI!d?nF>?x.JUf.xYJLqRdzp$J.l+1"},
+{"=ZnvxDEm{G9nkOHo#@Mb-V%icQ3tD_uPM{TgOyeP^f#S2u&p1a", "P=;$n)tA?Tuo.?y}M&LvHk+<;E.4j:ZW'X<bkoJ[:<kJqYGvl8"},
+{"[x.(6d}?M{mD5mPNuCZI7TDnZO{fmj99':cd>CQ3T4RV_SL'-j", "KCPCv^Jae76$a{1hgVf$Y^b(See'm=[D!(pX5[ZZTUq<V_NBeb"},
+{"!Ao6jp(%$cG.zx&8:)p@{O+WxB=[h6E*i:bWsOQKaM0uY]i{rn", "@aMWX*5%r[&;Y0vx!Rw{aK+p$HnoHammU'6-'$F4[#x4E%*9XS"},
+{"hm7z61B0'[ygwbl0;RS@=aNN1T#QKyYo1mw,Ch:p=&RgnQ2f9e", "QW#T1x>.uk>&qJi^!nT9OL;c,[.T)y!<HsMkn^LB{82_Zx_VFv"},
+{"x-vy}OM4[$$cM8hmiIhjSLf^Nhral;,2L6m6*?DO#F!QwN^Z-3", "l6k,5VDgo0q-1umr#&]+uFD0t&75*MEDL{.1}yS.[s;BaEX8i$"},
+{"m%b1KXfWMqh6{X!N;*c,T@Fc%.roF9XE*@C760j3]XkzYB.8f-", "[(aEzDf0'9zEWeUC2w@2){8zx<uU<1o*n+t6tAg9uT;Cy?p.<,"},
+{"Nia5K.iCp;R3;M_'Tmi]7EHR'0):CH0.h)Q-cQc@0CeFjfDwgP", "Bb(5YaqG_^{8ha09SNt$^8HM2]hJxT!qPCrR'}l*V@<c]C4cs:"},
+{"b#}-Gdtl@t=HJLIMTtEVC8j_s<a98A4^vPP<DxY)jhlRl'-t(X", "wOi.q1+XWJFNNERE26KKA3''3%LDNC]uJq.#BPntp0N]LorFx$"},
+{"}nZ-Q)iCCcPKyD?{h[fh{brT$evc<nP4#bn5oyFW=l}sVpd)A3", "I};}'=r;b;Ezn@7Mk_wE^vbmEg$sxz.tR1D.^RQ#@u>&61W8[N"},
+{"b?;u]sr*7{DlgskM'ZfI,!QNfnj,#'*n+,iaQ<gg2Gum:C'&Vt", "vzhkIj(c2wiNbJt5GS$^f*!)Ht{&+RCE]1'.Z1?)e%U5f%kh#@"},
+{"e.sN#7XCKx*U)vh:VW'^@D'fc,XskH-4&-8z5f-V&b:8>zCi@8", "y!9*#)l?VhnN_H.,Zu,8c.;3o{ABP*4ezDt#0U-[vRs0kE#ONW"},
+{"l>wF#FqVvh#e1r;J(I<'9@XM[nesE]{Qw^!>;G>_hlG]JN'2p}", "3v+tsIZ{p]@V%mO4k>!m5tAyOq+(XVn^s(kC]j63dwWCR:3-%,"},
+{"kjTq{%J9H2fWz2r_}*xK+H=@nKAbPyt4Qd2{r!^a[t&@X5Q_O{", ">bG2AVisGknODJW!*)5lo,UG+*KdP8PQI*z,:4iW}J.1Ejmbx9"},
+{"6'+Rhjoi+Sf{EU:!R,Ygjad'sNu:n?fy8yD!GNZ+I4xJy<vl7<", "VU1[*ACD+:fD0oQ2H5uav9NP{{R'ojqZCtl5HD18zHWQbVdMPB"},
+{"Sw'WF>(Cv%1q_5@EIC;)#^-1g>T>AbQ29J-eoTsPoHSGKs'm#Z", "v2dBoC51<aQw&9K0s2_ZE9xdtd+0GhTXlksmD!0FZj1H:Y^UO)"},
+{"+p-]Z@-z=jNeuzXVea!6[]8;KzOmp1;gGj:+50Wi<X'P_CY5a0", "JoWGYOX09U2@;RH!zV+vF#Tg'L,xZ5L<Z%iT59y45cA7X]2+}'"},
+{"pmq+1K5=A>#58!$hgAGCZH&g15yV8F22u.O(QTiJ9k0gIIrNgT", "3WF#hLGk2V@}V77LlM0fy7vo!Tujt9RK&&O%DL,i9$JIlSJ3Y&"},
+{"06@C2Jc:YBAN)gVVLN-}PH}%b)29e4!1t['^5:,3!Ev_7CjBfe", "]ORr2%CpVXz4bU*Q5%aRB?PgTR486jR5@'kw)F;crsn'gPQ7I,"},
+{"1ZMXpF>R8I>{j'0]&60UO)KX-+FZiGRa:8j&v#ZIqac$rB41Q5", "+4HA4+aBgG}+=]e@<2F8DzZZi{ZPS1?}9[m+D%Z%2+W=.ZDIRQ"}
+        });
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+```
+</details>
+
+
+### Index Intializer
+
+[Index intializer was introduced in C# 6.0](https://learn.microsoft.com/en-us/xamarin/cross-platform/platform/csharp-six#index-initializers) The syntax is easier to read than the curly baced version. 
+
+#### Index Intializer Example Code
+
+This example, showst the index initializer sytnax in the function. It follows closer in how it's dictionary indexer is used outside of initialization. 
+
+```cs
+PrintValues(new Dictionary<string, int>
+{
+    ["Elephant"] = 70,
+    ["Giant tortoise"] = 150,
+    ["Bowhead whale"] = 200,
+    ["Naked mole-rat"] = 30,
+    ["Blue whale"] = 100,
+    ["Human"] = 120
+});//create dictionary by Index intializer
+
+void PrintValues(Dictionary<string, int> dictionary)
+{
+    int count = 1;
+    foreach (KeyValuePair<string, int> entry in dictionary)//loop through dictionary 
+    {
+        Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+    }
+}
+```
+
+###### Code Output
+```
+1. key:Elephant, value:70
+2. key:Giant tortoise, value:150
+3. key:Bowhead whale, value:200
+4. key:Naked mole-rat, value:30
+5. key:Blue whale, value:100
+6. key:Human, value:120
+```
+
+#### Index Intializer Speed Test
+
+This the same test as before execpt the syntax is changed for the index initalizer. Below are the test parameters.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10 million;" />
+</details>
+
+#### Index Intializer Speed Test Code
+
+```cs
+        TestMethod(new Dictionary<string, string>()
+        {
+            ["n0WY!<^[uOBgv90IkKr.32k^766c8>JCV&h%Sd#<Dc5FLmDvs}"] = "]RLt+;DG[wNbFQcv;ID9PYW-tWF]Fxtkr%>UL-mxvUIgL{?;AN",
+            ["<;pl)K1-?K3A(5H8cjGTFGz%1>P:%sanS56M!W0!,(vof[?OdH"] = "(24wMS$On[Ext0]QQaL=m&Fg16^!wiut[{Db-*&7ZCo,*ERMf}",
+            ["%oHM%?nIdZQAjKgQJEUszymyFMm'9N)29;n(=pVo=>r#)(otdo"] = "?^,Je<v1;eXV-baosiy04YN=vr41*akMnIEb,PHS}kfA4*BQ[G",
+            [":%l;wG!x)=x=<cH)XkTooD%Jlct]R,YnOD<+o>%V*xGttH-3Dw"] = "kdj8^*H;xpCI[P:Yh%ndZoQhCmTOaxPnGtG)%w9Nt5umMei2+l",
+            ["FNwO!wLG:A{CFL>{[o={kI'Aj,H'P[q)}q>bpR4E,K1kaUE}sG"] = "1'4v,E;=(Dho5ufs0$OxBVabX%Q_6)ULOF<>G!mkec[rv;cC<=",
+            ["2B[zj:T%AuveNj>fz;fit6ID_6dHj<gs7:0_8F#,_oA&14i3Iz"] = "8!ZL-uJHNY?5&@iNy8+R{ppD7<uFlaCjSwbRzn$CtW@Ux;>aGD",
+            ["*zWMqT<=+dB[ZbmX}YJyrV.V'wx*=pgtaiD@@ij2wo*_QpGtBw"] = "#F#{w^T:!&fTtPV+=mj[s^K_fn8u]yAK}^XL.s9NwTGm#=[!Hn",
+            //... more entries
+        });
+```
+
+###### Code Output
+```
+Test 1:Function Calls:10000000, In 0m 12s 225ms
+Test 2:Function Calls:10000000, In 0m 11s 968ms
+Test 3:Function Calls:10000000, In 0m 11s 694ms
+Test 4:Function Calls:10000000, In 0m 11s 645ms
+Test 5:Function Calls:10000000, In 0m 11s 711ms
+Test 6:Function Calls:10000000, In 0m 11s 927ms
+Test 7:Function Calls:10000000, In 0m 11s 788ms
+Test 8:Function Calls:10000000, In 0m 11s 678ms
+Test 9:Function Calls:10000000, In 0m 11s 650ms
+Test 10:Function Calls:10000000, In 0m 11s 947ms
+Index Initlizer Average Speed:11824ms, In 10 Tests
+```
+
+We see a slight improvement in performance even though it small.
+
+<details>
+<summary>Full Index Intializer Speed Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10000000;//Number of function calls made per test
+string testName = "Index Initlizer";//Test name to print to average
+List<string> keysList = new List<string>();
+Dictionary<string, string> TestMethod(Dictionary<string, string> dictionary)
+{
+    return dictionary;
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(new Dictionary<string, string>()
+        {
+            ["n0WY!<^[uOBgv90IkKr.32k^766c8>JCV&h%Sd#<Dc5FLmDvs}"] = "]RLt+;DG[wNbFQcv;ID9PYW-tWF]Fxtkr%>UL-mxvUIgL{?;AN",
+            ["<;pl)K1-?K3A(5H8cjGTFGz%1>P:%sanS56M!W0!,(vof[?OdH"] = "(24wMS$On[Ext0]QQaL=m&Fg16^!wiut[{Db-*&7ZCo,*ERMf}",
+            ["%oHM%?nIdZQAjKgQJEUszymyFMm'9N)29;n(=pVo=>r#)(otdo"] = "?^,Je<v1;eXV-baosiy04YN=vr41*akMnIEb,PHS}kfA4*BQ[G",
+            [":%l;wG!x)=x=<cH)XkTooD%Jlct]R,YnOD<+o>%V*xGttH-3Dw"] = "kdj8^*H;xpCI[P:Yh%ndZoQhCmTOaxPnGtG)%w9Nt5umMei2+l",
+            ["FNwO!wLG:A{CFL>{[o={kI'Aj,H'P[q)}q>bpR4E,K1kaUE}sG"] = "1'4v,E;=(Dho5ufs0$OxBVabX%Q_6)ULOF<>G!mkec[rv;cC<=",
+            ["2B[zj:T%AuveNj>fz;fit6ID_6dHj<gs7:0_8F#,_oA&14i3Iz"] = "8!ZL-uJHNY?5&@iNy8+R{ppD7<uFlaCjSwbRzn$CtW@Ux;>aGD",
+            ["*zWMqT<=+dB[ZbmX}YJyrV.V'wx*=pgtaiD@@ij2wo*_QpGtBw"] = "#F#{w^T:!&fTtPV+=mj[s^K_fn8u]yAK}^XL.s9NwTGm#=[!Hn",
+            [")cX6R=1SsT#E%{Njwyrj_a7tW&'K9r>:>D;*v=#*oKG>]XsQ=*"] = "vKM*!*<@^K1t%X1Z(qhLt56*274<VIK{?=3b6vyxc$azA8SVZ2",
+            ["h_#dTCr0K4l1@Z+UV'O?i{>w2IjYt%fz3PtE,ZEyl,h?r;QH+L"] = "<xcGEG[m!bo:mEKuBY+B)x[}+AwLK'_m'3JzPC7{%v^<^^c:vT",
+            ["_7I<j[f_%L55Y<ybeCJ.(o>v,S%a$t*s8jOcJ42iqvZ2%Dqbb5"] = "l(m68eaiI0pa94#<<A%jeM,e^G'zU2;!P;[.S>Hqh}c[NTvhUW",
+            ["3n6px:rZt20nJ2ZIx8$o*xIka;UoD&'5[<t'y'0Fs^F#PSt&Ri"] = ">,Wm}Ep'sK9:+F--eN?7ZO4S3h0#.A#O72%%tdA?h23qxU'g5F",
+            ["wfwwwQm(y2%D&*<><CDTg%Ba,=8E*rPnDp&QDqD_4S_uoO4pu<"] = "dHm]JnznHT?8K)7=&zY+<c7-V)*#ASvl}bQLc)!vCd,N-Xt3Do",
+            ["&1oFFBYbW]k)y3qTs_J*o<$gv)Uq-e=mmwio&2CJG&JQ=l_(L#"] = "&)oZ@qzT{?WeS(lOXO^og>wEGEDvltM:RA?p@zy{HqN>spGR{[",
+            ["XL[FDaCvGeDo7)lx2qeuVt+FyK}Ky?EOv&%anFAG;<fZTJ8%&'"] = "z@.eF<pE%vnUmdF.S&([*i<oA%4N?MPlos-q??,^?0#[mlezr*",
+            ["X45QcJTni_^z^JW<M?,tRh4my9Oe[H3uoYTq$SCs)g'OW$35+="] = "r8C$CV,+]A}.V0&x%Eu$yEc)(.IKzS]t4H&GA'cQIJ?-*F&W;Y",
+            ["m$8EixdP82q$NyS;Fuj>}O2^1&f*%MsHulDKBAkSJ{H!9rGKZ_"] = "Pa,'Q)fdnm_9Lb.3KTm9LZl-$).(JYvt6zRR1:7G!6QEp]V_;S",
+            ["Ui3Hv%L;#@o_ye!)_rKn@>DfT>4w({#ytEfj+4{,Xg}'MuOM-y"] = "6A9vaY6I?Q#{0^I?_tOa@8-%pPzjxUsx(>YlYD+h}nskloY#'k",
+            ["%aTS{sg{@fr6'uT*_}5=;FWFA9u%On-Rll,S?:a<(@fpL7Cl0S"] = "*]tl)_m3^dTodr!&k5u;Y&pHC]Ok(yPp3#S[vhK]#Epl)e1@Th",
+            ["rB<i3g5IOxm3*QB?0#suQb4ozw>'0?R#eOC_zE&x$w?pwPV5;x"] = "twLWAk{}d@]fj.P>RsFpP*y84>#C'z1WEtGSMveiv&G)=_dsr&",
+            ["Q)a*%xfvR8J+%h#5EA<%mz^mA+6'=>;Z^g28{tpS6(Fn,[QQYZ"] = "FT{=Cvlh}imWs;w*@5y#;KiI$HUrbYITx>:-[KT-C#!G^CjA_x",
+            ["G8g'd<&#<PORrV]^_kVdj@TB*t>[JT:JcDm_?:1QZoX6nkl)rt"] = "HO]tDLj<a1zfdmQ)CxsnGS*-Ir;%Um!Lq]+&S:F9id'bTf#sbR",
+            ["^ajtgM.+lRtg??)^^D>xQR*r&lptT0%W,CYO+P4v,]+Lerwd5e"] = "vOJR{gdj!gZ:Oe!&07OrOV$yUo2Hy(huC]TQlGw80._5p_xs?-",
+            ["H0T83fNu6@4$pisrS*Rn$pOKy^f#7_x2m#r&p7^^b{^tchm55<"] = "3Hy+sCvh)3jt78D4+G.fS$5AyVU4,qC5z*bq-W%lvhZLtk7NUe",
+            ["J+$s;4$TeQ*cI%:nOmKM2!=dEudZZ^tNr(SzlLbr?ha3}:r59_"] = "V]HHP6v$0,]U1KLt&pgJc'D7q6&3J+p>iry..==O0.J*hHPE0:",
+            ["kS%Gjj*x$,t$vXQA[-e}>}PyXZ+@FyA@S_G?V1NGh+9DaSx2Pw"] = "xGO07*@ud&*oH7EZ:7M_5!;8<#b@!o-&RI;!TrX'$&WT-V4vlq",
+            ["=C.0AB9*8eCMzT_3i*()r_,P(>?pcs%Ar]Mb;,{NR.RXvD%Qce"] = "#!o,ZE6;O$i&eL29JD#0-[z:6c19W6cb.lF<&@v$oTmB_cvHC#",
+            ["M7K=^Br;wK=?,z@eO<0C).dZ8Mo9h1MO<N@H6L.B<pHY=&8%hQ"] = "({&_IeyM^hMm{As'z.$&BDfR7WF,@M6>qOOl{56D[zHo!:}_gk",
+            [".{%T(+#q4kBkc!z$vCk<z.v-M+>JDcx,kk'vR'z(Jz+b$q&x@^"] = "x1IAR;NqUG_M'>r(qDj*S$<EP]13sY}O>iEt'wK@Hv-E.(}tBU",
+            ["[o0URD[S-@8(M'!mw;h8@{w6dr1vptj#QG%r0pW,y]Uu>1s3Bh"] = "lfp>$<M4-n5xk>Gy&p9$134pK:8AxeYz@1j-Wh]$hrK44(es[L",
+            ["]c0?z<&zwZ>a>ECgXBn[Q!}Yhw[;5R*Ta&=^Hqc3b+C-[0M3[d"] = ">}FTpcM<z{;^kZf)+iVn@67z;}?%*yZ]Nawl0(S({5Nx2r'Fit",
+            ["f$wN*[ZqR2<n^fMX)9YwnZt{.2pSEJEKTRp;:jm*w@1I-b^'R*"] = "czkKRTlq?nX4B3Mh^H$RbVb2WJg8a_jz]WA+9Dus2lGTxE(']?",
+            ["B.$&W7{5%yoxq1ttmdICoELd3s'?7Ph?.3arw<kW1Aixw.3SzE"] = "P+z,Lmk}i<LV3t,ZpjD%a]KM@RM<S%d_h+g>@,wT@1G-3CYp8$",
+            ["r%Mv4q3,dU!l]0U#([;L}H7%L6rkZPheeB?SbCy&oaFMSPt^{<"] = "?g?*L2;lUIT;HSq,XQo<>Sm_'[gSCV;Xi-}XQ.nS*#]Jz*ePAy",
+            ["Z%qX*QK9OWCd8T=&2Yk6f!fDEdU0}0wPyMp7bztqWAD!5p)lBb"] = "WBX[J0hLURq1VCru_p6N]{3)y(*?=4_pHT;j)_sqVZ0A][:%u}",
+            ["nYGLEp5(%>jr;DB[fiYh5S{tHqShy$!p9=Qymav4pHD]fx'Y98"] = "6$GJIOc740%J?r.^H%P%g;C7,3QM.?Yn&K5kF)rV=3=0dOVDM^",
+            ["EYR}]=s&MO:Gf2k%[b}azv;zmIV6Ti$FJS(?SWNe1ps(@o'l{t"] = "D)d(XQ;r:cE3zB,LgFD]Xzh#wBj^HY*_!M9N7z?1sPu+[PIuq4",
+            ["N#kAk:Ia89VlMF!xk9_u6'sgI1FWA?pNadEWB7;$4(TLmQOda1"] = "r#1ZxbrsB_'GwB{CtEv8%?X1@#NJI&Y90-a]>?QSzNVa5IXK!M",
+            [":(H)IX3^6[*Wo]nA{OV-rD?#ED.[#g@i2K,oKmhX4@[?[,p<97"] = "5vpu'rZ$w$2$smXKiPo=M@ND=$bkO&tS?C'$C<DIh*a%%D_JP$",
+            ["5qc]a%yCdQ*cDyfG%EVl1aVtc=Q*v?#mKLv+rJ169R,t]Dg08S"] = "'GY6,+R2O_8$G6Yc,@:%eCcf!C{KpmjSFsWBcfVXcCx-y.LGUO",
+            ["N^X>{ZPfSH66H?T'lPBzmH_vH{(chx(6]PS?=J6<gN44bF<To^"] = "{TpPm%KE0ioX[-(_uU>sBAco^WF_nRRCqrX:>M6!Mp-FpfWjhC",
+            ["qn0*%i[hr$,4YLsjDF>X*=].,@L.VqpfS7Fm:oR]jdz#JA>f,!"] = "4m^#U_Q})bV+=BGb[O0r?jklPtmPrt!mgYp]:U!M,SP9*@$i.?",
+            ["=FuN&FFNuQVzEbnPOjIS4It.z9TF'.]6Dh%hm>(:imMQX&x(k0"] = "<RNF4;kU3jP6iI_24!vFYaHPCa7]#{weZ(13w'lIrR?(:7s10i",
+            ["AJqs5QDj1<%$cLD@GniaZmK3GTUqwc5T[Q%g8qMI-bfGo[*Q7_"] = "B_36}l{5q{2deIB*$Wq$l+;g^chpaxSi)vT,+.4V4ZVK,5?tQV",
+            [":gGH1M=m*W)Yrb4hY)IjoYz.Ai}$!QD>WO!CzXD1#@(QoZ(4zW"] = "N%5AoGeHcR6A^P.{rKNssdBG}KuyK#8_-+Hzy>h&gTU,:DYK*n",
+            ["*{RoE6;zW:?5T=&.b7S8q1npwMwWDxT&qNODzF?)>hzz.PUv6v"] = "kmy:-Hg[*e!9L}zDUKEVplVzO*#0CLh?6tRWHt31Joe$(t,KQp",
+            ["?;(zc!2F[oT7Ror.%o*E0Gws5#btNC;T;te?n$?K&9O9HK5I_5"] = "YTFF0}#9*WNli:NvkXJ;N8}3F0TiBk=:ej3y4'Og5O'*sC@;vs",
+            ["w,?mh9O?C,Vcc.fFoV3tZg.T2ajnQ(qd]1d$.SWn??2so;C!ew"] = "n0j6JJdJByodCVaK-4VJ3Fln,z$Z}xnMBL.RUvLQp)WR9%oj_'",
+            ["L2qKFwZrRo70c3!'[?}-&L]N^Ql+LvZO2GK!AXd3N{l#Xgp'WR"] = "?d>k6ou_{D&ekkSw(!08W]_V]wRK(v]<xxa+XJ%;fZz_$(O,?P",
+            ["V7$>N>*2cQ8<7qMVtQO)K,g#lGD2DySWYoTBgC_T*cB+BPOeXL"] = "l;:5cx%BN)wuTR;#E@1G27lCh]bOjtuEurS2{='uwCSc}!n!h$",
+            ["3+6MPBHE@u]F=z?IfB#m$oIk$L_Ef%-B}Ckb5.Q:4VK7_1H'e^"] = "j20E(Q;sR0N2M'm:VjVxwNt8iGxi)Sgqh@=c&94'X'KS@Z?VuP"
+        });
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+</details>
+
+
+
+This works as well for passing a new dictionary into the function as gives us the desired output.
+
+### New Operator
+
+The new operator lets the compiles guess at the type. [This is new in C# 9.0.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator) In this case, if we use the new operator and the collectoin intializer syntax, then the compiler has enough information to infer the type.
+
+#### New Operator Example Code
+
+The new operator can be configured using the collection initializer and the index initializer syntax. Below are both examples.
+
+```cs
+PrintValues(new() 
+{
+            {"The Shawshank Redemption", 1994},
+            {"The Godfather", 1972},
+            {"The Dark Knight", 2008},
+            {"The Lord of the Rings: The Fellowship of the Ring", 2001},
+            {"The Matrix", 1999},
+            {"Pulp Fiction", 1994},
+            {"Forrest Gump", 1994},
+            {"Star Wars: Episode IV - A New Hope", 1977},
+            {"Inception", 2010},
+            {"The Silence of the Lambs", 1991}
+});//create dictionary by New Operator with Collection Initializer
+
+PrintValues(new()
+{
+    ["The Godfather: Part II"] = 1974,
+    ["Star Wars: Episode IV - A New Hope"] = 1977,
+    ["The Matrix"] = 1999,
+    ["The Silence of the Lambs"] = 1991,
+    ["Jurassic Park"] = 1993,
+    ["The Terminator"] = 1984,
+    ["The Lion King"] = 1994,
+    ["E.T. the Extra-Terrestrial"] = 1982,
+    ["Jaws"] = 1975,
+    ["Blade Runner"] = 1982
+});//create dictionary by New Operator with Index Initializer
+
+void PrintValues(Dictionary<string, int> dictionary)
+{
+    int count = 1;
+    foreach (KeyValuePair<string, int> entry in dictionary)//loop through dictionary 
+    {
+        Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+    }
+}
+```
+
+###### Code Output
+```
+1. key:The Shawshank Redemption, value:1994
+2. key:The Godfather, value:1972
+3. key:The Dark Knight, value:2008
+4. key:The Lord of the Rings: The Fellowship of the Ring, value:2001
+5. key:The Matrix, value:1999
+6. key:Pulp Fiction, value:1994
+7. key:Forrest Gump, value:1994
+8. key:Star Wars: Episode IV - A New Hope, value:1977
+9. key:Inception, value:2010
+10. key:The Silence of the Lambs, value:1991
+
+1. key:The Godfather: Part II, value:1974
+2. key:Star Wars: Episode IV - A New Hope, value:1977
+3. key:The Matrix, value:1999
+4. key:The Silence of the Lambs, value:1991
+5. key:Jurassic Park, value:1993
+6. key:The Terminator, value:1984
+7. key:The Lion King, value:1994
+8. key:E.T. the Extra-Terrestrial, value:1982
+9. key:Jaws, value:1975
+10. key:Blade Runner, value:1982
+```
+
+#### New Operator With Collection Intializer Speed Test
+
+The same test as before. Below are the test parameters.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10 million;" />
+</details>
+
+#### New Operator With Collection Intializer Speed Test Code
+
+```cs
+TestMethod(new()
+{
+{ "=ROb-_Dm;*Kwl(z[<=R1Fn'<p15F9{xxh?o&]6U[IZ0862G:1W", "k4h:eMLU7zRIQm1r$=4,]H=#a>vCot*L0^PMzN4)^9'trt6>z8"},
+{ "H$s<eeuFCOL?Cj}QXIl$IONM9>R}CND:5h8AiwX,!=9y>gHKV&", "s:#19A7F{p@F=0@I*oGPWw$pIPjeRj,p8-:^6D(a6rh:f>0>,-"},
+{ "cYQs(tPW1!jFvBBxP.{]Xij^yxmj@_Jn8L=GS<;.p#(qkBbk*y", ";C;QC%3N2Fg#l0od2NEEX)1E@.VgL21D)T*GOvkjV&bu:V)!7X"},
+{ "pj$Fz:z95yB''EQvbs00e?GqSx5mma$lHT5G$*R45]8+ym2&]$", "ZXm8Wwm9X]#B#E3%Q>(!Fl^tcnn=ztClMb^9>87H!zU6#,pOaA"},
+{ "y$g{ePM%0;4dd4.*x)F(*3hXMkQy4cGpU^6'PoBhV(Cef3BXhJ", "n(TKy_;aZ<4Ne^S?68;7U:FCJO9{M[5I>zn{2t+d1y>AzTK@Ke"},
+{ "h&?elScNgS}xAuwAJu!nu!!b--[0HOd+u%]X1ZsP1AVBv$U%+N", "D4Xr0).I=7UgPy4^}6G:9M#nslEi<AClP*D*T+KOCy]Gwa9,LF"},
+{ "5(MM?e3t>}*[uvX8yJZlw,ca2X4(2b[u0WTK^+wJ,G;SGu&5O0", "peKmWnB;CEMR;y>+!8C}n_,O;_I9N.FL*<V#mr[qw,n*{Ea6bE"},
+//...More entries
+});
+```
+
+###### Code Output
+```
+Test 1:Function Calls:10000000, In 0m 12s 296ms
+Test 2:Function Calls:10000000, In 0m 12s 49ms
+Test 3:Function Calls:10000000, In 0m 12s 291ms
+Test 4:Function Calls:10000000, In 0m 12s 193ms
+Test 5:Function Calls:10000000, In 0m 12s 278ms
+Test 6:Function Calls:10000000, In 0m 12s 627ms
+Test 7:Function Calls:10000000, In 0m 12s 739ms
+Test 8:Function Calls:10000000, In 0m 12s 533ms
+Test 9:Function Calls:10000000, In 0m 12s 357ms
+Test 10:Function Calls:10000000, In 0m 12s 171ms
+New Operator With Collection Intializer Average Speed:12354ms, In 10 Tests
+```
+
+This speed is just over 12 seconds and is similar to Collection Intializer test speed. 
+
+<details>
+<summary>Full New Operator With Collection Intializer Speed Test</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10000000;//Number of function calls made per test
+string testName = "New Operator With Collection Intializer";//Test name to print to average
+List<string> keysList = new List<string>();
+Dictionary<string, string> TestMethod(Dictionary<string, string> dictionary)
+{
+    return dictionary;
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(new()
+        {
+{ "=ROb-_Dm;*Kwl(z[<=R1Fn'<p15F9{xxh?o&]6U[IZ0862G:1W", "k4h:eMLU7zRIQm1r$=4,]H=#a>vCot*L0^PMzN4)^9'trt6>z8"},
+{ "H$s<eeuFCOL?Cj}QXIl$IONM9>R}CND:5h8AiwX,!=9y>gHKV&", "s:#19A7F{p@F=0@I*oGPWw$pIPjeRj,p8-:^6D(a6rh:f>0>,-"},
+{ "cYQs(tPW1!jFvBBxP.{]Xij^yxmj@_Jn8L=GS<;.p#(qkBbk*y", ";C;QC%3N2Fg#l0od2NEEX)1E@.VgL21D)T*GOvkjV&bu:V)!7X"},
+{ "pj$Fz:z95yB''EQvbs00e?GqSx5mma$lHT5G$*R45]8+ym2&]$", "ZXm8Wwm9X]#B#E3%Q>(!Fl^tcnn=ztClMb^9>87H!zU6#,pOaA"},
+{ "y$g{ePM%0;4dd4.*x)F(*3hXMkQy4cGpU^6'PoBhV(Cef3BXhJ", "n(TKy_;aZ<4Ne^S?68;7U:FCJO9{M[5I>zn{2t+d1y>AzTK@Ke"},
+{ "h&?elScNgS}xAuwAJu!nu!!b--[0HOd+u%]X1ZsP1AVBv$U%+N", "D4Xr0).I=7UgPy4^}6G:9M#nslEi<AClP*D*T+KOCy]Gwa9,LF"},
+{ "5(MM?e3t>}*[uvX8yJZlw,ca2X4(2b[u0WTK^+wJ,G;SGu&5O0", "peKmWnB;CEMR;y>+!8C}n_,O;_I9N.FL*<V#mr[qw,n*{Ea6bE"},
+{ "Q7!(PPn$EgUcVlkhlLra>K^=a[EF>M8LyTbhhE=ySftgAO0<NC", "7x;0fsO,IT$)VyEohheAL1(s0+YqU&Qj:SUqlOp@cEe5JjLNGG"},
+{ "U>]8.JU)Bus3T@ZufAxS@7!zfTbOA${7MR6ssuQSg[F?^r,$5(", ")#%<]#<j00lQ$$*}Q6_#eOe%,=h;76vUM6ukFg8?6Zf'l%H@%:"},
+{ "%(B7ylj;vidp8mMCG7z'9Y$5UL8?nmYAu1F^yW!*X+.4(sWLoY", "91s+-#utiu@%s&eo);A#rqDxrB-WI2v}f')Oequ<bgA2!vOaM."},
+{ "iFKIG&jd4Sdq[Sb51(hnx({TpwL.n4PG=VzKfG:3)<g8a:7H$^", "52HDrL3.3cY?eY'YT$^?esF,fuX@i!C{&W_7*,2FIC:%gX,iES"},
+{ "?Y&WnDBP*q{+=S)zs^%t4P7u0-PLH;Ii)0Jl:UkOx)A)OF1^Zn", "88V[dLUe?5;7x<)'=Z%g6VIJRyagJjV^7>ab2NQRw.e3cj{UP9"},
+{ "U<rMyAN$7Kv)CLoA-pmmakaw9e%OSQ=7Jver'2W?;)Z5^bzthA", "tSRWdX;tn;pLhrnCqF<$:t=Z?gbLFONJyfGsbmbDb6j$eP[+G5"},
+{ "kw+(!>^i=)L8BW{vKyg9{f^n:}eM!04P,u-N.0.]kTbm&rtKxE", "ehiZw]UlZ&a@6Dbqz_MSC%Y=JNy[jW''k#lNw'oZV}jKk36TiV"},
+{ "I'4M4_6o27?_9}gPWR8=(B@[AA5}<wBC+A!l2W'vbGVS#!^{[s", "V1H6sr}JC0q!PAhfp%yxEFoH30XGSWSIv{wlchg3#Y7AJ&-@<h"},
+{ "j'FA-4K0O;LVae(^PS9XUnUZC^dU@dg%.BPgpp$B_>Vz'Py'71", "<=7OH*O>6oH<j8}RUdE*Qq-Qgmh{tXiEKJX]6z]vB?n%WR0asX"},
+{ "qXE#%op%NGW8Pum5!<LV.fJjAM[p^^w;6jwkb5L.<d0z=0GIHM", "!8bfzh!X+Rn,[1_mE0v%ieD4xG@a1_QD+SongwQF*W2i#]}xgD"},
+{ "&4%zT(Ry_As#1jC7H9=@qV[u'Sg-tS:L5!A-ezGyKywG+X+B%I", "JhaHU5{JO3w9D>&!MsxP(hJ?MXMsAf;vnUYZfg+FXMI;[wB._["},
+{ "A5tpuU=F4J{;Ehs,k[u#41bBhw(^XrG[>TTNS9eZMyJQc(Z(js", "m{176J^6$F{HP<[rFL[+R'Y({D9nkm0$)0{,hr$.^?}:Y{RWJ!"},
+{ "Dp+k4u#-#=,8JBSgC-ofmh=qtv}kgPy>%,v1BCIs,G%$>_yEn=", "OCB!arsi<Nu@EP;.[^[(Mo#$3o$F%c9Pnf!B$]!=^!A7fDTy*U"},
+{ "}ObFbxG2@'k4&{S)pq?4j6ihW}Er6xslSou_LtduMrZ0@[S)o#", "=Z_ZAxDp[<s#d^!b9fq,+Cn3^W7Yw9?@,C,'Pjcs&S,+_RbFnA"},
+{ "EzS?w%b$!1GBb;?!G22gG?3>f1}(7L:E0)iDhocUh(S$@PVI8P", "%'CY,TkAs9}]YiEvdpD_:eC$I'hdOX5K{49OIRBhLOL&.yOpXp"},
+{ "FMh80M]W1h]-,a2(z,8boIXGyx[p>2EGJh;Lfi5TJsi4Rb&DSX", "u}e9M>6fEKm'W8?<1E[pu&x(3Rgln:lx.t6T,!p}MLEDzm5khK"},
+{ "4+q%TXC&gsO=]drC%Bz[,WN{H9v,hohef!-Ci^z#7^v3$E-m:r", "{''&O3ss2oguUg*a<#H#e{=q>{fYf'O[HIMURspF#FU8W-aH<o"},
+{ "}Mqq=b#$ar*FpjxLF#K*N!LhFC$=aOFvo.yJ@-Cayhz{2a!$*j", "w#0QzF]gOs^=qy>'k}nd>HY;wEcCp+mVuB;jezSz_;r>F;UWIJ"},
+{ "t>g1>R]8No}y)FN'q,Ey!7Iz)nahpfnqstVYT[pQS8t7VT3:-j", "?9jv?uh{KnP)I&lw0+m'd2_?oZ<m3&PJsZX2fcGd8j,tk$[F$j"},
+{ "IY-kRqS>5*}k72!NZ#Hxl^$d8A^=BAX&TL1Ord!1Zpd?&@G[j7", "'2aoz<&Vj(*UF'a_w0MvDZ4FsqnB6x(^Q.Rb187jlKqA{Pb-Ko"},
+{ "AU-nd3yGn#v@HPOMfl6An>!@ivyvhP2m:KZlV!onn?vwvlnl,S", "C?#XlmOOINwW7-H(.$AdRkT!$%9X4cohbUeB}q):ElY>{oUE#N"},
+{ "T&_-^LHe4Zl!93.,AC+xt[^x2UXVRxr4ThG2t1R'%5dynJGTJ#", "SqV%GI:%Zut+w[(aBeXPOL=UXdK6jG*tL;d%i]lt$uz;.joAc*"},
+{ "M{041FZFwM<FEH%#eI(0=P&J@{3v,&.Fud)3jcAhm])PI)d-zh", "U5;[RfR7HmSz.VvJt#Z>RVDDu]Yzo0}dlIe'uGG'}.*#D4^GRr"},
+{ "[ScINOa<P&}Q6yJh*'J-wNY=kQD+!li]REdA-6xkl383R4EbQE", "r.(8QoYp!#*aL0rsfEJxu9Zcv1%:C?ch-3%ml&hAZh4I^e3CeB"},
+{ "u9N(.M<,A@EB4KovhJ#GRpY:)5v;}pR-D8&^Tgb=_dy!gHbRkp", "M:TZ8TOjgP^E(J9ih>_pNW*T^zzNlUL2voNC#7jGa:c>0$$UNK"},
+{ "e.!D-$=z{LMlWt':'+)hys[%L$DeVFO>z*r_usciE=Zo&*yQj-", "SR?9@nK7b!(iYMoD8}I.tIWc[&UK^nYjLPwBjQQR&>q7}-@AQK"},
+{ "'5:KCgl#;p40.MQFiT6p8Oi5xF$)skUN#}f-e7,-o&=#.0[p!5", ":&WDA6B$O#zNU*SOl24S6KvGOtCgGC2eUVH>*DF27z[mIrU@3V"},
+{ "ISxp%eLiD3?%L-pcQ1y9e^*%dAW,j6wd&8%*g!@o:^+m1CgH@F", "B+O2Okk?yh:Wd#TF(kL%mC<ihOM0x>i8%!8Lg(]kZ3q4l4CVI?"},
+{ "s7UEqA2w6ifbk&sPV_nXiRjWG<<0LMT7R5nE:Dv3t,au5&%PSz", "X'%^I1px<VW)7RvOh9I4oMAufSsNw}QhgB@0qJ(rox}&fae;?$"},
+{ "paUZz}N)huipBor4EGG_OaGZ<&Dl_jm>oV,5*3<QPn^D:Kh$zi", "G(ToR6JqS]9IkH1AY*1dHz)[ec6DStFxzxGo]zAoR+5yP^m{gm"},
+{ ":mJT?0{j$0sKQb!ereWpZ@g].+z!uRt#cb{zt1?urkXj-l_Yz^", "V]OYN%y7OC[HGtGrp=}<8c#<*[4%Sk(J'prK(7Z5kUtU!(yTv#"},
+{ "+@]F8xb'])6t:Y7K[SIzfx<Q'dWAcb)S5j.]spL#h#>XVU4?v}", "x44Y@r!luhEH^wOZyff1R9<wCP^iFL8')?TKfLR1&?5!A,%5^,"},
+{ "IkR+kjNd#22W$Y%wf<CN*;rIJzg.r}6j(_4;Q4BR*aWLDuSpu.", "S3D'k{6Wk37ys=xL$xhg.A%lbFCk#hPoG+F-8;1bIBE&(yof^("},
+{ ";u}AycPQT},'3sKnHtU-uyn{@4of2b3)L:<%3YrE5%ts0nI^c=", "q:g8276lC$2u6p5(B'a]6tU?(4H!Alq>B.n;]%WHV1Kd,:TYV;"},
+{ "#LfsiuwX=>*)6GfII8Ql]}i:Qy?cAM=t?4TYi?aCnscH0cOc[]", "HL2xRrO_*Vj_%WA&6cZb@yqWX(B?CFLiV)Q}i+:IcI)k-TcdPI"},
+{ "b2uukbx'{Dr8d7h4LM6j[Evj>vgiL!k6}EMnLmtq0ZtRRn7:a.", "loN?af4E0tSw7M-B0pUh;JQ!JCaqnQ1wrNsElg7j^!T:d2Bl)-"},
+{ "C}O}=sR9mN5DUGckzR7ktBL{I^U,1:cB_fS&fs1FB9j06ARglx", "uP2>3e8BR]D$*E+,Zjj}T__z}bhHM{s6RZXY'NyTr1lT0Otkh4"},
+{ "{-5d*)QUJo'8m@GkxN'?94oUahy0<gQh2AUX,}G,x)[:h*axL&", "LZYAVL.q(ZSZ3Vo]5=aPk((<Bo(iKGe3[3s@K-+=6hP=H%dci["},
+{ "hSO3jq1{<XgbwQBRRukTWHMkNo{kwiio[E_q@!$!2MLI)1gR*D", "7_C(HS[ZA#nzJW$}&wJWMF{V2Hpvg(TG4<1zuNo-Un_H*v}^ZR"},
+{ "n-Tm^k<)y]GvJ3Ay@gvGQd[B4sk_okOG24}XL?-A5)Q[RjrN4y", "..!QcTLJ%MCkzjTGqh]B^8Z5brG1_:B]HEYZiq{V=*Go)?T0W4"},
+{ "3SS.$aIM^VvqS%4n$u@,A'Xd>1]nAZlzMM]&=@CuY[+m;tjS%!", ";t{P<47YVx+<C)bWaGA#hdS&#cy'WY{L$&=;({!^y7+5*i-+8O"},
+{ "Z{0M2:B3@qYakr}AaLg(y8CiX](U^Z?qtBJ}^CK(@58ZGWG[Th", "x+DGU5pT-=).Dd=>W,Q8aVxy2{ZV%:nWw._BD)vd%ZoK;,M<O*"},
+{ "]li-ZY5{A56vpoDSwbj0y*I?mka)n$ye$)gA{MFi@k.K?S5sa1", "@$mr;$isKJR$[GF3R)M6)j!lQ(1h#Te3^pw$%e}Rz9?6!c7]'#"}
+        });
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+</details>
+
+#### New Operator With Index Intializer Speed Test
+
+Another test and this will use the same test parameters as the other tests.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10 million;" />
+</details>
+
+#### New Operator With Index Intializer Speed Test Code
+
+```cs
+TestMethod(new()
+        {
+            ["fvPqO76+Nxsjbq11w(L!vUQt3+sNouxM*$.{?{Hv-[!dCPdKj!"] = "*ubjUmxq+vF@):2R0flzcnqPaH&e;$OdK3Yaz5xJy__fGf0AIs",
+            ["xo*M:kt$2[w=9_90:!K48pz,&'[-4+O]&A9By]X7_._Vp=7kI}"] = "WJKs5'kNcoy>8#l3B6.a'PkQEjcx;rPX;=oD1]7:E2?-Y2E82v",
+            ["W;p7lA-U@;2B;Jcs'?_&Yi'C2xzsxzMWnR!-DA])[?%q}i:!H;"] = "ru?<&X[n=tFCGWIEh2BbZ9<HRVi&sM0s;3v}#E0<4T%mXpb8?H",
+            ["@@]j}($:iST+RQfd]nzgn9WD7<Y{fA*kg-mg#tgEkunoApG{6K"] = "hfnlC_g6Yb^v>MRBM}pHOTPn}z='na!.#*+f,FHws4bIh(P?kP",
+            ["eY3=3&92&WJf+C&=ZGh6^)X>[gBF}5';>0i9(W?(Gh!W%M{E1h"] = "#HGpIstZ[EKmY:F^zLdc>K'0v?Z#@rdDSXdV9h}NcU+y9Fb5Ek",
+            [">VFG?a@r+b}P]>C5IWkycEy6KvZ(@[hkQ<U]hKOVZs,8,%OgU>"] = "XVPWRKCOL.Irj=,2*}I>efh<CTYwM$HG_mX-9v;2gxFlbB5'tV",
+            ["q*QN<DU]&6jr+ZZu_n)P#&G7OHv2[<ir&MF,yd![lYGj]5Y,@!"] = "tzHnI7ut@FlocTka[5pIWvsd])+_HnjULIdo$rwu)^f-.z8zm-"
+   
+        });
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:10000000, In 0m 12s 357ms
+Test 2:Function Calls:10000000, In 0m 12s 241ms
+Test 3:Function Calls:10000000, In 0m 12s 27ms
+Test 4:Function Calls:10000000, In 0m 12s 208ms
+Test 5:Function Calls:10000000, In 0m 12s 208ms
+Test 6:Function Calls:10000000, In 0m 12s 368ms
+Test 7:Function Calls:10000000, In 0m 12s 381ms
+Test 8:Function Calls:10000000, In 0m 12s 262ms
+Test 9:Function Calls:10000000, In 0m 12s 290ms
+Test 10:Function Calls:10000000, In 0m 12s 187ms
+New Operator Index Initializer Average Speed:12253ms, In 10 Tests
+```
+
+This is speed is about the same as the other new Operatior Collection Initializer of just over 12 seconds.
+
+<details>
+<summary>Full New Operator With Index Intializer Speed Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10000000;//Number of function calls made per test
+string testName = "New Operator Index Initializer";//Test name to print to average
+List<string> keysList = new List<string>();
+Dictionary<string, string> TestMethod(Dictionary<string, string> dictionary)
+{
+    return dictionary;
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(new()
+        {
+            ["fvPqO76+Nxsjbq11w(L!vUQt3+sNouxM*$.{?{Hv-[!dCPdKj!"] = "*ubjUmxq+vF@):2R0flzcnqPaH&e;$OdK3Yaz5xJy__fGf0AIs",
+            ["xo*M:kt$2[w=9_90:!K48pz,&'[-4+O]&A9By]X7_._Vp=7kI}"] = "WJKs5'kNcoy>8#l3B6.a'PkQEjcx;rPX;=oD1]7:E2?-Y2E82v",
+            ["W;p7lA-U@;2B;Jcs'?_&Yi'C2xzsxzMWnR!-DA])[?%q}i:!H;"] = "ru?<&X[n=tFCGWIEh2BbZ9<HRVi&sM0s;3v}#E0<4T%mXpb8?H",
+            ["@@]j}($:iST+RQfd]nzgn9WD7<Y{fA*kg-mg#tgEkunoApG{6K"] = "hfnlC_g6Yb^v>MRBM}pHOTPn}z='na!.#*+f,FHws4bIh(P?kP",
+            ["eY3=3&92&WJf+C&=ZGh6^)X>[gBF}5';>0i9(W?(Gh!W%M{E1h"] = "#HGpIstZ[EKmY:F^zLdc>K'0v?Z#@rdDSXdV9h}NcU+y9Fb5Ek",
+            [">VFG?a@r+b}P]>C5IWkycEy6KvZ(@[hkQ<U]hKOVZs,8,%OgU>"] = "XVPWRKCOL.Irj=,2*}I>efh<CTYwM$HG_mX-9v;2gxFlbB5'tV",
+            ["q*QN<DU]&6jr+ZZu_n)P#&G7OHv2[<ir&MF,yd![lYGj]5Y,@!"] = "tzHnI7ut@FlocTka[5pIWvsd])+_HnjULIdo$rwu)^f-.z8zm-",
+            ["Ir0NjR5u,1+c?ZF&LavAlO?w=-.kiEeCa$BoInm@e&[8!+N=oe"] = "t']!8AqG+X>p5m+5IX!@QoC,dH&C8TTT*EItl6o!gdyz+d!}_q",
+            ["3&):n*H2_:p3iL%QHdZGW<.>,(z7X)fg:j:O@+TB@J;KfNNzH:"] = "mObrws0AXNhgkp8PCmENI:eBu{0.p18Y*lpq3C@0)}hMum}GBf",
+            ["lsV-14*^p>X3b}#)'LyCBu]mxB{wq9@maF?kC[ROW*0H_K}.y7"] = "8z>v.y^&^+^A,Z(5BxgP,@m>:I(2<G&i4rL$AqJk5P]XW*Q==Z",
+            ["erKdxBFPZ=bSJL[S<+l!Sw'xt*Digg>X{<PWC{&R(0sxr%5m@O"] = "PDP3*HJ!veb?]j.qRN-X}:G3cS'aHvcd$V6og2&qtEn6LIAQfb",
+            ["%bf;hk1xSs3hRokMpc'3bTZ$C9LnadB1tFGiNHBGFxSO2x.a<q"] = "*@*q.DJHS48[-^pR&Wf-c.uOXG],adKDnCz=2Hb&?cho'Ar$_R",
+            ["uIS&ZLm]W$w[.6Rl]_NO+'67:dP&:d0&eg{Asz:)K9N@v3Wh1g"] = "vcePre:GzI5rk4w5]vuo5?u{mnN=n.ftBAo(JXNF)P&<ooR%-C",
+            ["m%MP{DrW_&#z?w-GTnYNH1'hp^gK;_xG+W#<Y3BJ]_Afvvf8Vr"] = "ITYzgrt)WvIyp#yg,IACQPb37H+d,S;A1{d>Wu4?eLV$d:$n.W",
+            ["AP@g8h*.=a+YfNJ3[EOKVAN=i0+,PQ)L#G@Zg(I1to?t4[2Idb"] = "]7-oJPCdsnLRMTr,]53wej7V+)fV54qzp?#1J!2+_s%b!Ec_;f",
+            ["_DoKdhQmtCyDwZR!i!TX.yfBHiRfJy6r-Ip1IU9)L_BnQg'+>e"] = "GZ3a2ua?MExV4<K$c748l:8X7b[J?nv[R@eipsY$0Vq.N8f=rd",
+            ["mV_6G}uVlwxs9S%aB$PU_ktpb*@G6p2v2[6>5Fa7VEI!)I;YH!"] = "Q=O_%cpGXczz00;;O4_Lt,L#5NUA<i6g=1^)s:2}G^9F%R3ZGM",
+            ["%QT#ny6zo$Y>$X8rfAUog#{Swk)R-hJQjVq.erd;hO4dx[?EI!"] = "x9_Fborf0+&h009.ZO2;n6Ds;F8)KXq#*T&UC(&%7zCOLrDw&Q",
+            ["vAJPK]C-@t&a.zRZnN?!1Z)HRD99r]}#fa,Qf^%.Gi}h<c$F]N"] = "bJ=;>nF9fvy)c*wRRr[PPvqbg<!88.7C=ZK9Ek7X_E:z;>Um'S",
+            ["e1_3nb'gYYDoIR*^?IF#jcJ>Cggw3'AIH,f1R(6A+&!]wQw;!M"] = "Oy9;n4[:<E]a26Mbr83#CJ06DA:R#p?WA8{-#tL*(7].,hL=h*",
+            ["$6?}k8(a*:Anx^IIXw]z'^Fy4B'>!{iGtx@jf5cb@m$csXXmT,"] = "lV+W7!ePUw4&xF,!OX5Y9x'PN<?>&Z=ZhCe*a.iwb@osfmb._!",
+            ["Uv7OD&3n2%YQaV{lyA$gFlbX8RDT+Pb*0I;)6e?+1Sv*bb>Q+n"] = "Szo(+A]AB>I4J4(DhbuL6=_'9k%{!bjFGr*c{$eayFGXn05m)z",
+            ["m*6;WBbiz^d!CW4Ij&3EP06g(!:cEw12uEsdqK$3lV7pUP[ULj"] = "B},JT4?EhYZvzW>9WTJ='@&FoHAPJEuR-Njxd[:W@Gl);CcuUN",
+            ["sis66iRxI*07Vp@'29Irg{M^EbCO;1^pTP-I!&}Fd]f%W&tij6"] = "@*7]I;sW[tL6CvxbgAxGR]#fviNAH_Zt3ui;L$v=NFBXz?Ejga",
+            ["*O9Jb{W@0$V_jxVv1bJUv(01q>(A6^@3f]<H+4ZdL?KKvYY-^D"] = "8d1}QNr#CW,Wydol2e_.{Dkw1WL4J%eRU<3JR)pP,wkVimeyfi",
+            ["fK,PBNaR@^f7%=U]4w.BITn:g9K80+hX<$gKBmxKA[Q,NM,6A0"] = "WDh*zNIgJ]eT^Ffd.E&Ofv2tkRU5HS=dG&T}YRR5aJKY?#?)9n",
+            [".:!YFgKrm{6Y'rN,zB=pnct,qurATk[vVSWbnT7hVn$C[tqn+q"] = ":4I{@!-FjW;23&N{F2D5Gbc%?qA]5Rtgg6Go8l8kb_fc[4QY.B",
+            ["(V3&%ZV#,!A2nv$;b}<-(<*OF,@hWHK.apIt<Fv4gb+Z%YnY=;"] = "-BAvZlJIRkwvVt24*+.%k:yV32y+%H<x&9pepaJ0ED4569V)g3",
+            ["qeSsW-M7jk>u%X&3}deTZ#V!0Yy>$9r@gAosap9<H7d!6cP]NX"] = "R}&J^$Oh<_jL6GT#joC&3dc'5l:Ta36H!WJb(-Z>]Ky&11}gWf",
+            ["BAy!MwFx(c=fv'yb.,w9m$a:gEhygq}5j$a4D%adPhU%MMxl(R"] = "}Cv)#9pHZn%^3--=l[(w}&_8CNQ.jvt*X}N$-q3!2(&HjHuIqL",
+            ["4@^5SuC62;tJVFr_7rI!wD>YW@G+B2WXUY?KL,LDW._Z_jZ&N5"] = "oY!JBln@RuVXAj(.Ij2hGz,,odTVBGeVauto#4*c6Ks-0y$2^]",
+            ["@mJ{Aw[5)U-z#1LWN%azx+f?;R&ODSfz]?ZHG!?HafQ.+RoXhn"] = "ilJj&iVn,MTvGn<=Vv?xmEiak5_b#j$l>*H(-GrTQhev.dfvN?",
+            ["nGrj-<8eXqkiNHatA'7pchB=Lx^RL>Ak8N!lrI0gscj;1DfNQ:"] = "E+(>8&z:.chNV_!PM%Zh]-}YTZL2K;3BPvbUN$}m8*g[IR$&:*",
+            ["?WMLl&F=hn'x7XOIiIw0!4MABLR9SA.K?(NGnIHt3Vk!_Sru(G"] = "FZgb,h,yBayXN_h*LPJPEyu,MjsWkPCfUSLAbFGdu<SL_l^@!T",
+            ["J>W3rSi0u%y.Py2<-guP+8K[TZ[A4DZa{WGCz*uSFYO0A$v-3o"] = "CF-]>XqUs_A#}nDo[l}kzs]f72*3YW;V.K7}o(O^eonJTq<3Jx",
+            ["QV:(Q*c8SNQHeGNvF%ypq$8e>T]<Pc13N7^h[(6pD:j!+)uZ97"] = "en&Z.[{@Z9SgLzEm?R):%&rvrYv'v*e1MNz2ou(Kyx[M{Y.p(%",
+            ["NC,[&[Wceto$?jK4OAD=R1#e,=QTL..t#9A$aG6I2,$t@C-coC"] = "T4@D!bd1V45wZK}Sf9A+dU5Be#2F3ArP!QkycJ*DzU89I0xy[Y",
+            ["q0R_J?XZ:O$d-#Guos)E8soJ4'X8h*FGWEft9HOsvwhKLA'!Mk"] = "Xa{Qi>rTPF[)1nKhOc3&2Q53,!h,+Z2nS=FwM*RBcd[WX{.UXp",
+            ["ioIDM.CN*Ew8dh.5_}[*aKf<A+HN(0L1?kmncHlLC1G+wR@NV)"] = "KAaMxtzS>ZC5t)u#FlR_ku@Ve>h9cP-hX5sl-[^V$,SSD8aImy",
+            ["P4DV1y'8UU&%Uw5B!%(Ps9tXU?zN+,&?qh,k)BE0e:Lvk=b=Dw"] = "c,R[Mt@3Aj{z&qMkw_Rs6E$2,jyb-<;JWevdTD+fV;%CvV;UL@",
+            ["d+H73HYyLu%bANc&gzu%#YM9!8YOs>@s?oAOR$LFM2pJT%$sUh"] = "pM=^VS9Gq:ljjI(d;x!]b7Gaq>b0L6!HD2L.l-5a[d$Z$>,-7f",
+            ["J45Fr##Ih&kA9E_-%aP[#*O_uP?81sbFqz'fF8.^PZ:]d)R}{W"] = ".Q]2PM0BLI=vJC1C>D9Fv&@UYGYotajpk3KCAIlP4>I('5Y*ct",
+            ["oTimy0U['x;#-yj$ai!Rb$Tz6mV}4W1PQOzGwm{(D'(F-3})j]"] = "Ig:4ZqP9S;hqdC%'8@=&kaNR2qsO2s[S.!w45UKpBAPwrYU*m)",
+            ["(j8jj(f+@=?tU,U!M%s$mv>av2_(q}XU>nMF<2UTU6>>G0^<E;"] = "5JDWC#gQun9}_u{wq?)(K.m98zHB43wwp)?rAX'RKY,zXwq'q+",
+            ["-i)7{'sO;D[l$eFZcadgUzP4]519y>F0W=$Tb1DJ10Mwusk;+j"] = "OKXjB5%h$]7t><0??pbT$'lx]%cTPxUXxi;?P6+Dvjx78JU0t6",
+            ["hG>5=5QVKmGbH:=BIu}'rvGsHe5a9OBQzq;l2>5zgT8-Qpm^oD"] = "1@hP?2ymE4z5jSnq{pV)Z}U-Y!u}[EeABpCVEM54Lw:X:[K3Rf",
+            ["j#FHecR*=8,{W}LcX(Y*?7$H4):w}p5j$55SF<ZR)n-'@rFVhY"] = "d=tzoV)3U)lrzm{X(awhy#q6m{H??CXbY]]CQIR7p[3e}pKFK]",
+            ["AqC0p,2M=IB,l9.>m}>D@5y[,vqt1O4HCNcc:k79kmD]odvEZ,"] = "#>jqgLRpahCeI-P@*k?8%IZT2TcveemAWN:i@cT(_bwmtsA)PN",
+            [")r3(dsx?E:'rw9hGfw{dsvo.Di;KJ&9+rTFYWoF@[9}fdl-TEc"] = "@)R5:9N5@b}zy-#CL'B&0wrWHatS4=JeY2Z4$JWk:EE,$?:rSA",
+            ["&K,r)j]YMZ;K_#^D,6x3Vbx=k;nPc[=P%{E*6%!2tcHySZiR(t"] = "OjxJ=EoeK].bq'c#&=P(D4bBYYqGwzZ9BWe(qDHZ<1t&oDY[Sq",
+        });
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+```
+</details>
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,Index Intializer,11824ms;2,Collection Intializer,12087ms;3,New Operator With Index Intializer,12253ms;4,New Operator With Collection Intializer,12354ms;" />
+
+The Index Intializer is the fastest Intializer for creating a new dictionary inside a method call. It is almost a full second faster than the other intializers. It may seem small but for those of us who are looking to gain any kind of performance benefit, give a clearer guidence.
+
+But if you perfer the other syntax styles or their compactness and easy of use. Then they are not a bad option. It may come down to how you would like to write your code. I think that the index intializer syntax is the easier to read of the others. 
+
+Know any other ways to create a new temporary dictionary in a function call? Let me know in the comments below.
+
+
