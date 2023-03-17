@@ -9,7 +9,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-large.webp',
-    description:'To get a list from the dictionary&#39;s keys, LINQ&#39;s ToList is concise and easy to read and just as fast as the list constructor'
+    description:'To get a list from the dictionary\'s keys, LINQ\'s ToList is concise and easy to read and just as fast as the list constructor.'
   },
   { 
     location:'fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls', 
