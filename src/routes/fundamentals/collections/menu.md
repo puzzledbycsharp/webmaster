@@ -38,3 +38,4 @@
 - [Make A Dictionary Key Case Insensitive](dictionary/make-a-dictionary-key-case-insensitive/index.mdx)declare-a-new-dictionary-in-function-calls
 - [Declare A New Dictionary in Function Calls](dictionary/declare-a-new-dictionary-in-function-calls/index.mdx)
 - [Get A List Of Dictionary Keys](dictionary/get-a-list-of-dictionary-keys/index.mdx)
+- [Fix For Collection Was Modified And Enumeration Not Executed](dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/index.mdx)

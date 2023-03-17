@@ -1,0 +1,550 @@
+---
+title: Fix For Collection Was Modified And Enumeration Operation May Not Execute
+---
+
+# Fix For Collection Was Modified And Enumeration Operation May Not Execute
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Fix For Collection Was Modified And Enumeration Not Executed Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+This collection modified exception can happen in dictionaries when there are two tasks. One iterating through the dictionary and another is adding or removing items from the dictionary. The tasks that is looping through the dictionary will throw this exception. Dictionary is not a thread safe collection type but there are some ways around this issue by copying the parts of the dictionary to another collection type. Let's look at those in detail.
+
+
+### Motivation
+
+How is issue appear. [Dictionary can read by multiple threads](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-8.0#thread-safety) but if there's a write operation by add or remove of items from the dictionary then it can not at the same time be in a loop. You could add locks so that only thread is working with the dictionary at a time but for now we're going to assume that isn't the case.
+
+#### Collection Was Modified And Enumeration Operation May Not Execute Exception Example Code
+
+This code has two dictionaries, one is the primary dictionary and secondary dictionary. There is two threads. One thread will be looping through the dictionary and printing values from the primary dictionary. The other thread will be looping through the secondary dictionary and add those items from the secondary to the primary dictionary. This is the write operation. 
+
+Each dictionary has a set of countries and population as the key and values. Let's look at the code.
+
+```cs
+Dictionary<string, double> primaryDictionary = new Dictionary<string, double>()
+{
+    { "China", 1393.78 },
+    { "India", 1369.87 },
+    { "United States", 329.74 },
+    { "Indonesia", 269.54 },
+    { "Pakistan", 220.89 },
+    { "Brazil", 213.99 },
+};//Initialize dictionary
+
+Dictionary<string, double> secondaryDictionary = new Dictionary<string, double>()
+{
+   { "Mexico", 126.58 },
+    { "Japan", 125.96 },
+    { "Philippines", 108.11 },
+    { "Egypt", 101.33 },
+    { "Ethiopia", 109.22 },
+};//Initialize dictionary
+
+PrintDictionaryAsync();//Start reader task
+await AddToDictionaryAsync();//Start writer taskds
+
+
+async Task PrintDictionaryAsync()
+{
+    try
+    {
+        foreach (string country in primaryDictionary.Keys)//Loop through the primary dictionary keys
+        {
+            await Task.Delay(400);//Add slight delay so that the writer will modify the dictionary while in the loop
+            Console.WriteLine($"key:{country}");//Pring dictionary key
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);//Write exception to screen
+    }
+    return;
+}
+
+async Task AddToDictionaryAsync()
+{
+    foreach (KeyValuePair<string, double> countryKeyValue in secondaryDictionary)//Loop through the secondary dictionary key value pairs
+    {
+        await Task.Delay(500);//Add slight delay
+        primaryDictionary.Add(countryKeyValue.Key, countryKeyValue.Value);//Add secondary key value pair to the primary ditionary. This is the write operation
+        Console.WriteLine("Add Country To List:" + countryKeyValue.Key);//Print message to screen saying add successful
+    }
+    return;
+}
+```
+
+###### Code Output
+```
+Reader Thread:key:China
+Writer Thread:Add Country To List:Mexico
+Reader Thread:key:India
+Reader Thread:Collection was modified; enumeration operation may not execute.
+Writer Thread:Add Country To List:Japan
+Writer Thread:Add Country To List:Philippines
+Writer Thread:Add Country To List:Egypt
+Writer Thread:Add Country To List:Ethiopia
+```
+
+
+As this run, the reader thread that is looping through the primary dictioanry will throw an exception after the writer thread has added an entry into the primary dictionary. After that you can see that the reader thread stops. But the writer thread continues to add entries into the dictionary.
+
+### LINQ ToList Solution
+
+Now that we have an understand of the problem. The first solution is copy the dictionary's keys to a list then loop through the list. This works because even if the dictionary is modified we're not actrually looping through the dictionary anymore but a copy of the keys.
+
+#### LINQ ToList Example Code
+
+The code change is happening with LINQ's ToList being applied to the keys and it returns a list of strings. This could also be applied to values as well.
+
+```cs
+async Task PrintDictionaryAsync()
+{
+    try
+    {
+        List<string> list = primaryDictionary.Keys.ToList();//Copy dictionary keys to a list
+        foreach (string country in list)//Loop through list which is copy of the dictionary keys
+        {
+            await Task.Delay(400);//Add slight delay so that the writer will modify the dictionary while in the loop
+            Console.WriteLine($"Reader Thread:key:{country}");//Pring dictionary key
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Reader Thread:" + ex.Message);//Write exception to screen
+    }
+    return;
+}
+```
+
+###### Code Output
+```
+Reader Thread:key:China
+Writer Thread:Add Country To List:Mexico
+Reader Thread:key:India
+Writer Thread:Add Country To List:Japan
+Reader Thread:key:United States
+Writer Thread:Add Country To List:Philippines
+Reader Thread:key:Indonesia
+Writer Thread:Add Country To List:Egypt
+Reader Thread:key:Pakistan
+Reader Thread:key:Brazil
+Writer Thread:Add Country To List:Ethiopia
+```
+
+There are no exceptions being thrown in this method now.
+
+#### LINQ ToList Speed Test
+
+As I like to do is test the performance of the method and how they compare with other methods. I will do a average of 10 tests. Each test will have a loop that calls the test method 100 times. Then each test method will have 1 million objects the dictionary to work with. 
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+#### LINQ ToList Speed Test Code
+
+The test method takes the dictionary of 1 million objects and performs the copies the keys to the list.
+
+```cs
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> list = dictionary.Keys.ToList();//Create a new List using LINQ ToList based on the Keys
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 1s 41ms
+Test 2:Function Calls:100, In 0m 0s 981ms
+Test 3:Function Calls:100, In 0m 1s 44ms
+Test 4:Function Calls:100, In 0m 0s 959ms
+Test 5:Function Calls:100, In 0m 0s 976ms
+Test 6:Function Calls:100, In 0m 0s 845ms
+Test 7:Function Calls:100, In 0m 0s 958ms
+Test 8:Function Calls:100, In 0m 0s 964ms
+Test 9:Function Calls:100, In 0m 0s 849ms
+Test 10:Function Calls:100, In 0m 0s 946ms
+LINQ ToList Average Speed:957ms, In 10 Tests
+```
+
+This test was completed in just under a second which is pretty good. Let's see how it compares with the other methods. 
+
+<details>
+<summary>Full LINQ ToList Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "LINQ ToList";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> list = dictionary.Keys.ToList();//Create a new List using LINQ ToList based on the Keys
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+```
+</details>
+
+
+### List Constructor Solution
+
+The second solution that we can use is pass the dictionary keys or values to the list constructor.
+
+#### List Constructor Example Code
+
+We can directly call the list contructor and pass the keys directly to it. This makes a copy of the keys and since it's a copy, it isn't being modified.
+
+```cs
+async Task PrintDictionaryAsync()
+{
+    try
+    {
+        List<string> list = new List<string>(primaryDictionary.Keys);//Copy dictionary keys to a list through the list constructor
+        foreach (string country in list)//Loop through list which is copy of the dictionary keys
+        {
+            await Task.Delay(400);//Add slight delay so that the writer will modify the dictionary while in the loop
+            Console.WriteLine($"Reader Thread:key:{country}");//Pring dictionary key
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Reader Thread:" + ex.Message);//Write exception to screen
+    }
+    return;
+}
+```
+
+###### Code Output
+
+```
+Reader Thread:key:China
+Writer Thread:Add Country To List:Mexico
+Reader Thread:key:India
+Writer Thread:Add Country To List:Japan
+Reader Thread:key:United States
+Writer Thread:Add Country To List:Philippines
+Reader Thread:key:Indonesia
+Writer Thread:Add Country To List:Egypt
+Reader Thread:key:Pakistan
+Reader Thread:key:Brazil
+Writer Thread:Add Country To List:Ethiopia
+```
+
+#### List Constructor Speed Test
+
+This is the same test as before and the test parameters are below.
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+#### List Constructor Speed Test Code
+
+```cs
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> list = new List<string>(dictionary.Keys);//Create a new List using List Constructor based on the Keys
+}
+```
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 1s 35ms
+Test 2:Function Calls:100, In 0m 1s 13ms
+Test 3:Function Calls:100, In 0m 1s 11ms
+Test 4:Function Calls:100, In 0m 0s 999ms
+Test 5:Function Calls:100, In 0m 0s 976ms
+Test 6:Function Calls:100, In 0m 0s 873ms
+Test 7:Function Calls:100, In 0m 1s 16ms
+Test 8:Function Calls:100, In 0m 0s 982ms
+Test 9:Function Calls:100, In 0m 0s 962ms
+Test 10:Function Calls:100, In 0m 1s 28ms
+List Constructor Average Speed:990ms, In 10 Tests
+```
+This speed is close to LINQ's ToList method that they are practically the same.
+
+<details>
+<summary>Full List Constructor Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "List Constructor";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> list = new List<string>(dictionary.Keys);//Create a new List using List Constructor based on the Keys
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+```
+</details>
+
+### Dictionary Constructor Solution
+
+But what if I want to loop through the keys and values at the same time. Need we'll need to copy the whole dictionary itself. We can do this using the dictionary constructr
+
+#### Dictionary Constructor Example Code
+
+This code shows that the we can pass my primary dictionary into the dictionary constructor to make a copy while in the reader thread.
+
+```cs
+async Task PrintDictionaryAsync()
+{
+    try
+    {
+        Dictionary<string, double> copyDictionary = new Dictionary<string,double>(primaryDictionary);//Copy dictionary keys and values to another dictionary
+        foreach (KeyValuePair<string,double> countryKeyValuePair in copyDictionary)//Loop through the dictionary which is copy of the dictionary keys and values
+        {
+            await Task.Delay(400);//Add slight delay so that the writer will modify the dictionary while in the loop
+            Console.WriteLine($"Reader Thread:key:{countryKeyValuePair.Key}, value:{countryKeyValuePair.Value}");//Pring dictionary key and value
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Reader Thread:" + ex.Message);//Write exception to screen
+    }
+    return;
+}
+```
+
+
+###### Code Output
+```
+Reader Thread:key:China, value:1393.78
+Writer Thread:Add Country To List:Mexico
+Reader Thread:key:India, value:1369.87
+Writer Thread:Add Country To List:Japan
+Reader Thread:key:United States, value:329.74
+Writer Thread:Add Country To List:Philippines
+Reader Thread:key:Indonesia, value:269.54
+Writer Thread:Add Country To List:Egypt
+Reader Thread:key:Pakistan, value:220.89
+Reader Thread:key:Brazil, value:213.99
+Writer Thread:Add Country To List:Ethiopia
+```
+
+#### Dictionary Constructor Speed Test
+
+This is the same test as before.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+
+#### Dictionary Constructor Speed Test Code
+
+```cs
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    Dictionary<string, string> dictionaryCopy = new Dictionary<string, string>(dictionary);//Create a new Dictionary copy using the dictionary constructor based on the keys and values
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 8s 637ms
+Test 2:Function Calls:100, In 0m 8s 476ms
+Test 3:Function Calls:100, In 0m 9s 80ms
+Test 4:Function Calls:100, In 0m 8s 933ms
+Test 5:Function Calls:100, In 0m 9s 279ms
+Test 6:Function Calls:100, In 0m 9s 317ms
+Test 7:Function Calls:100, In 0m 9s 49ms
+Test 8:Function Calls:100, In 0m 9s 148ms
+Test 9:Function Calls:100, In 0m 8s 843ms
+Test 10:Function Calls:100, In 0m 8s 996ms
+Dictionary Constructor Average Speed:8976ms, In 10 Tests
+```
+
+As you can see this is a more expensive operation because both the keys and values are being copied. 
+
+
+<details>
+<summary>Full Dictionary Constructor Speed Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "Dictionary Constructor";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    Dictionary<string, string> dictionaryCopy = new Dictionary<string, string>(dictionary);//Create a new Dictionary copy using the dictionary constructor based on the keys and values
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+```
+</details>
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,LINQ ToList,957ms;2,List Constructor,990ms;3,Dictionary Constructor,8976ms;" />
+
+LINQ ToList has a compact syntax and it is easier to read and it is fast. I wouldn't consider it faster than the List constuctor since they are so close in time. So if you prefer the list constuctor you can use that as well it is still fast. These work for both the keys and values but seperately.
+
+If you need loop through the key and values at the same time then you'll have no choice but use the dictionary constructor. But be aware that it is a more expensive operation than just loop through the keys and or values. 
+
+
+Know any other ways to to fix this collection was modified exception? Let me know in the comments below.
+
+

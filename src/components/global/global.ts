@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/',
+    title:'Fix For Collection Was Modified And Enumeration Not Executed', 
+    dateCreated:'2023-03-17T00:10:55+00:00',
+    dateModified:'2023-03-17T00:10:55+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/fix-for-collection-was-modified-and-enumeration-not-executed-large.webp',
+    description:'A Fix For Collection Was Modified And Enumeration Not Executed comes by copying parts or the whole dictionary in the reader thread.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/get-a-list-of-dictionary-keys', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/',
     title:'Get A List Of Dictionary Keys', 
