@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/get-a-list-of-dictionary-keys', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/',
+    title:'Get A List Of Dictionary Keys', 
+    dateCreated:'2023-03-16T00:11:55+00:00',
+    dateModified:'2023-03-16T00:11:55+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-large.webp',
+    description:'To get a list from the dictionary&#39;s keys, LINQ&#39;s ToList is concise and easy to read and just as fast as the list constructor'
+  },
+  { 
     location:'fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/',
     title:'Declare A New Dictionary in Function Calls', 

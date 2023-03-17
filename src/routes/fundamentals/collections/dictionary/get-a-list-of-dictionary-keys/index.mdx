@@ -1,0 +1,367 @@
+---
+title: Get A List Of Dictionary Keys
+---
+
+# Get A List Of Dictionary Keys
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get A List Of Dictionary Keys Banner Image" widthImage = "2304" heightImage = "1728" />
+## Introduction
+
+Sometimes we are only interested in the looping through the dictionary keys. Or perhaps there are some operation that we only need the keys for and they need to be transfered to another data structure.  There are serveral options avialable to use do to this. I'll go thorugh each one and pros and cons of each. As well go through the performance of.
+
+
+### Keys Property
+
+The Dictionary provides a Keys property that enables you to loop through the keys because it based on ICollection. So your just simply loop through the keys then this is a great option. However the draw back is that it is tied to the dictionary itself and is not a copy so if you were to make changes the dictionary while looping through the keys then an exception would be thrown. 
+
+#### Keys Property Example Code
+
+This example code, has car names in the keys. Then it loops through the keys by the Keys property which is a collection.
+
+```cs
+Dictionary<string, string> carsModelBrandDictionary = new Dictionary<string, string>()
+{
+    { "Civic", "Honda" },
+    { "Accord", "Honda" },
+    { "Camry", "Toyota" },
+    { "Corolla", "Toyota" },
+    { "F-150", "Ford" },
+    { "Mustang", "Ford" },
+    { "C-Class", "Mercedes-Benz" },
+    { "E-Class", "Mercedes-Benz" },
+    { "911", "Porsche" },
+    { "Cayenne", "Porsche" }
+};//Initialize Dictionary
+
+foreach (string car in carsModelBrandDictionary.Keys)//Loop through the keys through the Keys property
+{
+    Console.WriteLine($"car:{car}");//Print  each key
+}
+```
+
+###### Code Output
+
+```
+car:Civic
+car:Accord
+car:Camry
+car:Corolla
+car:F-150
+car:Mustang
+car:C-Class
+car:E-Class
+car:911
+car:Cayenne
+```
+
+### List Constructor Method
+
+The List constructor can convert a collection type into a list collection. This can happens on the list's creation. Since Keys Property is type collection it can be passed to the List constructor.
+
+#### List Constructor Example Code
+
+This code gets a list from the dictionary keys by passing the Keys property to the list constructor. The list constructor will convert the Keys collection into a list.
+
+```cs
+Dictionary<string, string> carsModelBrandDictionary = new Dictionary<string, string>()
+{
+    { "Soul", "Kia" },
+    { "Optima", "Kia" },
+    { "Fusion", "Ford" },
+    { "Escape", "Ford" },
+    { "Impreza", "Subaru" },
+    { "Outback", "Subaru" },
+    { "Charger", "Dodge" },
+    { "Challenger", "Dodge" },
+    { "X5", "BMW" },
+    { "M5", "BMW" }
+};//Initialize Dictionary
+
+List<string> carList = new List<string>(carsModelBrandDictionary.Keys);//Create a new List based on the Keys
+
+foreach (string car in carList)//Loop through the list
+{
+    Console.WriteLine($"car:{car}");//Print each key
+}
+```
+
+###### Code Output
+
+```
+car:Soul
+car:Optima
+car:Fusion
+car:Escape
+car:Impreza
+car:Outback
+car:Charger
+car:Challenger
+car:X5
+car:M5
+```
+
+#### List Constructor Speed Test
+
+Next, I'm going to test the speed of the list constructor to get the dictionary keys. This process will get the average speed of 10 tests. Each tests will have a 100 loops of the test method. Each test method will have 1 million dictionary entries. The dictionary keys and value are randomly generated strins of random characters of length 50.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+#### List Constructor Speed Test Code
+
+This code is what was done before by having the dictionary keys passed to the list constructor. This is to measure the time it takes for the list to be created and populated with the dictionary keys.
+
+```cs
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> carList = new List<string>(dictionary.Keys);//Create a new List based on the Keys
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 1s 26ms
+Test 2:Function Calls:100, In 0m 0s 979ms
+Test 3:Function Calls:100, In 0m 0s 985ms
+Test 4:Function Calls:100, In 0m 1s 8ms
+Test 5:Function Calls:100, In 0m 0s 992ms
+Test 6:Function Calls:100, In 0m 1s 13ms
+Test 7:Function Calls:100, In 0m 0s 975ms
+Test 8:Function Calls:100, In 0m 0s 915ms
+Test 9:Function Calls:100, In 0m 0s 989ms
+Test 10:Function Calls:100, In 0m 0s 958ms
+List Constructor Average Speed:985ms, In 10 Tests
+```
+Since this is the first test of the different methods. We have a baseline speed of almost 1 second. This is pretty fast. We'll check the speed of the other method. 
+
+<details>
+<summary>Full List Constructor Speed Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "List Constructor";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> carList = new List<string>(dictionary.Keys);//Create a new List based on the Keys
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+```
+</details>
+
+### LINQ ToList Method
+
+The second method we'll look at is from LINQ namespace called ToList. ToList can take a collection of type IEnumerable and convert it into type List.
+
+#### LINQ ToList Example Code
+
+This example shows that we can directly call ToList on Keys property itself. Since it returns a list we can assign it directly to List reference.
+
+```cs
+Dictionary<string, string> carsModelBrandDictionary = new Dictionary<string, string>()
+{
+    { "Cruze", "Chevrolet" },
+    { "Malibu", "Chevrolet" },
+    { "Sonic", "Chevrolet" },
+    { "Equinox", "Chevrolet" },
+    { "Legacy", "Subaru" },
+    { "Forester", "Subaru" },
+    { "Explorer", "Ford" },
+    { "Escape", "Ford" },
+    { "RAV4", "Toyota" },
+    { "Highlander", "Toyota" }
+};//Initialize Dictionary
+
+List<string> carList = carsModelBrandDictionary.Keys.ToList();//Create a new List using LINQ ToList based on the Keys
+
+foreach (string car in carList)//Loop through the list
+{
+    Console.WriteLine($"car:{car}");//Print each key
+}
+```
+
+###### Code Output
+
+```
+car:Cruze
+car:Malibu
+car:Sonic
+car:Equinox
+car:Legacy
+car:Forester
+car:Explorer
+car:Escape
+car:RAV4
+car:Highlander
+```
+
+#### LINQ ToList Speed Test
+
+This is the same test as before so I'll be using the test parameters below.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+#### LINQ ToList Speed Test Code
+
+```cs
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> list = dictionary.Keys.ToList();//Create a new List using LINQ ToList based on the Keys
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 1s 20ms
+Test 2:Function Calls:100, In 0m 1s 8ms
+Test 3:Function Calls:100, In 0m 1s 13ms
+Test 4:Function Calls:100, In 0m 1s 41ms
+Test 5:Function Calls:100, In 0m 0s 986ms
+Test 6:Function Calls:100, In 0m 0s 879ms
+Test 7:Function Calls:100, In 0m 1s 12ms
+Test 8:Function Calls:100, In 0m 0s 954ms
+Test 9:Function Calls:100, In 0m 0s 883ms
+Test 10:Function Calls:100, In 0m 0s 983ms
+LINQ ToList Average Speed:978ms, In 10 Tests
+```
+
+<details>
+<summary>Full LINQ ToList Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "LINQ ToList";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, string> dictionary)
+{
+    List<string> list = dictionary.Keys.ToList();//Create a new List using LINQ ToList based on the Keys
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, string> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, string> GetDictionaryData()
+{
+    Dictionary<string, string> testData = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    keysList = new List<string>();
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+        if (!testData.ContainsKey(key))
+        {
+            string value = GenerateRandomString(lengthOfRandomString);
+            testData[key] = value;
+            keysList.Add(key);
+        }
+    }
+    return testData;
+}
+
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+```
+</details>
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,LINQ ToList,978ms;2,List Constructor,985ms;" />
+
+Both the List constructor and LINQ ToList are both good ways to get a list from a dictionary's keys. They are both fast and the speed is so close that it's practically the same. ToList is the more concise of the two. It describles really well what is happening the code so if you want your code to more readable, then go with ToList.
+
+Know any other ways to get a list from the dictionary keys? Let me know in the comments below.
+
+
