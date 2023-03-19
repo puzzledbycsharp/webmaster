@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/',
+    title:'TryGetValue Vs ContainsKey With Indexer', 
+    dateCreated:'2023-03-19T00:08:46+00:00',
+    dateModified:'2023-03-19T00:08:46+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-large.webp',
+    description:'TryGetValue is the best method for getting value from a dictionary.It performances better and has takes up less code than using ContainsKey with Indexer.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/',
     title:'Fix For Collection Was Modified And Enumeration Not Executed', 

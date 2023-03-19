@@ -39,3 +39,4 @@
 - [Declare A New Dictionary in Function Calls](dictionary/declare-a-new-dictionary-in-function-calls/index.mdx)
 - [Get A List Of Dictionary Keys](dictionary/get-a-list-of-dictionary-keys/index.mdx)
 - [Fix For Collection Was Modified And Enumeration Not Executed](dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/index.mdx)
+- [TryGetValue Vs ContainsKey With Indexer](dictionary/trygetvalue-vs-containskey-with-indexer/index.mdx)
