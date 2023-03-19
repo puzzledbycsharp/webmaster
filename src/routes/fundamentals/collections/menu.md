@@ -40,3 +40,5 @@
 - [Get A List Of Dictionary Keys](dictionary/get-a-list-of-dictionary-keys/index.mdx)
 - [Fix For Collection Was Modified And Enumeration Not Executed](dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/index.mdx)
 - [TryGetValue Vs ContainsKey With Indexer](dictionary/trygetvalue-vs-containskey-with-indexer/index.mdx)
+- [Dictionary With One To Many Relationship](dictionary/dictionary-with-one-to-many-relationship/index.mdx)
+

@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/',
+    title:'Dictionary With One To Many Relationship', 
+    dateCreated:'2023-03-19T00:19:33+00:00',
+    dateModified:'2023-03-19T00:19:33+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-large.webp',
+    description:'There are a couple ways to have a one to many collection type. You can use dictionary with List or List of KeyValuePairs. Each with pros and cons.'
+  },
+  { 
     location:'fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/',
     title:'TryGetValue Vs ContainsKey With Indexer', 
