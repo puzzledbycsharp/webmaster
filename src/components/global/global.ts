@@ -9,7 +9,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-large.webp',
-    description:'TryGetValue is the best method for getting value from a dictionary.It performances better and has takes up less code than using ContainsKey with Indexer.'
+    description:'TryGetValue is the best method for getting values from a dictionary. It performances better and has takes up less code than using ContainsKey with Indexer.'
   },
   { 
     location:'fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed', 
