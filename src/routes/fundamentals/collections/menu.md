@@ -7,6 +7,7 @@
 - [List vs Dictionary Collection Types](list-vs-dictionary/index.mdx)
 - [List](list/index.mdx)
 - [Dictionary](dictionary/index.mdx)
+- [Array](array/index.mdx)
 
 ## List
 - [List](list/index.mdx)
@@ -42,3 +43,5 @@
 - [TryGetValue Vs ContainsKey With Indexer](dictionary/trygetvalue-vs-containskey-with-indexer/index.mdx)
 - [Dictionary With One To Many Relationship](dictionary/dictionary-with-one-to-many-relationship/index.mdx)
 
+## Array
+- [Array](array/index.mdx)

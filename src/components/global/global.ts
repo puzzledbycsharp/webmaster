@@ -619,15 +619,27 @@ export const ROUTE_DATA = [
     description:'The fastest method for converting a system array to a list is to use a array cast then use ToList. It is short and compact and easy to read.'
   }
   ,{ 
+    location:'fundamentals/collections/array', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/',
+    title:'Introduction To Array | Puzzled By CSharp',
+    dateCreated:'2023-03-20T00:11:23+00:00',
+    dateModified:'2023-03-20T00:11:23+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/introduction-to-arrays-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/introduction-to-arrays-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/introduction-to-arrays-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/introduction-to-arrays-large.webp',
+    description:'Arrays are a fundamental data structure in programming. C# provides a fast, simple and generic array implementation'
+  }
+  ,{ 
     location:'fundamentals/collections/dictionary', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary/',
     title:'Introduction To Dictionary | Puzzled By CSharp',
     dateCreated:'2022-12-23T00:11:56+00:00',
     dateModified:'2022-12-23T00:11:56+00:00',
-    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
-    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-large.webp',
     description:'Dictionary are fundamental type in C#. They provide fast lookup to for values found in the dictionary.'
   }
   ,{ 
