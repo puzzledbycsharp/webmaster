@@ -45,3 +45,4 @@
 
 ## Array
 - [Array](array/index.mdx)
+- [How To Assign Values To An Array](array/how-to-assign-values-to-an-array/index.mdx)
