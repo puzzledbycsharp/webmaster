@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/',
+    title:'How To Encode Strings and Decode Byte Arrays', 
+    dateCreated:'2023-03-21T00:11:25+00:00',
+    dateModified:'2023-03-21T00:11:25+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/how-to-encode-strings-and-decode-byte-arrays-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/how-to-encode-strings-and-decode-byte-arrays-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/how-to-encode-strings-and-decode-byte-arrays-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/how-to-encode-strings-and-decode-byte-arrays-large.webp',
+    description:'A string can be converted to a byte array and visa versa. C# provides encoders classes that can do this operation by GetString and GetBytes.'
+  },
+  { 
     location:'fundamentals/collections/array/how-to-assign-values-to-an-array', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/how-to-assign-values-to-an-array/',
     title:'How To Assign Values to An Array', 
