@@ -4,7 +4,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/how-to-assign-values-to-an-array/',
     title:'How To Assign Values to An Array', 
     dateCreated:'2023-03-20T00:23:28+00:00',
-    dateModified:'2023-03-14T00:23:28+00:00',
+    dateModified:'2023-03-20T00:23:28+00:00',
     twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-small.webp',
