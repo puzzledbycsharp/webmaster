@@ -9,7 +9,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-large.webp',
-    description:'There are 4 main ways to initialize an array. One initialize to null or default, array initializers, shorthand and new operator.'
+    description:'There are 4 main ways to initialize an array. One initializes to null or default, array initializers, shorthand and new operator.'
   },
   { 
     location:'fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays', 
