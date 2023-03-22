@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/array/best-initializer-to-get-an-empty-array', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/best-initializer-to-get-an-empty-array/',
+    title:'Best Initializer To Get An Empty Array', 
+    dateCreated:'2023-03-22T00:11:55+00:00',
+    dateModified:'2023-03-22T00:11:55+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-large.webp',
+    description:'The static array empty method is the best initializer for an empty array. It does what it says and quick to use by using one step.'
+  },
+  { 
     location:'fundamentals/collections/array/how-to-initialize-arrays', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/how-to-initialize-arrays/',
     title:'How To Initialize Arrays', 
