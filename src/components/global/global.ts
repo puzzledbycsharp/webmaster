@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/array/how-to-initialize-arrays', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/how-to-initialize-arrays/',
+    title:'How To Initialize Arrays', 
+    dateCreated:'2023-03-22T00:11:55+00:00',
+    dateModified:'2023-03-22T00:11:5+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-large.webp',
+    description:'There are 4 main ways to initialize an array. One initialize to null or default, array initializers, shorthand and new operator.'
+  },
+  { 
     location:'fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/',
     title:'How To Encode Strings and Decode Byte Arrays', 

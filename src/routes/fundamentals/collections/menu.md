@@ -47,3 +47,4 @@
 - [Array](array/index.mdx)
 - [How To Assign Values To An Array](array/how-to-assign-values-to-an-array/index.mdx)
 - [How To Encode Strings and Decode Byte Arrays](array/how-to-encode-strings-and-decode-byte-arrays/index.mdx)
+- [How To Initialize Arrays](array/how-to-initialize-arrays/index.mdx)
