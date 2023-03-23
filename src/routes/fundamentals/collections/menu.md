@@ -49,3 +49,4 @@
 - [How To Encode Strings and Decode Byte Arrays](array/how-to-encode-strings-and-decode-byte-arrays/index.mdx)
 - [How To Initialize Arrays](array/how-to-initialize-arrays/index.mdx)
 - [Best Initializer To Get An Empty Array](array/best-initializer-to-get-an-empty-array/index.mdx)
+- [Check If The Text Contains A Keyword From The Array](array/check-if-the-text-contains-a-keyword-from-the-array/index.mdx)

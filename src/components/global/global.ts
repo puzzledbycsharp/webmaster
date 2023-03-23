@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/',
+    title:'Check If The Text Contains A Keyword From The Array', 
+    dateCreated:'2023-03-22T00:23:55+00:00',
+    dateModified:'2023-03-22T00:23:5+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/check-if-the-text-contains-a-keyword-from-the-array-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/check-if-the-text-contains-a-keyword-from-the-array-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/check-if-the-text-contains-a-keyword-from-the-array-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/check-if-the-text-contains-a-keyword-from-the-array-large.webp',
+    description:'LINQ Any provides a quick and compact syntax for checking if the text contains a keyword from a string array.'
+  },
+  { 
     location:'fundamentals/collections/array/best-initializer-to-get-an-empty-array', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/best-initializer-to-get-an-empty-array/',
     title:'Best Initializer To Get An Empty Array', 
