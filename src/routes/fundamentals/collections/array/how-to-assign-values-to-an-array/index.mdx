@@ -12,7 +12,7 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-When an array is create it has a fixed size and the values are uninitialized so they are all null. We need to assign the values to the array at each index before start using it in our code. We'll go into those ways we can 
+When an array is created it has a fixed size and the values are uninitialized so they are all null. We need to assign the values to the array at each index before start using it in our code. We'll go into those ways we can 
 
 {/* ### Summary Table
 
@@ -20,11 +20,11 @@ When an array is create it has a fixed size and the values are uninitialized so 
 
 ### Array Indexer Method
 
-The array indexer is the brackets surrounded by a integer. This acceses the that value in memory at that index. When we have the indexer on the left side of the equals sign then we can assign a value to that index in the array.
+The array indexer is the brackets surrounded by an integer. This accesses the value in memory at that index. When we have the indexer on the left side of the equals sign then we can assign a value to that index in the array.
 
 #### Array Indexer Code Example
 
-For example, if I have a loan payoff calculator that display the loan amount for each month over 30 years and I store the values into array. Then I can print the values from the array. 
+For example, if I have a loan payoff calculator that displays the loan amount for each month over 30 years and I store the values into array. Then I can print the values in the array. 
 
 ```cs
 double loanAmount = 450000; //Loan amount
@@ -65,11 +65,11 @@ Month 360: $0.00
 ```
 ### List With ToArray Method
 
-Another way is to use the list object to add items to the list the conver the list to an array at the end of the assignment process. Below is an example code.
+Another way is to use the list object to add items to the list and then convert the list to an array at the end of the assignment process. Below is an example code.
 
 #### List With ToArray Code Example
 
-If we reuse the example before and change out the array to a list this is the result. Instead using the indexer we can use the add method for the list. 
+If we reuse the example before and change out the array to a list this is the result. Instead of using the indexer, we can use the add method for the list. 
 
 ```
 double loanAmount = 425000; //Loan amount
@@ -117,12 +117,12 @@ Month 360: ($0.00)
 
 ### Performance
 
-I will performance a test of all these method using the following. I will average the time between 10 tests. Each test will have 100 loops of the test method. Each test method will have create an array of 10 million objects and assign a value to each of those.
+I will perform a test of all these methods using the following. I will average the time between 10 tests. Each test will have 100 loops of the test method. Each test method will have to create an array of 10 million objects and assign a value to each of those.
 
 
 #### Indexer Speed Test Code
 
-This method will receive an uninitalized array of size 10 million and the method will need to assign a value to each of the 10 million entries in the array. 
+This method will receive an uninitialized array of size 10 million and the method will need to assign a value to each of the 10 million entries in the array. 
 
 ```cs
 void TestMethod(double[] testArray)
@@ -150,7 +150,7 @@ Test 10:Function Calls:100, In 0m 4s 614ms
 Indexer Method Average Speed:4600ms, In 10 Tests
 ```
 
-This is the first test and the base line is pretty fast for 10 million objects added to the array and it only took about 4 and half seconds.
+This is the first test and the baseline is pretty fast for 10 million objects added to the array and it only took about 4 and half seconds.
 
 <details>
 <summary>Full Indexer Test Code</summary>
@@ -200,7 +200,7 @@ double StartTest(int testIndex)
 
 #### List With ToArray Test Code
 
-List has a couple of things going for it that it's underlying data structure is a array but the list manages it's size internally. Like the array, the list can set it's inital size in memory so we can advoid the wasting time growing the array. But perhaps the mostly costly part of the operation is the step to convert list to an array which is an extra step.
+List has a couple of things going for it its underlying data structure is an array but the list manages its size internally. Like the array, the list can set its initial size in memory so we can avoid wasting time growing the array. But perhaps the most costly part of the operation is the step to convert the list to an array which is an extra step.
 
 ```cs
 void TestMethod(List<double> testList)
@@ -279,8 +279,8 @@ double StartTest(int testIndex)
 
 <Table header ="Overall Rank,Method,Speed" rows="1,Array Indexer,4600ms;2,List With ToArray,5865ms;" />
 
-The Array Indexer is the best way to assign values to an array. It is fast and you don't have to convert to different between different collection types.
+The Array Indexer is the best way to assign values to an array. It is fast and you don't have to convert between different collection types.
 
-Using a list with ToArray may seem like a good idea but it does add an extra line of code and converting between types is clumsy. But it is prety fast but not faster than just using an array by itself.
+Using a list with ToArray may seem like a good idea but it does add an extra line of code and converting between types is clumsy. But it is pretty fast but not faster than just using an array by itself.
 
-Know any other ways assign values to an array? Let me know in the comments below.
+Know any other ways to assign values to an array? Let me know in the comments below.

@@ -57,7 +57,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-large.webp',
-    description:'The Array Indexer is the best way assign values for the entire array. I\'s fast, less code and no need to convert between types.'
+    description:'The Array Indexer is the best way assign values for the entire array. It\'s fast, less code and no need to convert between types.'
   },
   { 
     location:'fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship', 
