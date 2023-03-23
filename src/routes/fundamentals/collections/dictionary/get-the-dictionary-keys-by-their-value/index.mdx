@@ -12,11 +12,11 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Normally, dictionarys store key and value pairs and to access the values you need to pass in key. If you want to access the keys by searching for a set of values or particular value to get the key, then you'll need to loop through the values. There two scenarios to consider when making this kind of search. First are the values unique? If not then we need to loop through the values in some fashion. So I'll go through each of these methods one by one.
+Normally, dictionaries store key and value pairs and to access the values you need to pass in the key. If you want to access the keys by searching for a set of values or a particular value to get the key, then you'll need to loop through the values. These two scenarios are to consider when making this kind of search. First, are the values unique? If not then we need to loop through the values in some fashion. So I'll go through each of these methods one by one.
 
 ### When The Dictionary Values Are Unique Then Reverse The Dictionary
 
-If the values of the a dictionary are unique then the dictionary can be reversed by putting the values as keys and then the keys as the values. We can create a new dictionary or have two dictionarys. One dictionary where it's a regular keys and values and then another with the keys and values reversed. Consider the following example. 
+If the values of the dictionary are unique then the dictionary can be reversed by putting the values as keys and then the keys as the values. We can create a new dictionary or have two dictionaries. One dictionary where it's regular keys and values and then another with the keys and values reversed. Consider the following example. 
 
 If I have a dictionary that holds the months of the year as a string as a key then the values would be the corresponding number of the month.
 
@@ -47,7 +47,7 @@ key:Oct, value:10
 key:Nov, value:11
 key:Dec, value:12
 ```
-If this is the baseline that we are working with and we want to find the keys based on the selected values then we just need to reverse the dictionary. We can only do this because the values are also unique. For this example, that looks like the follows.
+If this is the baseline that we are working with and we want to find the keys based on the selected values then we just need to reverse the dictionary. We can only do this because the values are also unique. For this example, that looks like the following.
 
 ```cs
 Dictionary<int, string> monthlyDictionary = new Dictionary<int, string>() { { 1, "Jan" }, { 2, "Feb" }, { 3, "Mar" }, { 4, "April" }, { 5, "May" }, { 6, "Jun" }, { 7, "July" }, { 8, "Aug" }, { 9, "Sept" }, { 10, "Oct" }, { 11, "Nov" }, { 12, "Dec" } };//initialize dictionary
@@ -60,11 +60,11 @@ Console.WriteLine($"key:4, value:{monthlyDictionary[4]}");//print key and value 
 ```
 key:4, value:April
 ```
-This reverse of the dictionary keys and values is best if the both are unique if not then we need to loop through the values. So let's go throught the first option to loop through the values. 
+This reverse of the dictionary keys and values is best if both are unique if not then we need to loop through the values. So let's go through the first option to loop through the values. 
 
 #### Reverse Dictionary Method Speed Test
 
-Next, I want to test the speed of this method. I will do by the following. Run 10 tests and average the speed between the tests. Each test will run a method 1000 times. Each method will have a 1 million objects of data. Since, the keys and values are reverse. For this test, I will generate a dictionary with 1 million objects then at the end adding the one entry I plan to look for to show the look up speed of the item I'm looking for. Let's examine the test code below.
+Next, I want to test the speed of this method. I will do the following. Run 10 tests and average the speed between the tests. Each test will run a method 1000 times. Each method will have 1 million objects of data. Since the keys and values are reversed. For this test, I will generate a dictionary with 1 million objects then at the end add the one entry I plan to look for to show the look-up speed of the item I'm looking for. Let's examine the test code below.
 
 
 ```cs
@@ -78,7 +78,7 @@ string valueToLookFor = "Jan";
 
 string TestMethod(Dictionary<string, string> dictionary)
 {
-    string date = dictionary[valueToLookFor];//Once the Reverse Dictionary is set up and the keys and values are switched then we only need access the value. 
+    string date = dictionary[valueToLookFor];//Once the Reverse Dictionary is set up and the keys and values are switched then we only need access to the value. 
     return date;
 }
 
@@ -157,12 +157,12 @@ Function calls:1000, In 0m 0s 0ms
 Reverse Dictionary Method Average speed:0ms, In 10 tests
 ```
 
-This dictionary method is extremely fast. It is less than a millisecond. This is the go to method to solve this issue, but now we'll look at methods to deal with values that duplicated. 
+This dictionary method is extremely fast. It is less than a millisecond. This is the go-to method to solve this issue, but now we'll look at methods to deal with values that are duplicated. 
 
 
 ### LINQ Value Loop Method
 
-If the use case is that the values are not unquie then we need to loop through all the values and find the ones we are looking through. We can write a LINQ function to loop through all the values of the dictionary and return a list of keys that match. In this example, there's a dictionary with a date as the key and then the month as the value. There are mulitple dates that map the same month as value. This code will find the dates that corespeond to the Jan dates. Examine the code below.
+If the use case is that the values are not unique then we need to loop through all the values and find the ones we are looking through. We can write a LINQ function to loop through all the values of the dictionary and return a list of keys that match. In this example, there's a dictionary with a date as the key and then the month as the value. Multiple dates map the same month as the value. This code will find the dates that correspond to the Jan dates. Examine the code below.
 
 ```cs
 Dictionary<string, string> dateMonthDictionary = new Dictionary<string, string>() { { "1/20/2023", "Jan" }, { "2/04/2022", "Feb" }, { "1/08/2022", "Jan" }, { "4/13/2018", "April" }, { "3/28/2017", "Mar" }, { "4/15/2020", "April" }, { "12/24/2017", "Dec" }, { "10/18/2000", "Oct" }, { "12/20/2000", "Dec" } };
@@ -181,7 +181,7 @@ key:1/20/2023, value:Jan
 key:1/08/2022, value:Jan
 ```
 
-There are two dates that have occured in Jan and they are returned by this function.
+Two dates occurred in Jan and they are returned by this function.
 
 #### LINQ Value Loop Speed Test
 
@@ -198,7 +198,7 @@ string valueToLookFor = "Jan";
 
 List<string> TestMethod(Dictionary<string, string> dictionary)
 {
-    List<string> keys = dictionary.Where(x => x.Value == valueToLookFor).Select(y => y.Key).ToList();//loop through each key value pair and check if the value is the match we're looking for then add each key to a list
+    List<string> keys = dictionary.Where(x => x.Value == valueToLookFor).Select(y => y.Key).ToList();//loop through each key-value pair and check if the value is the match we're looking for then add each key to a list
     return keys;
 }
 
@@ -280,7 +280,7 @@ This LINQ method is slow. This is because all the values need to be looped so th
 
 ### Dictionary With List Method
 
-Another way we can approach this is to have a dictionary that will allow use to store the multiple values in a list if the keys end up duplicated. This will allow us the speed of the dictionary and also the storage of a list for the values. The values will be stored as keys then each of the key will be stored in a list that have the same value. Let's look at the code to see this approach.
+Another way we can approach this is to have a dictionary that will allow us to store the multiple values in a list of the keys that end up duplicated. This will allow us the speed of the dictionary and also the storage of a list of the values. The values will be stored as keys then each of the keys will be stored in a list that has the same value. Let's look at the code to see this approach.
 
 ```cs
 Dictionary<string, List<string>> dateMonthDictionary = new Dictionary<string, List<string>>();
@@ -328,7 +328,7 @@ key:1/08/2022, value:Jan
 
 #### Dictionary With List Method Speed Test
 
-We'll preform the same test as the other two methods. With 10 tests and each test will loop through the method 1000 times and the method will have 1 million data points.
+We'll perform the same test as the other two methods. With 10 tests and each test will loop through the method 1000 times and the method will have 1 million data points.
 
 ```cs
 
@@ -424,7 +424,7 @@ Function calls:1000, In 0m 0s 0ms
 Dictionary With List Method Average speed:0ms, In 10 tests
 ```
 
-This method returns extremely fast and we can return the muliple values almost instantly.
+This method returns extremely fast and we can return multiple values almost instantly.
 
 
 
@@ -433,6 +433,6 @@ This method returns extremely fast and we can return the muliple values almost i
 
 <Table header ="Overall Rank,Method,Speed,Unique Values Required" rows="1,Dictionary With List,0ms,No;2,Reverse Dictionary,0ms,Yes;3, LINQ Value Loop,20647ms,No;" />
 
-The best way to get keys by their values is to use a dictionary and list combo method because it still uses the incredibliy speed of the dictionary and the duplicate entries can be stored in list. This method doesn't require that the values be unquie. This is about setting the dictionary in the proper way so that you can the values you need. THe next best method is the reverse dictionary method but putting the values as the keys and the keys as values, but you'll need the values that you'll be putting into the keys need to be unique in order for this to work. But it is incredibly fast on the search for the values you want. The next mehtod of using a LINQ expression is slow and this is because LINQ has to loop through all the values to get all the associated keys.
+The best way to get keys by their values is to use a dictionary and list combo method because it still uses the incredible speed of the dictionary and the duplicate entries can be stored in a list. This method doesn't require that the values be unique. This is about properly setting the dictionary so that you can the values you need. The next best method is the reverse dictionary method but putting the values as the keys and the keys as values, but you'll need the values that you'll be putting into the keys. They need to be unique for this to work. But it is incredibly fast in the search for the values you want. The next method of using a LINQ expression is slow and this is because LINQ has to loop through all the values to get all the associated keys.
 
-Do you have another methods to solve this issue? Let me know in the comments below.
+Do you have other methods to solve this issue? Let me know in the comments below.
