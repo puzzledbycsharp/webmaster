@@ -50,3 +50,4 @@
 - [How To Initialize Arrays](array/how-to-initialize-arrays/index.mdx)
 - [Best Initializer To Get An Empty Array](array/best-initializer-to-get-an-empty-array/index.mdx)
 - [Check If The Text Contains A Keyword From The Array](array/check-if-the-text-contains-a-keyword-from-the-array/index.mdx)
+- [Search An Array If It Contains The Keyword](array/search-an-array-if-it-contains-the-keyword/index.mdx)

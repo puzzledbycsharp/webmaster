@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/array/search-an-array-if-it-contains-the-keyword', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/',
+    title:'Search An Array If It Contains The Keyword', 
+    dateCreated:'2023-03-23T00:11:10+00:00',
+    dateModified:'2023-03-23T00:11:10+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-large.webp',
+    description:'LINQ Contains provides the fastest method for searching an array for an element match. it is on one line but it is not as flexible as Array Exits.'
+  },
+  { 
     location:'fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/',
     title:'Check If The Text Contains A Keyword From The Array', 
