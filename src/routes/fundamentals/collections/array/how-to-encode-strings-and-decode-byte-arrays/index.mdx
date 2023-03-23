@@ -12,15 +12,15 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Encoding is the process of convert characters or strings into a array of bytes. Likewise decoding is the process of taking a byte array and converting it into a string which is readable form for us. There are serveral encoding types. Unicode is the starting encoding type for strings. You can use different encoding types C#. 
+Encoding is the process of converting characters or strings into an array of bytes. Likewise decoding is the process of taking a byte array and converting it into a string which is a readable form for us. There are several encoding types. Unicode is the starting encoding type for strings. You can use different encoding types C#. 
 
 ### Encode and Decode
 
-We can use the System.Text name space to declare each of the encoding 5 encoding types. These enable both encoding the text into a byte array and decoding a byte array back into a string. Use the GetBytes for encoding the string and use GetString to decode the byte array. 
+We can use the System.Text namespace to declare each of the encoding 5 encoding types. These enable both encoding the text into a byte array and decoding a byte array back into a string. Use the GetBytes for encoding the string and use GetString to decode the byte array. 
 
 ### Encode and Decode Example Code
 
-This example code below takes a list of hobbies and encodes the text to a byte array and then decodes the same byte array. But you can use any text types.   
+This example code below takes a list of hobbies and encodes the text to a byte array and then decodes the same byte array. But you can use any text type.   
 
 ```cs
 using System.Text;
@@ -124,21 +124,21 @@ Cooking or Baking encoded into 67,111,111,107,105,110,103,32,111,114,32,66,97,10
 Unicode Encoding stand for Unicode Transformation Format (UTF). It is supported by [Unicode format standard](https://home.unicode.org/)
 
 
-UTF32Encoding is in the form of a [32-bit integer and uses big endian order.](https://learn.microsoft.com/en-us/dotnet/api/system.text.utf32encoding?view=net-7.0#remarks)
+UTF32Encoding is in the form of a [32-bit integer and uses big-endian order.](https://learn.microsoft.com/en-us/dotnet/api/system.text.utf32encoding?view=net-7.0#remarks)
 
 UTF8Encoding is in a sequence of one to four bytes.
 
-[ASCIIEncoding does not proide error detection.](https://learn.microsoft.com/en-us/dotnet/api/system.text.asciiencoding?view=net-8.0#remarks) It is also a 7-bit encoding.
+[ASCIIEncoding does not provide error detection.](https://learn.microsoft.com/en-us/dotnet/api/system.text.asciiencoding?view=net-8.0#remarks) It is also a 7-bit encoding.
 
 
 
 ### Summary Table
 
-The below summary table gives an idea what each encoding type looks like so if you don't know which your code is encoding this should help.
+The below summary table gives an idea of what each encoding type looks like so if you don't know which your code is encoding this should help.
 
 
 <Table header ="Letter,ASCII,Unicode,UTF32,UTF7,UTF8" rows="A,65,65|0,65|0|0|0,65,65;B,66,66|0,66|0|0|0,66,66;C,67,67|0,67|0|0|0,67,67;D,68,68|0,68|0|0|0,68,68;E,69,69|0,69|0|0|0,69,69;F,70,70|0,70|0|0|0,70,70;G,71,71|0,71|0|0|0,71,71;H,72,72|0,72|0|0|0,72,72;I,73,73|0,73|0|0|0,73,73;J,74,74|0,74|0|0|0,74,74;K,75,75|0,75|0|0|0,75,75;L,76,76|0,76|0|0|0,76,76;M,77,77|0,77|0|0|0,77,77;N,78,78|0,78|0|0|0,78,78;O,79,79|0,79|0|0|0,79,79;P,80,80|0,80|0|0|0,80,80;Q,81,81|0,81|0|0|0,81,81;R,82,82|0,82|0|0|0,82,82;S,83,83|0,83|0|0|0,83,83;T,84,84|0,84|0|0|0,84,84;U,85,85|0,85|0|0|0,85,85;V,86,86|0,86|0|0|0,86,86;W,87,87|0,87|0|0|0,87,87;X,88,88|0,88|0|0|0,88,88;Y,89,89|0,89|0|0|0,89,89;Z,90,90|0,90|0|0|0,90,90;" />
 
-C# provides these methods to quickly encode and decode the text. [There is a default encoding type but microsoft has advise not to use this as it can give inconsistent results.](https://learn.microsoft.com/en-us/dotnet/api/system.text.encoding.default?view=net-7.0#remarks)
+C# provides these methods to quickly encode and decode the text. [There is a default encoding type but Microsoft has advise not to use this as it can give inconsistent results.](https://learn.microsoft.com/en-us/dotnet/api/system.text.encoding.default?view=net-7.0#remarks)
 
 Know any other ways to encode and decode text? Let me know in the comments below.

@@ -11,23 +11,23 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-small.webp 500w, ../../../../assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-medium.webp 1000w, ../../../../assets/fundamentals/collections/array/how-to-initialize-arrays/how-to-initialize-arrays-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Initialize Arrays Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
 
-C# offers a variety of ways to initlize an array. Some just initialize to default values, or null. Depending if the object is a value or reference type then the default value is different. Some allow you intialize to specific values. There are also short hand and long hand ways. These have accumulated over the years and microsoft has not pruned them. Let's start with the most basic and simple forms and then work our way to the more complex examples. 
+C# offers a variety of ways to initialize an array. Some just initialize to default values or null. Depending if the object is a value or reference type then the default value is different. Some allow you to initialize to specific values. There are also short-hand and long-hand ways. These have accumulated over the years and Microsoft has not pruned them. Let's start with the most basic and simple forms and then work our way to the more complex examples. 
 
 {/* <Table header ="Analysis Type,Allocation,Array Initialzer, Shorthand Array Initialier,New Operator" rows="Version Available,Lots of retrieve values,Test if keys exist;Performance,Approaches O(1),Approaches O(1);Lines Of Code,,;" /> */}
 
 
 ### Initialize An Array To Null Or Default Values
 
-This example shows how the most common types behave. Strings and classes are intialized to null. Double, int and float are intialized to zero. Bool is initlized to false. This kind of initialize is common in arrays. Later we usually plan to assign it with more meaningful data or just load it with the target data. But as you can see with strings and class you'll have to be careful because since they are populated with null you'll either need add null checks later in the code or just populate these right away with non null values.
+This example shows how the most common types behave. Strings and classes are initialized to null. Double, int and float are initialized to zero. Bool is initialized to false. This kind of initialization is common in arrays. Later we usually plan to assign it with more meaningful data or just load it with the target data. But as you can see with strings and class you'll have to be careful because since they are populated with null you'll either need to add null checks later in the code or just populate these right away with non-null values.
 
 ```cs
-//All strings are intialized to null
+//All strings are initialized to null
 string[] stringArray = new string[3];//Allocates an string array of size 3
 
-//Classes are intilized to null
+//Classes are initialized to null
 Car[] classArray = new Car[3];//Allocates an car array of size 3
 
-//Value types are intialized to 0
+//Value types are initialized to 0
 double[] doubleArray = new double[3];//Allocates an double array of size 3
 int[] intArray = new int[3];//Allocates an int array of size 3
 float[] floatArray = new float[3];//Allocates an float array of size 3
@@ -62,22 +62,22 @@ intArray:0,0,0
 floatArray:0,0,0
 boolArray:False,False,False
 ```
-###### More Info On Empty Array Initialiers
+###### More Info On Empty Array Initializers
 
-If you want to know more on how to initialize an empty array. I wrote an article [Best Initializer To Get An Empty Array](https://puzzledbycsharp.com/fundamentals/collections/array/best-initializer-to-get-an-empty-array/) that talks all the details with creating empty arrays.
+If you want to know more about how to initialize an empty array. I wrote an article [Best Initializer To Get An Empty Array](https://puzzledbycsharp.com/fundamentals/collections/array/best-initializer-to-get-an-empty-array/) that talks all about the details of creating empty arrays.
 
-### Initialize An Array With Array Initializer
+### Initialize An Array With An Array Initializer
 
-In the previous example, string and the Car class I created were null. But now I want to intialize them to certain values of my choosing. The following example, shows all the previous objects will now have a set values. I can do this by using the [array initializer](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/arrays#167-array-initializers). This syntax uses two enclosing curly braces with each seperated by a comma.
+In the previous example,the string and the Car class I created were null. But now I want to initialize them to certain values of my choosing. The following example shows all the previous objects will now have a set value. I can do this by using the [array initializer](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/arrays#167-array-initializers). This syntax uses two enclosing curly braces with each separated by a comma.
 
 ```cs
-//All strings are intialized to book titles
-string[] stringArray = new string[3] { "To Kill a Mockingbird", "The Catcher in the Rye", "The Lord of the Rings" };//Allocates an string array of size 3 with 3 book titles
+//All strings are initialized to book titles
+string[] stringArray = new string[3] { "To Kill a Mockingbird", "The Catcher in the Rye", "The Lord of the Rings" };//Allocates a string array of size 3 with 3 book titles
 
-//Classes are intilized to values
-Car[] classArray = new Car[3] { new Car(4, 200, "sedan"), new Car(4, 140, "truck"), new Car(4, 180, "SUV") };//Allocates an car array of size 3 with 3 car values
+//Classes are initialized to values
+Car[] classArray = new Car[3] { new Car(4, 200, "sedan"), new Car(4, 140, "truck"), new Car(4, 180, "SUV") };//Allocates a car array of size 3 with 3 car values
 
-//Value types are intialized to 0
+//Value types are initialized to 0
 double[] doubleArray = new double[3] { 39.3, 218.38, 480.934 };//Allocates an double array of size 3
 int[] intArray = new int[3] { 4, 108, 302 };//Allocates an int array of size 3
 float[] floatArray = new float[3] { 32f, 3230f, 32.323f };//Allocates an float array of size 3
@@ -130,16 +130,16 @@ boolArray:True,False,True
 
 ### Initialize An Array With Shorthand Array Initializer
 
-C# also allows for a shorthand of the array intilizer. It removes the new and object declaration and only leaves the curly braces. This can save time and typing that should help improve productively. Notice how the compiler is able to infer the type based on the usage. 
+C# also allows for a shorthand of the array initializer. It removes the new and object declaration and only leaves the curly braces. This can save time and typing which should help improve productively. Notice how the compiler can infer the type based on the usage. 
 
 ```cs
-//All strings are intialized to book titles
-string[] stringArray ={ "The Lion, the Witch and the Wardrobe", "The Diary of a Young Girl", "The Hitchhiker's Guide to the Galaxy" };//Allocates an string array of size 3 with 3 book titles
+//All strings are initialized to book titles
+string[] stringArray ={ "The Lion, the Witch and the Wardrobe", "The Diary of a Young Girl", "The Hitchhiker's Guide to the Galaxy" };//Allocates a string array of size 3 with 3 book titles
 
-//Classes are intilized to values
-Car[] classArray = { new Car(4, 180, "compact"), new Car(4, 156, "SUV-Crossover"), new Car(4, 140, "MiniVan") };//Allocates an car array of size 3 with 3 car values
+//Classes are initialized to values
+Car[] classArray = { new Car(4, 180, "compact"), new Car(4, 156, "SUV-Crossover"), new Car(4, 140, "MiniVan") };//Allocates a car array of size 3 with 3 car values
 
-//Value types are intialized to 0
+//Value types are initialized to 0
 double[] doubleArray = { 22.3, 696.89, 943.238200 };//Allocates an double array of size 3
 int[] intArray = { 0, 342, 8433 };//Allocates an int array of size 3
 float[] floatArray = { 95f, 8207f, 382320.893f };//Allocates an float array of size 3
@@ -192,16 +192,16 @@ boolArray:False,True,False
 
 ### Initialize An Array With The New Operator
 
-[This is first available in C# 9.0.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator#array-creation) This syntax is just the new keyword and open and closing brackets [] and then the curly braces that have the values. It is a compact syntax that is used across may types in C#. See example below.
+[This is first available in C# 9.0.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator#array-creation) This syntax is just the new keyword. Then the open and closing brackets [] and then the curly braces that have the values. It is a compact syntax that is used across many types in C#. See the example below.
 
 ```cs
-//All strings are intialized to book titles
-string[] stringArray = new[] { "Brave New World", "The Picture of Dorian Gray", "The Sun Also Rises" };//Allocates an string array of size 3 with 3 book titles
+//All strings are initialized to book titles
+string[] stringArray = new[] { "Brave New World", "The Picture of Dorian Gray", "The Sun Also Rises" };//Allocates a string array of size 3 with 3 book titles
 
-//Classes are intilized to null
-Car[] classArray = new[] { new Car(4, 230, "electric"), new Car(2, 195, "motocycle"), new Car(4, 134, "hatchback") };//Allocates an car array of size 3 with 3 car values
+//Classes are initialized to null
+Car[] classArray = new[] { new Car(4, 230, "electric"), new Car(2, 195, "motorcycle"), new Car(4, 134, "hatchback") };//Allocates a car array of size 3 with 3 car values
 
-//Value types are intialized to 0
+//Value types are initialized to 0
 double[] doubleArray = new[] { 24.6,838.984, 820.281 };//Allocates an double array of size 3
 int[] intArray = new[] { 5, 112, 562 };//Allocates an int array of size 3
 float[] floatArray = new[] { 238.98f, 2183.32f, 89833.8f };//Allocates an float array of size 3
@@ -242,4 +242,4 @@ class Car
 ```
 {/* // can add multi dimensional arrays */}
 
-Know any other ways to initilize an array? Let me know in the comments below.
+Know any other ways to initialize an array? Let me know in the comments below.
