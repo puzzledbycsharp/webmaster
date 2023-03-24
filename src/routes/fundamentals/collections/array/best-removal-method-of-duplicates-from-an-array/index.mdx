@@ -16,7 +16,7 @@ To remove duplicate items from a list we have a couple of options. One is to use
 
 <Table header ="Analysis Type,LINQ Distinct,For Loop With HashSet And List" rows=".NET Version Available,>= .NET 3.5,>= .NET 3.5;Performance,Approaches O(N),Approaches O(N);Lines Of Code,1,11,;Order Maintained,No,Yes" />
 
-### LINQ Distinct
+### Distinct Values Using LINQ Distinct
 
 This is a two-step process. LINQ Distinct returns an IEnumerable which then has to be converted to an array. [This method also returns an unordered sequence that has no duplicates.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-8.0#remarks) The nice thing about this method it only takes up one line of code and is very readable since it does exactly what it says it does. And since it has been available since .NET 3.5, it should be available on you're system unless your using something much older. In terms of performance, it needs to go through the entire array to find any duplicates and remove them.
 
