@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/',
+    title:'Best Removal Method Of Duplicates From An Array', 
+    dateCreated:'2023-03-23T00:23:30+00:00',
+    dateModified:'2023-03-23T00:23:30+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-large.webp',
+    description:'LINQ Distinct is the best method for removing duplicate items from an array. It is the fastest method,and really compact and readably'
+  },
+  { 
     location:'fundamentals/collections/array/search-an-array-if-it-contains-the-keyword', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/',
     title:'Search An Array If It Contains The Keyword', 
