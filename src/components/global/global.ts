@@ -249,7 +249,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-large.webp',
-    description:'Dictionary performs much better than Hashtable. It is a clear example why it is better to use a generic collection type'
+    description:'Dictionary performs much better than Hashtable. It is a clear example why it is better to use a generic collection type.'
   },
   { 
     location:'fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary', 
