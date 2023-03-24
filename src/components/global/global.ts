@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals/collections/array/best-method-for-slicing-arrays', 
+    url: 'https://puzzledbycsharp.com/fundamentals/collections/array/best-method-for-slicing-arrays/',
+    title:'Best Method For Slicing Arrays', 
+    dateCreated:'2023-03-24T00:12:40+00:00',
+    dateModified:'2023-03-24T00:12:40+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-large.webp',
+    description:'ArraySegment is the fastest method for slicing an array, with many other good ones to choose from. With a short syntax and has a long framework support.'
+  },
+  { 
     location:'fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/',
     title:'Best Removal Method Of Duplicates From An Array', 
