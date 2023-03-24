@@ -12,19 +12,19 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-While a dictionary by it's nature is not sorted and doesn't hold a order. It are times when it is neccessary to sort the dictionary by the value. Usually these are just one time operations where we wouldn't need to convert the dictionary to a list to save the order. Also, the goal is here not convert the dictionary to a different collection type like a list. The reason why you wouldn't want to be convert between collection types is that it would be costly in performance. 
+While a dictionary by its nature is not sorted and doesn't hold an order. Sometimes it is necessary to sort the dictionary by value. Usually, these are just one-time operations where we wouldn't need to convert the dictionary to a list to save the order. Also, the goal is here not to convert the dictionary to a different collection type like a list. The reason why you wouldn't want to be converted between collection types is that it would be costly in performance.
 
 ### How To Sort A Dictionary
 
-There are LINQ expressions that puts the dictionary in a sorted order, but when you try to use the dictionary at a another time to loop through the keys or values it is a random order of the dictionary.
+There are LINQ expressions that put the dictionary in a sorted order, but when you try to use the dictionary at another time to loop through the keys or values it is a random order of the dictionary.
 
 ### LINQ Query
 
-We can use the LINQ query to write an expression to order the dictionary in the loop by acending or descending order. 
+We can use the LINQ query to write an expression to order the dictionary in the loop by ascending or descending order.
 
 #### LINQ Query Example Code
 
-This code works by surrounding the expression in parentheses while in the foreach loop. This expression orders each key-value pair by values so you can still access the key and value. See an exmaple below.
+This code works by surrounding the expression in parentheses while in the foreach loop. This expression orders each key-value pair by values so you can still access the key and value. See the example below.
 
 ```cs
 Dictionary<string, DateTime> keyValuePairs = new Dictionary<string, DateTime>() { { "May", new DateTime(2023, 5, 28) }, { "Oct", new DateTime(2023, 10, 29) }, { "March", new DateTime(2023, 3, 18) } };//create dictionary
@@ -41,7 +41,7 @@ key:March, value:3/18/2023 12:00:00 AM
 key:May, value:5/28/2023 12:00:00 AM
 key:Oct, value:10/29/2023 12:00:00 AM
 ```
-This returns the list in accending order, which is least to greatest.
+This returns the list in ascending order, which is least to greatest.
 
 The following example shows in descending order which is greatest to least.
 
@@ -64,7 +64,7 @@ key:Feburary, value:2/10/2023 12:00:00 AM
 
 #### LINQ Query Speed Test
 
-For this test, there are 10 tests that will be averaged. Each test will have 10 thousand function calls and will sort and loop through 10 thousand objects.
+For this test, 10 tests will be averaged. Each test will have 10 thousand function calls and will sort and loop through 10 thousand objects.
 
 ```cs
 
@@ -157,12 +157,12 @@ Function calls:10000, In 0m 10s 455ms
 LINQ Query Average speed:10343ms, In 10 tests
 ```
 
-This test shows the basellie of about 10 seconds. 
+This test shows a baseline of about 10 seconds. 
 
 
 ### LINQ Enumerable
 
-This is an extension method that we can use on the dictionary. This also creates a ordered dictionary. 
+This is an extension method that we can use on the dictionary. This also creates an ordered dictionary.
 
 
 ```cs
@@ -181,7 +181,7 @@ key:June, value:6/3/2023 12:00:00 AM
 key:November, value:11/6/2023 12:00:00 AM
 ```
 
-This also the same example, but with descending order.
+This is also the same example but in descending order.
 
 ```cs
 Dictionary<string, DateTime> keyValuePairs = new Dictionary<string, DateTime>() { { "July", new DateTime(2023, 7, 6) }, { "December", new DateTime(2023, 12, 8) }, { "May", new DateTime(2023, 5, 22) } };//create dictionary
@@ -298,6 +298,6 @@ We can see that this method is very close in performance to the previous method.
 
 <Table header ="Overall Rank,Method,Speed" rows="1,LINQ Enumerable,10247ms;2,LINQ Query,10343ms;" />
 
-The best method is tied in performance in this case. Both LINQ methods have the same performance however, I prefer LINQ Enumerable method because it is less code and more compact and you don't need to know the query syntax. But if you already familar with the LINQ query expressions then you can use that form as well to order the dictionary values. It works just as well. 
+There is a tie in the performance category in this case. Both LINQ methods have the same performance however, I prefer the LINQ Enumerable method because it is less code and more compact and you don't need to know the query syntax. But if you are already familiar with the LINQ query expressions then you can use that form as well to order the dictionary values. It works just as well.
 
-Do you have any other methods of sorting values of a dictionary? Let me know in the comments.
+Do you have any other methods of sorting the values of a dictionary? Let me know in the comments.

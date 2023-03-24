@@ -11,7 +11,7 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-small.webp 250w, ../../../../assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp 500w, ../../../../assets/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Dictionary Vs Hashtable Comparison Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
 
-Dictionary and Hashtable are two key-value pair type of data structures. They are similar but with some key differences. You may be wondering why there are two very similar data structures in C#. Well, microsoft adds to the language but doesn't really remove much from it. With that in mind, I'll be going over detail the similarities and diffences of the generic dictionary and hashtable.
+Dictionary and Hashtable are two key-value pair types of data structures. They are similar but with some key differences. You may be wondering why there are two very similar data structures in C#. Well, Microsoft adds to the language but doesn't remove much from it. With that in mind, I'll be going over in detail the similarities and differences between the generic dictionary and hashtable.
 
 ### Summary Table
 
@@ -20,11 +20,11 @@ Dictionary and Hashtable are two key-value pair type of data structures. They ar
 {/* wanted to add delete but didn't get to it. */}
 ### .NET Version
 
-Hashtable has been around a long time since 1.1 version of .NET but Dictionary came in in 2.0 of .NET
+Hashtable has been around a long time since the 1.1 version of .NET but Dictionary came in in 2.0 of .NET.
 
 ### Performance
 
-The most important consideration between Dictionary and Hashtable us the how fast are they. The testing methods are as follows.
+The most important consideration between Dictionary and Hashtable is how fast are they. The testing methods are as follows.
 
 Below is a summary table of the results.
 
@@ -34,7 +34,7 @@ Below is a summary table of the results.
 
 
 ###### Boxing and Unboxing
-Before we get into testing these data structures we need to talk about boxing and unboxing. Since Hashtable uses boxing and unboxing store and retrieve the items, it is a performance hit. Boxing is assigning a variable to an class of type object. So if I had a int equal to 3, I could assign it to a variable an type Object. See example.
+Before we get into testing these data structures we need to talk about boxing and unboxing. Since Hashtable uses boxing and unboxing to store and retrieve the items, it is a performance hit. Boxing is assigning a variable to a class of type object. So if I had an int equal to 3, I could assign it to a variable and type Object. See example.
 
 
 ```cs
@@ -45,11 +45,11 @@ int retievedValue = (int)storedValue;//unboxing, converting to original type
 Console.WriteLine("Ending value:" + number);//Print to screen
 ```
 
-It is this coverting to an object and back again is a concern for Hyashtable's performance. We'll do some testing to see how much this impacts performance and in which uses cases.
+It is this converting to an object and back again that is a concern for Hyashtable's performance. We'll do some testing to see how much this impacts performance and in which uses cases.
 
 ###### Type-Safe
 
-The opposite of boxing and unboxing is the usage of type-safe methods and classes. [It is an understanding the type is consistent and you can assume to be interacting with the same type and methods of that type.](https://www.oreilly.com/library/view/c-40-in/9781449379629/ch01.html#:~:text=Type%20Safety,it%20were%20an%20integer%20type.) C# is a mostly type-safe language. Dictionary is a type-safe object that uses generics.
+The opposite of boxing and unboxing is the usage of type-safe methods and classes. [It is an understanding the type is consistent and you can assume to be interacting with the same type and methods of that type.](https://www.oreilly.com/library/view/c-40-in/9781449379629/ch01.html#:~:text=Type%20Safety,it%20were%20an%20integer%20type.) C# is a mostly type-safe language. A dictionary is a type-safe object that uses generics.
 
 #### Add Speed Test
 
@@ -886,26 +886,27 @@ DateTime GetDateTime()
 
 ### Namespace
 
-Both dictionary and hashtable reside in the System.Collections namespace. Dictionary is found in a subsection of System.Collection.Generic. Is is aptly named as it uses generics to set the type of the key value pairs at run time.
+Both dictionaries and hashtables reside in the System.Collections namespace. The dictionary is found in a subsection of System.Collection.Generic. It is aptly named as it uses generics to set the type of the key-value pairs at run time.
 
 
 ### Element Type
 
-Hashtable uses the DictionaryEntry for the key and value properites while the Dictionary uses the KeyValuePair generics that has key and value properites. So they both have key and value proptiers just the class different.
+Hashtable uses the DictionaryEntry for the key and value properties while the Dictionary uses the KeyValuePair generics that have key and value properties. So they both have key and value properties just the class is different.
 
 ### Generic 
-Dictionary uses generics which means that type for the key and values are known at compile time. This makes it faster and less error prone than the box and unboxing way that Hashtable uses. It seem like not using generics makes things more generalized but there is a performance paid.
+The dictionary uses generics which means that type for the key and values are known at compile time. This makes it faster and less error-prone than the box and unboxing way that Hashtable uses. It seems like not using generics makes things more generalized but there is a performance paid.
 
 ### Key Immutable
 
-This important for the consistantly of the data structure. Both Dictionary and Hashtable require this other wise they might become unstable. 
+This is important for the consistency of the data structure. Both Dictionary and Hashtable require this other wise they might become unstable.
 
 ### Thread Safe
-Both allow multiple readers, which makes that there can be muliple threads reading the Dictionary or HashTable. Dictionary is not consider thread safe. But does it need to be when there is a Concurrent Dictionary collection type that is thread safe. THe interesting thing is that Hashtable does allow for one thread to write to the hashtable but it can't happen while another thread is looping through the dictionary. Some may consider hashtable to be thread safe and a good reason to use hashtable. I do not because if there's a change in the hashtable while another reader thread is looping through the hashtable then an exception will occur. This is not thread safe.
+Both allow multiple readers, which makes that there can be multiple threads reading the Dictionary or HashTable. The dictionary is not considered thread-safe. But does it need to be when there is a Concurrent Dictionary collection type that is thread-safe? The interesting thing is that Hashtable does allow for one thread to write to the hashtable but it can't happen while another thread is looping through the dictionary. Some may consider hashtables to be thread-safe and a good reason to use a hashtable. I do not because if there's a change in the hashtable while another reader thread is looping through the hashtable then an exception will occur. This is not thread-safe.
 
 ### Conclusion
 
-What should you use Hashtable or Dictionary? You should use Dictionary, it has signficant performance improvements that I have tested over the course of this article. All of my tests show that Dictionary had almost twice as much speed improvement over hashtable. It really shows as the data grows larger. [The other thing is that Microsoft says not to use a non generic collection which hashtable is.](https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md) This is because of the performance issue but also because they are error prone. 
+What should you use Hashtable or Dictionary? You should use Dictionary, it has significant performance improvements that I have tested throughout this article. All of my tests show that Dictionary had almost twice as much speed improvement over the hashtable. It shows as the data grows larger.  [The other thing is that Microsoft says not to use a nongeneric collection which the hashtable is.](https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md) This is because of the performance issue but also because they are error-prone.
+Do you know any interesting facts about Dictionary or Hashtable that I missed? Let me know in the comments below.
 
 Do you know any interesting facts about Dictionary or Hashtable that I missed? Let me know in the comments below.
 

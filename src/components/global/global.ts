@@ -273,7 +273,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/best-sort-method-for-dictionary-values-large.webp',
-    description:'Using a LINQ Extension method is the best way to sort a dictionary by value. It is quick and easy to implement'
+    description:'Using a LINQ Extension method is the best way to sort a dictionary by value. It is quick and easy to implement.'
   },
     { 
       location:'fundamentals/collections/dictionary/how-to-update-dictionary-values', 
