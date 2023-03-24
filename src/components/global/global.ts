@@ -9,7 +9,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-large.webp',
-    description:'LINQ Distinct is the best method for removing duplicate items from an array. It is the fastest method,and really compact and readably'
+    description:'LINQ Distinct is the best method for removing duplicate items from an array. It is the fastest method,and really compact and readably.'
   },
   { 
     location:'fundamentals/collections/array/search-an-array-if-it-contains-the-keyword', 
