@@ -10,17 +10,15 @@ import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/find-if-32bit-or-64bit-dll-medium.webp" imageSrcSet="../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/find-if-32bit-or-64bit-dll-small.webp 250w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/find-if-32bit-or-64bit-dll-medium.webp 500w, ../../../assets/code-snippets/project-build/copy-files-via-project-script-on-build/find-if-32bit-or-64bit-dll-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Copying Files Via Project Script On Build Banner Image" widthImage = "2304" heightImage = "1728" />
 
-
-
-You do not have to guess if a DLL or assembly is targeting 32bit(x86) or 64bit(x64). Visual Studio comes with handy tool called Corflags. You can access this tool by the Visual Studio command prompt.
-
+You do not have to guess if a DLL or assembly is targeting 32bit(x86) or 64bit(x64). Visual Studio comes with a handy tool called Corflags. You can access this tool by the Visual Studio command prompt.
+f
 I created test assemblies and compiled them in Visual Studio to demonstrate the usage of this tool. You can skip ahead to a particular example through the links below.
 
 <Table header ="#,Target,PE,32BITREQ" rows="1,32Bit,PE32,1;2,64Bit,PE32+,0;3,Any CPU,PE32,0;4,Any CPU with Prefer 32 bit,PE32,1;" />
 
 In Visual Studio 2019, the command prompt can be found under Tools-> Command Line -> Developer Command Prompt
 
-Developer Command Prompt for Corflags Navigate to directory of the DLL then type in the command below.
+Developer Command Prompt for Corflags Navigate to the directory of the DLL then type in the command below.
 
 Command:corflags #dll_name#.dll
 

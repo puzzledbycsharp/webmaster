@@ -53,3 +53,4 @@
 - [Search An Array If It Contains The Keyword](array/search-an-array-if-it-contains-the-keyword/index.mdx)
 - [Best Removal Method Of Duplicates From An Array](array/best-removal-method-of-duplicates-from-an-array/index.mdx)
 - [Best Method For Slicing Arrays](array/best-method-for-slicing-arrays/index.mdx)
+- [Fill The Array With One Value](array/fill-the-array-with-one-value/index.mdx)

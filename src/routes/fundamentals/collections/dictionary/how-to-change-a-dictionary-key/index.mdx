@@ -13,12 +13,12 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-The challenge with changing the a dictionary's key is that it is suppose to be immuateable meaning it doesn't change. This leaves us with two other options, that is to remove the existing key and and a new key to the dictionary or to add the new updated key and value into a new dictionary. I will go over both of those methods in this article.
+The challenge with changing the dictionary's key is that it is supposed to be immutable meaning it doesn't change. This leaves us with two other options, that is to remove the existing key and add a new key to the dictionary or to add the new updated key and value into a new dictionary. I will go over both of those methods in this article.
 
 
 ### Delete Then Add Method
 
-In this method we, need to have the existing key already. Once we have the key that we want to change. I will save the value then delete the existing key and add a new key with the previous value. Let's see an example below. 
+In this method, we, need to have the existing key already. Once we have the key that we want to change. I will save the value then delete the existing key and add a new key with the previous value. Let's see an example below.
 
 #### Delete Then Add Method Example Code
 
@@ -51,10 +51,10 @@ foreach (KeyValuePair<string, int> entry in cityZipCodes)
 
 void ChangeDictionaryKey(string existingKey, string newKey, Dictionary<string, int> dictionary)
 {
-    if (dictionary.TryGetValue(existingKey, out int existingValue))//Check if the key exists in the dictionary before trying to remove it and get existing value to save in a temp variable
+    if (dictionary.TryGetValue(existingKey, out int existingValue))//Check if the key exists in the dictionary before trying to remove it and get the existing value to save in a temp variable
     {
         dictionary.Remove(existingKey);//Delete the existing key and value
-        dictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key value pair
+        dictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key-value pair
     }
 }
 ```
@@ -74,11 +74,11 @@ void ChangeDictionaryKey(string existingKey, string newKey, Dictionary<string, i
 10. key:San Jose, value:95101
 ```
 
-As expected, you can see that Jacksonville is now in the list in place of Phoenix.
+As expected, you can see that Jacksonville is now on the list in place of Phoenix.
 
 #### Delete Then Add Method Speed Test
 
-Next I want to test the speed of this method. It will be a massive test. If I have list of keys and loop through each key and replace the text with a new text for each of the keys. How fast can this get done if I have 1 test will do this operation 100 times then with 1 million objects in the dictionary. Below is a summary of the test parameters.
+Next, I want to test the speed of this method. It will be a massive test. If I have a list of keys and loop through each key and replace the text with a new text for each of the keys. How fast can this get done if I have 1 test and do this operation 100 times then with 1 million objects in the dictionary. Below is a summary of the test parameters.
 
 <details>
 <summary>Test Parameters</summary>
@@ -94,10 +94,10 @@ void TestMethod(Dictionary<string, DateTime> dictionary)
     foreach (string existingKey in keysList)
     {
         string newKey = existingKey + "0";//random number added to the key to create a new key
-        if (dictionary.TryGetValue(existingKey, out DateTime existingValue))//Check if the key exists in the dictionary before trying to remove it and get existing value to save in a temp variable
+        if (dictionary.TryGetValue(existingKey, out DateTime existingValue))//Check if the key exists in the dictionary before trying to remove it and get the existing value to save in a temp variable
         {
             dictionary.Remove(existingKey);//Delete the existing key and value
-            dictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key value pair
+            dictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key-value pair
         }
     }
 }
@@ -118,7 +118,7 @@ Test 10:Function Calls:100, In 0m 8s 457ms
 Delete Then Add Average Speed:9518ms, In 10 Tests
 ```
 
-THis is the baseline for this kind of test that it takes about 9.5 seconds to complete. We will try one more method and see how the two compare in performance.
+This is the baseline for this kind of test that it takes about 9.5 seconds to complete. We will try one more method and see how the two compare in performance.
 
 <details>
 <summary>Full Delete Then Add Method Speed Test Code</summary>
@@ -203,7 +203,7 @@ DateTime GetDateTime()
 
 ### Add To New Dictionary Method
 
-Another way we get around the immuateable issue of a dictionary is to add this new key to a new dictionary. I will need to extract the previous value then add it to the new dictionary.
+Another way we get around the immutable issue of a dictionary is to add this new key to a new dictionary. I will need to extract the previous value and then add it to the new dictionary.
 
 #### Add To New Dictionary Method Example Code
 
@@ -241,9 +241,9 @@ foreach (KeyValuePair<string, int> entry in newDictionary)
 
 void ChangeDictionaryKey(string existingKey, string newKey, Dictionary<string, int> existingDictionary, Dictionary<string, int> newDictionary)
 {
-    if (existingDictionary.TryGetValue(existingKey, out int existingValue))//Check if the key exists in the dictionary before trying to remove it and get existing value to save in a temp variable
+    if (existingDictionary.TryGetValue(existingKey, out int existingValue))//Check if the key exists in the dictionary before trying to remove it and get the existing value to save in a temp variable
     {
-        newDictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key value pair
+        newDictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key-value pair
     }
 }
 
@@ -266,7 +266,7 @@ New Dictionary:
 11. key:Jacksonville, value:85001
 ```
 
-With this we a clearer seperation between the two dictionaries and their purpose and also have record of the old and new keys for reference.
+With this, we have a clearer separation between the two dictionaries and their purpose and also have a record of the old and new keys for reference.
 
 #### Add To New Dictionary Speed Test
 
@@ -283,9 +283,9 @@ void TestMethod(Dictionary<string, DateTime> dictionary)
     foreach (string existingKey in keysList)
     {
         string newKey = existingKey + "0";//random number added to the key to create a new key
-        if (dictionary.TryGetValue(existingKey, out DateTime existingValue))//Check if the key exists in the dictionary before trying to remove it and get existing value to save in a temp variable
+        if (dictionary.TryGetValue(existingKey, out DateTime existingValue))//Check if the key exists in the dictionary before trying to remove it and get the existing value to save in a temp variable
         {
-            newDictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key value pair
+            newDictionary.Add(newKey, existingValue);//Add the new key with the previous value into a new key-value pair
         }
     }
 }
@@ -393,10 +393,8 @@ DateTime GetDateTime()
 <Table header ="Overall Rank,Method,Speed" rows="1,Delete Then Add,9518ms;2,Add To New Dictionary,10513ms;" />
 
 
-The best way to change a key is to delete the key value pair then add the new key with the existing value. It performs far better than just add a new key and existing value to a new dictionary. It also keeps things consolidate into one dictionary so you're not keeping track for multiple dictionaries.
+The best way to change a key is to delete the key-value pair and then add the new key to the existing value. It performs far better than just adding a new key and existing value to a new dictionary. It also keeps things consolidated into one dictionary so you're not keeping track of multiple dictionaries.
 
-Add the new key and existing value to a new dictionary is extremely slow and I wouldn't recommend doing it. It is better to just delete and add the keys in this case.
+Adding the new key and existing value to a new dictionary is extremely slow and I wouldn't recommend doing it. It is better to just delete and add the keys in this case.
 
-Do you know any other ways to change a key in dictionary that I missed? Let me know in the comments below.
-
-
+Do you know any other ways to change a key in the dictionary that I missed? Let me know in the comments below.

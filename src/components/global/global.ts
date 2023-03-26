@@ -189,7 +189,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-large.webp',
-    description:'Mapping two lists to a dictionary is best down manually. It has the best performance and also can handle duplicate keys without thrown exceptions'
+    description:'Mapping two lists into a dictionary is best done manually. It has the best performance and also can handle duplicate keys without throwing exceptions.'
   },
   { 
     location:'fundamentals/collections/dictionary/convert-a-list-into-a-dictionary', 
@@ -201,7 +201,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-large.webp',
-    description:'The best way to convert a list to dictionary is to use the dictionary indexer. It is fast enough,has simple syntax and works with duplicates.'
+    description:'The best way to convert a list to a dictionary is to use the dictionary indexer. It is fast enough, has simple syntax, and works with duplicates.'
   },
   { 
     location:'fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries', 
@@ -213,7 +213,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-large.webp',
-    description:'The best dictionary merge method is the merge loop method. You can write yourself and it faster than the LINQ methods'
+    description:'The best dictionary merge method is the merge loop method. You can write yourself and it is faster than the LINQ methods.'
   },
   { 
     location:'fundamentals/collections/dictionary/get-dictionary-element-by-index', 
@@ -237,7 +237,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/how-to-initialize-a-dictionary-large.webp',
-    description:'C# provides Collection Initializers syntax to initialize dictionaries to simple, quick and readable code.'
+    description:'C# provides Collection Initializers syntax to initialize dictionaries to simple, quick, and readable code.'
   },
   { 
     location:'fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison', 
@@ -338,14 +338,14 @@ export const ROUTE_DATA = [
   { 
     location:'fundamentals/collections/array-vs-list-vs-linked-list', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array-vs-list-vs-linked-list/',
-    title:'Array vs List vs Linked List | Puzzled By CSharp',
+    title:'Array Vs List Vs Linked List | Puzzled By CSharp',
     dateCreated:'2021-12-24T00:08:56+00:00',
     dateModified:'2021-12-24T00:08:56+00:00',
     twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-large.webp',
-    description:'Array vs Lists vs Linked Lists are common collections, each pros and cons so it is important to understand these as we make our collection choices.'
+    description:'Array vs Lists vs Linked Lists is a common collection type, each has pros and cons so it is important to understand these as we make our collection choices.'
   },
   { 
     location:'code-snippets/exceptions/default-parameter-value-not-compile-time-constant', 
@@ -357,7 +357,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-large.webp',
-    description:'The exception CS1736:Default parameter value must be a compile-time constant comes when assigning a optional parameter value is not a constant or default value.'
+    description:'The exception CS1736:Default parameter value must be a compile-time constant comes when assigning an optional parameter value is not a constant or default value.'
   },
   { 
     location:'fundamentals/collections/dictionary-best-practices-and-what-to-avoid', 
@@ -369,7 +369,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-large.webp',
-    description:'Dictionary using best practices with the right key, it scales well over large datasets. There are several pitfalls that should be avoided.'
+    description:'Dictionary using best practices with the right key scales well over large datasets. There are several pitfalls that should be avoided.'
   },
   { 
     location:'code-snippets/project-build/copy-files-via-project-script-on-build', 
@@ -381,7 +381,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/project-build/copy-files-via-project-script-on-build/copying-files-via-project-script-on-build-large.webp',
-    description:'One way to copy files to output folder is to edit the .csproj file and add a command copy files from a certain directory into the output folder.'
+    description:'One way to copy files to the output folder is to edit the .csproj file and add a command to copy files from a certain directory into the output folder.'
   },
   { 
     location:'fundamentals/collections/list-vs-dictionary', 
@@ -393,7 +393,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list-vs-dictionary/list-vs-dictionary-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list-vs-dictionary/list-vs-dictionary-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list-vs-dictionary/list-vs-dictionary-large.webp',
-    description:'List and Dictionary are useful collection types. They are accessibility and convenient to use. There are advantages over an array or hash tables.'
+    description:'List and Dictionary are useful collection types. They are accessible and convenient to use. There are advantages over an array or hash tables.'
   },
   { 
     location:'code-snippets/project-build/identify-dll-is-x86-or-x64', 
@@ -405,7 +405,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/code-snippets/project-build/copy-files-via-project-script-on-build/find-if-32bit-or-64bit-dll-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/project-build/copy-files-via-project-script-on-build/find-if-32bit-or-64bit-dll-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/project-build/copy-files-via-project-script-on-build/find-if-32bit-or-64bit-dll-large.webp',
-    description:'Want to find out if a DLL or assembly is targeting 32bit or 64bit then Visual Studio comes with handy tool called Corflags accessed by the command prompt.'
+    description:'Want to find out if a DLL or assembly is targeting 32bit or 64bit then Visual Studio comes with a handy tool called Corflags accessed by the command prompt.'
   },
   { 
     location:'code-snippets/hex-string-to-int', 
@@ -417,7 +417,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/code-snippets/hex-to-string/hex-to-string-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/code-snippets/hex-to-string/hex-to-string-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/code-snippets/hex-to-string/hex-to-string-large.webp',
-    description:'Hex is a base 16 number system and the C# has build in function that can convert a string hex value into a int value.'
+    description:'Hex is a base 16 number system and the C# has a build function that can convert a string hex value into an int value.'
   },
   { 
     location:'fundamentals/strings/string-vs-stringbuilder-comparison', 
@@ -736,7 +736,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/introduction-to-dictionary-banner-image-large.webp',
-    description:'Dictionary are fundamental type in C#. They provide fast lookup to for values found in the dictionary.'
+    description:'The dictionary is a fundamental type in C#. They provide a fast lookup for values found in the dictionary.'
   }
   ,{ 
     location:'fundamentals/collections/list', 

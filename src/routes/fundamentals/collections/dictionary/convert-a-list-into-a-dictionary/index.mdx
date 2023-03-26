@@ -12,7 +12,7 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-There are advantages to converting a list to dictionary. Which is that the dictionary contains quick contains key look for the value. Also, if the value are going to change, then the dictionary can be seeded with intial key and values. Also, sometimes the components in the legacy code can dictate the inputs and may force different collection types in your implementation. There are different to create the dictionary with LINQ and with writing our own code so let's look at those different ways.
+There are advantages to converting a list to a dictionary. Which is that the dictionary contains a quick Containskey look-up for the value. Also, if the value is going to change, then the dictionary can be seeded with the initial key and values. Also, sometimes the components in the legacy code can dictate the inputs and may force different collection types in your implementation. There are different to create the dictionary with LINQ and by writing our code so let's look at those different ways.
 
 ### Dictionary Indexer Method 
 
@@ -20,7 +20,7 @@ The first method we're going to look at is to loop through the list and use the 
 
 #### Dictionary Indexer Method Example Code
 
-In this example, we have a list of movies that need to be converted to a dictionary so each movie title will assigned to the key and value.
+In this example, we have a list of movies that need to be converted to a dictionary so each movie title will be assigned the key and value.
 
 ```cs
 List<string> movieList = new List<string>() { "Avatar (2009)", "Titanic (1997)", "Star Wars: Episode VII - The Force Awakens (2015)", "Avengers: Endgame (2019)", "The Lion King (2019", "Jurassic World (2015)", "Marvel's The Avengers (2012)", "Furious 7 (2015)", "Frozen II (2019)", "Frozen (2013)" };//Initialize List
@@ -60,8 +60,7 @@ Dictionary<string,string> ConvertListToDictionary(List<string> movieList)
 
 #### Dictionary Indexer Method Speed Test
 
-This is speed test that takes an average of 10 tests and with each test there are 100 function calls and then each function call will have 1 million objects. In this case, I will loop through the 1 million unique objects and add them to the dictionary through the dictionary indexer.
-
+This is a speed test that takes an average of 10 tests and with each test, there are 100 function calls and then each function call will have 1 million objects. In this case, I will loop through the 1 million unique objects and add them to the dictionary through the dictionary indexer.
 
 <details>
 <summary>Test Parameters</summary>
@@ -96,7 +95,7 @@ Test 10:Function Calls:100, In 0m 7s 652ms
 Dictionary Indexer Method Average Speed:7343ms, In 10 Tests
 ```
 
-This is the baseline test method. It shoulds to be done around 7 seconds
+This is the baseline test method. It should be done in around 7 seconds.
 
 
 <details>
@@ -176,8 +175,7 @@ DateTime GetDateTime()
 
 ### LINQ ToDictionary Method With No Duplicates
 
-We can use the ToDictionary method in LINQ namespace. It has a set of parameter that the first two parameters lets assign the key and value and since they are the same in the is case they are assigned a variable of p. ToDictionary requires that there be no duplicates in the standard form. Otherwise an exception will be thrown if there's a duplicate key entry.
-
+We can use the ToDictionary method in the LINQ namespace. It has a set of parameters that the first two parameters let assign the key and value and since they are the same in the case they are assigned a variable of p. ToDictionary requires that there be no duplicates in the standard form. Otherwise, an exception will be thrown if there's a duplicate key entry.
 
 #### LINQ ToDictionary Method Code Example
 
@@ -331,7 +329,7 @@ We can modify the LINQ expression to remove any duplicates before ToDictionary i
 
 #### LINQ ToDictionary + Distinct Method Example Code
 
-I have now added duplicate entries into the list. The list can have duplicates by it's nature. It's not tracking what's in the list.
+I have now added duplicate entries to the list. The list can have duplicates by its nature. It's not tracking what's on the list.
 
 ```cs
 List<string> movieList = new List<string>() { "Avatar (2009)", "Titanic (1997)", "Star Wars: Episode VII - The Force Awakens (2015)", "Avengers: Endgame (2019)", "The Lion King (2019", "Jurassic World (2015)", "Marvel's The Avengers (2012)", "Furious 7 (2015)", "Frozen II (2019)", "Frozen (2013)", "Frozen (2013)", "Avatar (2009)" };//Initialize List with duplicates
@@ -475,12 +473,11 @@ DateTime GetDateTime()
 
 <Table header ="Overall Rank,Method,Speed,Duplicates Allowed" rows="1,Dictionary Indexer,7343ms,Yes;2,LINQ ToDictionary,6279ms,No;3,LINQ ToDictionary + Distinct,17483ms,Yes;" />
 
-The best method for converting a list to a dictionary is to use the dictionary indexer and write it yourself. It might not be the fastest method but it is the most veristable in that it can handle duplicates values in the dictionary. It will simple overwrite them. This code simple to write and there wouldn't be any errors resulting from this which would save time in the long run.
+The best method for converting a list to a dictionary is to use the dictionary indexer and write it yourself. It might not be the fastest method but it is the most versatile in that it can handle duplicate values in the dictionary. It will simply overwrite them. This code is simple to write and there wouldn't be any errors resulting from this which would save time in the long run.
 
-LINQ ToDictionary is the fastest method on this list but it has one drawback that keeps it from the top spot. In this form, it requires distinct list values otherwise an exception will be thrown on duplicate key in the dictionary. So you have to be sure that the list you working with doesn't have duplicates. 
+LINQ ToDictionary is the fastest method on this list but it has one drawback that keeps it from the top spot. In this form, it requires distinct list values otherwise an exception will be thrown on the duplicate key in the dictionary. So you have to be sure that the list you working with doesn't have duplicates.
 
-LINQ ToDictionary plus Distinct method is the slowest and should not be considered. The distinct clause causes this method to slow down considerably. 
+LINQ ToDictionary plus Distinct method is the slowest and should not be considered. The distinct clause causes this method to slow down considerably.
 
 Know any other ways to convert a list to a dictionary? Let me know in the comments below.
-
 

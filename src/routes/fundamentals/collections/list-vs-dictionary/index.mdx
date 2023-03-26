@@ -12,7 +12,7 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-List and Dictionary are useful collection types. They are easy accessibility and convenient to use. There are advantages to use these types over an array or hash tables. There are also a lot of different variations and even concurrent versions but for now we will cover the most basic types. Next we’ll start with the list collection.
+List and Dictionary are useful collection types. They are easy accessibility and convenient to use. There are advantages to using these types over an array or hash tables. There are also a lot of different variations and even concurrent versions but for now, we will cover the most basic types. Next, we’ll start with the list collection.
 
 <Table header ="#,Analysis Type,List,Dictionary" rows="1,Item Search Speed,O(N),O(1);2,Index Speed,O(1),O(1);3,Initial Size,Yes,Yes;4,Automatic Resize,O(1),O(1);5,Size Property,Count(),Count();6,Add,O(N)(If expansion is required),O(N)(If expansion is required);7,Insert,O(N)(If expansion is required),none;8,Delete,O(N),O(1);9,Duplicates,Yes,Keys:No | Values:Yes" />
 
@@ -24,11 +24,11 @@ List and Dictionary are useful collection types. They are easy accessibility and
 List<int> list = new List<int>(3);//Initial size of 3
 ```
 
-Uses – Use this when you need a quick collection type to use or you need a collection to loop through that will not be too big. If you’re not sure which collection type to use then starting at a List is a good place to start. There are other list type structures similar to list.
+Uses – Use this when you need a quick collection type to use or you need a collection to loop through that will not be too big. If you’re not sure which collection type to use when starting a List is a good place to start. There are other list-type structures similar to the list.
 
 ### List Pros
 
-A simpler structure to use than a dictionary. If you just looping through a collection then this is a great choice. The underlying structure is an expanding and contracting array. The array expands automatically so you don’t have to write any extra code. The indexing is fast with a runtime of O(1) and the loop speed is slightly faster than looping through a dictionary. You can have duplicate values in a list. As you can see in the below example that a value from can be extracted by the index “[]” operator which provide the address. The address starts at 0,1,2,3..etc, so if there are 7 items in a list then each element address would start at 0 then go to 6. When using the index operator you must provide a valid address. If you try to access an index that is not in the list then an exception is thrown. See below for the code example.
+A simpler structure to use than a dictionary. If you just looping through a collection then this is a great choice. The underlying structure is an expanding and contracting array. The array expands automatically so you don’t have to write any extra code. The indexing is fast with a runtime of O(1) and the loop speed is slightly faster than looping through a dictionary. You can have duplicate values in a list. As you can see below example that a value can be extracted by the index “[]” operator which provides the address. The address starts at 0,1,2,3..etc, so if there are 7 items in a list then each element address would start at 0 and then go to 6. When using the index operator you must provide a valid address. If you try to access an index that is not in the list then an exception is thrown. See below for the code example.
 
 ```cs
 static void Main(string[] args)
@@ -67,16 +67,16 @@ Car:, from index:10 // not found in the list
 
 ### List Cons
 
-When inserting into any index other than the last element the array is copied and moved to make room for the new entry so it can be a more expensive operation when the list grows really big. Searching through a list for an item can be time consuming if the list is very large. Also, be careful about the index value you provide and make sure it can be found in the list. Write code to insure the index exists in the list or else you might hit an exception. 
+When inserting into any index other than the last element the array is copied and moved to make room for the new entry so it can be a more expensive operation when the list grows really big. Searching through a list for an item can be time-consuming if the list is very large. Also, be careful about the index value you provide, and make sure it can be found in the list. Write code to insure the index exists in the list or else you might hit an exception.
 
 ### Dictionary Description
 
 ```cs
 Dictionary<string,string> dictionary = new Dictionary<string,string>(5);//Initial size of 5
 ```
-Uses – I usually use this when there is a key value pair or something that I may search for later. Or when there’s value that’s associated with another value or object. Usually, the collection tends to be large and keys are required to unique and can be any object.
+Uses – I usually use this when there is a key-value pair or something that I may search for later. Or when there’s a value that’s associated with another value or object. Usually, the collection tends to be large and keys are required to be unique and can be any object.
 
-Example uses – If I have a Dictionary that has a car name string as the key and then the value as the object of car data. If the user selects a car name. Instead of looping through a list to find the information. If I have a dictionary then I use the car name as the key then instantly get the data associated with that key. See the sample code below.
+Example uses – If I have a Dictionary that has a car name string as the key and then the value as the object of car data. If the user selects a car name. Instead of looping through a list to find the information. If I have a dictionary then I use the car name as the key and then instantly get the data associated with that key. See the sample code below.
 
 ```cs
 static void Main(string[] args)
@@ -135,13 +135,14 @@ Name:, Color:, Type: //When key not found in the dictionary
 
 ### Dictionary Pros
 
-Fast value look up by the key with a O(1) constant look up time. Key value pairs make it a great structure for search. If you know which key need. You can loop through dictionary keys or their values
+Fast value look-up by the key with an O(1) constant lookup time. Key value pairs make it a great structure for search. If you know which key needs. You can loop through dictionary keys or their values
 
 ### Dictionary Cons
 
 You need to know the key ahead of time or else you end up just looping through the structure and then you may be better off with a list. Check out best practices to avoid these pitfalls. You need to write code to check to see if the key exists in the dictionary. If you try to access a key that is not found in the dictionary then an exception is thrown so check every time you try to access the dictionary if the key is there. Keys have to be unique
 
-### Examples Problems and Preference of Collections
-Reading database entries that have a unique index value and associated values. The index will be used later to find the values. I would use a dictionary for this because there is an unique index that I can use as a key. Gather all the values of a type and displaying them in a drop down list on the UI. I would use a list of this since I’m just gathering the values and displaying them on the UI. I would use a List A collection of different soda inventory and the count of each type of soda. I would use a Dictionary string, int so that they keys can be the type of soda and the values are the count of each soda. Display the data top 10 laptops and specs from the database. I would use a list of this. I would have an object that holds all the data of the specs and query the database to get the top laptops and their specs from database. You need to search through a large collection grocery store items. The UI searches by exact name of the item. If the item is not in stock then show item not found. If the item is in stock then show all information related to the item. I would use a dictionary for this. The item name would the be key and the associated information would be in a object. If the name is not found in the dictionary then the item would be considered not in stock.
+### Examples Of Problems And Preference Of Collections
+
+Reading database entries that have a unique index value and associated values. The index will be used later to find the values. I would use a dictionary for this because there is a unique index that I can use as a key. Gather all the values of a type and display them in a drop-down list on the UI. I would use a list of this since I’m just gathering the values and displaying them on the UI. I would use a List A collection of different soda inventory and the count of each type of soda. I would use a Dictionary string, int so that the keys can be the type of soda and the values are the count of each soda. Display the data on the top 10 laptops and specs from the database. I would use a list of this. I would have an object that holds all the data of the specs and query the database to get the top laptops and their specs from the database. You need to search through a large collection of grocery store items. The UI searches by the exact name of the item. If the item is not in stock then show the item not found. If the item is in stock then show all information related to the item. I would use a dictionary for this. The item name would the be key and the associated information would be in an object. If the name is not found in the dictionary then the item would be considered not in stock.
 
 

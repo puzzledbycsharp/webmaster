@@ -11,12 +11,11 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get Dictionary Element By Index Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
 
-It may surpise you that dictionary also has a method to get the element at that index. While it may sound like this is a good idea and that it is possible to do. The dictionary's was not designed with this in mind and so it should be used sparingly or an alternate collection type should be used. First let's look at how we can do this.
-
+It may surprise you that dictionary also has a method to get the element at that index. While it may sound like this is a good idea and that it is possible to do. The dictionaries were not designed with this in mind and so they should be used sparingly or an alternate collection type should be used. First, let's look at how we can do this.
 
 ### ElementAt Method
 
-ElementAt will return the dictionary element at that position with respect to the order in which it was inserted into the dictionary. This example has 4 entries and I can select each entry by ElementAt in the reverse order. See below.
+ElementAt will return the dictionary element at that position in the order in which it was inserted into the dictionary. This example has 4 entries and I can select each entry by ElementAt in the reverse order. See below.
 
 ```cs
 Dictionary<string, string> contactInfo = new Dictionary<string, string>() { { "Liam", "383-212-2121" }, { "Olivia", "433-261-8483" }, { "Oliver", "189-833-2899" }, { "Emma", "3-212-2121" } };
@@ -36,9 +35,9 @@ ElementAt(2):Olivia
 ElementAt(1):Liam
 ```
 
-This works as expected to print the items are in the reverse order.
+This works as expected to print the items in reverse order.
 
-### Peformance 
+### Performance 
 
 This most important consideration between ElementAt and Indexer. The testing methods are as follows.
 
@@ -48,7 +47,7 @@ Below is a summary table of the results.
 
 <Table header ="Dictionary Size,ElementAt Speed,Indexer Speed" rows="50000,51996ms,16ms;" />
 
-Since dictionary was not optimized to use ElementAt so I'm going to test the performance of ElementAt compared to the Dictionary indexer. This test will loop through all the elements of the dictonary using the ElementAt or Indexer and see how they compare. Below are the test parameters for the comparision.
+Since the dictionary was not optimized to use ElementAt so I'm going to test the performance of ElementAt compared to the Dictionary indexer. This test will loop through all the elements of the dictionary using the ElementAt or Indexer and see how they compare. Below are the test parameters for the comparison.
 
 <details>
 <summary>Test Parameters</summary>
@@ -260,7 +259,7 @@ DateTime GetDateTime()
 
 ### List Alternative
 
-Another way to go about this issue is to use a list. If you have numerical indexcies that you want to hit then a list or array would better than trying to do that with a dictionary. See example code below.
+Another way to go about this issue is to use a list. If you have numerical indices that you want to hit then a list or array would be better than trying to do that with a dictionary. See the example code below.
 
 #### List Indexer Example Code
 ```cs
@@ -359,10 +358,10 @@ Test 10:Function Calls:10, In 0m 0s 3ms
 List Indexer Average Speed:4ms, In 10 Tests
 ```
 
-List Indexer is good alternative to ElementAt because it is only takes a few milliseconds to complete the test which is still way better than ElementAt.
+List Indexer is a good alternative to ElementAt because it only takes a few milliseconds to complete the test which is still way better than ElementAt.
 
 ### Conclusion
 
-ElementAt is extremely slow and should be avoided. The difference in speed between ElementAt and the indexer is night and day. From 51 seconds to just milliseconds is the difference in speed in my testing. If you need an collection type to access numeric indexes then you should use arrays or list.
+ElementAt is extremely slow and should be avoided. The difference in speed between ElementAt and the indexer is night and day. From 51 seconds to just milliseconds is the difference in speed in my testing. If you need a collection type to access numeric indexes then you should use arrays or lists.
 
 

@@ -12,11 +12,11 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Consolidating dictionaries it he process of combining the key value pairs from one dictionary into another dictionary. This merge can be done in serveral ways using LINQ, but I'm going to focus on a couple of methods. The other question is what to do when a key already exists in the destination dictionary. I'm going to assume that the key already exists then that entry will be skipped. Let's take a look at an example.
+Consolidating dictionaries is the process of combining the key-value pairs from one dictionary into another dictionary. This merge can be done in several ways using LINQ, but I'm going to focus on a couple of methods. The other question is what to do when a key already exists in the destination dictionary. I'm going to assume that the key already exists then that entry will be skipped. Let's take a look at an example.
 
 ### Merge Loop Method
 
-If I have two dictionaries that hold countries as the key and captial as values, then if I merge these two dictionaries with some duplicate keys then there should only be one dictionary with both sets of entries.
+If I have two dictionaries that hold countries as the key and capital as values, if I merge these two dictionaries with some duplicate keys then there should only be one dictionary with both sets of entries.
 
 ```cs
 Dictionary<string, string> sourceDict = new Dictionary<string, string>() { { "United States", "Washington, D.C." }, { "Canada", "Ottawa" }, { "Mexico", "Mexico City" }, { "Brazil", "Brasília" }, { "United Kingdom", "London" } };
@@ -57,7 +57,7 @@ void MergeDictionaries<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, 
 
 #### Merge Loop Method Speed Test
 
-The next step is to test how this performance against merging two dictionaries with 500,000 each into one dictionary. The test parameters are as follows.
+The next step is to test how this performance by merging two dictionaries with 500,000 each into one dictionary. The test parameters are as follows.
 
 <details>
 <summary>Test Parameters</summary>
@@ -168,8 +168,7 @@ DateTime GetDateTime()
 
 ### LINQ Concat Method
 
-Another way is to Concat method in LINQ to merge the two dictionaries together. [It can be used to put together different collections](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.concat?view=net-8.0) It is very compact in a LINQ statement so if you don't mind loosing some readability for less typing then this is the way to go.  See example below.
-
+Another way is to Concat the method in LINQ to merge the two dictionaries. [It can be used to put together different collections.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.concat?view=net-8.0) It is very compact in a LINQ statement so if you don't mind losing some readability for less typing then this is the way to go. See the example below.
 
 ###### LINQ Concat Method Example Code
 ```cs
@@ -236,7 +235,7 @@ Test 10:Function Calls:10, In 0m 1s 635ms
 LINQ Concat Method Average Speed:1641ms, In 10 Tests
 ```
 
-This returns the correct result but it slower than the first manual method. It is less than 2 seconds to complete the test which is decent.
+This returns the correct result but it is slower than the first manual method. It is less than 2 seconds to complete the decent test.
 
 <details>
 <summary>Full LINQ Concat Method Speed Test</summary>
@@ -309,7 +308,7 @@ DateTime GetDateTime()
 
 ### LINQ ForEach Method
 
-Still another way in LINQ is to convert one of the dictionaries to a list then loop through each the entries and add them the destiation dictionary.
+Still another way in LINQ is to convert one of the dictionaries to a list then loop through each of the entries and add them to the destination dictionary.
 
 ```cs
 Dictionary<string, string> sourceDict = new Dictionary<string, string>() { { "United States", "Washington, D.C." }, { "Canada", "Ottawa" }, { "Mexico", "Mexico City" }, { "Brazil", "Brasília" }, { "United Kingdom", "London" } };
@@ -448,12 +447,11 @@ DateTime GetDateTime()
 
 <Table header ="Overall Rank,Method,Speed" rows="1,Merge Loop,797ms;2,LINQ ForEach,823ms;3,LINQ Concat,1641ms;" />
 
-The best method to merging dictionaries is the Merge Loop method which you can write yourself. it may not be as compact as the other two LINQ methods but it is the fastest. That is what we care about the most is the performance. This doesn't take too long to write so it is worth to learn it.
+The best method for merging dictionaries is the Merge Loop method which you can write yourself. it may not be as compact as the other two LINQ methods but it is the fastest. That is what we care about the most is the performance. This doesn't take too long to write so it is worth learning it.
+
+LINQ Concat is just a single line but it turns out to be almost twice as slow as the fastest method so you should avoid a merging operation with this method.
 
 LINQ ForEach method comes very close to the top spot but wasn't fast enough. It does have a compacted form but it is similar to the first method.
 
-LINQ Concat is just a single line but it turns out to almost twice as slow as the fastest method so you should avoid a merging operation with this method.
-
 Know any other ways to merge dictionaries? Let me know in the comments below.
-
 

@@ -11,10 +11,10 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 <ImageWrapper imageSource="../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-medium.webp" imageSrcSet="../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-small.webp 250w, ../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-medium.webp 500w, ../../assets/code-snippets/open-file-programmatically/open-a-file-programmatically-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Open A File Programmatically Banner Image" widthImage = "2304" heightImage = "1728" />
 ### Introduction
 
-When testing an app or writing programs that generate files, you may want automate opening the file in code than manually opening those files. The normal process may go like this. Run the program then once the program is complete and then open windows explorer and navigate to the where the file is located.
+When testing an app or writing programs that generate files, you may want to automate opening the file in code than manually opening those files. The normal process may go like this. Run the program then once the program is complete and then open windows explorer and navigate to where the file is located.
 
 
-### Process.Start Example 1
+### Process Start Example 1
 The following code checks if the file exists on the hard drive before trying to open the file programmatically.
 
 ```cs
@@ -26,11 +26,11 @@ if (excelFileInfo.Exists)
 }
 ```
 
-This will start the process that is associated with the file. In this case, excel will open the xlsx file and that way you won't have open have to double click to open it.
+This will start the process that is associated with the file. In this case, Excel will open the .xlsx file and that way you won't have open have to double-click to open it.
 
 ### Example 2
 
-This next example still uses the Process class but it is other to configure the process class. See example below.
+This next example still uses the Process class but it is other to configure the process class. See the example below.
 
 ```cs
 string textFilePath = @"C:\Temp\testFile.xlsx"; //

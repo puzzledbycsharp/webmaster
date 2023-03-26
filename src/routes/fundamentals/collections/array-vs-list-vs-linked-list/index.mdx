@@ -1,8 +1,8 @@
 ---
-title: Array vs List vs Linked List
+title: Array Vs List Vs Linked List
 ---
 
-# Array vs List vs Linked List
+# Array Vs List Vs Linked List
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
@@ -11,34 +11,32 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-medium.webp" imageSrcSet="../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-small.webp 250w, ../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-medium.webp 500w, ../../../assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array vs List vs Linked List Page Banner Image" widthImage = "6000" heightImage = "4000" />
 
 ## Introduction
-Array vs Lists vs Linked Lists is a common collection comparison with each have own strengths and trade offs so it’s important to understand these as we make our collection choices in our programing applications. There is typically no one size that fits all because application needs may depend on speed, memory(32bit or 64bit), CPUs resources, size of the data, readability and ease of use are all factors that can affect which collection. With small data sizes the performance difference may not be noticeable but when the data becomes large then you’ll want to choose carefully.
+
+Array vs Lists vs Linked Lists is a common collection comparison with each having its strengths and trade-offs so it’s important to understand these as we make our collection choices in our programming applications. There is typically no one size that fits all because application needs may depend on speed, memory(32bit or 64bit), CPU resources, size of the data, readability, and ease of use are all factors that can affect which collection. With small data sizes, the performance difference may not be noticeable but when the data becomes large then you’ll want to choose carefully.
 
 ### Common Elements
 
 <Table header ="#,Analysis Type,Array,List,Linked List" rows="1,Item Search Speed,O(N),O(N),O(N);2,Index Speed,O(1),O(1),O(N);3,Initial Size,Yes,Yes,No;4,Automatic Resize,No,Yes,Yes;5,Size Property,	Count(),Count(),Count();6,Add,no,O(N)(If expansion is required),O(1);7,Insert,none,O(N) (If expansion is required),O(N) AddBefore() | AddAfter() | AddFirst() | AddLast();8,Delete,none,O(N),O(N);9,Duplicates,Yes,Yes,Yes;" />
 
+Item search speed is the time it takes to find an item in the list. If we don't know where the item is in the list then for all the list we need to traverse the list until we find the item. The worst case is that we have to go through the entire list. This worst case is for these three types. For Array, and List there is a workaround to this worst case if we associate the item to a number or index but then we may have unused slots in our collection.
 
+Index speed if we know the location of an item then how fast can we access that value in the collection? For Arrays and List, we can almost instantly access the value of a collection if we have the index or address. But for a Linked List, even if we know where a certain item is in the collection we have to start from the beginning to traverse the collection to the item we are looking for. There is no way to jump in the middle and access an item in a Linked list.
 
+The initial size is setting the collection to a starting size. This can be useful if it is known ahead of time if the collection is being filled with a large number of items then the collection will not have to increase in size over time which could be avoided.
 
-Item search speed is the time it takes to find an item in the list. If we don't know where the item is in the list then for all the list we need to traverse list until we find the item. Worst case is that we have go through the entire list. This worst case is for these three types. For Array, and List there is a work around to this worst case if we associate the item to a number or index but then we may have unused slots in our collection.
+Automatic resize is as the collection grows then does it grow with the data. Arrays are fixed sized so for them to grow, you have to copy the data to a new larger array. Lists even though their underlying data structure is an array grows as the data grows by copying its data to a new larger array. It's just done behind the scenes. A Linked List has an easier time growing and shrinking as all it needs to do is create a new node and then link it to the last node and link the last node to the new node.
 
-Index speed if we know location of item then how fast can we access that value in the collection. For Arrays and List we can almost instantly access the value of a collection if we have the index or address. But for a Linked List even we know where a certain item is in the collection we have start from the beginning to traverse the collection all the way to the item we are looking for. There is not a way to jump in the middle and access a item in a Linked list.
+Size property is how to get the count of the number of items in the collection.
 
-Initial size is setting the collection to a starting size. This can be useful if it is known ahead of time if the collection is being filled with a large amount of items then collection will not have to increase in size over time which could be avoided.
-
-Automatic resize is as the collection grows then does it grow with the data. Arrays are fixed sized so in order for them to grow, you have to copy the data to a new larger array. Lists even though their underlying datastructure is an array it grows as the data grows by copying it's data to a new larger array. It's just done behind the scenes. A Linked List has the easier time to grow and shrink as all it needs to do is create a new node and then link it to the last node and link the last node the new node.
-
-Size property is how to get the count of the number items in the collection
-
-Add is adding items the collection. This often means adding the item to the end of the collection. Since an array is of fixed length there is no add function. Adding an item to an array is assigning an item to the reserved space assigned in the array. Lists will add the item at the end of the collection. Linked List has different add methods for adding an item to beginning or the end.
+Add is adding items to the collection. This often means adding the item to the end of the collection. Since an array is of fixed length there is no additional function. Adding an item to an array is assigning an item to the reserved space assigned in the array. Lists will add the item at the end of the collection. Linked List has different add methods for adding an item to the beginning or the end.
 
 Insert is usually used to add an item in between different items in the middle of the collection.
 
-Delete is removing an item from the collection. An array item can be removed by setting item to null. List has a remove method that can delete items from the collection and it will find the first match it finds of that item.
+Delete is removing an item from the collection. An array item can be removed by setting the item to null. The list has a remove method that can delete items from the collection and it will find the first match it finds of that item.
 
-Duplicates is are duplicate items allowed in the collection. This is noteworthy in the broader context of collections when not all collections types allow for dupicate values such as dictionaries.
+Duplicates are duplicate items allowed in the collection. This is noteworthy in the broader context of collections when not all collection types allow for duplicate values such as dictionaries.
 
-There are usually an indication of the size of the collection. Array has a length method while List and Linked List have a count method. The List has an array as in underlying datatype. They can be populated by any object but as long as it is the same type or inheritance from that object.
+There is usually an indication of the size of the collection. Array has a length method while List and Linked List have a count method. The List has an array as in the underlying datatype. They can be populated by any object as long as it is the same type or inheritance from that object.
 
 ###### Declarations
 
@@ -53,28 +51,28 @@ Example Syntax
 ```cs
 string[] stringArray = new string[1];// Array of size 1
 int[] intArray = new int[5]; // Array of size 5
-double[,] doubleArray = new double[2,2]; //mutli dimesnional array that is 2 by 2 size
+double[,] doubleArray = new double[2,2]; //multi-dimensional array that is 2 by 2 size
 ```
 
-Uses – Use this when you know the size of the data ahead of time or speed performance is an issue. It is often a foundational datatype to other data structures. For example, it is an underlying datatype to List itself.
+Uses – Use this when you know the size of the data ahead of time or speed performance is an issue. It is often foundational datatype to other data structures. For example, it is an underlying datatype to List itself.
 
 Pros – Fast performance and smallest memory footprint of the collection type. The indexing is fast with a runtime of O(1) so you know which element you want then it is very fast.
 
-Cons – Array needs initialization and there is a fixed initial array size. Then logic needs to be written to copy and grow the array. Resizing the array size to accommodate bigger data is a hassle. Also, you need to be careful about out of index exceptions.
+Cons – The array needs initialization and there is a fixed initial array size. Then logic needs to be written to copy and grow the array. Resizing the array size to accommodate bigger data is a hassle. Also, you need to be careful about out-of-index exceptions.
 
-Inserts and deletes can cause and expansion and contractions of the array are required. This may happen so that all the elements can remain in a continuous memory block with no gaps.
+Inserts and deletes can cause expansion and contractions of the array are required. This may happen so that all the elements can remain in a continuous memory block with no gaps.
 
 ### LIST Description
 
 Example Syntax
 
-List list = new List(3);//Intial size of 3 Uses – Use this when you don’t know the size of data to be added to the list. Or if you don’t know which collection to use then this generally a solid choice.
+List list = new List(3);//Initial size of 3 Uses – Use this when you don’t know the size of data to be added to the list. Or if you don’t know which collection to use then this is generally a solid choice
 
-Pros – Commonly used and versatile in a variety of circumstances. One of my go to collection types. The underlying structure is an expanding and contracting array. The array expands automatically. The indexing is fast with a runtime of O(1).
+Pros – Commonly used and versatile in a variety of circumstances. One of my go-to collection types. The underlying structure is an expanding and contracting array. The array expands automatically. The indexing is fast with a runtime of O(1).
 
-Cons – When inserting into any index other than the last element the array is copied and moved to make room for the new entry so it can be an expensive operation when the list grows big. Also, you’ll need to be careful about index out of range exceptions.
+Cons – When inserting into any index other than the last element the array is copied and moved to make room for the new entry so it can be an expensive operation when the list grows big. Also, you’ll need to be careful about index out-of-range exceptions.
 
-Inserting can cause an expansion of the array behind the scenes which would cause a performance hit when a expansion is required.
+Inserting can cause an expansion of the array behind the scenes which would cause a performance hit when an expansion is required.
 
 ### LINKED LIST Description
 
@@ -82,13 +80,13 @@ Syntax – LinkedList list= new LinkedList();
 
 Uses – Use this when you need to make insert elements into the middle of the list such as insertion sort methods or B-Trees.
 
-Pros – Each element in the linked list has a reference to the previous and next element so inserting into the middle is faster than list. There are methods for inserting into the first and last element.
+Pros – Each element in the linked list has a reference to the previous and next element so inserting it into the middle is faster than a list. There are methods for inserting into the first and last element.
 
-Cons – The needs to be traveled and can’t jump to any particular point so if you know which element you want then you’ll have to traverse through all the previous entries to find you want.
+Cons – The needs to be traveled and can’t jump to any particular point so if you know which element you want then you’ll have to traverse through all the previous entries to find what you want.
 
 ###  Index Search Speed Test
 
-The code below takes a collection of 30 candies and puts them into an array, list and linked list types. Then the test is to “buy” 100 million candies from these 3 vending machines from the different lists and see how the performance is. Each candy associated with a the same number across each collection. Note how each of the InventoryArr and InventoryList are accessed by index “[]” while with InventoryLinkedList must be looped through each record to find the one we want. This is a speed test to see to find out which type of list can search the fastest.
+The code below takes a collection of 30 candies and puts them into an array, list, and linked list types. Then the test is to “buy” 100 million candies from these 3 vending machines from the different lists and see how the performance is. Each candy is associated with the same number across each collection. Note how each of the InventoryArr and InventoryList is accessed by index “[]” while with InventoryLinkedList must be looped through each record to find the one we want. This is a speed test to see to find out which type of list can search the fastest.
 
 
 ```cs
@@ -152,4 +150,4 @@ CustomerBuysFromLinkedListVendingMachine: Minutes:0, seconds:24, milliseconds:85
 
 #### Conclusion
 
-Array and List indexing for searching for the items are pretty much the same at about 11-12 seconds. While searching through the linked list makes searching for the items more than twice as long at 24 seconds. We can conclude that while searching for a numerical number will be faster by using an array or list. So in this type of test we can see that if want to find an item in our collection Array and List are the better choice because we know where to look. The Linked List we have possibly search through the whole list to each time to find what we are looking for.
+Array and List indexing for searching for the items are pretty much the same at about 11-12 seconds. While searching through the linked list makes searching for the items more than twice as long at 24 seconds. We can conclude that searching for a numerical number will be faster by using an array or list. So in this type of test, we can see that if want to find an item in our collection Array and List are the better choice because we know where to look. For Linked List, we have possibly searched through the whole list each time to find what we are looking for.
