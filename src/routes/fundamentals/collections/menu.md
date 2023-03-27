@@ -12,7 +12,7 @@
 ## List
 - [List](list/index.mdx)
 - [Access Items From A List By Index](list/access-items-from-a-list-by-index/index.mdx)
-- [Convert A List To String With A Delimiter](list/convert-list-to-string-with-a-delimiter/index.mdx)
+- [Convert A List To A String With A Delimiter](list/convert-list-to-string-with-a-delimiter/index.mdx)
 - [Best Way To Sort A List](list/best-way-to-sort-a-list/index.mdx)
 - [How To Find An Item In The List](list/how-to-find-an-item-in-the-list/index.mdx)
 - [How To Initialize A List](list/how-to-initialize-a-list/index.mdx)
