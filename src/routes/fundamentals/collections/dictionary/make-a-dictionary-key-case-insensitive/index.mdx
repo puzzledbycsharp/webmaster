@@ -12,11 +12,11 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Dictionary keys can be make can insensitive for variuos methods and Indexer. This comes in handy when you have the right number of characters but not the right case. You'll be able to relax the stricly string equals that is done on a key of type string. But this has to be done on the dictionary creation. I'll show you how.
+Dictionary keys can be made to be case insensitive for various methods and indexers. This comes in handy when you have the right number of characters but not the right case. You'll be able to relax the strict string equals that is done on a key of type string. But this has to be done on the dictionary creation. I'll show you how.
 
 ### CurrentCultureIgnoreCase
 
-For CurrentCultureIgnoreCase, it makes ignores the case for the current culture setting. This is good to know if the application is working multiple languages or regions then you may need to switch the current culture.
+For CurrentCultureIgnoreCase, it makes ignores the case for the current culture setting. This is good to know if the application is working in multiple languages or regions then you may need to switch to the current culture.
 
 #### CurrentCultureIgnoreCase Code Example
 
@@ -53,7 +53,8 @@ key:ReD SeA UrChiN, value:200
 
 #### CurrentCultureIgnoreCase Speed Test
 
-This will be a test with a dictionary that has random strings of length of 50 characters in the key and value. There will be 1 million entries in the dictionary and each entry will accessed through the Indexer. It will be looped 100 times in 1 test. There will be 10 test and the average over the 10 test will be taken. That will be considered the performance and all the StringComparer with IgnoreCase will be tested.
+This will be a test with a dictionary that has random strings of the length of 50 characters in the key and value. There will be 1 million entries in the dictionary and each entry will be accessed through the Indexer. It will be looped 100 times in 1 test. There will be 10 tests and the average over the 10 tests will be taken. That will be considered the performance and all the StringComparer with IgnoreCase will be tested.
+Test Parameters
 
 <details>
 <summary>Test Parameters</summary>
@@ -167,7 +168,7 @@ string GenerateRandomString(int length)
 
 ### InvariantCultureIgnoreCase
 
-For InvariantCultureIgnoreCase, it makes ignores the case for the current culture setting. It is based on english language but not on a particular country
+For InvariantCultureIgnoreCase, it makes ignores the case for the current culture setting. It is based on the English language but not on a particular country.
 
 #### InvariantCultureIgnoreCase Code Example
 
@@ -314,8 +315,7 @@ string GenerateRandomString(int length)
 
 ### OrdinalIgnoreCase
 
-This option is based on binary value of the character so it's not based on a language.
-
+This option is based on the binary value of the character so it's not based on a language.
 
 
 #### OrdinalIgnoreCase Code Example
@@ -469,10 +469,10 @@ string GenerateRandomString(int length)
 
 <Table header ="Overall Rank,Method,Speed" rows="1,OrdinalIgnoreCase,7584ms;2,CurrentCultureIgnoreCase,64896ms;3,InvariantCultureIgnoreCase,65207ms;" />
 
-The best StringComparer method for case insensitive dictionaries is OrdinalIgnoreCase. It is almost a full minute faster than the other two types. If your application is not considering different cultures and languages then this is the way to go.
+The best StringComparer method for case-insensitive dictionaries is OrdinalIgnoreCase. It is almost a full minute faster than the other two types. If your application is not considering different cultures and languages then this is the way to go.
 
-CurrentCultureIgnoreCase and InvariantCultureIgnoreCase are almost the same speed and both are over a minute in this test that they can conside be equal in performance. It would just depend on the culture settings.
+CurrentCultureIgnoreCase and InvariantCultureIgnoreCase are almost the same speed and both are over a minute in this test so they can consider equal in performance. It would just depend on the culture setting.
 
-Know any other ways to create a case insensitive dictionary? Let me know in the comments below.
+Know any other ways to create a case-insensitive dictionary? Let me know in the comments below.
 
 

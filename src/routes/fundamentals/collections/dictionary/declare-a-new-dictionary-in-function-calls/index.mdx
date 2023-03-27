@@ -12,13 +12,13 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-There are times that you want to create a quick dictionary on the fly so that the reference isn't held in memory but is processed quickly by a function. A dictionary can be created and passed to a function and it wouldn't be retained in memory unless the function itself save the dictionary in memory. There are several syntaxes that can accommodate this let's look at the first.
+There are times that you want to create a quick dictionary on the fly so that the reference isn't held in memory but is processed quickly by a function. A dictionary can be created and passed to a function and it wouldn't be retained in memory unless the function itself saves the dictionary in memory. Several syntaxes can accommodate this let's look at the first.
 
-### Collection Intializer
+### Collection Initializer
 
-This syntax has each key value pair in curly baces with the new dictionary and the types assigned for key and values.
+This syntax has each key-value pair in curly braces with the new dictionary and the types assigned for keys and values.
 
-#### Collection Intializer Example Code
+#### Collection Initializer Example Code
 
 This creates a temporary dictionary and passes it to the function print values where the dictionary is printed to the screen.
 
@@ -30,7 +30,7 @@ PrintValues(new Dictionary<string, int>
             {"Rainy", 15},
             {"Snowy", -5},
             {"Foggy", 10}
-});//create dictionary by collection intializer
+});//create a dictionary by a collection initializer
 
 void PrintValues(Dictionary<string, int> dictionary)
 {
@@ -52,16 +52,17 @@ void PrintValues(Dictionary<string, int> dictionary)
 ```
 As expected, the key and values show correctly here. Even when the dictionary is not assigned to a variable.
 
-#### Collection Intializer Test
+#### Collection Initializer Test
 
-This test passes 50 key value pairs dictionary to a test function. This function is called 10 million times to get the average speed over 10 tests.
+This test passes 50 key-value pairs dictionary to a test function. This function is called 10 million times to get the average speed over 10 tests.
+
 
 <details>
 <summary>Test Parameters</summary>
 <Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10 million;" />
 </details>
 
-#### Collection Intializer Test Code
+#### Collection Initializer Test Code
 
 ```cs
 TestMethod(new Dictionary<string, string>()
@@ -94,10 +95,10 @@ Test 10:Function Calls:10000000, In 0m 12s 66ms
 Collection Initlizer Average Speed:12087ms, In 10 Tests
 ```
 
-This is the baseline test of about 12 seconds. I will investigate how the other intializer perform. 
+This is the baseline test of about 12 seconds. I will investigate how the other initializers perform.
 
 <details>
-<summary>Full Collection Intializer Test Code</summary>
+<summary>Full Collection Initializer Test Code</summary>
 
 ```cs
 List<double> testSpeedList = new List<double>();
@@ -177,13 +178,13 @@ double StartTest(int testIndex)
 </details>
 
 
-### Index Intializer
+### Index Initializer
 
-[Index intializer was introduced in C# 6.0](https://learn.microsoft.com/en-us/xamarin/cross-platform/platform/csharp-six#index-initializers) The syntax is easier to read than the curly baced version. 
+[Index initializer was introduced in C# 6.0 ](https://learn.microsoft.com/en-us/xamarin/cross-platform/platform/csharp-six#index-initializers) The syntax is easier to read than the curly-braced version.
 
-#### Index Intializer Example Code
+#### Index Initializer Example Code
 
-This example, showst the index initializer sytnax in the function. It follows closer in how it's dictionary indexer is used outside of initialization. 
+This example shows the index initializer syntax in the function. It follows closely how its dictionary indexer is used outside of initialization.
 
 ```cs
 PrintValues(new Dictionary<string, int>
@@ -194,7 +195,7 @@ PrintValues(new Dictionary<string, int>
     ["Naked mole-rat"] = 30,
     ["Blue whale"] = 100,
     ["Human"] = 120
-});//create dictionary by Index intializer
+});//create a dictionary by Index initializer
 
 void PrintValues(Dictionary<string, int> dictionary)
 {
@@ -218,7 +219,7 @@ void PrintValues(Dictionary<string, int> dictionary)
 
 #### Index Intializer Speed Test
 
-This the same test as before execpt the syntax is changed for the index initalizer. Below are the test parameters.
+This is the same test as before except the syntax is changed for the index initializer. Below are the test parameters.
 
 <details>
 <summary>Test Parameters</summary>
@@ -256,7 +257,7 @@ Test 10:Function Calls:10000000, In 0m 11s 947ms
 Index Initlizer Average Speed:11824ms, In 10 Tests
 ```
 
-We see a slight improvement in performance even though it small.
+We see a slight performance improvement even though it is small.
 
 <details>
 <summary>Full Index Intializer Speed Test Code</summary>
@@ -354,7 +355,7 @@ This works as well for passing a new dictionary into the function as gives us th
 
 ### New Operator
 
-The new operator lets the compiles guess at the type. [This is new in C# 9.0.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator) In this case, if we use the new operator and the collectoin intializer syntax, then the compiler has enough information to infer the type.
+The new operator lets the compiles guess the type. [This is new in C# 9.0.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator) In this case if we use the new operator and the collection initializer syntax, then the compiler has enough information to infer the type.
 
 #### New Operator Example Code
 
@@ -387,7 +388,7 @@ PrintValues(new()
     ["E.T. the Extra-Terrestrial"] = 1982,
     ["Jaws"] = 1975,
     ["Blade Runner"] = 1982
-});//create dictionary by New Operator with Index Initializer
+});//create a dictionary by New Operator with Index Initializer
 
 void PrintValues(Dictionary<string, int> dictionary)
 {
@@ -424,7 +425,7 @@ void PrintValues(Dictionary<string, int> dictionary)
 10. key:Blade Runner, value:1982
 ```
 
-#### New Operator With Collection Intializer Speed Test
+#### New Operator With Collection Initializer Speed Test
 
 The same test as before. Below are the test parameters.
 
@@ -433,7 +434,7 @@ The same test as before. Below are the test parameters.
 <Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10 million;" />
 </details>
 
-#### New Operator With Collection Intializer Speed Test Code
+#### New Operator With Collection Initializer Speed Test Code
 
 ```cs
 TestMethod(new()
@@ -464,17 +465,17 @@ Test 10:Function Calls:10000000, In 0m 12s 171ms
 New Operator With Collection Intializer Average Speed:12354ms, In 10 Tests
 ```
 
-This speed is just over 12 seconds and is similar to Collection Intializer test speed. 
+This speed is just over 12 seconds and is similar to the Collection Initializer test speed.
 
 <details>
-<summary>Full New Operator With Collection Intializer Speed Test</summary>
+<summary>Full New Operator With Collection Initializer Speed Test Code</summary>
 
 ```cs
 using System.Diagnostics;
 
 int numberOfTests = 10;//Number of tests 
 int numberOfFunctionCalls = 10000000;//Number of function calls made per test
-string testName = "New Operator With Collection Intializer";//Test name to print to average
+string testName = "New Operator With Collection Initializer";//Test name to print to average
 List<string> keysList = new List<string>();
 Dictionary<string, string> TestMethod(Dictionary<string, string> dictionary)
 {
@@ -558,7 +559,7 @@ double StartTest(int testIndex)
 
 #### New Operator With Index Intializer Speed Test
 
-Another test and this will use the same test parameters as the other tests.
+Another test will use the same test parameters as the other tests.
 
 <details>
 <summary>Test Parameters</summary>
@@ -597,10 +598,10 @@ Test 10:Function Calls:10000000, In 0m 12s 187ms
 New Operator Index Initializer Average Speed:12253ms, In 10 Tests
 ```
 
-This is speed is about the same as the other new Operatior Collection Initializer of just over 12 seconds.
+This is speed is about the same as the other new Operatior Collection Initializer just over 12 seconds.
 
 <details>
-<summary>Full New Operator With Index Intializer Speed Test Code</summary>
+<summary>Full New Operator With Index Initializer Speed Test Code</summary>
 
 ```cs
 using System.Diagnostics;
@@ -692,12 +693,11 @@ double StartTest(int testIndex)
 
 ### Conclusion
 
-<Table header ="Overall Rank,Method,Speed" rows="1,Index Intializer,11824ms;2,Collection Intializer,12087ms;3,New Operator With Index Intializer,12253ms;4,New Operator With Collection Intializer,12354ms;" />
+<Table header ="Overall Rank,Method,Speed" rows="1,Index Initializer,11824ms;2,Collection Initializer,12087ms;3,New Operator With Index Initializer,12253ms;4,New Operator With Collection Initializer,12354ms;" />
 
-The Index Intializer is the fastest Intializer for creating a new dictionary inside a method call. It is almost a full second faster than the other intializers. It may seem small but for those of us who are looking to gain any kind of performance benefit, give a clearer guidence.
+The Index Initializer is the fastest Initializer for creating a new dictionary inside a method call. It is almost a full second faster than the other initializers. It may seem small but for those of us who are looking to gain any kind of performance benefit, give clearer guidance.
 
-But if you perfer the other syntax styles or their compactness and easy of use. Then they are not a bad option. It may come down to how you would like to write your code. I think that the index intializer syntax is the easier to read of the others. 
+But if you prefer the other syntax styles or their compactness and ease of use. Then they are not a bad option. It may come down to how you would like to write your code. I think that the index initializer syntax is easier to read than the others.
 
 Know any other ways to create a new temporary dictionary in a function call? Let me know in the comments below.
-
 

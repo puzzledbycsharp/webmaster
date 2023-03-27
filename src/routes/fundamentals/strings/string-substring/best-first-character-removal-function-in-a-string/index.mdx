@@ -11,7 +11,7 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 ## Introduction
 
-This is a study on what is the best way to remove the first character in a string. There many ways of doing it and we will look at some of those ways. The best could mean different things but for this study we will consider the performance or speed, the readability and how compact the code is. This helps us be productive when we write code to consider all these things.
+This is a study on what is the best way to remove the first character in a string. There are many ways of doing it and we will look at some of those ways. The best could mean different things but for this study, we will consider the performance or speed, the readability, and how compact the code is. This helps us be productive when we write code to consider all these things.
 
 
 #### What Functions Are Being Considered To Remove The First Character
@@ -32,7 +32,7 @@ Span Slice
 
 ### String Remove
 
-Pluses to string Remove provides clear readability as it short and understandable that the first character is being removed. Let's look at an example
+Pluses to string Remove provides clear readability as it is short and understandable that the first character is being removed. Let's look at an example.
 
 ###### String Remove Code Example
 
@@ -50,7 +50,7 @@ Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}");
 sampleText:This sentence is a short one, alteredText:his sentence is a short one
 ```
 
-As you can see this syntax is simple and readable but how is the performance. To test this, record the time it takes we run this sample code 100 million times and try that 10 times to see what the average time. We only run the function call in the loop because we are only interested in the function's performance. Sample code below.
+As you can see this syntax is simple and readable but how is the performance. To test this, record the time it takes we run this sample code 100 million times and try that 10 times to see what the average time is. We only run the function call in the loop because we are only interested in the function's performance. Sample code below.
 
 ###### String Remove Speed Test Code Example
 
@@ -96,7 +96,7 @@ sampleText:This sentence is a short one, alteredText:his sentence is a short one
 Remove Average speed:1015ms, In 10 tests
 ```
 
-For String remove, we see that the that average time it took was 2492 milliseconds. We'll keep this in mind as we go through the other tests.
+For String remove, we see that the average time it took was 1015ms milliseconds. We'll keep this in mind as we go through the other tests.
 
 ### String Substring
 
@@ -145,11 +145,11 @@ sampleText:This sentence is a short one, alteredText:his sentence is a short one
 Substring Average speed:834ms, In 10 tests
 ```
 
-We see that substring preforms the test in 2 so this is the current leader in our speed test with remove in second.
+We see that the substring method performs the test in 834ms so this is the current leader in our speed test with remove in second.
 
 ### LINQ Skip Method
 
-LINQ provides a function called skip that lets us skip a number elements in a sequence so we can use it to skip the first character in the string. Since string is a sequence of characters. For LINQ skip, we need to had two lines of code. One for getting the new array of characters and another line to convert the array characters to a string. Let's look at an example below.
+LINQ provides a function called skip that lets us skip several elements in a sequence so we can use it to skip the first character in the string. Since the string is a sequence of characters. For LINQ skip, we need to have two lines of code. One for getting the new array of characters and another line to convert the array of characters to a string. Let's look at an example below.
 
 ###### LINQ Skip Speed Test Code Example
 
@@ -201,7 +201,7 @@ As we can see this method is quite slow taking an average of 21 seconds and it a
 
 ### Range Operator Method
 
-The range operator is a new operator in C# 8.0. It allows use the select the index range
+The range operator is a new operator in C# 8.0. It allows us the select the index range.
 
 ###### Range Operator Speed Test Code Example
 
@@ -247,7 +247,7 @@ sampleText:This sentence is a short one, alteredText:his sentence is a short one
 Range Operator Average speed:954ms, In 10 tests
 ```
 
-The range operator has really compact syntax that is fairly easy to understand once it recognized. This can make it a little harder to read because it is unlike a function name which describles what it is doing. But it is really nice that is fast and one par with string substring.
+The range operator has a compact syntax that is fairly easy to understand once it is recognized. This can make it a little harder to read because it is unlike a function name that describes what it is doing. But it is nice that is fast and one par with string substring.
 
 ### ToCharArray Method
 
@@ -297,11 +297,11 @@ sampleText:This sentence is a short one, alteredText:his sentence is a short one
 ToCharArray Average speed:1669ms, In 10 tests
 ```
 
-This function takes two sets or two lines of code to create a new character array and the passing this array into a new string. It is readability but it also slightly slower than remove,substring and range operator.
+This function takes two sets or two lines of code to create a new character array and then passes this array into a new string. It is readable but it is also slightly slower than the remove, substring, and range operator methods.
 
 ### TrimStart Method
 
-This method just removes a character from the beginning of the string if it found. It is very readability and short. It takes up a single line so let's show the performance on it.
+This method just removes a character from the beginning of the string if it is found. It is very readable and short. It takes up a single line so let's show its performance on it.
 
 ###### TrimStart Speed Test Code Example
 
@@ -348,11 +348,11 @@ sampleText:This sentence is a short one, alteredText:his sentence is a short one
 TrimStart Average speed:1052ms, In 10 tests
 ```
 
-We can see that TrimStart is pretty fast but still substring is still the fastest so far.
+We can see that TrimStart is pretty fast but substring is still the fastest so far.
 
 ### Span Slice Method
 
-Span is fast as it allocates memory on stack rather than the heap. This gives us an advantage of avoiding the garbage collection that could slow down the performance in the other methods. We get a single method with a start index to provide so this is good readability in a compact form.
+Span is fast as it allocates memory on the stack rather than the heap. This gives us the advantage of avoiding garbage collection which could slow down the performance of the other methods. We get a single method with a start index to provide so this is good readability in a compact form.
 
 ###### Span Slice Speed Test Code Example
 
@@ -399,7 +399,7 @@ sampleText:This sentence is a short one, alteredText:his sentence is a short one
 SliceSpeedTest Average speed:495ms, In 10 tests
 ```
 
-We get a blazing 495ms for this method which 59% faster as the next method. This is a big performance gain over substring
+We get a blazing 495ms for this method which is 59% faster than the next method. This is a big performance gain over substring.
 
 ### Conclusion
 

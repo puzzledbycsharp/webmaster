@@ -12,19 +12,19 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Getting a substring from another string is fundamental. It will come again and again so it is best to make the best assessment for which functions to use. We'll look at several different string functions and other none string functions to see how they compare like substring, remove, and span slice. In this analysis, we take a look at the performance or speed of each function. Also we'll look at the readability of the methods. 
+Getting a substring from another string is fundamental. It will come again and again so it is best to make the best assessment for which functions to use. We'll look at several different string functions and other none string functions to see how they compare like substring, remove, and span slice. In this analysis, we take a look at the performance or speed of each function. Also, we'll look at the readability of the methods.
 
 ### Substring Method
 
-Substring is a go to string function in many use cases. In this case, Using substring, we pass the start index and the length of the substring we would like take from the text. 
+The substring method is a go-to string function in many use cases. In this case, Using substring, we pass the start index and the length of the substring we would like to take from the text.
 
-Suppose we have some text where we need to return a substring of the first 11 characters. 
+Suppose we have some text where we need to return a substring of the first 11 characters.
 
-If we have the string 'fare_amount,pickup_datetime,pickup_longitude,pickup_latitude' and we only want to return the substring 'fare_amount' To do this we need to take the start index of 0 and take all characters until first comma which is index of 11 of this string. Let's see the code in action below.
+If we have the string 'fare_amount,pickup_datetime,pickup_longitude,pickup_latitude' and we only want to return the substring 'fare_amount' To do this we need to take the start index of 0 and take all characters until the first comma which is an index of 11 of this string. Let's see the code in action below.
 
 #### String Substring Code Example
 
-Below is code to get the substring of the first 11 characters of the text. 
+Below is the code to get the substring of the first 11 characters of the text.
 
 We can focus on where the substring method is. That is where all the work is happening. It takes the substring from 0 to 10, which is 11 characters long.  
 
@@ -40,7 +40,7 @@ string GetSubstringUsingSubstring(string text, int numberOfCharacters)
     {
         return "";//do nothing
     }
-    if (numberOfCharacters <= 0 || numberOfCharacters > text.Length - 1)//check to see if numberOfCharacters is not zero or less and not greater than number index in the string
+    if (numberOfCharacters <= 0 || numberOfCharacters > text.Length - 1)//check to see if numberOfCharacters is not zero or less and not greater than the number index in the string
     {
         return "";//do nothing
     }
@@ -60,7 +60,7 @@ We see we can quickly get the first n characters using substring. There is code 
 
 ##### Substring Speed Test
 
-In addition, to seeing a functional example we also need to test the performance of substring. To test this, we will call the function call 100 million times then average that over 10 tests to see how long it takes. C# can do this operation very fast, but I call the method this many times so that I can try to get a spread in time between the methods. Let's see
+In addition, to see a functional example we also need to test the performance of the substring. To test this, we will call the function call 100 million times and then average that over 10 tests to see how long it takes. C# can do this operation very fast, but I call the method this many times so that I can try to get a spread in time between the methods. Let's see an example.
 
 ##### Substring Speed Code
 
@@ -107,15 +107,15 @@ sampleText:fare_amount,pickup_datetime,pickup_longitude,pickup_latitude, altered
 Substring Average speed:773ms, In 10 tests
 ```
 
-We see in this first test that substring completes the test at an average 773ms which is pretty good. That's just under a second for millions of operations. It's very fast.
+We see in this first test that the substring method completes the test at an average of 773ms which is pretty good. That's just under a second for millions of operations. It's very fast.
 
 ##### Readability Analysis For Substring
 
-This function read really well and it easily understood as taking just a piece of the original text. 
+This function reads really well and it is easily understood as taking just a piece of the original text.
 
 ### Remove Method
 
-Remove is similar to the substring method in the set up. But it differs that the start index is istead of 0, it is 11. The remove function will take away all the characters after index 11 so what will be left over will be first 11 characters. Let's see an example.
+Remove is similar to the substring method in the setup. But it differs that the start index is instead of 0, it is 11. The remove function will take away all the characters after index 11 so what will be left over will be the first 11 characters. Let's see an example.
 
 ###### Remove Method Code Example
 
@@ -136,7 +136,7 @@ string GetSubstringUsingRemove(string text, int startIndex)
         return "";//do nothing
     }
     int numberofCharacters = text.Length - startIndex;
-    string substring = text.Remove(startIndex, numberofCharacters);//Get the first n characters of this string by remove the n last characters.
+    string substring = text.Remove(startIndex, numberofCharacters);//Get the first n characters of this string by removing the n last characters.
     return substring;
 }
 ```
@@ -148,11 +148,11 @@ text:fare_amount,pickup_datetime,pickup_longitude,pickup_latitude
 substring:fare_amount
 ```
 
-For the remove method we pass the start index and find out how many number of characters based on the length of the text. The result is the same as substring.
+For the remove method, we pass the start index and find out how many characters are based on the length of the text. The result is the same as the substring method.
 
 ###### Remove Method Speed Test
 
-Next we need to test the speed of string remove using the same speed test as before. Below is the code.
+Next, we need to test the speed of the string remove method using the same speed test as before. Below is the code.
 
 ###### Remove Method Speed Code
 
@@ -176,8 +176,7 @@ double RemoveSpeedTest()
     for (int i = 0; i < numberOfFunctionCalls; i++)
     {
         int numberofCharacters = text.Length - startIndex;
-        alteredText = text.Remove(startIndex, numberofCharacters);//Get the first n characters of this string by remove the n last characters.
-    }
+        alteredText = text.Remove(startIndex, numberofCharacters);//Get the first n characters of this string by removing the n last characters.
     stopwatch.Stop();//Stop the Stopwatch timer
     Console.WriteLine($"sampleText:{text}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
     return stopwatch.Elapsed.TotalMilliseconds;
@@ -200,7 +199,7 @@ sampleText:fare_amount,pickup_datetime,pickup_longitude,pickup_latitude, altered
 Remove Average speed:944ms, In 10 tests
 ```
 
-With this performance at 1415ms it is only slightly slower than substring so the difference isn't that much.
+With this performance at 1415ms, it is only slightly slower than substring so the difference isn't that much.
 
 ###### Readability Analysis For Remove
 
@@ -208,7 +207,7 @@ Although this works using remove makes it less intuitive because the code says w
 
 ### Slice Method
 
-Slice is a method not in the direct string class structure. It uses the span structure to store the characters in stack rather than the heap so theoretically it would be faster than string based methods. Set is similar to substring so let's look at an example.
+Slice is a method not in the direct string class structure. It uses the span structure to store the characters in a stack rather than the heap so theoretically it would be faster than string-based methods. The set is similar to the substring method so let's look at an example.
 
 ###### Slice Method Example
 
@@ -224,7 +223,7 @@ string GetSubstringUsingSlice(ReadOnlySpan<char> text, int numberOfCharacters)
     {
         return "";//do nothing
     }
-    if (numberOfCharacters <= 0 || numberOfCharacters > text.Length - 1)//check to see if numberOfCharacters is not zero or less and not greater than number index in the string
+    if (numberOfCharacters <= 0 || numberOfCharacters > text.Length - 1)//check to see if numberOfCharacters is not zero or less and not greater than the number index in the string
     {
         return "";//do nothing
     }
@@ -240,7 +239,7 @@ text:fare_amount,pickup_datetime,pickup_longitude,pickup_latitude
 substring:fare_amount
 ```
 
-Notice that we are using ReadOnlySpan that takes in a string that is passed to and we also need do to string to the result of slice. The parameters are the same as substring and the result is also the same. Let's look at the performance.
+Notice that we are using ReadOnlySpan which takes in a string that is passed and we also need do to the string to the result of the slice. The parameters are the same as the substring method and the result is also the same. Let's look at the performance.
 
 ###### Slice Method Speed Code
 
@@ -292,4 +291,4 @@ We see that slice is the fastest at 500ms. We can see the span enhancements have
 ### Conclusion
 <Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,500ms,10 lines,4;2,String Substring,944ms,10 lines,5;3,String Remove,944ms,11 lines,3" />
 
-The best method for getting the first n characters is span slice. Performance is the most important metric to determine to best method because it affects the end user the most, testing and productivity. It is the fastest by over 200ms to the next function. Although for slice is not as readable as substring because understanding of span is needed while string understand is most like already there. Substring is second because it slower than slice although it is the most readable and easiest to set up.The Remove method is the slowest of the three methods and also suffers from readability issues. It not as intuitive as substring and slice.
+The best method for getting the first n characters is span slice. Performance is the most important metric to determine to best method because it affects the end user the most, testing, and productivity. It is the fastest by over 200ms to the next function. Although for the slice method is not as readable as substring because an understanding of span is needed. Substring is second because it is slower than slice although it is the most readable and easiest to set up. The Remove method is the slowest of the three methods and also suffers from readability issues. It is not as intuitive as substring and slice.

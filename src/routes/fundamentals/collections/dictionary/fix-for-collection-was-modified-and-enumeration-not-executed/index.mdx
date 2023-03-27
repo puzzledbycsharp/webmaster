@@ -12,18 +12,17 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-This collection modified exception can happen in dictionaries when there are two tasks. One iterating through the dictionary and another is adding or removing items from the dictionary. The tasks that is looping through the dictionary will throw this exception. Dictionary is not a thread safe collection type but there are some ways around this issue by copying the parts of the dictionary to another collection type. Let's look at those in detail.
-
+This collection-modified exception can happen in dictionaries when there are two tasks. One iterating through the dictionary and another is adding or removing items from the dictionary. The tasks that are looping through the dictionary will throw this exception. The dictionary is not a thread-safe collection type but there are some ways around this issue by copying the parts of the dictionary to another collection type. Let's look at those in detail.
 
 ### Motivation
 
-How is issue appear. [Dictionary can read by multiple threads](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-8.0#thread-safety) but if there's a write operation by add or remove of items from the dictionary then it can not at the same time be in a loop. You could add locks so that only thread is working with the dictionary at a time but for now we're going to assume that isn't the case.
+How does this issue appear? [The dictionary can be read by multiple threads](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-8.0#thread-safety) but if there's a write operation by adding or removing items from the dictionary then it can not at the same time be in a loop. You could add locks so that only the thread is working with the dictionary at a time but for now we're going to assume that isn't the case.
 
 #### Collection Was Modified And Enumeration Operation May Not Execute Exception Example Code
 
-This code has two dictionaries, one is the primary dictionary and secondary dictionary. There is two threads. One thread will be looping through the dictionary and printing values from the primary dictionary. The other thread will be looping through the secondary dictionary and add those items from the secondary to the primary dictionary. This is the write operation. 
+This code has two dictionaries, one is the primary dictionary and the secondary dictionary. There are two threads. One thread will be looping through the dictionary and printing values from the primary dictionary. The other thread will be looping through the secondary dictionary and add those items from the secondary to the primary dictionary. This is the write operation.
 
-Each dictionary has a set of countries and population as the key and values. Let's look at the code.
+Each dictionary has a set of countries and populations as the key and values. Let's look at the code.
 
 ```cs
 Dictionary<string, double> primaryDictionary = new Dictionary<string, double>()
@@ -46,7 +45,7 @@ Dictionary<string, double> secondaryDictionary = new Dictionary<string, double>(
 };//Initialize dictionary
 
 PrintDictionaryAsync();//Start reader task
-await AddToDictionaryAsync();//Start writer taskds
+await AddToDictionaryAsync();//Start writer tasks
 
 
 async Task PrintDictionaryAsync()
@@ -71,8 +70,8 @@ async Task AddToDictionaryAsync()
     foreach (KeyValuePair<string, double> countryKeyValue in secondaryDictionary)//Loop through the secondary dictionary key value pairs
     {
         await Task.Delay(500);//Add slight delay
-        primaryDictionary.Add(countryKeyValue.Key, countryKeyValue.Value);//Add secondary key value pair to the primary ditionary. This is the write operation
-        Console.WriteLine("Add Country To List:" + countryKeyValue.Key);//Print message to screen saying add successful
+        primaryDictionary.Add(countryKeyValue.Key, countryKeyValue.Value);//Add secondary key-value pair to the primary dictionary. This is a write operation
+        Console.WriteLine("Add Country To List:" + countryKeyValue.Key);//Print a message to the screen saying add successfully
     }
     return;
 }
@@ -91,15 +90,15 @@ Writer Thread:Add Country To List:Ethiopia
 ```
 
 
-As this run, the reader thread that is looping through the primary dictioanry will throw an exception after the writer thread has added an entry into the primary dictionary. After that you can see that the reader thread stops. But the writer thread continues to add entries into the dictionary.
+As this run, the reader thread that is looping through the primary dictionary will throw an exception after the writer thread has added an entry into the primary dictionary. After that, you can see that the reader thread stops. But the writer thread continues to add entries into the dictionary.
 
 ### LINQ ToList Solution
 
-Now that we have an understand of the problem. The first solution is copy the dictionary's keys to a list then loop through the list. This works because even if the dictionary is modified we're not actrually looping through the dictionary anymore but a copy of the keys.
+Now that we have an understanding of the problem. The first solution is to copy the dictionary's keys to a list and then loop through the list. This works because even if the dictionary is modified we're not looping through the dictionary anymore but a copy of the keys.
 
 #### LINQ ToList Example Code
 
-The code change is happening with LINQ's ToList being applied to the keys and it returns a list of strings. This could also be applied to values as well.
+The code change is happening with LINQ's ToList being applied to the keys and it returns a list of strings. This could be applied to values as well.
 
 ```cs
 async Task PrintDictionaryAsync()
@@ -107,7 +106,7 @@ async Task PrintDictionaryAsync()
     try
     {
         List<string> list = primaryDictionary.Keys.ToList();//Copy dictionary keys to a list
-        foreach (string country in list)//Loop through list which is copy of the dictionary keys
+        foreach (string country in list)//Loop through the list which is a copy of the dictionary keys
         {
             await Task.Delay(400);//Add slight delay so that the writer will modify the dictionary while in the loop
             Console.WriteLine($"Reader Thread:key:{country}");//Pring dictionary key
@@ -136,11 +135,11 @@ Reader Thread:key:Brazil
 Writer Thread:Add Country To List:Ethiopia
 ```
 
-There are no exceptions being thrown in this method now.
+No exceptions are being thrown in this method now.
 
 #### LINQ ToList Speed Test
 
-As I like to do is test the performance of the method and how they compare with other methods. I will do a average of 10 tests. Each test will have a loop that calls the test method 100 times. Then each test method will have 1 million objects the dictionary to work with. 
+What I like to do is test the performance of the method and how they compare with other methods. I will do an average of 10 tests. Each test will have a loop that calls the test method 100 times. Then each test method will have 1 million objects in the dictionary to work with.
 
 <details>
 <summary>Test Parameters</summary>
@@ -149,7 +148,7 @@ As I like to do is test the performance of the method and how they compare with 
 
 #### LINQ ToList Speed Test Code
 
-The test method takes the dictionary of 1 million objects and performs the copies the keys to the list.
+The test method takes the dictionary of 1 million objects and performs copies of the keys to the list.
 
 ```cs
 void TestMethod(Dictionary<string, string> dictionary)
@@ -247,11 +246,11 @@ string GenerateRandomString(int length)
 
 ### List Constructor Solution
 
-The second solution that we can use is pass the dictionary keys or values to the list constructor.
+The second solution that we can use is to pass the dictionary keys or values to the list constructor.
 
 #### List Constructor Example Code
 
-We can directly call the list contructor and pass the keys directly to it. This makes a copy of the keys and since it's a copy, it isn't being modified.
+We can directly call the list constructor and pass the keys directly to it. This makes a copy of the keys and since it's a copy, it isn't being modified.
 
 ```cs
 async Task PrintDictionaryAsync()
@@ -390,11 +389,11 @@ string GenerateRandomString(int length)
 
 ### Dictionary Constructor Solution
 
-But what if I want to loop through the keys and values at the same time. Need we'll need to copy the whole dictionary itself. We can do this using the dictionary constructr
+But what if I want to loop through the keys and values at the same time? Need we'll need to copy the whole dictionary itself. We can do this using the dictionary constructor.
 
 #### Dictionary Constructor Example Code
 
-This code shows that the we can pass my primary dictionary into the dictionary constructor to make a copy while in the reader thread.
+This code shows that we can pass my primary dictionary into the dictionary constructor to make a copy while in the reader thread.
 
 ```cs
 async Task PrintDictionaryAsync()
@@ -402,7 +401,7 @@ async Task PrintDictionaryAsync()
     try
     {
         Dictionary<string, double> copyDictionary = new Dictionary<string,double>(primaryDictionary);//Copy dictionary keys and values to another dictionary
-        foreach (KeyValuePair<string,double> countryKeyValuePair in copyDictionary)//Loop through the dictionary which is copy of the dictionary keys and values
+        foreach (KeyValuePair<string,double> countryKeyValuePair in copyDictionary)//Loop through the dictionary which is a copy of the dictionary keys and values
         {
             await Task.Delay(400);//Add slight delay so that the writer will modify the dictionary while in the loop
             Console.WriteLine($"Reader Thread:key:{countryKeyValuePair.Key}, value:{countryKeyValuePair.Value}");//Pring dictionary key and value
@@ -540,11 +539,9 @@ string GenerateRandomString(int length)
 
 <Table header ="Overall Rank,Method,Speed" rows="1,LINQ ToList,957ms;2,List Constructor,990ms;3,Dictionary Constructor,8976ms;" />
 
-LINQ ToList has a compact syntax and it is easier to read and it is fast. I wouldn't consider it faster than the List constuctor since they are so close in time. So if you prefer the list constuctor you can use that as well it is still fast. These work for both the keys and values but seperately.
+LINQ ToList has a compact syntax and it is easier to read and it is fast. I wouldn't consider it faster than the List constructor since they are so close in time. So if you prefer the list constructor you can use that as well it is still fast. These work for both the keys and values but separately.
 
-If you need loop through the key and values at the same time then you'll have no choice but use the dictionary constructor. But be aware that it is a more expensive operation than just loop through the keys and or values. 
+If you need to loop through the key and values at the same time then you'll have no choice but use the dictionary constructor. But be aware that it is a more expensive operation than just looping through the keys and or values.
 
-
-Know any other ways to to fix this collection was modified exception? Let me know in the comments below.
-
+Know any other ways to fix this collection was modified exception? Let me know in the comments below.
 

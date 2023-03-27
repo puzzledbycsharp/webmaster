@@ -11,11 +11,11 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Dictionary With One To Many Relationship Banner Image" widthImage = "2304" heightImage = "1728" />
 # Introduction
 
-While a dictionary has a set struture and use cases for the one to one relationship. You may be wondering how you can use a dictionary or List for a one to many relationship with the data. There are two and possible more ways. But I'm going to be talking how to do it with a dictionary and a list in this article.
+While a dictionary has a set structure and use cases for the one-to-one relationship. You may be wondering how you can use a dictionary or List for a one-to-many relationship with the data. There are two and possibly more ways. But I'm going to be talking about how to do it with a dictionary and a list in this article.
 
 ## Can A Dictionary Have Duplicate Keys?
 
-A dictionary can not have duplicate keys, because the keys are required to be unique. Usually a dictionary has one to one ratio to the key and values. But in this case we want to have a one key and many values. There are a few work arounds.  Let's look at the first example.
+A dictionary can not have duplicate keys, because the keys are required to be unique. Usually, a dictionary has one to one ratio to the key and values. But in this case, we want to have one key and many values. There are a few workarounds. Let's look at the first example.
 
 ### Summary Table
 
@@ -23,7 +23,7 @@ A dictionary can not have duplicate keys, because the keys are required to be un
 
 ### Dictionary and List Method
 
-The idea behind this is to still have a quick look up by the key values. You can add key and value to the dictionary like the following below. This code has a class named Data which stores a master name and one of it's synonyms. The name will stay the same while the synonym will be changing so this is a one to many relationship.
+The idea behind this is to still have a quick lookup by the key values. You can add keys and values to the dictionary like the one below. This code has a class named Data which stores a master name and one of its synonyms. The name will stay the same while the synonym will be changing so this is a one-to-many relationship.
 
 ```cs
 Dictionary<string,List<string>> synonymsDictionary = new Dictionary<string,List<string>>();
@@ -38,7 +38,7 @@ foreach (Data item in dataList)//Loop through all data points
 {
     if(!synonymsDictionary.ContainsKey(item.Name))//Check if the key is in the dictionary then take appropriate action
     {
-        synonymsDictionary[item.Name] = new List<string>();//If key does not exist then add the key with a new list
+        synonymsDictionary[item.Name] = new List<string>();//If the key does not exist then add the key with a new list
         Console.WriteLine($"New List Added for name:{item.Name}");
         synonymsDictionary[item.Name].Add(item.Synonym);//Add the value to the new list
         Console.WriteLine($"Synonym Added:{item.Synonym}");
@@ -84,7 +84,7 @@ Dictionary<string, List<string>> synonymsDictionary = new Dictionary<string, Lis
     { "Cheerful", new List<string>{ "Glad", "Pleased", "Jubilant", "Radiant", "Satisfied" } },
     { "Content", new List<string>{ "Fulfilled", "Satisfied", "Happy", "Gratified", "Pleased" } },
     { "Jovial", new List<string>{ "Merry", "Festive", "Jolly", "Convivial", "Lighthearted" } }}
-};//Generate dictionary with one key but many values
+};//Generate a dictionary with one key but many values
 
 string key = "Content";
 if (synonymsDictionary.TryGetValue(key, out List<string> values))//Get the list of values from the dictionary with one key
@@ -108,7 +108,7 @@ value:Pleased
 
 ### List Of KeyValuePairs
 
-While the dictionary uses the KeyValuePair to store they keys and values internally. We can use the KeyValuePair class outside of the dictionary context. Instead of a lookup through the key to get the values. We can sort this list or search through it to find the key value pair that we want.
+While the dictionary uses the KeyValuePair to store the keys and values internally. We can use the KeyValuePair class outside of the dictionary context. Instead of a lookup through the key to getting the values. We can sort this list or search through it to find the key-value pair that we want.
 
 #### List Of KeyValuePairs Example Code
 
@@ -177,9 +177,8 @@ value:Expeditious
 
 ### Conclusion
 
-Having a dictionary with key then a list is a solid choice to solve the one key to many values problem. It has a fast lookup and usually there are not many values to search through after that. This can help divide the data up in to more manageable chucks.
+Having a dictionary with a key and then a list is a solid choice to solve the one key to many values problem. It has a fast lookup and usually, there are not many values to search through after that. This can help divide the data into more manageable chunks.
 
-Using the list to store the KeyValuePairs is also an option. This give the opportunity to sorting and displaying the data in different ways or order. So you'll need to choose carefully depending on the requirements that are needed.
+Using the list to store the KeyValuePairs is also an option. This allows sorting and displaying of the data in different ways or order. So you'll need to choose carefully depending on the requirements that are needed.
 
-
-Know any other collections or way to have a collection or data structure that has a one to many relationship? Let me know in the comments below.
+Know any other collections or ways to have a collection or data structure that has a one-to-many relationship? Let me know in the comments below.

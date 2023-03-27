@@ -11,11 +11,12 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 ## Introduction
 
-Insert is quick way to put one string into another. This is good for string manuluation, output variables into strings or combining strings together.But there is exception that can be raised with incorrect values. There a mulitple ways of doing this including, replace, format, concatenation, and Interpolation so keep in mind that C# has mutiple ways of doing the same way. Also, I'll explain how insert works, and the interworkings of how it can be done.
+Insert is a quick way to put one string into another. This is good for string manipulation, output variables into strings, or combining strings. But there is an exception that can be raised with incorrect values. There are multiple ways of doing this including, replace, format, concatenation, and Interpolation so keep in mind that C# has multiple ways of doing the same way. Also, I'll explain how insert works, and the interworkings of how it can be done.
 
 ### What is String Insert?
 
-The insert method puts a single string in-between a section of the string. With the first parameter of index, it lets you pick the at what point to insert a string. the second parameter is the string you want to insert. Both of these parameters must be a valid input. The size of the string you want o insert doesn't really matter just as long as it is inserted in the valid range of the existing string.
+The insert method puts a single string in-between a section of the string. The first parameter is an index, it lets you pick at what point to insert a string. the second parameter is the string you want to insert. Both of these parameters must be valid input. The size of the string you want o insert doesn't matter just as long as it is inserted in the valid range of the existing string.
+Syntax
 
 ###### Syntax
 
@@ -23,7 +24,7 @@ The insert method puts a single string in-between a section of the string. With 
 public string Insert(int index, string value)
 ```
 
-Notice that the function call allows for a index of the current string where the insert will start. Then in the next parameter you can pass the string you want to insert. Let's see an example, by looking at the code below.
+Notice that the function call allows for an index of the current string where the insert will start. Then in the next parameter, you can pass the string you want to insert. Let's see an example, by looking at the code below.
 
 
 ```cs
@@ -40,15 +41,15 @@ Console.WriteLine(completedStatement);//Display result
     Error Generated at 5/1/2022 2:15:46 PM  for function
 ```
 
-This code snippet simple takes an existing string and inserts a date between the at and for text.
+This code snippet simply takes an existing string and inserts a date between the at and for text.
 
 #### String Insert Exceptions
 
-It's important to note when exceptions can happen and when they might happen so that we can guard the code against such cases. The first is index out of range exception
+It's important to note when exceptions can happen and when they might happen so that we can guard the code against such cases. The first is the index out-of-range exception.
 
 ###### Index Out of Range Exception
 
-This exception comes when the index provided is either less than 0 or greater than the length of the original string. See code sameple below that will generate such error.
+This exception comes when the index provided is either less than 0 or greater than the length of the original string. See the code example below that will generate an error.
 
 ```cs
 string debugStatement = "Error Generated at  for function";//Starting string
@@ -62,7 +63,7 @@ Result
 
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-small.webp 250w, ../../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-medium.webp 500w, ../../../assets/fundamentals/strings/insert/string-insert-index-out-of-range-exception-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Argument Out of Range Exception Image" widthImage = "982" heightImage = "236" />
 
-As you can see index is less than 0 which is not a valid index in the original string. To handle this case will have a wrapper function over the string insert method to handle such cases. Check out the code below.
+As you can see the index is less than 0 which is not a valid index in the original string. To handle this case will have a wrapper function over the string insert method to handle such cases. Check out the code below.
 
 
 ```cs
@@ -88,11 +89,11 @@ string InsertText(int index, string originalText, string textToInsert)
 }
 ```
 
-In the insert text wrapper function we handle both the case of index being less than 0 and also when the insert index is greater than the length - 1 of the original string.
+In the insert text wrapper function we handle both the case of the index being less than 0 and also when the insert index is greater than the length - 1 of the original string.
 
 ### Null Exception
 
-Null Exception happens when the string we want insert is null. If it was just an empty string it would be ok and there wouldn't be a exception so we must guard the code against a null value. See code below to see how the error can be caused.
+Null Exception happens when the string we want to insert is null. If it was just an empty string it would be ok and there wouldn't be an exception so we must guard the code against a null value. See the code below to see how the error can be caused.
 
 ```cs
 string debugStatement = "Error Generated at  for function";//Starting string
@@ -137,16 +138,20 @@ Error Generated at 5/1/2022 2:15:46 PM  for function
 ### When Might This Function Be Used?
 
 ###### Fixed position or repeated patterns
-Cases when it known where the insert index will be all the time and also if there . For example, date time when it known that the day, month or year are a fixed position and length. Also, look for repeated patterns where you might could use the indexyOf to find a certain character or set of characters to find the insert point.
-###### Readablitiy
-Another consideration when using this function is how this might keep the code simple ane readable so whenever you can keep the code simple so that others can who might work on the code can come in a quickly understand what is going on that is a good thing. So having this function describes what is doing is useful for readabiblity.
+
+Cases when it is known where the insert index will be all the time and also if there. For example, date and time when it is known that the day, month, or year are a fixed position and length. Also, look for repeated patterns where you might use the indexOf to find a certain character or set of characters to find the insert point.
+
+###### Readability
+
+Another consideration when using this function is how this might keep the code simple and readable so that whenever you can keep the code simple so that others can who might work on the code can come in a quickly understand what is going on that is a good thing. So having this function describes what is doing is useful for readability.
 
 ### Alternate String Insert Methods
 
 There are other ways of inserting a string into a string because often times when we just don't need to insert one string we need to insert multiple strings at a time. So below are some ways in which we can insert multiple strings into a string at one time.
 
 ###### String Replace
-Place holders for strings can be put in string then we use string replace insert at the place holder for that we want to replace. See example below.
+
+Placeholders for strings can be put in string then we use string replace insert at the place holder for that we want to replace. See the example below.
 
 ```cs
 string GetQuery(int fileId, string fileType, int userId)
@@ -186,7 +191,7 @@ where
 
 ###### String Format
 
-String format use places holders in curly braclys starting with 0,1,..n to how many paramters you want to insert into the string. A simple example is below.
+String format use places holders in curly braces starting with 0,1,..n to how many parameters you want to insert into the string. A simple example is below.
 
 ```cs
 string GetQuery(string lastName, string userType)
@@ -221,7 +226,7 @@ and user_type = ADMIN
 
 ###### String Concatenation
 
-This type of string insert can be used to combine different strings or insert variables into strings but it can be tedious to construct when as sections and varibles increase.
+This type of string insert can be used to combine different strings or insert variables into strings but it can be tedious to construct when as sections and variables increase.
 
 ```cs
 string GetQuery(string lastName, string userType)
@@ -249,7 +254,7 @@ select  *  from user_main  where  last_name = Shepard and user_type = ADMIN
 
 ###### String Interpolation
 
-This way allows to place the variables in line similar to concatenation but it is easier because there is less formating needed
+This way allows to place the variables in line similar to concatenation but it is easier because there is less formatting needed.
 
 ```cs
 string GetQuery(int fileId, string fileType, int userId)
@@ -271,7 +276,7 @@ select * from file_main where file_id = 2318 and file_type = CSV and user_id = 3
 
 ### How String Insert Works
 
-There can be may ways to create a string insert function. One way is to use substring to take the substring to the index and take the substring of the index to the end of the string. Then take the text we want to insert and concantenate inbetween the two substrings. See code snippet below.
+There can be many ways to create a string insert function. One way is to use a substring to take the substring to the index and take the substring of the index to the end of the string. Then take the text we want to insert and concatenate it in between the two substrings. See the code snippet below.
 
 ```cs
 string InsertInString(string originalText, int index, string textToInsert)
@@ -304,5 +309,5 @@ Error Generated at 5/8/2022 3:42:16 PM for function
 
 ### Conclusion
 
-String Insert gives you a quick option to put text into another. Using the index, you can use it for automated processes or string generation. It has good readabiblity as it describles exactly what it is doing. This is different from the alternate methods that can get the same result as insert but does say that it is inserting. So insert is good for beginners and it's simple with only two parameters.
+String Insert gives you a quick option to put text into another. Using the index, you can use it for automated processes or string generation. It has good readability as it describes exactly what it is doing. This is different from the alternative methods that can get the same result as an insert but don't convey that it is inserting. So insert is good for beginners and it's simple with only two parameters.
 

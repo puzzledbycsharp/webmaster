@@ -10,24 +10,18 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 <ImageWrapper imageSource="../../../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-medium.webp" imageSrcSet="../../../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-small.webp 250w, ../../../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-medium.webp 500w, ../../../../../assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Efficiently Remove The First Keyword Occurrence From A String Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
 
-There are sometimes in a string there are characters that cause issues when parsing it or duplicated characters or even special characters. It can often happen in data files, databases or even on file directory structures. As the developer, these inputs are often out of our control but we still need to handle these cases so that other parts of the code are not affected down stream. Often times just removing offending sub section will be enough. We first need to find the keywords to remove. So let's look at some example below.
+There are sometimes in a string there are characters that cause issues when parsing it or duplicated characters or even special characters. It can often happen in data files, databases, or even on file directory structures. As the developer, these inputs are often out of our control but we still need to handle these cases so that other parts of the code are not affected downstream. Often times just removing the offending sub-section will be enough. We first need to find the keywords to remove. So let's look at some examples below.
 
 
 ### The Remove First Keyword Algorithm 
 
-1.Receive a string input
-
-2.Assign a variable to the string to remove
-
-3.Get lenght of string to removed
-
-4.Search by for starting index in existing string for the string to removed.
-
-5.Get that start index by IndexOf method.
-
-6.Use the Remove method and pass the start index and length of the removal string.
-
-7.Get the final string after removal 
+1. Receive a string input
+2. Assign a variable to the string to remove
+3. Get the length of the string to be removed
+4. Search for starting index in the existing string for the string to be removed.
+5. Get that start index by the IndexOf method.
+6. Use the Remove method and pass the start index and length of the removal string.
+7. Get the final string after removal
 
 
 ### CSV File Header Example
@@ -36,12 +30,11 @@ example:traffic_stops,traffic_violations,stops,speeding_tickets,stops,failure_to
 
 If given the following header from a CSV file that we parse through. We see that there are two 'stops' headers and we want to eliminate the first 'stops'
 
-Steps in include assigning what keyword we want to remove. Then use that keyword to obtain it's length or number of characters to remove from the main string. Next use string IndexOf to obtain the start index of the keyword. Now that we've gathered all the information needed to pass the parameters to string remove. Passing the startIndex and the removeLength to remove the first occurrence of this keyword.
-
+Steps include assigning what keyword we want to remove. Then use that keyword to obtain its length or number of characters to remove from the main string. Next, use the string IndexOf to obtain the start index of the keyword. Now that we've gathered all the information needed to pass the parameters to string remove. Passing the startIndex and the removeLength to remove the first occurrence of this keyword.
 
 #### CSV Remove First Keyword Code Example
 
-This code is pretty compact. It is 7 lines total, but it requires to use of two string methods. IndexOf and Remove. IndexOf is used to find the index of the string we're looking for. We need that before, Then we can pass the reqiured infomration into the string remove method. 
+This code is pretty compact. It is 7 lines total, but it requires to use of two string methods. IndexOf and Remove. IndexOf is used to find the index of the string we're looking for. We need that before, Then we can pass the required information into the string remove method.
 
 ```cs
 string csvHeaders = "traffic_violations,stops,speeding_tickets,stops,failure_to_obey_traffic_signs";
@@ -61,11 +54,11 @@ original:traffic_violations,stops,speeding_tickets,stops,failure_to_obey_traffic
 updatedHeader:traffic_violations,,speeding_tickets,stops,failure_to_obey_traffic_signs
 ```
 
-With this updatedHeader we are given the output that is desired. There is an double comma in the place where the keyword used to be. This removes a potential headache down the line in our code. Let's look at another example.
+With this updated header we are given the output that is desired. There is a double comma in the place where the keyword used to be. This removes a potential headache down the line in our code. Let's look at another example.
 
 ### File Path Example
 
-Another use case we may need to remove duplicate entries can come from a file path. it could be a user defined folder structure or even an automated folder structure. In a file folder path duplicates are allowed. We need to be careful, if such as use case comes and may cause an issue later in the code. Consider the following example.
+Another use case we may need to remove duplicate entries can come from a file path. it could be a user-defined folder structure or even an automated folder structure. In a file folder path duplicates are allowed. We need to be careful if such as use case comes and may cause an issue later in the code. Consider the following example.
 
 #### File Path Code Example
 
@@ -99,6 +92,6 @@ updatedHeader:C:\\traffic_violation\signage\failure_to_obey\data.csv
 
 ### Conclusion
 
-Remove provides easy readability, compact form, and speed to make this a good choice to solve this use case. It is also good to use when there duplicates involed in the string. There can be more compact ways of writing the code by stacking the function calls on top of one another but that approach will make readability suffer. Often is better to go step by step so that we don't accidentally introduce bugs and keep it readable.
+Remove provides easy readability, compact form, and speed to make this a good choice to solve this use case. It is also good to use when there are duplicates involved in the string. There can be more compact ways of writing the code by stacking the function calls on top of one another but that approach will make readability suffer. Often is better to go step by step so that we don't accidentally introduce bugs and keep it readable.
 
-Do you know of any bette ways of doing this? Let me know in the comments below.
+Do you know of any more suitable ways of doing this? Let me know in the comments below.

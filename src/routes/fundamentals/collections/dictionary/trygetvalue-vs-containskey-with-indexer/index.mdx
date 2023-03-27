@@ -12,7 +12,7 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-TryGetValue is a combination of ContainsKey with Indexer but how do these two methods compare with one another? We're going to look at the use case and when it's best to use them. Also, we're going to look at the speed. They are both very fast but does one edge out another and which cases. Let's look at the example.
+TryGetValue is a combination of ContainsKey with Indexer but how do these two methods compare with one another? We're going to look at the use case and when it's best to use them. Also, we're going to look at the speed. They are both very fast but does one edge out another and in which cases? Let's look at the example.
 
 ### Summary Table
 
@@ -22,7 +22,7 @@ TryGetValue is a combination of ContainsKey with Indexer but how do these two me
 
 ### Use Case Code Example
 
-This code works by using the TryGetValue method to get the value from the dictionary by the provided key. Then the second if statement has the two step process the ContainsKey method ckeck on the dictionary and if it is true then use the dictionary indexer to return the value with provided key.
+This code works by using the TryGetValue method to get the value from the dictionary by the provided key. The second if statement has a two-step process the ContainsKey method checks on the dictionary and if it is true then use the dictionary indexer to return the value with the provided key.
 
 ```cs
 Dictionary<string, double> mathEquationsConstantsDict = new Dictionary<string, double>()
@@ -73,7 +73,7 @@ ContainsKey:keyBoltzmann constant, value:1.380649E-23
 
 ### Performance
 
-Next we'll compare the performance of both the methods TryGetValue and ContainsKey with Indexer to see how they compare in performance. This test consists of 10 tests which are averaged. Each test has 100 function calls of the test method. Each test method has list of keys to loop through which 1 million. 
+Next, we'll compare the performance of both the methods TryGetValue and ContainsKey with Indexer to see how they compare in performance. This test consists of 10 tests that are averaged. Each test has 100 function calls of the test method. Each test method has a list of keys to loop through which is 1 million.
 
 
 <details>
@@ -83,7 +83,7 @@ Next we'll compare the performance of both the methods TryGetValue and ContainsK
 
 #### TryGetValue Speed Test Code
 
-This code loop through all the keys in the dictionary and calls the TryGetValue method to get the value for item in dictionary. 
+This code loop through all the keys in the dictionary and calls the TryGetValue method to get the value for an item in the dictionary.
 
 ```cs
 void TestMethod(Dictionary<string, string> dictionary)
@@ -114,7 +114,7 @@ Test 10:Function Calls:100, In 0m 6s 658ms
 TryGetValue Method Average Speed:6967ms, In 10 Tests
 ```
 
-We see that this has a baseline of about 7 seconds. We can compare this to the ContainsKey with indexer method. Next, let's see how ContainsKey compares to the same test.
+We see that this has a baseline of about 7 seconds. We can compare this to the ContainsKey with the indexer method. Next, let's see how ContainsKey compares to the same test.
 
 <details>
 <summary>Full TryGetValue Speed Test Code</summary>
@@ -302,10 +302,8 @@ string GenerateRandomString(int length)
 
 <Table header ="Overall Rank,Method,Speed" rows="1,TryGetValue,6967ms;2,ContainsKey With Indexer,9876ms;" />
 
-Even though these methods are very fast. TryGetValue has a solid edge over ContainsKey with Indexer of 2 to 3 seconds improvement. TryGetValue is better in performance and it has less lines of code. So you going to be using the value in any way then you should TryGetValue.
+Even though these methods are very fast. TryGetValue has a solid edge over ContainsKey with an Indexer of 2 to 3 seconds improvement. TryGetValue is better in performance and it has fewer lines of code. So if you going to be using the value in any way then you should TryGetValue.
 
 For ContainsKey, you should be using it if you're only doing a check if the key exists and then doing some logic. Don't use it to check if the key is there then get the value as it is slower than TryGetValue.
 
 Know any other ways to compare TryGetValue to ContainsKey with Indexer? Let me know in the comments below.
-
-

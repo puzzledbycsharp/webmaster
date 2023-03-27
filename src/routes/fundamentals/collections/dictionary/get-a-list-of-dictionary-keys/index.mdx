@@ -11,16 +11,15 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get A List Of Dictionary Keys Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
 
-Sometimes we are only interested in the looping through the dictionary keys. Or perhaps there are some operation that we only need the keys for and they need to be transfered to another data structure.  There are serveral options avialable to use do to this. I'll go thorugh each one and pros and cons of each. As well go through the performance of.
-
+Sometimes we are only interested in looping through the dictionary keys. Or perhaps there is some operation that we only need the keys for and they need to be transferred to another data structure. There are several options available to use due to this. I'll go through each one and the pros and cons of each. As well as go through the performance of.
 
 ### Keys Property
 
-The Dictionary provides a Keys property that enables you to loop through the keys because it based on ICollection. So your just simply loop through the keys then this is a great option. However the draw back is that it is tied to the dictionary itself and is not a copy so if you were to make changes the dictionary while looping through the keys then an exception would be thrown. 
+The Dictionary provides a Keys property that enables you to loop through the keys because it is based on ICollection. So you're just simply looping through the keys then this is a great option. However, the drawback is that it is tied to the dictionary itself and is not a copy so if you were to make changes to the dictionary while looping through the keys then an exception would be thrown.
 
 #### Keys Property Example Code
 
-This example code, has car names in the keys. Then it loops through the keys by the Keys property which is a collection.
+This example code has car names on the keys. Then it loops through the keys by the Keys property which is a collection.
 
 ```cs
 Dictionary<string, string> carsModelBrandDictionary = new Dictionary<string, string>()
@@ -37,7 +36,7 @@ Dictionary<string, string> carsModelBrandDictionary = new Dictionary<string, str
     { "Cayenne", "Porsche" }
 };//Initialize Dictionary
 
-foreach (string car in carsModelBrandDictionary.Keys)//Loop through the keys through the Keys property
+foreach (string car in carsModelBrandDictionary.Keys)//Loop through the keys property
 {
     Console.WriteLine($"car:{car}");//Print  each key
 }
@@ -60,7 +59,7 @@ car:Cayenne
 
 ### List Constructor Method
 
-The List constructor can convert a collection type into a list collection. This can happens on the list's creation. Since Keys Property is type collection it can be passed to the List constructor.
+The List constructor can convert a collection type into a list collection. This can happen on the list's creation. Since Keys Property is a type collection it can be passed to the List constructor.
 
 #### List Constructor Example Code
 
@@ -106,7 +105,7 @@ car:M5
 
 #### List Constructor Speed Test
 
-Next, I'm going to test the speed of the list constructor to get the dictionary keys. This process will get the average speed of 10 tests. Each tests will have a 100 loops of the test method. Each test method will have 1 million dictionary entries. The dictionary keys and value are randomly generated strins of random characters of length 50.
+Next, I'm going to test the speed of the list constructor to get the dictionary keys. This process will get the average speed of 10 tests. Each test will have 100 loops of the test method. Each test method will have 1 million dictionary entries. The dictionary keys and values are randomly generated strings of random characters of length 50.
 
 <details>
 <summary>Test Parameters</summary>
@@ -210,11 +209,11 @@ string GenerateRandomString(int length)
 
 ### LINQ ToList Method
 
-The second method we'll look at is from LINQ namespace called ToList. ToList can take a collection of type IEnumerable and convert it into type List.
+The second method we'll look at is from the LINQ namespace called ToList. ToList can take a collection of type IEnumerable and convert it into type List.
 
 #### LINQ ToList Example Code
 
-This example shows that we can directly call ToList on Keys property itself. Since it returns a list we can assign it directly to List reference.
+This example shows that we can directly call ToList on the Keys property itself. Since it returns a list we can assign it directly to the List reference.
 
 ```cs
 Dictionary<string, string> carsModelBrandDictionary = new Dictionary<string, string>()
@@ -360,7 +359,7 @@ string GenerateRandomString(int length)
 
 <Table header ="Overall Rank,Method,Speed" rows="1,LINQ ToList,978ms;2,List Constructor,985ms;" />
 
-Both the List constructor and LINQ ToList are both good ways to get a list from a dictionary's keys. They are both fast and the speed is so close that it's practically the same. ToList is the more concise of the two. It describles really well what is happening the code so if you want your code to more readable, then go with ToList.
+Both the List constructor and LINQ ToList are good ways to get a list from a dictionary's keys. They are both fast and the speed is so close that it's practically the same. ToList is the more concise of the two. It describes well what is happening in the code so if you want your code to be more readable, then go with ToList.
 
 Know any other ways to get a list from the dictionary keys? Let me know in the comments below.
 

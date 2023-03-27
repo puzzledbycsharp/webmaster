@@ -11,11 +11,11 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 ## Introduction
 
-Remove does as it says, it remove text from another string. But how does it work when a string is immutable? IT makes a copy the current string and leaves out the text to be removed. This function is good for automated processes but it often needs other string functions to search for positions of strings like IndexOf. It is compact, easy to use and very few function overloads.
+Remove does as it says, it remove text from another string. But how does it work when a string is immutable? It makes a copy of the current string and leaves out the text to be removed. This function is good for automated processes but it often needs other string functions to search for positions of strings like IndexOf. It is compact, easy to use, and has very few function overloads.
 
 ### What is String Remove?
 
-String remove is a takes an existing string and based on the start index and length for removal then will return a string with that section removed. The function overloads allow two options. To give a start index and the rest of the string is removed or to give a start index. String remove is the inverse of the substring method.
+String remove takes an existing string and based on the start index and length for removal then will return a string with that section removed. The function overloads allow two options. To give a start index and the rest of the string is removed or to give a start index. String remove is the inverse of the substring method.
 
 ###### Function Overload Syntax 1
 
@@ -23,7 +23,7 @@ String remove is a takes an existing string and based on the start index and len
     public string Remove(int startIndex)
 ```
 
-This is the simplest form of string remove with just one parameter. Start index is provided and it will remove text from that point on to the end of the string. See an example usage below.
+This is the simplest form of string removal with just one parameter. A start index is provided and it will remove text from that point onto the end of the string. See an example usage below.
 
 ```cs
 string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
@@ -37,7 +37,7 @@ Console.WriteLine(updatedText);//Write to screen
 user_name,user_id
 ```
 
-The example above, if we just wanted to see the user information and exclude the rest then we put the start index right at the comma point and the string remove function will remove the rest will be returned. Next we'll look at the next function overload.
+In the example above, if we just wanted to see the user information and exclude the rest then we put the start index right at the comma point and the remove function will remove the rest will be returned. Next, we'll look at the next function overload.
 
 ###### Function Overload 2
 
@@ -45,7 +45,7 @@ The example above, if we just wanted to see the user information and exclude the
 public string Remove(int startIndex, int count)
 ```
 
-This second function overload takes an index and also the count from the index in which to remove. Check out code snippet below.
+This second function overload takes an index and also the count from the index in which to remove. Check out the code snippet below.
 
 ```cs
 string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
@@ -61,13 +61,13 @@ Console.WriteLine(updatedText);//Write to screen
 user_name,user_id,latitude,longitude,map_data,point
 ```
 
-This example, we remove the null, from the string by starting on the n of the null and the count extending to the comma.
+In this example, we remove the null, from the string by starting on the n of the null and the count extending to the comma.
 
 ### Exceptions
 
 ###### Index Out of Range
 
-This exception occurs when the start index does not exist within the original string either less than 0 or greater than the length of the string. So it's a good idea to place if statements to check the bounds of the index so that this exception doesn't happen. See same code below.
+This exception occurs when the start index does not exist within the original string either less than 0 or greater than the length of the string. So it's a good idea to place if statements to check the bounds of the index so that this exception doesn't happen. See the same code below.
 
 ```cs
 string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
@@ -79,7 +79,7 @@ Console.WriteLine(updatedText);//Write to screen
 Result
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-small.webp 250w, ../../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-medium.webp 500w, ../../../assets/fundamentals/strings/remove/index-out-of-range-exception-remove-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Out of Range Exception Image" widthImage = "539" heightImage = "236" />
 
-In this example, the start index is greater than the length of the string so an exeption is thrown. Next we need to add proection against this use case so it is handled in the code.
+In this example, the start index is greater than the length of the string so an exception is thrown. Next, we need to add protection against this use case so it is handled in the code.
 
 ###### Protection Against Index Out of Range Exception
 
@@ -111,14 +111,16 @@ Notice that the output is what we started with. This means that the index was ou
 ### When Might This Function Be Used?
 
 ###### Unwanted Text and Repeated Patterns
-This function is great for remove unwanted text at certain index positions when the pattern repeats. Even dynamically with indexOf to find character at certain position then remove the unwanted characters.
+
+This function is great for removing unwanted text at certain index positions when the pattern repeats. Even dynamically with indexOf find a character at a certain position and then remove the unwanted characters.
 
 ###### Readability
-Having a function that says remove makes it clear what is happening in the code. This is important when working other people and everyone is working on the same code base to have readable code. There are other ways of getting rid of text from a string but none of them say remove.
+
+Having a function that says remove makes it clear what is happening in the code. This is important when working with other people and everyone is working on the same code base to have readable code. There are other ways of getting rid of text from a string but none of them say remove.
 
 #### Alternative Methods of Remove
 
-There are other ways of remove text from a string. Using the string replace method can be used but it is not a precise as picking specific sections to remove text from. It has an advantage of being compact, if you know which characters or strings you want to want eliminate ahead of time. Or if you want all instances of that type of text delete from the string this would be good to use. See example below.
+There are other ways of removing text from a string. Using the string replace method can be used but it is not as precise as picking specific sections to remove text from. It has the advantage of being compact if you know which characters or strings you want to want to eliminate ahead of time. Or if you want all instances of that type of text delete from the string this would be good to use. See the example below.
 
 ```cs
 string text = "user_name,user_id,latitude,longitude,null,map_data,point";//Starting string
@@ -128,7 +130,7 @@ Console.WriteLine(updatedText);//Write to screen
 
 ### How String Remove Works
 
-Below are two examples on how this function may work. At the core, this function loops through all the characters in the string and includes and excludes the text based on the start index. Function overload one, shows that all the characters are loop through until and added too a new string until the startIndex is reached. Function overload two, includes all character until the start index is reached. Then it all include all characters of the after start index plus the count.
+Below are two examples of how this function may work. At the core, this function loops through all the characters in the string and includes and excludes the text based on the start index. Function overload one shows that all the characters are looped through and added to a new string until the start index is reached. Function overload two includes all characters until the start index is reached. Then it includes all characters of the after-start index plus the count.
 
 ###### Function Overload 1 Example
 
@@ -142,7 +144,7 @@ string RemoveText(string originalText, int startIndex)
     string newText = "";
     for (int i = 0; i < originalText.Length; i++)//loop through each character
     {
-        if (i < startIndex)//add characters to a new string until it less than the remove index
+        if (i < startIndex)//add characters to a new string until it is less than the remove index
         {
             newText += originalText[i];//add text to the new string
         }
@@ -198,4 +200,4 @@ user_name,user_id,latitude,longitude,map_data,point
 ```
 ### Conclusion
 
-String remove is compact, fast and easy to use and works well with in the system of the other string functions. It is usually not just used by itself and usually is used along side IndexOf. So remove is good at getting rid of text and a specfic position and length. 
+String remove is compact, fast, and easy to use and works well within the system of the other string functions. It is usually not just used by itself and usually is used alongside IndexOf. So remove is good at getting rid of text and a specific position and length.

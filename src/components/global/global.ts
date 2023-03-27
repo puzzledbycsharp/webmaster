@@ -105,7 +105,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/dictionary-with-one-to-many-relationship-large.webp',
-    description:'There are a couple ways to have a one to many collection type. You can use dictionary with List or List of KeyValuePairs. Each with pros and cons.'
+    description:'There are a couple of ways to have a one-to-many collection type. You can use a dictionary with a List or List of KeyValuePairs. Each with pros and cons.'
   },
   { 
     location:'fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer', 
@@ -117,7 +117,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-large.webp',
-    description:'TryGetValue is the best method for getting values from a dictionary. It performances better and has takes up less code than using ContainsKey with Indexer.'
+    description:'TryGetValue is the best method for getting values from a dictionary. It performs better and takes up less code than using ContainsKey with Indexer.'
   },
   { 
     location:'fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed', 
@@ -141,7 +141,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/get-a-list-of-dictionary-keys-large.webp',
-    description:'To get a list from the dictionary\'s keys, LINQ\'s ToList is concise and easy to read and just as fast as the list constructor.'
+    description:'To get a list from the dictionary\'s keys, LINQ\'s ToList is concise and easy to read, and just as fast as the list constructor.'
   },
   { 
     location:'fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls', 
@@ -153,7 +153,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/declare-a-new-dictionary-in-function-calls-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/declare-a-new-dictionary-in-function-calls-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/declare-a-new-dictionary-in-function-calls-large.webp',
-    description:'There are small differences in creating dictionary in a function, but the Index Initializer has the best performance and easiest to read syntax'
+    description:'There are small differences in creating a dictionary in a function, but the Index Initializer has the best performance and easiest-to-read syntax.'
   },
   { 
     location:'fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive', 
@@ -465,7 +465,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/strings/insert/string-insert-page-banner-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/insert/string-insert-page-banner-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/insert/string-insert-page-banner-large.webp',
-    description:'String insert puts a single string between a section of the string. With the first parameter of index of insert and second parameter is the string to insert.'
+    description:'String insert puts a single string between a section of the string. The first parameter is an index of insert and the second parameter is the string to insert.'
   },
 
   { 
@@ -490,7 +490,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/strings/equals/string-equals-page-header-banner-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/equals/string-equals-page-header-banner-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/equals/string-equals-page-header-banner-large.webp',
-    description:'String Equals compares two string to find out if they are exactly the same. The compare is case sensitive and usually used in conditional statements.'
+    description:'String Equals comparing two strings to find out if they are exactly the same. The comparison is case-sensitive and usually used in conditional statements.'
   },
   { 
     location:'fundamentals/strings/string-replace', 
@@ -502,7 +502,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/strings/replace/string-replace-page-header-banner-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/replace/string-replace-page-header-banner-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/replace/string-replace-page-header-banner-large.webp',
-    description:'String replace is a string and character substitute with another string. It finds the characters then replaces it a new set of characters'
+    description:'String replace are a string and character substitute with another string. It finds the characters and then replaces them it a new set of characters.'
   },
   { 
     location:'fundamentals/strings/string-substring/get-a-substring-before-or-after-a-certain-character', 
@@ -536,7 +536,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/efficiently-remove-the-first-keyword-occurrence-from-a-string-large.webp',
-    description:'Data can have duplicated and errors can be in the inputs and fields and it is important to efficiently removing the first keyword occurrence from a string'
+    description:'Data can have duplicated and errors can be in the inputs and fields it is important to efficiently remove the first keyword occurrence from a string.'
   },    { 
     location:'fundamentals/strings/string-substring/get-substring-after-finding-a-keyword', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/get-substring-after-finding-a-keyword/',
@@ -569,7 +569,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/analysis-of-getting-first-n-characters-methods/analysis-of-getting-first-n-characters-methods-large.webp',
-    description:'The best method for getting the first n characters is span slice. Performance is the best metric to determine to which is best because it affects the end users.'
+    description:'The best method for getting the first n characters is span slice. Performance is the best metric to determine which is best because it affects the end users.'
   },    { 
     location:'fundamentals/strings/string-substring/get-a-substring-between-two-strings', 
     url: 'https://puzzledbycsharp.com/fundamentals/strings/string-substring/get-a-substring-between-two-strings/',
@@ -774,7 +774,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-large.webp',
-    description:'Substring is a function for copying a chunk of an existing string. It returns a sub section of the original string and depends on the selected index range.'
+    description:'The substring method is a function for copying a chunk of an existing string. It returns a sub-section of the original string and depends on the selected index range.'
   },
   { 
     location:'fundamentals/strings/string-remove', 
