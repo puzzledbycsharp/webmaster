@@ -625,7 +625,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-large.webp',
-    description:'The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest, it is compact, and also easy to setup.'
+    description:'The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest, it is compact, and also easy to set up.'
   },  
   { 
     location:'fundamentals/collections/list/how-to-find-an-item-in-the-list', 
