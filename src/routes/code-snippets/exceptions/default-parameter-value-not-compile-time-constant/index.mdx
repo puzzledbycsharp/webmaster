@@ -57,7 +57,7 @@ public void LogDebugStatements(string log = "Debug")
 
 These examples are valid uses for optional parameters for these datatypes because the value will still be the same at compile time and run time.
 
-You can not assign any variable to the optional parameter if it is an object or struct type. For example, if DATETIMECONSTANT was defined as a global variable and then there was a parameter 'DateTime myDate = DATETIMECONSTANT' This is invalid and the code will throw a compile error because the value will change at different types when you compile. It is not a constant value.
+You can not assign any variable to the optional parameter if it is an object or struct type. For example, if DATETIMECONSTANT was defined as a global variable and then there was a parameter 'DateTime myDate = DATETIMECONSTANT' This is invalid and the code will throw a compile error because the value will change at different times when you compile. It is not a constant value.
 
 ```cs
 DateTime DATETIMECONSTANT = DateTime.Now;
