@@ -1,26 +1,29 @@
 ---
-title: Convert A List To String With A Delimiter
+title: Convert A List To a String With A Delimiter
 ---
 
-# Convert A List To String With A Delimiter
+# Convert A List To a String With A Delimiter
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 
+
+{/* *****************NOTE need to redirect the url to the new title*********************************************** */}
+
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-small.webp 250w, ../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp 500w, ../../../../assets/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A List To String With A Delimiter Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
-While working with lists it often necessary to convert them into a string. With each item separated by a delimiter or character. This is helpful if there a file or database to write the data to and it is in a consistent format that can be easily reversed and put into a list or loop through. There are different ways to achieve this and we are going to look at the pros and cons of each such as string join, LINQ aggregate, stringbuilder append join or string concatenation. Let's look at string join first.
+While working with lists it is often necessary to convert them into a string. With each item separated by a delimiter or character. This is helpful if there is a file or database to write the data to and it is in a consistent format that can be easily reversed and put into a list or loop through. There are different ways to achieve this and we are going to look at the pros and cons of each such as string join, LINQ aggregate, StringBuilder append join, or string concatenation. Let's look at string join first.
 
 ### String Join Method
-String join provides a function overload to take in a string which the delimiter and a list. This will insert the delimiter between each of the list items. This will help to quickly generate a comma separate row or seperate the data by another character.
+String join provides a function overload to take in a string which is the delimiter and a list. This will insert the delimiter between each of the list items. This will help to quickly generate a comma separate row or separate the data by another character.
 
 ###### String Join Method Example Code
 
   
 ```cs
 List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
-string commaSeperated = string.Join(",", stringList);//Convert list to a comma seperated string
+string commaSeperated = string.Join(",", stringList);//Convert list to a comma separated string
 Console.WriteLine(commaSeperated);//Print the string
 ```
 
@@ -30,10 +33,10 @@ Console.WriteLine(commaSeperated);//Print the string
 first,second,third,fourth,fifth
 ```
     
-This is the expected output of the data with a comma in-between each item. Also note that the comma is not at the end but only in-between.
+This is the expected output of the data with a comma in-between each item. Also, note that the comma is not at the end but only in between.
 
 ###### String Join Method Speed Test Code
-We need also test the speed of the code. We will do to this by calling the method 100 million times and average the speed over 10 tests. While in reality we wouldn't call it this many times. This is just to stress test it and see in the long run how the performance is.
+We need also to test the speed of the code. We will do this by calling the method 100 million times and averaging the speed over 10 tests. While in reality, we wouldn't call it this many times. This is just to stress test it and see in the long run how the performance is.
 
 
   
@@ -81,21 +84,21 @@ String Join Average speed:3799ms, In 10 tests
 ```
 
     
-The speed test for string join is about 3.7 seconds. This will be baseline in which we test the other methods. Typically the string based methods have reliably good speed but we'll see as we test the other methods.
+The speed test for string join is about 3.7 seconds. This will be the baseline in which we test the other methods. Typically the string-based methods have reliably good speed but we'll see as we test the other methods.
 
 ###### String Join Method Readability
-This method read will as it joining together the list by the delimiter. Also, that it is joining the values together into a single string so it reads well.
+This method read will as it joining together the list by the delimiter. Also, it is joining the values together into a single string so it reads well.
 
 ###### How Concise Is String Join Method
-It is really compact with only one line of code and there's not much setup with just two parameters which is ideal.
+It is compact with only one line of code and there's not much setup with just two parameters which is ideal.
 
 ### LINQ's Aggregate Method
-Another build in method that we can use convert a list to a delimited based string is to use LINQ's Aggregate. LINQ provides a lot of built in functionality in a compact form and allows use to write the code similarly to writing SQL statements.
+Another built-in method that we can use to convert a list to a delimited-based string is to use LINQ's Aggregate. LINQ provides a lot of built-in functionality in a compact form and allows us to write the code similarly to writing SQL statements.
 
 ###### LINQ's Aggregate Method Example Code
 ```cs
 List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
-string commaSeperated = stringList.Aggregate((word, nextWord) => word + "," + nextWord);//Convert list to a comma seperated string
+string commaSeperated = stringList.Aggregate((word, nextWord) => word + "," + nextWord);//Convert list to a comma separated string
 Console.WriteLine(commaSeperated);//Print the string
 ```
   
@@ -107,7 +110,7 @@ first,second,third,fourth,fifth
 As we can see this yields the same result as string join which is good.
 
 ###### LINQ's Aggregate Method Speed Test Code
-Next we'll test LINQ's aggregate function on speed. Sometimes the LINQ functions can be on the slower side, but let's examine the code below.
+Next, we'll test LINQ's aggregate function on speed. Sometimes the LINQ functions can be on the slower side, but let's examine the code below.
 
 
   
@@ -162,10 +165,10 @@ The average speed is around 12 seconds which is way slower than the string join 
 Naming the method aggregate gives the impression that this is a mathematical expression but it is meant to be summing all the parts together. The name is ok but could have been named better.
 
 ###### How Concise Is LINQ's Aggregate Method
-It is only one line of code but there is a setup involved for the delegate function but it is still very compact and setup isn't hard to read.
+It is only one line of code but there is a setup involved for the delegate function it is still very compact and the setup isn't hard to read.
 
 ### StringBuilder Append Method
-Next we'll use StringBuilder to convert the list to a delimited based string but to do that we'll need to write our own function. The advantage of StringBuilder is that it performs well and is usually used when the we have a large number text we're working with. Let's see an example.
+Next, we'll use StringBuilder to convert the list to a delimited-based string but to do that we'll need to write our function. The advantage of StringBuilder is that it performs well and is usually used when we have a large text we're working with. Let's see an example.
 
 ###### StringBuilder's Append Method Example Code
 ```cs
@@ -187,7 +190,7 @@ string ConvertListToString(string delimiter, List<string> list)
             sb.Append(delimiter + item);//If not the first item in the StringBuilter then add a delimiter before the item.
         }
     }
-    return sb.ToString();//Convert the StringBuilder to a string
+    return sb.ToString();//Convert list to a comma separated string
 }
 ```
   
@@ -197,7 +200,7 @@ first,second,third,fourth,fifth
 ```
     
 ###### StringBuilder's Append Method Speed Test Code
-Next we'll test the speed of StringBuilder and so far string join is the fastest method. We'll see if StringBuilder will be able to beat that.
+Next, we'll test the speed of StringBuilder and so far string join is the fastest method. We'll see if StringBuilder will be able to beat that.
 
 
   
@@ -263,23 +266,23 @@ StringBuilder Append Average speed:14626ms, In 10 tests
 ```
 
         
-With an average speed of 14 seconds, this makes StringBuilder the a slow method.
+With an average speed of 14 seconds, this makes StringBuilder a slow method.
 
 ###### StringBuilder's Append Method Readability
-This is very readability as we can see each step taken in how the new string is formed. This also gives us more control if needed to do more or add more and different kinds of strings then we have flexibility
+This is very readable as we can see each step taken in how the new string is formed. This also gives us more control if needed to do more or add more and different kinds of strings then we have flexibility.
 
 ###### How Concise Is StringBuilder's Append Method
 This method is not concise because we have to write it ourselves and maintain and update it if something were to go wrong.
 
 ###### String Concatenation Method
-The last of the methods show here is with string concatenation. This one of the simplest methods to use and it is similar to the StringBuilder approach. This works by adding a string on top of itself and over time the string grows. Each time we add to the string it creates a new string since string is immutable and can't be changed.
+The last of the methods shown here is with string concatenation. This is one of the simplest methods to use and it is similar to the StringBuilder approach. This works by adding a string on top of itself and over time the string grows. Each time we add to the string it creates a new string since the string is immutable and can't be changed.
 
 ###### String Concatenation Example Code
 
   
 ```cs
 List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Starting list
-string commaSeperated = ConvertListToStringByStringConcatenation(",", stringList);//Convert list to a comma seperated string
+string commaSeperated = ConvertListToStringByStringConcatenation(",", stringList);//Convert list to a comma separated string
 Console.WriteLine(commaSeperated);//Print the string
 string ConvertListToStringByStringConcatenation(string delimiter, List<string> list)
 {
@@ -306,10 +309,10 @@ string ConvertListToStringByStringConcatenation(string delimiter, List<string> l
 first,second,third,fourth,fifth
 ```
     
-This works and we get our list just as we wanted. Note that we did have write our own code in this case and it could possible be inefficient.
+This works and we get our list just as we wanted. Note that we did have to write our code in this case and it could be inefficient.
 
 ###### String's Concatenation Method Speed Test Code
-Next is the speed test and our guess is that this method could be inefficient because of the new string creation every time we add to the existing string. But now let's test to speed to see if our assumption holds true.
+Next is the speed test and we guess that this method could be inefficient because of the new string creation every time we add to the existing string. But now let's test to speed to see if our assumption holds.
 
   
     
@@ -379,12 +382,12 @@ String Concatenation Append Average speed:8893ms, In 10 tests
 We see an average speed of about 8 seconds which isn't the worst as we were expecting but not that fast either.
 
 ###### String's Concatenation Method Readability
-It is readability in that we can see what is going on at each step just like in the StringBuilder case.
+It is readable in that we can see what is going on at each step just like in the StringBuilder case.
 
 ###### How Concise Is String's Concatenation Append Method
-This is not very concise as it takes some lines to loop through. Even though it is not compact, it is flexibly and can be alter to suit the needs of the user.
+This is not very concise as it takes some lines to loop through. Even though it is not compact, it is flexible and can be altered to suit the needs of the user.
 
 ### Conclusion
 <Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,String Join,3799ms,1 line,4;2,String Concatenation,8893ms,17 lines,4;3,LINQ Aggregate,12124ms,1 line,3;4,StringBuilder Append,14626ms,17 lines,4;" />
 
-The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest, it is compact on one line and also easy to setup. It is a go to method of doing this operation because it as build in function to C#. The next best method is string concatenation because of it's speed. Even though we need to write it and maintain it, the speed that we get makes up for that. It is flexible since we add to it if needed. LINQ Aggregate and String Builder Append are pretty slow so it is not recommend using them for this use case because their speed is over 10 seconds.
+The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest, it is compact on one line and also easy to set up. It is a go-to method of doing this operation because it is a built-in function of C#. The next best method is string concatenation because of its speed. Even though we need to write and maintain it, the speed that we get makes up for that. It is flexible since we add to it if needed. LINQ Aggregate and String Builder Append are pretty slow so it is not recommended to use them for this use case because their speed is over 10 seconds.

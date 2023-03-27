@@ -12,9 +12,9 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-During string parsing is not always neatly comes in a comma separated format or the pattern is not based a single character but on a word. User generated system logs and different texts may have a pattern but it is based certain keywords to signal when to get the information that is needed. Consider the following example.
+During string parsing is not always neatly come in a comma-separated format or the pattern is not based on a single character but on a word. User-generated system logs and different texts may have a pattern but it is based on certain keywords to signal when to get the information that is needed. Consider the following example.
 
-#### User Generated Log Example
+#### User-Generated Log Example
 
 ```
 System Services Start
@@ -27,7 +27,7 @@ Service1 Error Code:48340
 
 ### Get Substring Using Span Slice After A Keyword Search
 
-In this example, we get a list of different logs, however, we are interested in the error codes. If we just and we want to write a function that when we find the lines that have keyword text 'Error Code:' get the rest of the string by using a substring method so that we can get the numerical value. Later in our code we could convert the numerical value to an int if need to.
+In this example, we get a list of different logs, however, we are interested in the error codes. If we just want to write a function that when we find the lines that have keyword text 'Error Code:' get the rest of the string by using a substring method so that we can get the numerical value. Later in our code, we could convert the numerical value to an int if need to.
 
 ###### Span Slice After A Keyword Search Code Example
 
@@ -37,7 +37,7 @@ string newText = GetStringBasedOnKeyword("Error Code:",errorCodeLine);
 Console.WriteLine(newText);
 string GetStringBasedOnKeyword(string keyword, string textToParse)
 {
-    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find start the keyword and to find the end need to add the length of the keyword 
+    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find the start of the keyword and to find the end need to add the length of the keyword 
     Span<char> textSpan = new Span<char>(textToParse.ToCharArray());//Convert text to a span for faster memory allocation
     Span<char> newText = textSpan.Slice(keywordIndex);//Get the rest of the string based on the start index of the keyword
     return newText.ToString();
@@ -50,10 +50,11 @@ string GetStringBasedOnKeyword(string keyword, string textToParse)
 39322
 ```
 
-As you can see this works to separate the number by using a keyword. This method using span slice as it is fastest way method to get the rest of the string.
+As you can see this works to separate the number by using a keyword. This method uses span slice as it is the fastest way method to get the rest of the string.
 
 ###### Span Slice After A Keyword Search Speed Code Example
-Since span slice is not using the heap and so avoiding garbage collection, it is expected that this method would be fast. Let's see how it performs.
+
+Since span slice is not using the heap and so avoids garbage collection, it is expected that this method would be fast. Let's see how it performs.
 
 ```cs
 using System.Diagnostics;
@@ -105,13 +106,16 @@ Slice Average speed:3780ms, In 10 tests
 ```
 
 ###### How Concise Is The Code Using Span Slice?
-We evaluate how concise it by how many lines of code it takes for each step. In this case there are 3 lines of code which is good. One line to find the keyword and another to get the substring.
+
+We evaluate how concise it is by how many lines of code it takes for each step. In this case, 3 lines of code are good. One line to find the keyword and another to get the substring.
 
 ###### How Readable Is The Code Using Span Slice?
-There are are couple of set up steps along with the new Span syntax and there is background to understanding implementing the span but once that is done. It comes to down to set up and allocating memory then calling the Slice method which is fairly easy to under stand.
+
+There are a couple of setup steps along with the new Span syntax and there is a background to understanding implementing the span but once that is done. It comes down to setting up and allocating memory then calling the Slice method which is fairly easy to understand.
 
 ### Get Substring Using String Substring After Keyword Search
-Here is an example of the same process but instead of using span slice the string substring method is used. This is still a viable approach but I have it second here because the performance is slower than span slice. Substring is easier to read because there is one less line for allocating memory. See example below.
+
+Here is an example of the same process but instead of using span slice the string substring method is used. This is still a viable approach but I have it second here because the performance is slower than span slice. Substring is easier to read because there is one less line for allocating memory. See the example below.
 
 ###### String Substring After Keyword Search Code Example
 ```cs
@@ -120,7 +124,7 @@ string newText = GetSubstringBasedOnKeyword("Error Code:", errorCodeLine);
 Console.WriteLine(newText);
 string GetSubstringBasedOnKeyword(string keyword, string textToParse)
 {
-    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find start the keyword and to find the end need to add the length of the keyword 
+    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find the start of the keyword and to find the end need to add the length of the keyword 
     string newText = textToParse.Substring(keywordIndex);//Get the rest of the string based on the start index of the keyword
     return newText;
 }
@@ -131,7 +135,7 @@ string GetSubstringBasedOnKeyword(string keyword, string textToParse)
 39322
 ```
 
-As expected, substring returns the same result as the slice.
+As expected, the substring returns the same result as the slice.
 
 ###### String Substring After A Keyword Search Speed Code Example
 
@@ -163,7 +167,7 @@ double SubstringSpeedTest()
 }
 string GetSubstringBasedOnKeyword(string keyword, string textToParse)
 {
-    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find start the keyword and to find the end need to add the length of the keyword 
+    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find the start of the keyword and to find the end need to add the length of the keyword 
     string newText = textToParse.Substring(keywordIndex);//Get the rest of the string based on the start index of the keyword
     return newText;
 }
@@ -184,16 +188,16 @@ sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:10000000
 Substring Average speed:6629ms, In 10 tests
 ```
 
-Although substring is not slow but it seems slow compared to span slice
+Although the substring is not slow it seems slow compared to span slice.
 
 ###### How Concise Is The Code Using String Substring?
-The setup and function call of substring takes only 3 lines of code which compact.
+The setup and function call of the substring takes only 3 lines of code which is compact.
 
 ###### How Readable Is The Code Using Span Slice?
-This way reads well as the index of the keyword is found then the next line is substring. It is simple and string functions describe well what is happening.
+Readable suffers a little since that is short and it doesn't describe what is happening that well. Probably would have to debug this to understand better what is happening.
 
 ### Get Substring Using String Split After A Keyword Search
-Using string split we can cut the string in half by the keyword. Then taking second half and immediately return the substring. This is the most compact way to solve this problem but it does suffer from readability as it would not be as clear from the reading the code what is happening without an example. See the code below.
+Using string split we can cut the string in half by the keyword. Then take the second half and immediately return to the substring. This is the most compact way to solve this problem but it does suffer from readability as it would not be as clear from reading the code what is happening without an example. See the code below.
 
 ######  String Split On Keyword Code Example
 
@@ -246,7 +250,7 @@ double SplitSpeedTest()
 string GetSplitBasedOnKeyword(string keyword, string textToParse)
 {
     string[] cutText = textToParse.Split(keyword);//find start the keyword and to find the end need to add the length of the keyword 
-    return cutText[1];//return the second half the string which will be the error code
+    return cutText[1];//return the second half of the string which will be the error code
 }
 ```
 
@@ -266,7 +270,7 @@ sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:10000000
 Split Average speed:4815ms, In 10 tests
 ```
 
-We see how that split is faster than substring but not as fast a slice. It has good speed.
+We see how that split is faster than substring but not as fast as a slice. It has good speed.
 
 ###### How Concise Is The Code Using Span Slice?
 This is pretty compact at only 2 lines so this means less typing.
@@ -277,4 +281,4 @@ Readable suffers a little since that is short and it doesn't really describe wha
 ### Conclusion
 <Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,3780ms,3 lines,4;2,String Split,4815ms,2 lines,3;3,String Substring,6629ms,3 lines,5" />
 
-The overall best way to solve this problem statement is with Span Slice because of the huge performance gain and we weight the performance so much because that would most impact the customer. Also, while slice may not be as readability and concise as the other two methods it still isn't that bad. Concise and readability are more productivity metrics for the developer and they are important to the developmental process. If another developer has harder time reading your code then impacts the productivity of the whole team. While having the less lines of code that does the same improves productivity and you get more done.
+The overall best way to solve this problem statement is with Span Slice because of the huge performance gain and we weigh the performance so much because that would most impact the customer. Also, while slice may not be as readable and concise as the other two methods it still isn't that bad. Concise and readability are more productivity metrics for the developer and they are important to the developmental process. If another developer has a harder time reading your code then impacts the productivity of the whole team. While having fewer lines of code that do the same improves productivity and you get more done.

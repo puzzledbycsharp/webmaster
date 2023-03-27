@@ -12,11 +12,11 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Sometimes we need to get a substring between two strings. These are often a repeated pattern, but there are a variety of ways to do this and we look at the different methods that can be used the pros and cons of each. Some functions are substring, split, range operator, slice and regex. Let's start with substring.
+Sometimes we need to get a substring between two strings. These are often repeated patterns, but there are a variety of ways to do this and we look at the different methods that can be used and the pros and cons of each. Some functions are substring, split, range operator, slice, and regex. Let's start with substring.
 
 ### Substring Method
 
-The first attempt and a clear choice is substring We can approach this by finding the index the two strings. then we need to pass these parameters to the substring function. So let's look at an example where if we had a log string and wanted to get the date and time information from the log even though that information is in the middle of the string. This an approach that we can take in the following example.
+The first attempt and a clear choice is substring We can approach this by finding the index of the two strings. then we need to pass these parameters to the substring function. So let's look at an example where we had a long string and wanted to get the date and time information from the log even though that information is in the middle of the string. This is an approach that we can take in the following example.
 
 ###### String Substring Code Example 
 
@@ -31,8 +31,8 @@ string GetSubstringBetweenTwoStringBySubstring(string text, string findText1, st
 {
     int indexBeginngingWord1 = text.IndexOf(findText1);//Find the beginning index of the word1
     int indexEndOfWord1 = indexBeginngingWord1 + findText1.Length;//Add the length of the word1 to starting index to find the end of the word1
-    int indexBeginningWord2 = text.LastIndexOf(findText2);//Find the beggining index of word2
-    int length = indexBeginningWord2 - indexEndOfWord1;//Length of the sub string by substracting index beggining of word2 from the end of word1
+    int indexBeginningWord2 = text.LastIndexOf(findText2);//Find the beginning index of word2
+    int length = indexBeginningWord2 - indexEndOfWord1;//Length of the substring by subtracting index beginning of word2 from the end of word1
     string substring = text.Substring(indexEndOfWord1, length);//Get the substring
     return substring;
 }
@@ -45,19 +45,19 @@ Original:System Online: 8/8/2022 20:09:33 at Module32
 Updated:8/8/2022 20:09:33
 ```
 
-As we can see that this is straight forward to understand with substring. There are 4 lines to set up the bounds between the two strings and then those parameters can be passed to substring. This code snippet gives us the date and time as expected. Let's look at another way of getting that information.
+As we can see that this is straightforward to understand with substring. There are 4 lines to set up the bounds between the two strings and then those parameters can be passed to the substring. This code snippet gives us the date and time as expected. Let's look at another way of getting that information.
 
 ###### How Concise Is It Using String Substring?
 
-How concise the code is how many lines does it take up and in this function the set up for parameters takes up 5 lines and the substring function call is 1 line for a total of 5 lines. Of course all these lines can be compacted into calls into each other but wanted to show all the steps per line but then the code would be harder to read. For substring isn't that compact and there may be other ways to compact the code with other substring type methods
+How concise is the code how many lines does it take up in this function the setup for parameters takes up 5 lines and the substring function call is 1 line for a total of 5 lines. Of course, all these lines can be compacted into calls into each other but wanted to show all the steps per line but then the code would be harder to read. Substring isn't that compact and there may be other ways to compact the code with other substring-type methods.
 
 ###### How Readable Is It Using String Substring?
 
-For the most part substring is very readable because substring describes what is going on. When this is done step by step it easily understood.
+For the most part, substring is very readable because substring describes what is going on. When this is done step by step it is easily understood.
 
 ###### String Substring Get A Substring Between Two Strings Speed Code Example
 
-Another test that will help us compared the methods is the performance or time it takes for the operator to occur. We will run the function call 100 million times and averaging the time across 10 tests too how fast the functions are. Substring typically performs well so let's run the test and see how it does.
+Another test that will help us compare the methods is the performance or time it takes for the operator to occur. We will run the function call 100 million times and average the time across 10 tests too how fast the functions are. Substring typically performs well so let's run the test and see how it does.
 
 ###### Get A Substring Between Two Strings With String Substring Speed Code
 
@@ -108,11 +108,11 @@ sampleText:System Online: 8/8/2022 20:09:33 at Module32, alteredText:8/8/2022 20
 Substring Average speed:10139ms, In 10 tests
 ```
 
-This test shows that for substring it took about 10 seconds. This will be the baseline for all the other functions. This code is also calling two indexOf methods that could also have an impact on the performance.
+This test shows that for substring it took about 10 seconds. This will be the baseline for all the other functions. This code is also called two indexOf methods that could also have an impact on the performance.
 
 ### Split Method
 
-Another way to handle this use case if we split the code with an array of strings which would be the two string of interest and then taking the second item from the array and that should give us the same result. Let's look at an example.
+Another way to handle this use case is if we split the code with an array of strings which would be the two strings of interest and then take the second item from the array and that should give us the same result. Let's look at an example.
 
 ###### String Split Code Example
 
@@ -125,7 +125,7 @@ Console.WriteLine("Original:" + text);//Starting text
 Console.WriteLine("Updated:" + updated);//New substring
 string GetSubstringBetweenTwoStringBySplit(string text, string findText1, string findText2)
 {
-    string[] splitArray = new string[2] { findText1, findText2 };//Add the two string an array to split across each string in the array
+    string[] splitArray = new string[2] { findText1, findText2 };//Add the two strings to an array to split across each string in the array
     string[] substring = text.Split(splitArray, StringSplitOptions.None);//Get the substring
     return substring[1];
 }
@@ -138,16 +138,16 @@ Original:System Online: 8/8/2022 20:09:33 at Module32
 Updated:8/8/2022 20:09:33
 ```
 
-We can se that in just a few lines split is able to do the same as substring. For each of the words to find the string was split up and at the same time it remove the entire word so that all that is left is what we want. We didn't have to find the index or the words manually.
+We can see that in just a few lines split can do the same as a substring. For each of the words to find the string was split up and at the same time, it remove the entire word so that all that is left is what we want. We didn't have to find the index or the words manually.
 
 ###### How Concise Is It Using String Split?
 String Split is very concise and probably the most concise of all the methods. It only takes 3 lines of code which is great to save time and typing.
 
-###### ###### How Readable Is It Using String Split?
-Although it is very concise it may potentially be hard to read unless you really understand split. Split is handling things internally and it may not be clear what is going but it works.
+###### How Readable Is It Using String Split?
 
-String Split Get A Substring Between Two Strings Speed Code Example
-Let's test the split method in it's speed. It's hard to just by look if a method is fast just by the lines of code so let's take a look and see.
+Although it is very concise it may potentially be hard to read unless you understand the split. Split is handling things internally and it may not be clear what is going but it works.
+
+String Split Get A Substring Between Two Strings Speed Code Example Let's test the split method in its speed. It's hard to just by looking if a method is fast just by the lines of code so let's take a look and see.
 
 ###### Get A Substring Between Two Strings With String Split Speed Code
 
@@ -171,7 +171,7 @@ double SplitSpeedTest()
     string alteredText = "";
     for (int i = 0; i < numberOfFunctionCalls; i++)
     {
-        string[] splitArray = new string[2] { findText1, findText2 };//Add the two string an array to split across each string in the array
+        string[] splitArray = new string[2] { findText1, findText2 };//Add the two strings to an array to split across each string in the array
         string[] substring = text.Split(splitArray, StringSplitOptions.None);//Get the substring
         alteredText = substring[1];
     }
@@ -199,7 +199,8 @@ Split Average speed:9753ms, In 10 tests
 Split is slightly faster than substring and so far it is the fastest method and also has the most concise code but let's take a look at the other methods to see what they can offer.
 
 ### Range Operator Method
-The range operator is a newer methods(available in C# 8.0) to get a substring with arrays since the string is array of characters then we can apply this method. It will be similar to how substring was organized. An example below.
+
+The range operator is a newer method (available in C# 8.0) to get a substring with arrays since the string is an array of characters then we can apply this method. It will be similar to how the substring was organized. An example is below.
 
 ```cs
 string text = "System Online: 8/8/2022 20:09:33 at Module32";//starting text
@@ -212,7 +213,7 @@ string GetSubstringBetweenTwoStringByRangeOperator(string text, string findText1
 {
     int indexBeginngingWord1 = text.IndexOf(findText1);//Find the beginning index of the word1
     int indexEndOfWord1 = indexBeginngingWord1 + findText1.Length;//Add the length of the word1 to starting index to find the end of the word1
-    int indexBeginningWord2 = text.LastIndexOf(findText2);//Find the beggining index of word2
+    int indexBeginningWord2 = text.LastIndexOf(findText2);//Find the beginning index of word2
     string substring = text[indexEndOfWord1..indexBeginningWord2];//Get the substring based on the end of word1 and beginning Word2
     return substring;
 }
@@ -225,16 +226,16 @@ Original:System Online: 8/8/2022 20:09:33 at Module32
 Updated:8/8/2022 20:09:33
 ```
 
-Same result as the other methods but note that unlike substring the range operator set up is short and only needed the beginning and the end points to cut the substring out rather than a starting point and the length of the substring for string substring.
+Same result as the other methods but note that unlike substring the range operator setup is short and only needed the beginning and the endpoints to cut the substring out rather than a starting point and the length of the substring for string substring.
 
 ###### How Concise Is It Using Range Operator?
-It is more concise than substring because we don't need the length to pass so it takes only 4 lines of code which an improvement on substring. The range operator has a compact syntax which could impact readability.
+It is more concise than substring because we don't need the length to pass so it takes only 4 lines of code which is an improvement on the substring. The range operator has a compact syntax which could impact readability.
 
 ###### How Readable Is It Using Range Operator?
 The range operator is compact but it does impact the readability because if you didn't know what it was then it might look like indexing a dictionary or indexing an array. So until this method is more widely used readability may be an issue.
 
 ###### Range Operator Get A Substring Between Two Strings Speed Code Example
-Next we'll test the performance and since the set up similar to substring we would expect the performance to be close to that but let's take a look and see below.
+Next, we'll test the performance and since the set up similar to the substring we would expect the performance to be close to that but let's take a look and see below.
 
 ###### Get A Substring Between Two Strings With Range Operator Speed Code
 
@@ -287,7 +288,8 @@ Range Operator Average speed:10234ms, In 10 tests
 The performance of the range operator is close substring but still slower than split. None of the methods so far have vastly stood out on performance but check the last method to see if that pattern will hold.
 
 ### Span Slice
-Next way we'll look at getting a substring from between two strings is the span slice. The set up will again be similar to substring and range operator but some additional struct because span doesn't work with a string but a character. Another difference is that spans works on the stack and not heap so the garbage collection is not invoked on spans which should speed up performance. Let's look at a basic example.
+
+The next way we'll look at getting a substring from between two strings is the span slice. The setup will again be similar to the substring and range operator but with some additional struct because span doesn't work with a string but a character. Another difference is that spans work on the stack and not the heap so the garbage collection is not invoked on spans which should speed up performance. Let's look at a basic example.
 
 ###### String Split Code Example
 
@@ -319,13 +321,16 @@ Updated:8/8/2022 20:09:33
 We see that with this new set up the result is the same and it looks very similar to substring.
 
 ###### How Concise Is It Using Span Slice?
+
 The set up is very similar to substring so the lines of code are the same. There are additional structs that need to be learned and added to the parameters so it is not that concise but what it lacks in the lines of code it does better in the other categories.
 
 ###### How Readable Is It Using Span Slice?
-It is about the same to read as substring but slightly less so since the read only span structs need to be learned and when and where they should be used. There are some restrictions so on in time will these be understood better. But overall the steps are clear and straight forward to understand what is happening.
+
+It is about the same to read as substring but slightly less so since the read-only span structs need to be learned and when and where they should be used. There are some restrictions so in time will be understood better. But overall the steps are clear and straightforward to understand what is happening.
 
 ###### Span Slice Get A Substring Between Two Strings Speed Code Example
-Since span slice is using the stack memory we would expect this to be very fast so let's run a test to see how fast it is.
+
+Since the span slice method is using the stack memory we would expect this to be very fast so let's run a test to see how fast it is.
 
 ###### Get A Substring Between Two Strings With Span Slice Speed Code
 
@@ -377,7 +382,7 @@ sampleText:System Online: 8/8/2022 20:09:33 at Module32, alteredText:8/8/2022 20
 Slice Average speed:2092ms, In 10 tests
 ```
 
-Span Slice is the clear performance king of these methods and is by far the fastest. Since the garbage collection is not run on span we can see a lot of performance in this area. Even though the code is doing pretty much the same thing as substring
+Span Slice is the clear performance king of these methods and is by far the fastest. Since the garbage collection is not run on span we can see a lot of performance in this area. Even though the code is doing pretty much the same thing as a substring.
 
 ### Regex Method
 Regex is an expression based string parser and it can be used for this use case and a variety of use cases. It is extremely compact so let's look at an example.
@@ -387,7 +392,7 @@ Regex is an expression based string parser and it can be used for this use case 
 ```cs
 using System.Text.RegularExpressions;
 string text = "System Online: 8/8/2022 20:09:33 at Module32";//starting text
-string findWord1 = "Online: ";//Find this word at the begginnig of substring
+string findWord1 = "Online: ";//Find this word at the beginning of substring
 string findWord2 = " at Module32";//Find this word at the end of the substring
 string updated = GetSubstringBetweenTwoStringByRegex(text, findWord1, findWord2);//Get substring between two texts
 Console.WriteLine("Original:" + text);//Starting text
@@ -407,13 +412,13 @@ Updated:8/8/2022 20:09:33
 We can see the small form factor of this code but let's discuss this in more detail.
 
 ###### How Concise Is It Using Regex?
-At one line of code it is extremely compact and beats the string split in that regard. It will save you time once you get to know the expressions and functions with the shortness of the code but expect a learning curve. However, it does take big hit in readability.
+At one line of code, it is extremely compact and beats the string split in that regard. It will save you time once you get to know the expressions and functions with the shortness of the code but expect a learning curve. However, it does take a big hit in readability.
 
 ###### How Readable Is It Using Regex?
-The major draw back to regex is readability. Unless you already know it then it will be difficult the read the expression. You'll be force to look them up until you know them. Since it is compact it hard to tell just by reading the code what is going on. But it has been around for sometime and getting familiar with it may be unavoidable.
+The major drawback to regex is readability. Unless you already know it then it will be difficult the read the expression. You'll be forced to look them up until you know them. Since it is compact it is hard to tell just by reading the code what is going on. But it has been around for some time and getting familiar with it may be unavoidable.
 
 ###### Regex Get A Substring Between Two Strings Speed Code Example
-Next we'll test the speed of regex. Since it is a complex and flexible construct, we will see if it takes a performance hit or not.
+Next, we'll test the speed of regex. Since it is a complex and flexible construct, we will see if it takes a performance hit or not.
 
 ###### Get A Substring Between Two Strings With Regex Speed Code
 
@@ -461,9 +466,9 @@ sampleText:System Online: 8/8/2022 20:09:33 at Module32, alteredText:8/8/2022 20
 Regex Average speed:67127ms, In 10 tests
 ```
 
-Wow, regex is incredibly slow, taking about a 1 minute in the test. Even though it is compact avoid this method if you can because it not worth the performance hit in the long term.
+Wow, regex is incredibly slow, taking about a 1 minute in the test. Even though it is compact avoid this method if you can because it is not worth the performance hit in the long term.
 
 ### Conclusion
-<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,2092ms,5 lines,3;2,String Split,9753ms,3 lines,2;3,Range Operator,10234ms,4 lines,3;4,String Substring,10139ms,5 lines,4;5,Regex,67127ms,1 lines,1" />
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,2092ms,5 lines,3;2,String Split,9753ms,3 lines,2;3,Range Operator,10234ms,4 lines,3;4,String Substring,10139ms,5 lines,4;5,Regex,67127ms,1 line,1" />
 
-The most effective function for getting a substring between two strings is span slice. The speed is the most important factor in comparing the methods because that has the biggest impact on the end user. Span Slice is by far the fastest if that set up works for you use case. It has some limitations so be aware of those. Next best is string split. It next best in performance but also the compact form and speed up productivity since you would be writing less code. The set up is one line and the function call is one so it the most compact. Third best is the range operator and it is really close to substring but range operator edges out substring because it can save an additional line in the set up and the syntax is compact so it would work well in the long time. Regex was extremely slow in our testing and it should be avoided because there are much faster methods out there that do the same thing.
+The most effective function for getting a substring between two strings is the span slice. Speed is the most important factor in comparing the methods because that has the biggest impact on the end user. Span Slice is by far the fastest if that setup works for your use case. It has some limitations so be aware of those. The next best is string split. It is the next best in performance but also has a compact form and speeds up productivity since you would be writing less code. The setup is one line and the function call is one so it is the most compact. The third best is the range operator and which is close to the substring but the range operator edges out the substring because it can save an additional line in the setup and the syntax is compact so it would work well for a long time. Regex was extremely slow in our testing and it should be avoided because there are much faster methods out there that do the same thing.

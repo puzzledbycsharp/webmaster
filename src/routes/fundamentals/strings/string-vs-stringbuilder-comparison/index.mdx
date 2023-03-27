@@ -9,16 +9,16 @@ import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 
 <ImageWrapper imageSource="../../../assets/fundamentals/strings/string-vs-stringbuilder-comparison-medium.webp" imageSrcSet="../../../assets/fundamentals/strings/string-vs-stringbuilder-comparison-small.webp 250w, ../../../assets/fundamentals/strings/string-vs-stringbuilder-comparison-medium.webp 500w, ../../../assets/fundamentals/strings/string-vs-stringbuilder-comparison-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Vs StringBuilder Comparison Banner Image" widthImage = "2304" heightImage = "1728" />
 
-String vs StringBuilder are similar and in most cases we will will use string but in the case of concatenation between two strings or combining strings by many times then we may need a more efficient option in StringBuilder.
+String vs StringBuilder are similar and in most cases, we will use string but in the case of concatenation between two strings or combining strings by many times then we may need a more efficient option in StringBuilder.
 
 ### Why We Use String?
 
-Strings are very useful for a variety of circumstances. They are used for holding and displaying a variety of character types and numerical representation. A string itself is a array of char types. So a string can be indexed and can be cut up and manipulated. It can represent numbers and store those values and a combination of characters and number values.
+Strings are very useful for a variety of circumstances. They are used for holding and displaying a variety of character types and numerical representations. A string itself is an array of char types. So a string can be indexed and can be cut up and manipulated. It can represent numbers and store those values and a combination of characters and number values.
 
 
 ### How Strings Works
 
-Strings are reference types that are immutable. This means once it is created it can’t be changed. But when we try to change the value instead updating the string it creates a new string in it’s place. So when we declare a reference to a string object and give it a value and then behind the scenes a new string object is created. This is different than some other types such as an int. When we create an int variable we can change the value, C# does not create a new int variable but it changes the value of int. Below is some sample code of what I just saw about string.
+Strings are immutable reference types. This means once it is created it can’t be changed. But when we try to change the value instead of updating the string it creates a new string in its place. So when we declare a reference to a string object and give it a value and then behind the scenes a new string object is created. This is different than some other types such as an int. When we create an int variable we can change the value, C# does not create a new int variable but it changes the value of int. Below is some sample code of what I just saw about string.
 
 ```cs
     static void Main(string[] args)
@@ -37,9 +37,9 @@ Output
 
 ### Motivation for StringBuilder
 
-A drawback in string is that it can slow down our application in cases where we are assigning and reassigning the string value many times. Because as we mentioned before each time we change a string, in the backend it is not being changed or updated but replaced by a new string object each time. This is an over head if we are doing a lot string manipulations. With the StringBuilder object we can get around this overhead when we manipulate strings. StringBuilder is recommended to use if we are using heavy string operations. Below is an example of the time comparisons between the two objects.
+A drawback of the string is that it can slow down our application in cases where we are assigning and reassigning the string value many times. Because as we mentioned before each time we change a string, in the backend it is not being changed or updated but replaced by a new string object each time. This is an overhead if we are doing a lot of string manipulations. With the StringBuilder object, we can get around this overhead when we manipulate strings. StringBuilder is recommended use if we are using heavy string operations. Below is an example of the time comparisons between the two objects.
 
-Full example solution if your interested below.
+Full example solution if you are interested below.
 
 ```cs
     using System;
@@ -92,7 +92,7 @@ Full example solution if your interested below.
         }
     }
 ```
-Next we'll look at each function
+Next, we'll look at each function.
 
 ```cs
     private static void GenerateRandomTextByString()
@@ -112,7 +112,7 @@ Next we'll look at each function
     }
 ```
 
-Let’s note that the time that it takes to complete 10000 string additions to an existing string. This addition is a concatenate operation. It is combining the previous a string to another string.
+Let’s note the time that it takes to complete 10000 string additions to an existing string. This addition is a concatenate operation. It is combining the previous string with another string.
 
 Output
 
@@ -151,8 +151,8 @@ Output
 
 ### String vs StringBuilder Test Conclusions
 
-Wow, it takes only 1 millisecond to do this operation with a StringBuilder object. Since we are talking about differences in milliseconds this may not seem like a big deal but in large scale applications that crunch a lot of data this kind of optimizations are cost and time savers.
+Wow, it takes only 1 millisecond to do this operation with a StringBuilder object. Since we are talking about differences in milliseconds this may not seem like a big deal but in large-scale applications that crunch a lot of data these kinds of optimizations are cost and time savers.
 
 #### String and StringBuilder Considerations
 
-We need to pick the right tools for the job and know when to take the trade offs when necessary. If I’m building a quick application and I’m just storing and displaying string values then a StringBuilder object isn’t necessary. But if I find myself doing a lot of string manipulation then I might consider using StringBuilder. String and StringBuilder are both useful but it depends on the context, needs and resources that you have.
+We need to pick the right tools for the job and know when to take trade-offs when necessary. If I’m building a quick application and I’m just storing and displaying string values then a StringBuilder object isn’t necessary. But if I find myself doing a lot of string manipulation then I might consider using StringBuilder. String and StringBuilder are both useful but it depends on the context, needs, and resources that you have.
