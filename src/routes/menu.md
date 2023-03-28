@@ -41,16 +41,16 @@
 - [Dictionary With One To Many Relationship](fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/index.mdx)
 
 ## Array
-- [Array](fundamentals/collections/array/index.mdx)
-- [How To Assign Values To An Array](fundamentals/collections/array/how-to-assign-values-to-an-array/index.mdx)
-- [How To Encode Strings and Decode Byte Arrays](fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/index.mdx)
-- [How To Initialize Arrays](fundamentals/collections/array/how-to-initialize-arrays/index.mdx)
-- [Best Initializer To Get An Empty Array](fundamentals/collections/array/best-initializer-to-get-an-empty-array/index.mdx)
-- [Check If The Text Contains A Keyword From The Array](fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/index.mdx)
-- [Search An Array If It Contains The Keyword](fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/index.mdx)
-- [Best Removal Method Of Duplicates From An Array](fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/index.mdx)
-- [Best Method For Slicing Arrays](fundamentals/collections/array/best-method-for-slicing-arrays/index.mdx)
-- [Fill The Array With One Value](fundamentals/collections/array/fill-the-array-with-one-value/index.mdx)
+- [Array](array/index.mdx)
+- [How To Assign Values To An Array](array/how-to-assign-values-to-an-array/index.mdx)
+- [How To Encode Strings and Decode Byte Arrays](array/how-to-encode-strings-and-decode-byte-arrays/index.mdx)
+- [How To Initialize Arrays](array/how-to-initialize-arrays/index.mdx)
+- [Best Initializer To Get An Empty Array](array/best-initializer-to-get-an-empty-array/index.mdx)
+- [Check If The Text Contains A Keyword From The Array](array/check-if-the-text-contains-a-keyword-from-the-array/index.mdx)
+- [Search An Array If It Contains The Keyword](array/search-an-array-if-it-contains-the-keyword/index.mdx)
+- [Best Removal Method Of Duplicates From An Array](array/best-removal-method-of-duplicates-from-an-array/index.mdx)
+- [Best Method For Slicing Arrays](array/best-method-for-slicing-arrays/index.mdx)
+- [Fill The Array With One Value](array/fill-the-array-with-one-value/index.mdx)
 
 ## Strings
 - [Strings](fundamentals/strings//index.mdx)

@@ -7,3 +7,69 @@ command = "npm run build"
   to = "/array/"
   status = 301
   force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/how-to-assign-values-to-an-array/"
+to = "/array/how-to-assign-values-to-an-array/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/how-to-encode-strings-and-decode-byte-arrays/"
+to = "/array/how-to-encode-strings-and-decode-byte-arrays/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/how-to-initialize-arrays/"
+to = "/array/how-to-initialize-arrays/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/best-initializer-to-get-an-empty-array/"
+to = "/array/best-initializer-to-get-an-empty-array/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/"
+to = "/array/check-if-the-text-contains-a-keyword-from-the-array/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/"
+to = "/array/search-an-array-if-it-contains-the-keyword/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/"
+to = "/array/best-removal-method-of-duplicates-from-an-array/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/best-method-for-slicing-arrays/"
+to = "/array/best-method-for-slicing-arrays/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/fill-the-array-with-one-value/"
+to = "/array/fill-the-array-with-one-value/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/"
+to = "/array/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array/"
+to = "/array/"
+status = 301
+force = true
