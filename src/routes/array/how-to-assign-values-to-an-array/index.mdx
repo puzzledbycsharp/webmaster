@@ -1,0 +1,286 @@
+---
+title: How To Assign Values To An Array
+---
+
+# How To Assign Values To An Array
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-small.webp 500w, ../../../../assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-medium.webp 1000w, ../../../../assets/fundamentals/collections/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Assign Values to An Array Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+When an array is created it has a fixed size and the values are uninitialized so they are all null. We need to assign the values to the array at each index before start using it in our code. We'll go into those ways we can 
+
+{/* ### Summary Table
+
+<Table header ="Analysis Type,Indexer,List With ToArray" rows="Use Case,Lots of retrieve values,Test if keys exist;Performance,Approaches O(1),Approaches O(1);Lines Of Code,,;" /> */}
+
+### Array Indexer Method
+
+The array indexer is the brackets surrounded by an integer. This accesses the value in memory at that index. When we have the indexer on the left side of the equals sign then we can assign a value to that index in the array.
+
+#### Array Indexer Code Example
+
+For example, if I have a loan payoff calculator that displays the loan amount for each month over 30 years and I store the values into array. Then I can print the values in the array. 
+
+```cs
+double loanAmount = 450000; //Loan amount
+double interestRate = 0.07; //Annual interest rate
+int numberOfMonthlyPayments = 360; //Total number of payments (in months)
+
+double[] yearlyLoanAmounts = new double[numberOfMonthlyPayments]; //Array to store loan amounts for each year
+
+double monthlyPayment = loanAmount * (interestRate / 12.0) * Math.Pow(1 + interestRate / 12.0, numberOfMonthlyPayments) / (Math.Pow(1 + interestRate / 12.0, numberOfMonthlyPayments) - 1);//Calculate the monthly payments
+
+for (int i = 0; i < numberOfMonthlyPayments; i++)
+{
+    double interest = loanAmount * (interestRate / 12);
+    double principal = monthlyPayment - interest;
+
+    loanAmount -= principal;
+    yearlyLoanAmounts[i] = loanAmount;//Assign loan amount to the array for that month
+
+    Console.WriteLine("Month {0}: {1:C}", i + 1, yearlyLoanAmounts[i]);//Print array value for that month
+}
+```
+
+###### Code Output
+```
+...
+Month 349: $31,808.39
+Month 350: $29,000.08
+Month 351: $26,175.38
+Month 352: $23,334.21
+Month 353: $20,476.47
+Month 354: $17,602.05
+Month 355: $14,710.87
+Month 356: $11,802.82
+Month 357: $8,877.81
+Month 358: $5,935.73
+Month 359: $2,976.50
+Month 360: $0.00
+```
+### List With ToArray Method
+
+Another way is to use the list object to add items to the list and then convert the list to an array at the end of the assignment process. Below is an example code.
+
+#### List With ToArray Code Example
+
+If we reuse the example before and change out the array to a list this is the result. Instead of using the indexer, we can use the add method for the list. 
+
+```
+double loanAmount = 425000; //Loan amount
+double interestRate = 0.071; //Annual interest rate
+int numberOfMonthlyPayments = 360; //Total number of payments (in months)
+
+List<double> yearlyLoanAmounts = new List<double>(numberOfMonthlyPayments); //List to store loan amounts for each year
+
+double monthlyPayment = loanAmount * (interestRate / 12.0) * Math.Pow(1 + interestRate / 12.0, numberOfMonthlyPayments) / (Math.Pow(1 + interestRate / 12.0, numberOfMonthlyPayments) - 1);//Calculate the monthly payments
+
+for (int i = 0; i < numberOfMonthlyPayments; i++)
+{
+    double interest = loanAmount * (interestRate / 12);
+    double principal = monthlyPayment - interest;
+
+    loanAmount -= principal;
+    yearlyLoanAmounts.Add(loanAmount);//Assign loan amount to the list for that month
+}
+double[] yearlyLoanAmountsArray = yearlyLoanAmounts.ToArray();
+for (int i = 0; i < yearlyLoanAmountsArray.Length; i++)
+{
+    Console.WriteLine("Month {0}: {1:C}", i + 1, yearlyLoanAmountsArray[i]);//Print array value for that month
+}
+```
+
+###### Code Output
+
+```
+Month 346: $38,266.14
+Month 347: $35,636.41
+Month 348: $32,991.13
+Month 349: $30,330.19
+Month 350: $27,653.50
+Month 351: $24,960.99
+Month 352: $22,252.54
+Month 353: $19,528.06
+Month 354: $16,787.47
+Month 355: $14,030.66
+Month 356: $11,257.53
+Month 357: $8,468.01
+Month 358: $5,661.97
+Month 359: $2,839.34
+Month 360: ($0.00)
+```
+
+### Performance
+
+I will perform a test of all these methods using the following. I will average the time between 10 tests. Each test will have 100 loops of the test method. Each test method will have to create an array of 10 million objects and assign a value to each of those.
+
+
+#### Indexer Speed Test Code
+
+This method will receive an uninitialized array of size 10 million and the method will need to assign a value to each of the 10 million entries in the array. 
+
+```cs
+void TestMethod(double[] testArray)
+{
+    for (int i = 0; i < numberOfObjectsToCreate; i++)//Loop through all 10 million count
+    {
+        testArray[i] = startValue++;//Assign each index of the array a value
+    }
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 4s 759ms
+Test 2:Function Calls:100, In 0m 4s 570ms
+Test 3:Function Calls:100, In 0m 4s 554ms
+Test 4:Function Calls:100, In 0m 4s 568ms
+Test 5:Function Calls:100, In 0m 4s 609ms
+Test 6:Function Calls:100, In 0m 4s 588ms
+Test 7:Function Calls:100, In 0m 4s 574ms
+Test 8:Function Calls:100, In 0m 4s 582ms
+Test 9:Function Calls:100, In 0m 4s 578ms
+Test 10:Function Calls:100, In 0m 4s 614ms
+Indexer Method Average Speed:4600ms, In 10 Tests
+```
+
+This is the first test and the baseline is pretty fast for 10 million objects added to the array and it only took about 4 and half seconds.
+
+<details>
+<summary>Full Indexer Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 10000000;//Number test objects
+string testName = "Indexer Method";//Test name to print to average
+double startValue = 1;
+void TestMethod(double[] testArray)
+{
+    for (int i = 0; i < numberOfObjectsToCreate; i++)//Loop through all 10 million count
+    {
+        testArray[i] = startValue++;//Assign each index of the array a value
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        double[] testArray = new double[numberOfObjectsToCreate];
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testArray);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+```
+</details>
+
+
+#### List With ToArray Test Code
+
+List has a couple of things going for it its underlying data structure is an array but the list manages its size internally. Like the array, the list can set its initial size in memory so we can avoid wasting time growing the array. But perhaps the most costly part of the operation is the step to convert the list to an array which is an extra step.
+
+```cs
+void TestMethod(List<double> testList)
+{
+    for (int i = 0; i < numberOfObjectsToCreate; i++)//Loop through all 10 million count
+    {
+        testList.Add(startValue++);//Add value to the list
+    }
+    double[] testArray = testList.ToArray();//Convert the list into a array
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 6s 42ms
+Test 2:Function Calls:100, In 0m 5s 881ms
+Test 3:Function Calls:100, In 0m 5s 881ms
+Test 4:Function Calls:100, In 0m 5s 862ms
+Test 5:Function Calls:100, In 0m 5s 854ms
+Test 6:Function Calls:100, In 0m 5s 840ms
+Test 7:Function Calls:100, In 0m 5s 816ms
+Test 8:Function Calls:100, In 0m 5s 837ms
+Test 9:Function Calls:100, In 0m 5s 813ms
+Test 10:Function Calls:100, In 0m 5s 823ms
+List With ToArray Method Average Speed:5865ms, In 10 Tests
+```
+List does well but it still lags behind the array assign values by more than a second.
+
+<details>
+<summary>Full List With ToArray Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 10000000;//Number test objects
+string testName = "List With ToArray Method";//Test name to print to average
+double startValue = 1;
+void TestMethod(List<double> testList)
+{
+    for (int i = 0; i < numberOfObjectsToCreate; i++)//Loop through all 10 million count
+    {
+        testList.Add(startValue++);//Add value to the list
+    }
+    double[] testArray = testList.ToArray();//Convert the list into a array
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        List<double> testArray = new List<double>(numberOfObjectsToCreate);
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testArray);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+</details>
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,Array Indexer,4600ms;2,List With ToArray,5865ms;" />
+
+The Array Indexer is the best way to assign values to an array. It is fast and you don't have to convert between different collection types.
+
+Using a list with ToArray may seem like a good idea but it does add an extra line of code and converting between types is clumsy. But it is pretty fast but not faster than just using an array by itself.
+
+Know any other ways to assign values to an array? Let me know in the comments below.

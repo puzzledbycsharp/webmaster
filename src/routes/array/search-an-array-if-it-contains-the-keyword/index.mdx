@@ -1,0 +1,238 @@
+---
+title: Search An Array If It Contains The Keyword
+---
+
+# Search An Array If It Contains The Keyword
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-small.webp 500w, ../../../../assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-medium.webp 1000w, ../../../../assets/fundamentals/collections/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Search An Array If It Contains The Keyword Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+There are a couple of ways to find if a string is in the array. The first one is that the Array class provides a static method. [This lets us search the entire with a predicate.](https://learn.microsoft.com/en-us/dotnet/api/system.array.exists?view=net-7.0#remarks) This allows you quickly set different conditions like the one we are doing now. The second one is the LINQ function that has a contains method. This method provides a match for the entire string found in each element in the array. 
+
+If you were looking for a way to search the array for a partial string then I wrote the following article that explains that in detail. It's called [Check If The Text Contains A Keyword From The Array](https://puzzledbycsharp.com/fundamentals/collections/array/check-if-the-text-contains-a-keyword-from-the-array/)
+
+### Summary Table
+
+<Table header ="Analysis Type,Array Exists,Array Contains" rows="Performance,O(N),O(N);Lines Of Code,1,1;.NET Version,=>2.0, >=3.5" />
+
+### Search Static Array If It Contains The Keyword Using Array Exists
+
+Array provides a static method to search through the entire array by using a predicate. This is a delegate that let us set whatever conditions that we want. It's like an if statement.
+
+#### Array Exists Example Code
+
+For this, we set the predicate to find a match on the array item with the keyword. This is an exact match with the array element. In this example, I set 4 different conditions to search for. There's a partial keyword that does exist in the array but not as a whole element so I called it partial. The second keyword is an exact match of one of the array elements and you see that this will come out as true. The other two are the upper and lower version of the text. Since we have set our condition as an exact match these will be false.
+
+```cs
+string[] breakfastItems = new string[3] { "Omelette with vegetables and cheese", "Breakfast burrito with scrambled eggs, cheese, and bacon or sausage", "Yogurt parfait with granola and fruit" };
+string keywordPartial = "cheese";
+string keywordFull = "Omelette with vegetables and cheese";
+string keywordFullUpper = "YOGURT PARFAIT WITH GRANOLA AND FRUIT";
+string keywordFullLower = "yogurt parfait with granola and fruit";
+
+bool keywordFound1 = SearchArrayForKeyword(keywordPartial, breakfastItems);
+Console.WriteLine($"keywordPartialFound:{keywordFound1}");
+
+bool keywordFound2 = SearchArrayForKeyword(keywordFull, breakfastItems);
+Console.WriteLine($"keywordFullFound:{keywordFound2}");
+
+bool keywordFound3 = SearchArrayForKeyword(keywordFullUpper, breakfastItems);
+Console.WriteLine($"keywordFullUpperFound:{keywordFound3}");
+
+bool keywordFound4 = SearchArrayForKeyword(keywordFullLower, breakfastItems);
+Console.WriteLine($"keywordFullLowerFound:{keywordFound4}");
+
+
+bool SearchArrayForKeyword(string keyword, string[] array)
+{
+    return Array.Exists(array, item => item == keyword);//Return true if found or else false
+}
+```
+
+###### Code Output
+```
+keywordPartialFound:False
+keywordFullFound:True
+keywordFullUpperFound:False
+keywordFullLowerFound:False
+```
+
+Only the keyword with an exact match return true and all other return false.
+
+### Search Array If It Contains The Keyword Using LINQ Contains
+
+LINQ contains checks to see if the keyword matches one of the array elements. It needs to be an exact match so the name contains is slightly misleading. This contains method only does one thing and that is to find an exact match in the array. It is less flexible than Array exists. But these two methods take up only one line of code which is nice.
+
+#### LINQ Contains Example Code
+
+In this example, there is another set of breakfast items and we are interested in finding 'Avocado toast with eggs'. As the way it was in the previous example, only the exact match will return true. The partial keyword, upper, and lower keywords all return false.
+
+```cs
+string[] breakfastItems = new string[3] { "Pancakes with maple syrup and butter", "Avocado toast with eggs", "French toast with berries and whipped cream" };
+string keywordPartial = "egg";
+string keywordFull = "Avocado toast with eggs";
+string keywordFullUpper = "AVOCADO TOAST WITH EGGS";
+string keywordFullLower = "french toast with berries and whipped cream";
+
+bool keywordFound1 = SearchArrayForKeyword(keywordPartial, breakfastItems);
+Console.WriteLine($"keywordPartialFound:{keywordFound1}");
+
+bool keywordFound2 = SearchArrayForKeyword(keywordFull, breakfastItems);
+Console.WriteLine($"keywordFullFound:{keywordFound2}");
+
+bool keywordFound3 = SearchArrayForKeyword(keywordFullUpper, breakfastItems);
+Console.WriteLine($"keywordFullUpperFound:{keywordFound3}");
+
+bool keywordFound4 = SearchArrayForKeyword(keywordFullLower, breakfastItems);
+Console.WriteLine($"keywordFullLowerFound:{keywordFound4}");
+
+
+bool SearchArrayForKeyword(string keyword, string[] array)
+{
+    return array.Contains(keyword);//Return true if found or else false
+}
+```
+###### Code Output
+
+```
+keywordPartialFound:False
+keywordFullFound:True
+keywordFullUpperFound:False
+keywordFullLowerFound:False
+```
+
+### Performance
+
+We want to compare how these two methods perform under a large load. To do this, I'll see a test code to go through the worst-case scenario which is to go through the entire array and see which one is faster. I will measure the result by averaging 10 tests. Each test will have a loop that calls the test function 100 times. Each test function will have an array of 5 million objects to search through.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,5 Million" />
+</details>
+
+#### Static Array Exists Speed Test Code
+
+```cs
+bool TestMethod(string[] array)
+{
+    return Array.Exists(array, item => item == keyword);//Return true if found or else false
+}
+```
+
+#### LINQ Contains Speed Test Code
+
+```cs
+bool TestMethod(string[] array)
+{
+    return array.Contains(keyword);//Return true if found or else false
+}
+```
+
+###### Static Array Exists Speed Test Code Output
+
+```
+Test 1:Function Calls:100, In 0m 3s 349ms
+Test 2:Function Calls:100, In 0m 3s 509ms
+Test 3:Function Calls:100, In 0m 3s 301ms
+Test 4:Function Calls:100, In 0m 3s 296ms
+Test 5:Function Calls:100, In 0m 3s 402ms
+Test 6:Function Calls:100, In 0m 3s 317ms
+Test 7:Function Calls:100, In 0m 3s 390ms
+Test 8:Function Calls:100, In 0m 3s 400ms
+Test 9:Function Calls:100, In 0m 3s 307ms
+Test 10:Function Calls:100, In 0m 3s 460ms
+Array Exists Method Average Speed:3374ms, In 10 Tests
+```
+
+###### LINQ Contains Speed Test Code Output
+```
+Test 1:Function Calls:100, In 0m 2s 820ms
+Test 2:Function Calls:100, In 0m 2s 772ms
+Test 3:Function Calls:100, In 0m 2s 799ms
+Test 4:Function Calls:100, In 0m 2s 853ms
+Test 5:Function Calls:100, In 0m 2s 835ms
+Test 6:Function Calls:100, In 0m 2s 769ms
+Test 7:Function Calls:100, In 0m 2s 944ms
+Test 8:Function Calls:100, In 0m 2s 796ms
+Test 9:Function Calls:100, In 0m 2s 784ms
+Test 10:Function Calls:100, In 0m 2s 722ms
+LINQ Contains Average Speed:2810ms, In 10 Tests
+```
+
+<details>
+<summary>Full LINQ Contains Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 5000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "LINQ Contains";//Test name to print to average
+string keyword = "random text!";
+bool TestMethod(string[] array)
+{
+    return array.Contains(keyword);//Return true if found or else false
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    string[] testData = GetArrayData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+string[] GetArrayData()
+{
+    string[] testData = new string[numberOfObjectsToCreate];
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+
+        string value = GenerateRandomString(lengthOfRandomString);
+        testData[i] = value;
+
+    }
+    return testData;
+}
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+
+```
+</details>
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,LINQ Contains,2810ms;2,Array Exists,3374ms;" />
+
+LINQ Contains is the best method for finding a keyword in an array. It is faster than Array Exists by about half a second. That is the main difference between this use case. They both are one line, but Array Exists is more flexible and that it can apply a lot more different conditions but for this use case LINQ Contains is better.
+
+Know any other ways to search an array for keyword matches? Let me know in the comments below.

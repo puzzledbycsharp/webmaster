@@ -1,0 +1,263 @@
+---
+title: Best Removal Method Of Duplicates From An Array
+---
+
+# Best Removal Method Of Duplicates From An Array
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-small.webp 500w, ../../../../assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-medium.webp 1000w, ../../../../assets/fundamentals/collections/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Removal Method Of Duplicates From An Array Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+To remove duplicate items from a list we have a couple of options. One is to use LINQ Distinct to remove the items and then apply ToArray to convert the IEnumerable to an array. The other option is to write a method. Sometimes LINQ doesn't perform well and I'm going to test both of these methods to see which is faster. For one smaller array, it may not matter so much which one we choose, but if you are working with large datasets then you'll pick the fastest method.
+
+<Table header ="Analysis Type,LINQ Distinct,For Loop With HashSet And List" rows=".NET Version Available,>= .NET 3.5,>= .NET 3.5;Performance,Approaches O(N),Approaches O(N);Lines Of Code,1,11,;Order Maintained,No,Yes" />
+
+### Distinct Values Using LINQ Distinct
+
+This is a two-step process. LINQ Distinct returns an IEnumerable which then has to be converted to an array. [This method also returns an unordered sequence that has no duplicates.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-8.0#remarks) The nice thing about this method it only takes up one line of code and is very readable since it does exactly what it says it does. And since it has been available since .NET 3.5, it should be available on you're system unless your using something much older. In terms of performance, it needs to go through the entire array to find any duplicates and remove them.
+
+#### LINQ Distinct Code Example
+
+This code example shows the different types and how each one of the duplicates is removed. First, the starting array is printed and then you can compare it to after LINQ distinct is used and indeed the duplicates are removed.
+
+```cs
+string[] exerciseIdeasArray = new string[5] { "Squats", "Deadlifts", "Bench press", "Deadlifts", "Squats" };//Declare a string array
+int[] intArray = new int[10] { 1, 2, 3, 3, 4, 6, 6, 7, 1, 35 };//Declare an int array
+double[] doubleArray = new double[10] { 1.2, 1.5, 2.5, 1.5, 2.5, 44.9, 821, 28, 1.2, 10 };//Declare a double array
+float[] floatArray = new float[10] { 1f, 2f, 3f, 4f, 5f, 1f, 2f, 10f, 8f, 9f };//Declare a float array
+bool[] boolArray = new bool[5] { true, false, true, false, false};//Declare a bool array
+
+RemoveDuplicates<string>(exerciseIdeasArray);
+RemoveDuplicates<int>(intArray);
+RemoveDuplicates<double>(doubleArray);
+RemoveDuplicates<float>(floatArray);
+RemoveDuplicates<bool>(boolArray);
+
+void RemoveDuplicates<T>(T[] array)
+{
+    Console.WriteLine($"Start:{string.Join(",", array)}");//Print original array
+    T[] distinctArray = array.Distinct().ToArray();//Use LINQ Distinct to remove duplicates from the array
+    Console.WriteLine($"End:{string.Join(",", distinctArray)}");//Print original array after duplicates are removed
+    Console.WriteLine();//Print original array after duplicates are removed
+
+}
+```
+
+###### Code Output
+```
+Start:Squats,Deadlifts,Bench press,Deadlifts,Squats
+End:Squats,Deadlifts,Bench press
+
+Start:1,2,3,3,4,6,6,7,1,35
+End:1,2,3,4,6,7,35
+
+Start:1.2,1.5,2.5,1.5,2.5,44.9,821,28,1.2,10
+End:1.2,1.5,2.5,44.9,821,28,10
+
+Start:1,2,3,4,5,1,2,10,8,9
+End:1,2,3,4,5,10,8,9
+
+Start:True,False,True,False,False
+End:True,False
+```
+
+### Distinct Values Using A For Loop With HashSet
+
+Next, this is a method I wrote myself and have used at other times to remove duplicates. HashSet is useful in removing duplicates because it doesn't store any duplicates themselves. This can be used anytime after .NET 3.5 so it is just as available as LINQ Distinct is. 
+
+#### For Loop With HashSet And List Example Code
+
+This method loops through the array and saves the distinct values in a list and hashset. The hashset is used
+
+```cs
+string[] exerciseIdeasArray = new string[5] { "Pull-ups", "Lunges", "Rows", "Lunges", "Pull-ups" };//Declare a string array
+int[] intArray = new int[10] { 1, 4, 3, 3, 4, 6, 6, 4, 1, 35 };//Declare an int array
+double[] doubleArray = new double[10] { 1.4, 1.5, 2.5, 1.5, 2.5, 44.9, 821, 28, 1.4, 10 };//Declare a double array
+float[] floatArray = new float[10] { 12f, 89f, 3f, 4f, 5f, 12f, 2f, 10f, 8f, 89f };//Declare a float array
+bool[] boolArray = new bool[5] { false, true, true, true, false };//Declare a bool array
+
+RemoveDuplicates<string>(exerciseIdeasArray);
+RemoveDuplicates<int>(intArray);
+RemoveDuplicates<double>(doubleArray);
+RemoveDuplicates<float>(floatArray);
+RemoveDuplicates<bool>(boolArray);
+
+void RemoveDuplicates<T>(T[] array)
+{
+    Console.WriteLine($"Start:{string.Join(",", array)}");//Print original array
+    HashSet<T> distinctValues = new HashSet<T>();//Store distinct values so it they can be quickly checked against later
+    List<T> list = new List<T>();//Store the distinct values to preserve the order
+    for (int i = 0; i < array.Length; i++)//Loop through the array
+    {
+        if (!distinctValues.Contains(array[i]))//If not in Hashset then add it to the list.
+        {
+            distinctValues.Add(array[i]);//Add distinst value to HashSet
+            list.Add(array[i]);//Add distinct value to list to preseve order.
+        }
+    }
+    T[] distinctArray = list.ToArray();//Convert list to array
+    Console.WriteLine($"End:{string.Join(",", distinctArray)}");//Print original array after duplicates are removed
+    Console.WriteLine();//Print original array after duplicates are removed
+}
+```
+
+###### Code Output
+```
+Start:Pull-ups,Lunges,Rows,Lunges,Pull-ups
+End:Pull-ups,Lunges,Rows
+
+Start:1,4,3,3,4,6,6,4,1,35
+End:1,4,3,6,35
+
+Start:1.4,1.5,2.5,1.5,2.5,44.9,821,28,1.4,10
+End:1.4,1.5,2.5,44.9,821,28,10
+
+Start:12,89,3,4,5,12,2,10,8,89
+End:12,89,3,4,5,2,10,8
+
+Start:False,True,True,True,False
+End:False,True
+```
+
+### Performance
+
+Next, I want to test the performance. It will be an average of 10 tests. Each test will have 100 function calls of the test method. Each test method will have 1 million array objects to check for distinct.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million" />
+</details>
+
+
+#### LINQ Distinct Speed Test Code
+```cs
+void TestMethod(string[] array)
+{
+    string[] distinctArray = array.Distinct().ToArray();//Use LINQ Distinct to remove duplicates from the array
+}
+```
+
+#### For Loop With HashSet And List Code
+```cs
+void TestMethod(string[] array)
+{
+    HashSet<string> distinctValues = new HashSet<string>();//Store distinct values so it they can be quickly checked against later
+    List<string> list = new List<string>();//Store the distinct values to preserve the order
+    for (int i = 0; i < array.Length; i++)//Loop through the array
+    {
+        if (!distinctValues.Contains(array[i]))//If not in HashSet then add it to the list.
+        {
+            distinctValues.Add(array[i]);//Add distinst value to HashSet
+            list.Add(array[i]);//Add distinct value to list to preseve order.
+        }
+    }
+    string[] distinctArray = list.ToArray();//Convert list to array
+}
+```
+
+#### LINQ Distinct Speed Test Code Output
+```
+Test 1:Function Calls:100, In 0m 8s 283ms
+Test 2:Function Calls:100, In 0m 8s 263ms
+Test 3:Function Calls:100, In 0m 8s 279ms
+Test 4:Function Calls:100, In 0m 8s 327ms
+Test 5:Function Calls:100, In 0m 8s 355ms
+Test 6:Function Calls:100, In 0m 8s 346ms
+Test 7:Function Calls:100, In 0m 8s 336ms
+Test 8:Function Calls:100, In 0m 9s 206ms
+Test 9:Function Calls:100, In 0m 8s 475ms
+Test 10:Function Calls:100, In 0m 8s 485ms
+LINQ Distinct Average Speed:8436ms, In 10 Tests
+```
+
+#### For Loop With HashSet And List Speed Test Code Output
+```
+Test 1:Function Calls:100, In 0m 10s 774ms
+Test 2:Function Calls:100, In 0m 10s 985ms
+Test 3:Function Calls:100, In 0m 10s 179ms
+Test 4:Function Calls:100, In 0m 10s 539ms
+Test 5:Function Calls:100, In 0m 10s 398ms
+Test 6:Function Calls:100, In 0m 10s 650ms
+Test 7:Function Calls:100, In 0m 10s 517ms
+Test 8:Function Calls:100, In 0m 11s 65ms
+Test 9:Function Calls:100, In 0m 10s 645ms
+Test 10:Function Calls:100, In 0m 10s 488ms
+LINQ Distinct Average Speed:10625ms, In 10 Tests
+```
+
+<details>
+<summary>Full LINQ Distinct Speed Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+int lengthOfRandomString = 50;
+string testName = "LINQ Distinct";//Test name to print to average
+
+void TestMethod(string[] array)
+{
+    string[] distinctArray = array.Distinct().ToArray();//Use LINQ Distinct to remove duplicates from the array
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    string[] testData = GetArrayData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+string[] GetArrayData()
+{
+    string[] testData = new string[numberOfObjectsToCreate];
+    for (int i = 0; i < numberOfObjectsToCreate; i++)
+    {
+        string key = GenerateRandomString(lengthOfRandomString);
+
+        string value = GenerateRandomString(lengthOfRandomString);
+        testData[i] = value;
+
+    }
+    return testData;
+}
+
+string GenerateRandomString(int length)
+{
+    Random random = new Random();
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+}
+```
+</details>
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,LINQ Distinct,8436ms;2,For Loop With HashSet And List,10625ms;" />
+
+The best method for removing duplicates is LINQ Distinct. It is the fastest method, with short and sweet syntax. It is very readable when reviewing the code. But the only downside to it is that is not guaranteed to preserve the order so if you need the order preserved then you'll need to use the next method on the list.
+
+For Loop With HashSet And List is two seconds slower with a million objects isn't that bad but it does preserve the order since a list is involved. It does have more code with it so this is good if you need to order the array preserved otherwise it's better to go with LINQ Distinct in most cases.
+
+Know any other ways to remove duplicates from an array? Let me know in the comments below.

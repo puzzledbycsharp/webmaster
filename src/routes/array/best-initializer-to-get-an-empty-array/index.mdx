@@ -1,0 +1,251 @@
+---
+title: Best Initializer To Get An Empty Array
+---
+
+# Best Initializer To Get An Empty Array
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-small.webp 500w, ../../../../assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-medium.webp 1000w, ../../../../assets/fundamentals/collections/array/best-initializer-to-get-an-empty-array/best-initializer-to-get-an-empty-array-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Initializer To Get An Empty Array Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+The goal here is to create a non-null array with a size of zero. C# can create an empty array through the array initializer and static array method. So it can depend on your preference on which you want to use. There are various reasons why you might want to do this. You may not know upfront the size of the array so you want a placeholder for when you will know the size. You may want to return an empty array from a function if there's a failure or invalid input. Whatever the reason, empty arrays have a place in code but beware that they are there in the code and offer sufficient checks on the array to insure that you don't try to access elements in an empty array so that an exception isn't thrown. 
+
+All arrays must provide a size whether it is explicit or implicit so the empty array is size zero. Let's look at some examples.
+
+### Summary Table
+
+<Table header ="Analysis Type,Array Initializer,Static Array Empty,LINQ Enumerable Empty, LINQ Enumerable Repeat,Shorthand Array Initializer,New List Then ToArray" rows="Version Available,>=1.0,>= .NET 4.6,>= .NET 3.5,>= .NET 3.5,>= C# 7.0,>= .NET 3.5;" /> 
+
+
+### Empty Array With The Array Initializer
+
+This works by passing no values into the brackets [] and nothing in the curly braces. This works for all the different types found in C# and even the classes that you create.
+
+#### Empty Array With The Array Initializer Code Example
+
+This code uses the array initializer syntax to provide an empty array by keeping the brackets and curly braces empty. The array created will have a length of zero but not null. 
+
+```cs
+string[] stringArray = new string[] { };//Allocates an string array of size 0
+Car[] classArray = new Car[] { };//Allocates an car array of size 0
+double[] doubleArray = new double[] { };//Allocates an double array of size 0
+int[] intArray = new int[] { };//Allocates an int array of size 0
+float[] floatArray = new float[] { };//Allocates an float array of size 0
+bool[] boolArray = new bool[] { };//Allocates an bool array of size 0
+
+PrintArray<string>(stringArray, "stringArray");
+PrintArray<Car>(classArray, "classArray");
+PrintArray<double>(doubleArray, "doubleArray");
+PrintArray<int>(intArray, "intArray");
+PrintArray<float>(floatArray, "floatArray");
+PrintArray<bool>(boolArray, "boolArray");
+
+void PrintArray<T>(T[] array, string ArrayName)
+{
+    if(array.Length == 0)
+    {
+        Console.WriteLine($"{ArrayName}:Length == 0");
+    }
+}
+
+class Car
+{
+    public int WheelCount { get; set; }
+    public int TopSpeed { get; set; }
+    public string Type { get; set; }
+}
+```
+
+###### Code Output
+```
+stringArray:Length == 0
+classArray:Length == 0
+doubleArray:Length == 0
+intArray:Length == 0
+floatArray:Length == 0
+boolArray:Length == 0
+```
+
+This is a non-null array but with a size of 0 just like we want.
+
+#### Empty Array With The Array Initializer Second Variation Code Example
+
+```cs
+string[] stringArray = new string[0];//Allocates a string array of size 0
+Car[] classArray = new Car[0];//Allocates an car array of size 0
+double[] doubleArray = new double[0] ;//Allocates an double array of size 0
+int[] intArray = new int[0];//Allocates an int array of size 0
+float[] floatArray = new float[0] ;//Allocates an float array of size 0
+bool[] boolArray = new bool[0];//Allocates an bool array of size 0
+
+```
+
+###### Code Output
+
+```
+stringArray:Length == 0
+classArray:Length == 0
+doubleArray:Length == 0
+intArray:Length == 0
+floatArray:Length == 0
+boolArray:Length == 0
+```
+
+
+### Empty Array With Static Array Empty Method
+
+Array has a static method to return an empty array for us. [This was available in .NET 4.6](https://learn.microsoft.com/en-us/dotnet/api/system.array.empty?view=net-7.0) It is one of the standard ways provided in csharp. It says empty so it is readable and easy to use. Below is an example
+
+#### Empty Array With Static Array Empty Method Example Code
+
+
+```cs
+string[] stringArray = Array.Empty<string>();//Returns a string array of size 0
+Car[] classArray = Array.Empty<Car>();//Returns a car array of size 0
+double[] doubleArray = Array.Empty<double>();//Returns adouble array of size 0
+int[] intArray = Array.Empty<int>();//Returns a int array of size 0
+float[] floatArray = Array.Empty<float>();//Returns a float array of size 0
+bool[] boolArray = Array.Empty<bool>();//Returns a bool array of size 0
+```
+
+###### Code Output
+
+```
+stringArray:Length == 0
+classArray:Length == 0
+doubleArray:Length == 0
+intArray:Length == 0
+floatArray:Length == 0
+boolArray:Length == 0
+```
+
+
+### Empty Array With LINQ Enumerable Empty
+
+LINQ provides another method which is a two-step process. It creates an empty IEnumerable object and then converts it into an array via LINQ. [It is useful when working with LINQ expressions and examples like UNION.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.empty?view=net-7.0#remarks) Let's see an example. 
+
+#### Empty Array With LINQ Enumerable Empty Example Code
+
+LINQ Enumerable Empty requires a type to return for each type. This is comparable to Array's empty method but here there is more code to write with the ToArray.
+
+```cs
+string[] stringArray = Enumerable.Empty<string>().ToArray();//Returns a string array of size 0
+Car[] classArray = Enumerable.Empty<Car>().ToArray();//Returns a car array of size 0
+double[] doubleArray = Enumerable.Empty<double>().ToArray();//Returns a double array of size 0
+int[] intArray = Enumerable.Empty<int>().ToArray();//Returns a int array of size 0
+float[] floatArray = Enumerable.Empty<float>().ToArray();//Returns a float array of size 0
+bool[] boolArray = Enumerable.Empty<bool>().ToArray();//Returns a bool array of size 0
+```
+
+###### Code Output
+
+```
+stringArray:Length == 0
+classArray:Length == 0
+doubleArray:Length == 0
+intArray:Length == 0
+floatArray:Length == 0
+boolArray:Length == 0
+```
+
+
+### Empty Array With LINQ Enumerable Repeat
+
+Enumerable Repeat allows us to create a repeating pattern of zero and so it will return an empty array. [It has two parameters, the value to be repeated and the number of repetitions.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.repeat?view=net-7.0#examples) But it is tedious to provide different values to repeat even though they will not be repeated. This method was not made to create empty arrays even though it can do so.
+
+#### Empty Array With LINQ Enumerable Repeat Example Code
+
+For each type, you need to pass an unnecessary dummy value.
+
+```cs
+string[] stringArray = Enumerable.Repeat("", 0).ToArray();//Returns a string array of size 0
+Car[] classArray = Enumerable.Repeat(new Car(), 0).ToArray();//Returns an car array of size 0
+double[] doubleArray = Enumerable.Repeat(0.0, 0).ToArray();//Returns an double array of size 0
+int[] intArray = Enumerable.Repeat(0, 0).ToArray();//Returns an int array of size 0
+float[] floatArray = Enumerable.Repeat(0f, 0).ToArray();//Returns an float array of size 0
+bool[] boolArray = Enumerable.Repeat(false, 0).ToArray();//Returns an bool array of size 0
+```
+
+###### Code Output
+
+```
+stringArray:Length == 0
+classArray:Length == 0
+doubleArray:Length == 0
+intArray:Length == 0
+floatArray:Length == 0
+boolArray:Length == 0
+```
+
+### Empty Array With Shorthand Array Initializer 
+
+[This syntax removes the new, type and square brackets and just has curly braces.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/arrays#167-array-initializers) No types are provided so the compiler infers the type needed. This is the shortest and quickest way to create an empty array but also the most unreadable as it could be hard to tell a new developer what it is doing. It also 
+
+#### Empty Array With Shorthand Array Initializer  Example Code
+
+A simple two-character way to give an empty array.
+
+```cs
+string[] stringArray = { };//Returns an string array of size 0
+Car[] classArray = { };//Returns an car array of size 0
+double[] doubleArray = { };//Returns an double array of size 0
+int[] intArray = { };//Returns an int array of size 0
+float[] floatArray = { };//Returns an float array of size 0
+bool[] boolArray = { };//Returns an bool array of size 0
+```
+
+
+###### Code Output
+```
+stringArray:Length == 0
+classArray:Length == 0
+doubleArray:Length == 0
+intArray:Length == 0
+floatArray:Length == 0
+boolArray:Length == 0
+```
+
+### Empty Array With A New List Then ToArray
+
+Similar to the Enumerable method. We can create a new list and then convert the list into an array. Since the list was empty the array will also be empty.
+
+#### Empty Array With A New List Then ToArray
+
+Using the new list declaration will create a new list. I can then use LINQ ToArray to get the array.
+
+```cs
+string[] stringArray = new List<string>().ToArray();//Returns an string array of size 0
+Car[] classArray = new List<Car>().ToArray();//Returns an car array of size 0
+double[] doubleArray = new List<double>().ToArray();//Returns an double array of size 0
+int[] intArray = new List<int>().ToArray();//Returns an int array of size 0
+float[] floatArray = new List<float>().ToArray();//Returns an float array of size 0
+bool[] boolArray = new List<bool>().ToArray();//Returns an bool array of size 0
+```
+
+###### Code Output
+```
+stringArray:Length == 0
+classArray:Length == 0
+doubleArray:Length == 0
+intArray:Length == 0
+floatArray:Length == 0
+boolArray:Length == 0
+```
+
+### Conclusion
+
+The best method for initializing an empty array is the static array empty method. It is short and readable. It says what it does and you don't want to confuse people with syntax if they are new. It works on a return method and in a declaration for global methods.
+
+Array Initializers are the next best because they are available across the different csharp versions but they vary greatly so you'll have to pick which one works for you. The shorthand version is extremely short but might be hard to read as it doesn't describe anything which is bad coding practice.
+
+Enumerable Empty is readiable but it is a two step process and since the static array empty method is there is no need to use. this
+
+Enumerable Repeat is tedious as I said before and shouldn't be used  it wasn't made to create empty arrays in mind but to repeat other patterns at scale.  
+
+Creating a new list and then converting it to an array. Again, it's a two-step process and is not needed when there are only one-step methods to create an empty array.
+
+Know any other ways to initialize an empty array? Let me know in the comments below.
