@@ -687,7 +687,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/remove-duplicate-items-from-a-list/remove-duplicate-items-from-a-list-large.webp',
-    description:'The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order the items is preserved.'
+    description:'The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order of the items is preserved.'
   }
   ,{ 
     location:'fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists', 
@@ -699,7 +699,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/understanding-the-best-set-theory-methods-between-lists-large.webp',
-    description:'The best methods for intersect, union and except are with the HashSet collection type. The HashSet functions are faster than LINQs.'
+    description:'The best methods for intersect, union, and except are with the HashSet collection type. The HashSet functions are faster than LINQs.'
   }
   ,
   { 
@@ -712,7 +712,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-large.webp',
-    description:'The fastest method for converting a system array to a list is to use a array cast then use ToList. It is short and compact and easy to read.'
+    description:'The fastest method for converting a system array to a list is to use an array cast and then use ToList. It is short and compact and easy to read.'
   }
   ,{ 
     location:'fundamentals/collections/array', 

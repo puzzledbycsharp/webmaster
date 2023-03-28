@@ -12,16 +12,16 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-System Array is an abstract class that can only instantiated through a function. From the class name itself it's hard to tell if the what type it encapsulate so you'll need plan and be sure what time it is ahead of time. [Since System Array is not in the collection namespace but it is still considered a collection since it implements IList](https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-7.0) There are other types of arrays in the collection name space so I will be refereing this array as system array to advoid confusion. With this we can convert System Array to a List so I'll go over the methods one by one and provide analysis of each one.
+System Array is an abstract class that can only be instantiated through a function. From the class name itself, it's hard to tell what type it encapsulates so you'll need to plan and be sure what time it is ahead of time. [Since System Array is not in the collection namespace but it is still considered a collection since it implements IList.](https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-7.0) There are other types of arrays in the collection namespace so I will be referring to this array as a system array to avoid confusion. With this, we can convert System Array to a List so I'll go over the methods one by one and provide an analysis of each one.
 
-#### What Methods Converts a System Array into a List?
+#### What Methods Convert a System Array into a List?
 
-There are a few ways to do this and all of them involve a cast of some sort. One is to write our own method to loop the system array and add them to a list. The second uses a array cast then using ToList. Lastly the other method is to use OfType to cast the objects then use ToList to assign it to a list. All of these methods can get the result that we want but the difference in performance will be key to determine which is the best to use.
+There are a few ways to do this and all of them involve a cast of some sort. One is to write our method to loop the system array and add them to a list. The second uses an array cast and then uses ToList. Lastly, the other method is to use OfType to cast the objects and then use ToList to assign them to a list. All of these methods can get the result that we want but the difference in performance will be key to determining which is the best to use.
 
 ### Loop Method
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/loop-method-section-image.webp" altImage = "Loop Method Section Image" widthImage = "1400" heightImage = "300" />
 
-First method to convert all the System Array items to a list is through the brute force method of looping through all the items. Then applying a cast to each item retrieved and then adding it to the list. Examine the below code.
+The first method to convert all the System Array items to a list is through the brute force method of looping through all the items. Then apply a cast to each item retrieved and then adding it to the list. Examine the below code.
 
 ```cs
 Array systemArray = Array.CreateInstance(typeof(int), 4);//Create System Array with type int and length of 4
@@ -44,11 +44,11 @@ Console.WriteLine("list:" + string.Join(",", list));//Print to screen
 list:10,21,32,43
 ```
 
-This is the most basic way converting the two types but let's also test the perforance of this.
+This is the most basic way of converting the two types but let's also test the performance of this.
 
 #### Loop Method Speed Test
 
-In this test, I will run 10 tests which will have 100 function calls of the loop method. The loop method will run on 1 million objects. This will be the base line test for all the tests.
+In this test, I will run 10 tests which will have 100 function calls of the loop method. The loop method will run on 1 million objects. This will be the baseline test for all the tests.
 
 ```cs
 using System.Diagnostics;
@@ -127,13 +127,13 @@ Function calls:100, In 0m 3s 445ms
 Array To List By Loop Method Average speed:3532ms, In 10 tests
 ```
 
-From this basic loop, the average speed from the test is about 3 and half seconds. There are other ways that C# provides for us to handle this use case.
+From this basic loop, the average speed from the test is about 3 and a half seconds. There are other ways that C# provides for us to handle this use case.
 
 ### Cast and ToList Method
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/cast-and-tolist-section.webp" altImage = "Cast and ToList Method Section Image" widthImage = "1400" heightImage = "300" />
 
-Another way to we can solve this issue is to cast The System Array object to an array. Then convert that array to a list.
+Another way we can solve this issue is to cast The System Array object to an array. Then convert that array to a list.
 
 ```cs
 Array systemArray = Array.CreateInstance(typeof(int), 4);//Create System Array with type int and length of 4
@@ -151,7 +151,7 @@ Console.WriteLine("myList:" + String.Join(",", myList));//Print to screen
 myList:10,21,32,43
 ```
 
-This gives us the same output as before so this cast to array succeeds. Let's check out the performance of this method.
+This gives us the same output as before so this cast-to-array succeeds. Let's check out the performance of this method.
 
 #### Cast and ToList Method Speed Test
 
@@ -235,7 +235,7 @@ This method is very fast at only 109 milliseconds and is so much faster than jus
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/oftype-tolist-section.webp" altImage = "OfType and ToList Method Section Image" widthImage = "1400" heightImage = "300" />
 
-Lastly, we'll look at the OfType Method. [This method filters out objects that can be cast the type and returns a IEnumerable.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.oftype?view=net-7.0) We can use this method to convert a System Array to a IEnumerable then to a list. 
+Lastly, we'll look at the OfType Method. [This method filters out objects that can be cast as the type and returns an IEnumerable.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.oftype?view=net-7.0) We can use this method to convert a System Array to an IEnumerable and then to a list.
 
 ```cs
 Array systemArray = Array.CreateInstance(typeof(int), 4);//Create System Array with type int and length of 4
@@ -243,7 +243,7 @@ systemArray.SetValue(10, 0);//Set value to 10 at index 0
 systemArray.SetValue(21, 1);//Set value to 21 at index 1
 systemArray.SetValue(32, 2);//Set value to 32 at index 2
 systemArray.SetValue(43, 3);//Set value to 43 at index 3
-List<int> myList = systemArray.OfType<int>().ToList();//Filter out all objects that can be cast to int then change IEnumerable type to List with ToList
+List<int> myList = systemArray.OfType<int>().ToList();//Filter out all objects that can be cast to int then change the IEnumerable type to List with ToList
 Console.WriteLine("myList:" + String.Join(",", myList));//Print to screen=
 ```
 ###### Code Output
@@ -252,7 +252,7 @@ Console.WriteLine("myList:" + String.Join(",", myList));//Print to screen=
 myList:10,21,32,43
 ```
 
-As expected this produces the expected result. Now lets take a look at the speed of this method.
+As expected this produces the expected result. Now let's take a look at the speed of this method.
 
 #### OfType and ToList Method Speed Test
 
@@ -287,7 +287,7 @@ double GetConvertArrayToListByTYpeOfAndToListSpeedTest()
 
 List<int> ConvertArrayToListByTypeOfAndToList(Array systemArray)
 {
-    List<int> list = systemArray.OfType<int>().ToList();//Filter out all objects that can be cast to int then change IEnumerable type to List with ToList
+    List<int> list = systemArray.OfType<int>().ToList();//Filter out all objects that can be cast to int then change the IEnumerable type to List with ToList
     return list;
 }
 ```
@@ -337,6 +337,6 @@ This ends up being the slowest method and even slower than just looping through 
 ### Conclusion
 <Table header ="Overall Rank,Method,Speed" rows="1,Cast and ToList,109ms;2,Loop,3532ms;3,OfType and ToList,3736ms;" />
 
-The best method for converting a system array to a list is to cast it to array of that type then use ToList. It has really good performance that is far better than the other two methods. This call all be done on one line so it's compact and readability. Looping through the array and adding to a list is almost as slow as using OfType that it isn't worth it write unless you need to. Even though the typeOf and ToList can fit one line of code, it is too slow and shouldn't be used compared to the other methods.
+The best method for converting a system array to a list is to cast it to an array of that type and then use ToList. It has a really good performance that is far better than the other two methods. This call all be done on one line so it's compact and readable. Looping through the array and adding to a list is almost as slow as using OfType it isn't worth it to write unless you need to. Even though the type and ToList can fit one line of code, it is too slow and shouldn't be used compared to the other methods.
 
 Know any other methods of doing this? Let me know in the comments.

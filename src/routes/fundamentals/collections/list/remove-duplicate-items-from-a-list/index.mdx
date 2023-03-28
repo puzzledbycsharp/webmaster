@@ -966,7 +966,7 @@ Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
 12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8412
 ```
 
-This is expected output and since we stored the unique items into a list the order is perserved. I only used the HashSet as a filter for the items and did not return the HashSet items.
+This is the expected output and since we stored the unique items in a list the order is preserved. I only used the HashSet as a filter for the items and did not return the HashSet items.
 
 
 
@@ -1116,7 +1116,7 @@ Function calls:10, In 0m 0s 121ms
 HashSet And List Combo Method Average speed:127ms, In 10 tests
 ```
 
-This comes in line with HashSet and LINQ Distinct with no advatage in performance over the other two methods. But since I saved items into a list the order is preserved.
+This comes in line with HashSet and LINQ Distinct with no advantage in performance over the other two methods. But since I saved items into a list the order is preserved.
 
 
 
@@ -1124,4 +1124,4 @@ This comes in line with HashSet and LINQ Distinct with no advatage in performanc
 
 <Table header ="Overall Rank,Method,Speed,Order Preserved" rows="1,HashSet and List Combo,127ms,Yes;2,HashSet,122ms,No;3,LINQ Distinct,123ms,No;4,List Contains,198207ms,Yes;" />
 
-The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order the items is preserved. If you do not care able the order then LINQ Distinct or HashSet might better since their only a few lines of code. Their performance is also is really good. List Contains should not be used to get distinct items because it does not scale well at all and is really slow.
+The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order of the items is preserved. If you do not care able the order then LINQ Distinct or HashSet might be better since they only have a few lines of code. Their performance is also really good. List Contains should not be used to get distinct items because it does not scale well at all and is slow.

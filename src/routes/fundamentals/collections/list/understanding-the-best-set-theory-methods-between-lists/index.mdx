@@ -12,25 +12,25 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Comparisions between lists can be made through built in LINQ functions such as [union, intersect, except](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-7.0#hashset-and-linq-set-operations). These operations are helpful to quickly get values that are different in one list than in another or are only in both lists or exlude from one list.
+Comparisons between lists can be made through built-in LINQ functions such as [union, intersect, and except.](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-7.0#hashset-and-linq-set-operations). These operations are helpful to quickly get values that are different in one list than in another or are only in both lists or exclude from one list.
 
-Another way to C# provides built in funtions is for HashSet. It is a collection type that has intersetion, union and except operations. So we can compare between LINQ functions with the HashSet in performance and setup.   
+Another way to C# provides built-in functions is for HashSet. It is a collection type that has intersection, union, and except operations. So we can compare LINQ functions with the HashSet in performance and setup.
 
-So I'll go into more details about the types of operations to do comparsions with lists. 
+So I'll go into more detail about the types of operations to do comparisons with lists.
 
 ### Intersection Methods
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/intersect-graphic.webp" altImage = "Union Image" widthImage = "2304" heightImage = "1728" />
 
-Based on the diagram, intersection is where both circles overlap. Items that exists in both circles are the intersection
+Based on the diagram, the intersection is where both circles overlap. Items that exist in both circles are the intersection.
 
-For the code perspective, intersection of two list means that which elements they both have in common. For exmaple, if I have two lists of 5 numbers which one list has odd number and anothe list where it's muliples of 3. Then the intersection of the two lists would be 3 and 9. Which is often one of things we're interested in between two lists.
-
+From the code perspective, the intersection of two lists means which elements they both have in common. For example, if I have two lists of 5 numbers one list has the odd number, and another list where it's multiples of 3. Then the intersection of the two lists would be 3 and 9. Which is often one of the things we're interested in between two lists.
 
 
 #### LINQ's Intersect Method
 
-LINQ provides a built in function to return the common elements in a IEnumerable which we can convert to a list. This gives us a powerful one liner that gives us exactly what we want and quickly. This function is readabiblity and it describles what it is doing without us having to guess. Examine the code below with two sets of ints.
+LINQ provides a built-in function to return the common elements in an IEnumerable which we can convert to a list. This gives us a powerful one-liner that gives us exactly what we want and quickly. This function is readable and it describes what it is doing without us having to guess. 
+
 
 ```cs
 List<int> list1 = new List<int>() { 1, 3, 5, 7, 9 };//odd numbers
@@ -47,9 +47,10 @@ intersectList:3,9
  
 This function sucuessfully only returned the two correct common elements of 3 and 9
 
-##### LINQ's Intersect Method with objects
+##### LINQ's Intersect Method With Objects
 
-Next we're take a more complicated case when we have a list of objects. We'll create a class called Transaction that will have an id, price, timestamp. In this class I will overload equals and GetHashCode so that defines what a unique object is. In this case, I will make based on the timestamp and id. I will give Ids that are the same in the previous example and the date will be the same for all the transactions. See example below.
+Next, we take a more complicated case when we have a list of objects. We'll create a class called Transaction that will have an id, price, and timestamp. In this class, I will overload equals and GetHashCode so that defines what a unique object is. In this case, I will make based on the timestamp and id. I will give Ids that are the same as in the previous example and the date will be the same for all the transactions. See the example below.
+
 
 ```cs
 
@@ -107,11 +108,11 @@ class Transaction
 ```
 intersectList:3,9
 ```
-These are the ids of intersection and this is correct. This is the same output that we get from the previous example. 
+These are the ids of the intersection and this is correct. This is the same output that we get from the previous example.
 
 ##### LINQ Intersect Speed Test
 
-The next thing we need to test is how the performance is on the this LINQ function. In this test, I will generate two one million lists and find the common ids between the two lists. 
+The next thing we need to test is how the performance is on this LINQ function. In this test, I will generate two one million lists and find the common ids between the two lists.
 
 Parameters for the test
 
@@ -231,11 +232,11 @@ Function calls:10, In 0m 2s 669ms
 LINQ Intersect Method Average speed:2692ms, In 10 tests
 ```
 
-With one million objects per list LINQ intersect is able to complete the test in 2.6 seconds. It seems decently fast so let's see if there are any faster methods.
+With one million objects per list, LINQ intersect can complete the test in 2.6 seconds. It seems decent fast so let's see if there are any faster methods.
 
 #### HashSet's IntersectWith Method
 
-HashSet provides it's own intersect method. Note that for this method, only set1 will be modified so it will need to be converted to a list after the opersation is completed. So in the following example, I will generate a two HashSets and use the intersect method to find the common elements just like the LINQ function.
+HashSet provides its own intersect method. Note that for this method, only set1 will be modified so it will need to be converted to a list after the operation is completed. So in the following example, I will generate two HashSets and use the intersect method to find the common elements just like the LINQ function.
 
 ```cs
 HashSet<Transaction> set1 = new HashSet<Transaction>();
@@ -305,7 +306,7 @@ HashSet provides the exact output as with LINQ.
 
 ##### HashSet IntersectWith Speed Time
 
-Next will show a speed test for HashSet IntersectWith. Since HashSet has it's own built in fuctions and in general HashSet tends to be fast> I would expect to see HashSet functions to be really fast.
+Next will show a speed test for HashSet IntersectWith. Since HashSet has its built-in functions and in general HashSet tends to be fast> I would expect to see HashSet functions to be fast.
 
 ```cs
 
@@ -420,17 +421,17 @@ Function calls:10, In 0m 0s 49ms
 HashSet IntersectWith Method Average speed:49ms, In 10 tests
 ```
 
-At an average speed of 49ms, HashSet's IntersectWith function is significantly faster than LINQ's Intersect method. 
+At an average speed of 49ms, HashSet's IntersectWith function is significantly faster than LINQ's Intersect method.
 
 
 ### Union Methods
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/union-graphic.webp" altImage = "Union Image" widthImage = "2304" heightImage = "1728" />
 
-Union is all unique entries from both circles, so both circles are highlighted. For lists, it all unique elements from both lists. Union is a common operation when combining two lists together to form one list. We'll first look at LINQ's union method so see example below.
+Union is all unique entries from both circles, so both circles are highlighted. For lists, it is all unique elements from both lists. Union is a common operation when combining two lists to form one list. We'll first look at LINQ's union method so see the example below.
 
 #### LINQ's Union Method
 
-LINQ provides a simple one-liner method that is compact and since it's built in function for lists it comes in handy. We'll start with a simple example. A list of odd number and a list of numbers by 3.
+LINQ provides a compact and simple one-liner method and since it's a built-in function for lists it comes in handy. We'll start with a simple example. A list of an odd numbers and a list of numbers by 3.
 
 ```cs
 List<int> list1 = new List<int>() { 1, 3, 5, 7, 9 };//odd numbers
@@ -632,12 +633,12 @@ Function calls:10, In 0m 3s 441ms
 LINQ Union Method Average speed:3450ms, In 10 tests
 ```
 
-LINQ's Union Method completes the test at about 3 and half seconds which is reasable. We'll see if HashSet can make an improvement on this. 
+LINQ's Union Method completes the test at about 3 and half seconds which is reasonable. We'll see if HashSet can improve on this.
 
 
 #### HashSet Union Method
 
-HashSet comes with a handy union method that returns another HashSet that is the combination of the two sets that is provided. The nice thing about this is that is a one-liner method. Let's see an example now.
+HashSet comes with a handy union method that returns another HashSet that is the combination of the two sets that are provided. The nice thing about this is that is a one-liner method. Let's see an example now.
 
 ```cs
 HashSet<Transaction> set1 = new HashSet<Transaction>();
@@ -703,11 +704,11 @@ class Transaction
 unionList:1,3,5,7,9,0,6,12
 ```
 
-This is expected result for a union method.
+This is the expected result for a union method.
 
 #### HashSet Union Speed Test
 
-We also need to test the speed of this method. Will it continue the trend of HashSet methods that are faster than their LINQ counterparts. We'll let's see as there's an example below.
+We also need to test the speed of this method. Will it continue the trend of HashSet methods that are faster than their LINQ counterparts? We'll let's see as there's an example below.
 
 
 ```cs
@@ -821,17 +822,17 @@ Function calls:10, In 0m 0s 83ms
 HashSet Union Method Average speed:83ms, In 10 tests
 ```
 
-Of the two union metheds, HashSet is the fastest at about 83ms. It is another sub second performance from HashSet, While both LINQ methods are over 2 seconds at least.
+Of the two union methods, HashSet is the fastest at about 83ms. It is another sub-second performance from HashSet, While both LINQ methods are at over 2 seconds at least.
 
 ### Except Methods
 
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/except-graphic.webp" altImage = "Union Image" widthImage = "2304" heightImage = "1728" />
 
-Except is everything not in the current list so if I had two lists then this method would exclude everything from the first list even if they existed in first list. Let's look at an example.
+Except for everything not in the current list so if I had two lists then this method would exclude everything from the first list even if they existed in the first list. Let's look at an example.
 
 #### LINQ's Except Method
 
-LINQ provides an except method to difference between the two lists. [It is the all items from list 1 that do not appear in list 2.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.except?view=net-7.0)
+LINQ provides an except method to differentiate between the two lists. [It is all items from list 1 that do not appear in list 2.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.except?view=net-7.0)
 
 ```cs
 List<int> list1 = new List<int>() { 1, 3, 5, 7, 9 };//odd numbers
@@ -914,7 +915,7 @@ exceptList:1,5,7
 
 #### LINQ's Except Speed Test
 
-Next we'll test how this except function performs un 2 one million list load. This is the same test as in previous examples.
+Next, we'll test how this except function performs un 2 one million list load. This is the same test as in previous examples.
 
 ```cs
 
@@ -1029,12 +1030,12 @@ Function calls:10, In 0m 3s 444ms
 LINQ Except Method Average speed:3467ms, In 10 tests
 ```
 
-Except from LINQ comes in at about 3 and half seconds. This is very similar to the other LINQ methods tested so far
+Except LINQ comes in at about 3 and half seconds. This is very similar to the other LINQ methods tested so far.
 
 
 #### HashSet's ExceptWith Method
 
-HashSet also has a built function method for the difference of lists. It is compact and easy to use. But also note that it modifies the first set and so that set needs to converted to a list after this operation.  Let's look at an example.
+HashSet also has a built function method for the difference of lists. It is compact and easy to use. But also note that it modifies the first set so that the set needs to convert to a list after this operation. Let's look at an example.
 
 ```cs
 HashSet<Transaction> set1 = new HashSet<Transaction>();
@@ -1103,7 +1104,7 @@ exceptList:1,5,7
 
 #### HashSet's ExceptWith Method Speed Test
 
-I will complete the test for HashSet's ExceptWith Method. It is expected to be fast as the other HashSet methods were also fast. This will be the same test as the other meothds.
+I will complete the test for HashSet's ExceptWith Method. It is expected to be fast as the other HashSet methods were also fast. This will be the same test as the other methods.
 
 ```cs
 
@@ -1225,8 +1226,8 @@ HashSet ExceptWith Method Average speed:6ms, In 10 tests
 
 <Table header ="Overall Rank,Method,Speed Test,Order Preserved" rows="1,HashSet's ExceptWith,6ms,No;2,HashSet's IntersectWith,49ms,No;3,HashSet's Union,49ms,No;4,LINQ's Intersect,2692ms,Yes;5,LINQ's Union,3450ms,Yes;6,LINQ's Except,3467ms,Yes;" />
 
-The best methods for intersect, union and except are with the HashSet collection type. They are very fast operations even with dealing with two lists 1 million objects. These methods are best when the order of the items doesn't matter because HashSet does not guarantee, but depending on the size of the list you could just use HashSet operations then sort quickly afterwards.
+The best methods for intersect, union, and except are with the HashSet collection type. They are very fast operations even with dealing with two lists of 1 million objects. These methods are best when the order of the items doesn't matter because HashSet does not guarantee, but depending on the size of the list you could just use HashSet operations and then sort quickly afterward.
 
-If you need a sorted list then and you want to keep it simple then going with the LINQ functions might be worthwhile to look into and if you the dataset you are dealing with isn't too big. 
+If you need a sorted list then and you want to keep it simple then going with the LINQ functions might be worthwhile to look into if the dataset you are dealing with isn't too big.
 
-Do you have any motheds for Set Theory operations? Post in the comments
+Do you have any methods for Set Theory operations? Post in the comments.
