@@ -11,22 +11,25 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-small.webp 250w, ../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-medium.webp 500w, ../../../../assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How to find an item in the listBanner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
-When we have a list of items at some point we may want to find an item or object in the list. C# has built in methods to do this, like List Find, , List IndexOf, List FindAll, Enumerable Where, and Dictionary. But it is also important to understand the most basic find method we can have so that we can understand how helpful these methods are. So as a baseline case we will first look at just looping through the items one by one until we find the item we're looking for.
+
+When we have a list of items at some point we may want to find an item or object in the list. C# has built-in methods to do this, like List Find, List IndexOf, List FindAll, Enumerable Where, and Dictionary. But it is also important to understand the most basic find method we can have so that we can understand how helpful these methods are. So as a baseline case, we will first look at just looping through the items one by one until we find the item we're looking for.
+
 
 ### Base Case Loop Method
-This is simply looping through each item until we find a match on the desired object by some identification. In this example, we'll look at a list of cars and loop through and find a matching vin number. See the example.
+
+This is simply looping through each item until we find a match on the desired object by some identification. In this example, we'll look at a list of cars and loop through and find a matching VIN. See the example.
 
 #### Base Case Loop Method Example Code
 
 ```cs
 List<Car> carList = GetInitialCarList();//Get intial hardcored list
-int vinNumberTofind = 5;//VinNumber selected by user to find.
+int vinNumberTofind = 5;//VIN selected by a user to find.
 Car car = FindInListByLoop(vinNumberTofind, carList);//Find the car object by vinNumber through a loop method
 Console.WriteLine(car);//Write to screen
 
 List<Car> GetInitialCarList()
 {
-    List<Car> carList = new List<Car>();//Create new Car List as empty
+    List<Car> carList = new List<Car>();//Create new Car List is empty
     carList.Add(new Car(1, "black", 4, "SuperT", "SUV39", 2020));//Create new Car object
     carList.Add(new Car(2, "yellow", 4, "SuperRX", "Compact4", 2010));//Create new Car object
     carList.Add(new Car(3, "red", 4, "SuperH", "Truck3", 2011));//Create new Car object
@@ -85,7 +88,8 @@ public class Car
 This gives us we want but there are better methods than this for finding a object in a list.
 
 ###### Base Case Loop Method Speed Test
-Next we'll test the speed of this method. This test selects at random an id(vin number) to match in the list of 100 thousand objects. This will happen 50 thousand times will equal on test then the test will repeat 10 times to get the average speed. Let's see the base case result
+
+Next, we'll test the speed of this method. This test selects at random an id(VIN) to match in the list of 100 thousand objects. This will happen 50 thousand times will equal one test then the test will repeat 10 times to get the average speed. Let's see the base case result.
 
 ###### Base Case Loop Method Speed Test Example Code
 
@@ -127,7 +131,7 @@ double BaseCaseLoopMethodSpeedTest()
 ```cs
 List<Car> GetInitialCarList()
 {
-    List<Car> carList = new List<Car>();//Create new Car List as empty
+    List<Car> carList = new List<Car>();//Create new Car List is empty
     int numberOfObjectsToCreate = 100000;
     int maxNumberOfVinNumber = 999999999;
     int maxNumberOfColorCharacters = 4;
@@ -152,12 +156,12 @@ Car FindInListByLoop(int vinNumber, List<Car> carList)
 {
     foreach (Car car in carList)//Loop through all objects until a match is found
     {
-        if (car.VinNumber == vinNumber)//If vinNumber is a match of what we're looking for then return that object
+        if (car.VinNumber == vinNumber)//If the VIN is a match of what we're looking for then return that object
         {
             return car;//Return found object
         }
     }
-    return null;//return null if nothing is found. In a proper code we should be prepared to handle this case
+    return null;//return null if nothing is found. In a proper code, we should be prepared to handle this case
 }
 
 string GetRandomText(int numberOfCharacters)
@@ -220,7 +224,7 @@ Function calls:50000, In 0m 14s 627ms
 Base Case Loop Method Average speed:14739ms, In 10 tests
 ```
       
-With a base speed of around 14 seconds we can expect this to be the slowest speed.
+With a base speed of around 14 seconds, we can expect this to be the slowest speed.
 
 ###### How Readable Is The Base Case Loop Method
 This reads well as there is only one conditional statement. If there's match then the object is returned. If not found then null is returned.
@@ -229,19 +233,19 @@ This reads well as there is only one conditional statement. If there's match the
 This takes up serval lines so it's not very compact but easy to understand. The other methods would condense to one line.
 
 ### List Find Method
-List comes with a built in method that searches the list and finds the object and return the object if there's match on condition given. This is handy function to have and saves us from writing our own function. Let's see an example of this.
+The list comes with a built-in method that searches the list and finds the object and returns the object if there's a match on the condition given. This is a handy function to have and saves us from writing our function. Let's see an example of this.
 
 ###### List Find Method Example
 
 ```cs
-List<Car> carList = GetInitialCarList();//Get intial hardcored list
-int vinNumberTofind = 5;//VinNumber selected by user to find.
+List<Car> carList = GetInitialCarList();//Get initial hardcoded list
+int vinNumberTofind = 5;//VIN selected by a user to find
 Car car = FindInListByFind(vinNumberTofind, carList);//Find the car object by vinNumber through a loop method
 Console.WriteLine(car);//Write to screen
 
 Car FindInListByFind(int vinNumber, List<Car> carList)
 {
-    return carList.Find(x => x.VinNumber == vinNumber);//Pass condition to find the object and return it. A null can be returned
+    return carList.Find(x => x.VinNumber == vinNumber);//Pass the condition to find the object and return it. A null can be returned
 }
 
 ```
@@ -297,9 +301,10 @@ public class Car
 VinNumber:5, Color:dark blue, DoorNumber:4, Make:HyperF, Model:Sedan89, Year:2013
 ```
       
-This gives us the same result as our own baseline function so we know that this is working as expected.
+This gives us the same result as our baseline function so we know that this is working as expected.
 
 ###### List Find Method Speed Test
+
 Based on the baseline test, we will test the speed of the list find function and see how it compares to the baseline. The speed is a determining factor in these tests because the user is most impacted by the speed. Let's examine the code.
 
 ###### List Find Method Speed Test Example Code
@@ -427,22 +432,23 @@ public class Car
   List Find Loop Method Average speed:11562ms, In 10 tests
 ```
           
-With an average speed of 11 seconds this is an improvement over the loop method. This makes this the front runner method so far.
+With an average speed of 11 seconds, this is an improvement over the loop method. This makes this the front-runner method so far.
 
 ###### How Readable Is The List Find Method
-This is very readable but the syntax for the addling the conditional may be new to some but it is not too hard to pick up.
+This is very readable but the syntax for adding the conditional may be new to some but it is not too hard to pick up.
 
 ###### How Concise Is The List Find Method
 This is very compact and the function is named well with one word Find. It takes up only one line with is a great and the conditional statement can be added in the same line which is also good.
 
 ### List IndexOf Method
-IndexOf for list returns an index where the object exists then we use the indexer function and pass an object to get the object. It is a two step process. There is also some set up involved because we need to override the Equals and Hashcode So let's look at an example.
+
+IndexOf for list returns an index where the object exists then we use the indexer function and pass an object to get the object. It is a two-step process. There is also some setup involved because we need to override the Equals and Hashcode So let's look at an example.
 
 ###### List IndexOf Method Example Code
 
 ```cs
-List<Car> carList = GetInitialCarList();//Get intial hardcored list
-int vinNumberTofind = 5;//VinNumber selected by user to find.
+List<Car> carList = GetInitialCarList();//Get initial hardcoded list
+int vinNumberTofind = 5;//VIN selected by a user to find
 
 Car car = FindInListByIndexOf(vinNumberTofind, carList);//Find the car object by vinNumber through a loop method
 Console.WriteLine(car);//Write to screen
@@ -666,22 +672,25 @@ Function calls:50000, In 0m 17s 998ms
 IndexOf Method Average speed:18067ms, In 10 tests
 ```
         
-With an average speed of 18 seconds, that would make this slowest method so far and even slower than just looping through the items and finding a match.
+With an average speed of 18 seconds, that would make this the slowest method so far and even slower than just looping through the items and finding a match.
 
 ###### How Readable Is The List IndexOf Method
-While the intial method of reading of finding the index then using that index to get the object from the list is readable. The underlying mechanics of equals and gethashcode could be easily missed or miss understood while at the same time there's need to modify the car object so that only one property can be populated so that the search can for the index can be made. The step of creating an object to get an object seems redundant.
+
+While the initial method of reading of finding the index and then using that index to get the object from the list is readable. The underlying mechanics of the equals and get hash code could be easily missed or miss understood while at the same time, there's a need to modify the car object so that only one property can be populated so that the search can for the index be made. The step of creating an object to get an object seems redundant.
 
 ###### How Concise Is The List IndexOf Method
+
 While the method is only two lines and is concise the underlying setup of the object may complicate things if there's a better method.
 
 ### List FindAll Method
-Find all provides a method that return multiple objects that match, but we can use it to return one object that matches and assume that our condition will only return one match. Let's look at an example.
+
+Find all provide a method that returns multiple objects that match, but we can use it to return one object that matches and assume that our condition will only return one match. Let's look at an example.
 
 ###### List FindAll Code Example
 
 ```cs
-List<Car> carList = GetInitialCarList();//Get intial hardcored list
-int vinNumberTofind = 5;//VinNumber selected by user to find.
+List<Car> carList = GetInitialCarList();//Get initial hardcoded list
+int vinNumberTofind = 5;//VIN selected by a user to find.
 
 Car car = FindInListByFindAll(vinNumberTofind, carList);//Find the car object by vinNumber through a loop method
 Console.WriteLine(car);//Write to screen
@@ -750,7 +759,8 @@ VinNumber:5, Color:dark blue, DoorNumber:4, Make:HyperF, Model:Sedan89, Year:201
 This gives us what we want. Even though method could objects but by restricting it to a unique identifier we can only one item back.
 
 ###### List FindAll Speed Test
-Now for the speed test of this method. The difference between this method and and List Find would be that FindAll would need search the entire list because it looks for duplicates while Find will stop on the first found value. We would expect FindAll to perform slower than Find. Let's look at the test.
+
+Now for the speed test of this method. The difference between this method and List Find would be that FindAll would need to search the entire list because it looks for duplicates while Find will stop on the first found value. We would expect FindAll to perform slower than Find. Let's look at the test.
 
 ###### List FindAll Speed Test Code
 
@@ -890,17 +900,17 @@ With an average speed of about 24 seconds, this makes FindAll the slowest method
 It reads well and returns all matches on the conditional statement and it returns a list of all the matches values and the name implies. The setup is similar to FInd as it takes in the same parameters but the difference is that it returns a list instead of a single object.
 
 ###### How Concise Is The List FindAll Method
-It is concise, but has more lines of code if we just want to return a single object and we need to do null checks and see if the list has at least one element in it.
+It is concise but has more lines of code if we just want to return a single object and we need to do null checks and see if the list has at least one element in it.
 
 ### Enumerable Where Method
-Enumerable Where uses a conditional statement to returns all objects that match the condition. It is similar to FindAll so let's look at an example.
+Enumerable Where uses a conditional statement to return all objects that match the condition. It is similar to FindAll so let's look at an example.
 
 ###### Enumerable Where Example Code
 
   
 ```cs
-List<Car> carList = GetInitialCarList();//Get intial hardcored list
-int vinNumberTofind = 5;//VinNumber selected by user to find.
+List<Car> carList = GetInitialCarList();//Get initial hardcoded list
+int vinNumberTofind = 5;//VIN selected by a user to find.
 
 Car car = FindInListByEnumerableWhere(vinNumberTofind, carList);//Find the car object by vinNumber through a loop method
 Console.WriteLine(car);//Write to screen
@@ -967,10 +977,11 @@ public class Car
 VinNumber:5, Color:dark blue, DoorNumber:4, Make:HyperF, Model:Sedan89, Year:2013
 ```
             
-This works as intended. If you look at the syntax there are subtile differences in how to get the element and type returns is not a list in this case but of IEnumerable of Car types.
+This works as intended. If you look at the syntax there are subtle differences in how to get the element and type returns is not a list in this case but of IEnumerable of Car types.
 
 ###### Enumerable Where Speed Test
-This is the last method we have to test the performance with since this method is similar to FIndALl that it returns a collection of objects that matches the provided condition. We would also expect this method to to perform poorly. This is because in order to ensure that all matches are found the entire list would need to be traversed even if there is only one occupance in the list.
+
+This is the last method we have to test the performance with since this method is similar to FindAll that which returns a collection of objects that matches the provided condition. We would also expect this method to perform poorly. This is because to ensure that all matches are found the entire list would need to be traversed even if there is only one occupancy in the list.
 
 ###### Enumerable Where Speed Test Code
 
@@ -1107,22 +1118,23 @@ Function calls:50000, In 0m 59s 33ms
 Enumerable Where Method Average speed:58872ms, In 10 tests
 ```
               
-With an average speed of 58 seconds. This method's performance is terrible and it by far the worst so avoid this if possible.
+With an average speed of 58 seconds. This method's performance is terrible and it is by far the worst so avoid this if possible.
 
 ###### How Readable Is The Enumerable Where Method
-It reads well and returns all matches on the conditional statement and since it doesn't return a list like FindAll you may need to learn the differences in IEnumerable and list to get what you want.
+It reads well and returns all matches on the conditional statement and since it doesn't return a list like FindAll you may need to learn the differences between IEnumerable and list to get what you want.
 
 ###### How Concise Is The Enumerable Where Method
-It is concise, but has the same lines of code as the FindAll Method.
+It is concise but has the same lines of code as the FindAll Method.
 
 ### Alternate Search Method In Dictionary
-While this is not a list method but a completely different data structure. It's mentioned here because it's search method is is superior to that of a list. That is one of the more important distinction between a list vs dictionary In fact, if you have a more search dependant use case dictionary is typically a better choice to hold the data than a list. The great aspect to dictionaries that make them great for searches is that the keys that are mapped to values are non linear and don't have to follow 0 to list.Count - 1 indexing. In fact, the keys can be any data type. Let's look at an example.
+
+While this is not a list method but a completely different data structure. It's mentioned here because its search method is superior to that of a list. That is one of the more important distinctions between a list and a dictionary In fact if you have a more search-dependent use case dictionary is typically a better choice to hold the data than a list. The great aspect of dictionaries that makes them great for searches is that the keys that are mapped to values are non-linear and don't have to follow 0 to list.Count - 1 indexing. The keys can be any data type. Let's look at an example.
 
 ###### Alternate Search Method In Dictionary Example Code
 
 ```cs
-Dictionary<int, Car> carDictionary = GetInitialCarDictionary();//Get intial hardcored list
-int vinNumberTofind = 5;//VinNumber selected by user to find.
+Dictionary<int, Car> carDictionary = GetInitialCarDictionary();//Get initial hardcoded list
+int vinNumberTofind = 5;//VIN selected by a user to find.
 
 Car car = FindInDictionary(vinNumberTofind, carDictionary);//Find the car object by vinNumber through a loop method
 Console.WriteLine(car);//Write to screen
@@ -1237,7 +1249,7 @@ double DictionarySearchMethodSpeedTest()
 
 Dictionary<int, Car> GetInitialCarDictionary()
 {
-    Dictionary<int, Car> carDictionary = new Dictionary<int, Car>();//Create new Car dictioanry as empty
+    Dictionary<int, Car> carDictionary = new Dictionary<int, Car>();//Create new Car dictionary as empty
     int numberOfObjectsToCreate = 100000;
     int maxNumberOfVinNumber = 999999999;
     int maxNumberOfColorCharacters = 4;
@@ -1253,7 +1265,7 @@ Dictionary<int, Car> GetInitialCarDictionary()
             Car car = new Car(GetRandomInt(maxNumberOfVinNumber), GetRandomText(maxNumberOfColorCharacters), GetRandomInt(maxNumberofWheels), GetRandomText(maxNumberOfMakeCharacters), GetRandomText(maxNumberOfModelCharacters), GetRandomInt(maxNumberOfYear));
             if (!carDictionary.ContainsKey(car.VinNumber))
             {
-                carDictionary.Add(car.VinNumber, car);//Add a new Car to the dictioanry
+                carDictionary.Add(car.VinNumber, car);//Add a new Car to the dictionary
                 isAdded = true;
             }
         }
@@ -1350,4 +1362,4 @@ Yes, that is correct the dictionary can perform the same test as the list in 7 m
 
 <Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Dictionary Collection Type,7ms,8 lines,4;2,List Find Method,11562ms,3 lines,4;3,Base Case Loop Method,14739ms,11 lines,4;4,List IndexOf Method,18067ms,6 lines,3;5,List FindAll Method,23130ms,9 lines,3;6,Enumerable Where Method,58872ms,9 lines,3" />
 
-The best method for finding an item in a list is List Find, however, the best collection type for finding an item is the dictionary. If starting from scratch and search for items was the main use case then dictionary is the better choice. But often is the case you may have not designed the system in use and have no choice to but to use a list. List Find is the best of the list methods because it is the fastest list method. It's easy to use and set up and also very compact. Next third best method is writing our own method to loop through the list and pick the item that we want. It may seem like more work doing it that way but there is flexibility it crafting exactly what we want. The IndexOf Method, FindAll, Enumerable Where are all too slow to recommend to use and should be avoided for this use case of finding an item in the list.
+The best method for finding an item in a list is List Find, however, the best collection type for finding an item is in the dictionary. If starting from scratch and searching for items was the main use case then a dictionary is the better choice. But often is the case you may have not designed the system in use and have no choice but to use a list. List Find is the best of the list methods because it is the fastest list method. It's easy to use and set up and also very compact. Next third best method is writing our method to loop through the list and pick the item that we want. It may seem like more work doing it that way but there is flexibility in crafting exactly what we want. The IndexOf Method, FindAll, and Enumerable Where are all too slow to recommend use and should be avoided for this use case of finding an item in the list.

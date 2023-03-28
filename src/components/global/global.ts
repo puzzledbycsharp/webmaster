@@ -614,7 +614,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/how-to-initialize-a-list/how-to-initialize-a-list-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/how-to-initialize-a-list/how-to-initialize-a-list-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/how-to-initialize-a-list/how-to-initialize-a-list-large.webp',
-    description:'Initializing the list using the in line method is best used when there are only a few items and also where the list won\'t change much very often.'
+    description:'Initializing the list using the in-line method is best used when there are only a few items and also where the list won\'t change much very often.'
   },    { 
     location:'fundamentals/collections/list/convert-list-to-string-with-a-delimiter', 
     url: 'https://puzzledbycsharp.com/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/',
@@ -637,7 +637,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-large.webp',
-    description:'The best method for finding an item in a list is the List Find method, however, the best collection type for finding an item is the dictionary.'
+    description:'The best method for finding an item in a list is the List Find method, however, the best collection type for finding an item in the dictionary.'
   },
   { 
     location:'about', 
@@ -674,7 +674,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-large.webp',
-    description:'Cloning a list is matter of understanding the differences in shallow, deep copies and the difference between value and reference types.'
+    description:'Cloning a list is a matter of understanding the differences in shallow, and deep copies and the difference between value and reference types.'
   }
 
   ,{ 

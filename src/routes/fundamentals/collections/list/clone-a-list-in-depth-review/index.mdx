@@ -12,20 +12,20 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-When making a clone of list it is important to understand the difference between a shallow and deep copy of a list and when they should be used.
+When making a clone of a list it is important to understand the difference between a shallow and deep copy of a list and when they should be used.
 
 Before we can get into details of the different ways of cloning a list, we need to go through the different data types and how each one is affected by the shallow and deep copy methods.
 
 ###  Data Types
 
-Before getting into the shallow or deep copies. You need to have a understanding of the types and how they are stored in memory. The two of concern is value types and reference types. 
+Before getting into the shallow or deep copies. You need to have an understanding of the types and how they are stored in memory. The two of concern are value types and reference types.
 
 
 ##### Values Types
 
-[When value types are assigned data then the variable contains the instance of the type.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types) This means that whenever we assign a variable of a value type it will always have a unquue instance of the type.
+[When value types are assigned data then the variable contains the instance of the type.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types) This means that whenever we assign a variable of a value type it will always have a unique instance of the type.
 
-For exmaple, say we have two variables num1 and num2 and we assign num1 to num2. Since they are value types num1 and num2 will get their own instance of type int and they are not linked to each other. So even if I chnage num2, it will not change num1.
+For example, say we have two variables num1 and num2 and we assign num1 to num2. Since they are value types num1 and num2 will get their instance of type int and they are not linked to each other. So even if I change num2, it will not change num1.
 
 ```cs
 
@@ -44,7 +44,7 @@ Before Change num1:4889,num2:4889
 After Change num1:4889,num2:30
 ```
 
-From this example you can see that the value types are unquiee and can not affect one another by change one even though I assigned one to the other.
+From this example, you can see that the value types are unique and can not affect one another by changing one even though I assigned one to the other.
 
 Here is a list of some examples of the value types below. But they include numeric types, enums, and structs [You can find the full list of value types here.](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#83-value-types)
 
@@ -57,9 +57,9 @@ Here is a list of some examples of the value types below. But they include numer
 
 ##### Reference Types
 
-Reference types are the reference point that to the object. This differs from value types that instead of point the value in memory, the reference type points to the address in memory where instance of the object and it values reside. This means that in our code that two variables can be assigned memory reference. Let's look at an example.
+Reference types are the reference point to the object. This differs from value types in that instead of pointing the value in memory, the reference type points to the address in memory where an instance of the object and its values reside. This means that in our code that two variables can be assigned memory references. Let's look at an example.
 
-This example I created two car variables and assigned car1 to car2. What happens change car2 and what would expect to happen?
+In this example, I created two car variables and assigned car1 to car2. What happens to change car2 and what would expect to happen?
 
 ```cs
 Car car1 = new Car("SuperM", "M3");//Create New Car instance
@@ -93,20 +93,19 @@ Before Change car2.Make:SuperM, car2.Model:M3
 After Change car1.Make:ModelT, car1.Model:M9
 After Change car2.Make:ModelT, car2.Model:M9
 ```
-We see how this differs from value types. When assign reference to the different variable they are linked or in otherwords pointing the same address in memory. Changing one then changes the other. This becomes the basis for our analysis for shallow and deep copying of a list because a list or any collection type is a reference type.  
+We see how this differs from value types. When assigning a reference to the different variables they are linked or in other words pointing to the same address in memory. Changing one then changes the other. This becomes the basis for our analysis of shallow and deep copying of a list because a list or any collection type is a reference type.
 
 
 ### Shallow Copy
 
-A shallow copy of a list is where each object in the list is copied from the old to new so that the value types are assigned a new instance. [This is known as field by field copy.](https://en.wikipedia.org/wiki/Object_copying#Shallow_copy). For fields that are reference types, only the memopry reference is copied. The advantage of this is that it is quick and saves memory consuption but not creating new objects but only a copying the reference. The disadvantage is that if we need to two seperate lists and you want to change one of the list's contents without changing the other then shallow copy will not work. 
+A shallow copy of a list is where each object in the list is copied from the old to the new so that the value types are assigned a new instance. [This is known as a field-by-field copy.](https://en.wikipedia.org/wiki/Object_copying#Shallow_copy). For fields that are reference types, only the memory reference is copied. The advantage of this is that it is quick and saves memory consumption but not creating new objects but only copying the reference. The disadvantage is that if we need two separate lists and you want to change one of the list's contents without changing the other then a shallow copy will not work.
 
 
 ### List Constructor Method
 
-C# provdes a built in clone method through the List constructor. It is a shallow copy method so it is quick. I would recommend this method to mostly value types in the list. Let's look at some examples.
+C# provides a built-in clone method through the List constructor. It is a shallow copy method so it is quick. I would recommend this method to mostly value types in the list. Let's look at some examples.
 
-For this example, we'll create a list of transations that in list set 1 they are odd and use the list constructor to copy list set 1 to list set 2 then changes the values of list 2 to event numbers and see how the lists look after the change. Since the lists hold a value types each item in the list will be it's own instance.
-
+For this example, we'll create a list of transactions that in list set 1 are odd and use the list constructor to copy list set 1 to list set 2 then changes the values of list 2 to event numbers and see how the lists look after the change. Since the lists hold value types each item in the list will be its instance.
 ##### List Constructor Value Type Example
 ```cs
 List<int> transactionsSet1 = new List<int>() { 1,3,5,7,9,11,13,15};//create a list of bank transations
@@ -136,11 +135,11 @@ After Change set1 1,3,5,7,9,11,13,15
 After Change set2 2,4,6,8,10,11,12,14
 ```
 
-As you can see from this output the two lists are distinct and seperate because I'm only working with value types. Next see how things change when we use reference types.
+As you can see from this output the two lists are distinct and separate because I'm only working with value types. Next, see how things change when we use reference types.
 
 ##### List Constructor Reference Type Example
 
-Next I created a Transaction class which holds the price and timestamp. Since when I create a class with fields it considered a reference type. Since the List constructor method produces a shallow copy we would expect that that when I do the same test as a before that list1 would be affected to. Let's look at the example.
+Next, I created a Transaction class that holds the price and timestamp. Since when I create a class with fields it is considered a reference type. Since the List constructor method produces a shallow copy we would expect that when I do the same test as before that list1 would be affected too. Let's look at the example.
 
 ```cs
 List<Transaction> transactionsSet1 = new List<Transaction>();
@@ -184,11 +183,11 @@ After Change set1 2,4,6
 After Change set2 2,4,6
 ```
 
-This confirms that that list2 is a is indeed a shallow copy of list 1 because we see the both lits are changed when we change one. Next we'll test the speed of the method.
+This confirms that list 2 is indeed a shallow copy of list 1 because we see that both lits are changed when we change one. Next, we'll test the speed of the method.
 
 ##### List Constructor Speed Test
 
-For this test we use the follow parameters to test all the clone methods to compare the speed of each. In general, I expect shallow copy methods to be faster than deep ones because shallow copy isn't creating new object but only creating a new reference that points to the same object in memory.
+For this test, we use the following parameters to test all the clone methods to compare the speed of each. In general, I expect shallow copy methods to be faster than deep ones because a shallow copy isn't creating a new object but only creating a new reference that points to the same object in memory.
 
 10000 number in the list
 
@@ -286,7 +285,7 @@ Function calls:25000, In 0m 0s 109ms
 List Constructor Method Average speed:87ms, In 10 tests
 ```
 
-As we can see from this test that the List constructor is fast at an average of 87ms. Next we'll look at memory consumption of the new list.
+As we can see from this test that the List constructor is fast at an average of 87ms. Next, we'll look at the memory consumption of the new list.
 
 ##### List Constructor Memory Test
 
@@ -335,14 +334,13 @@ int GetRandomInt(int maxNumber)
 
 ###### Code Output
 ```
-Difference In Memory is 7.63 MB
-```
+The difference In Memory is 7.63 MB
 
-THe memory usage from the list is about 8 MB which is pretty small for a list the size of 1 million objects. This is what we expect to get a good trade off in performance and memory consuption.
+The memory usage from the list is about 8 MB which is pretty small for a list the size of 1 million objects. This is what we expect to get a good trade-off in performance and memory consumption.
 
 ### ToList Method
 
-Another method we can use to get a shallow copy is to use the ToList method. [It is a LINQ method that is often used for forcing a query to immeditly execute.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.tolist?view=net-7.0) But we can use it clone a list as well.
+Another method we can use to get a shallow copy is to use the ToList method. [ It is a LINQ method that is often used for forcing a query to immediately execute.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.tolist?view=net-7.0) But we can use it to clone a list as well.
 
 ##### ToLIst Reference Type Example
 
@@ -374,7 +372,7 @@ After Change set1 2,4,6
 After Change set2 2,4,6
 ```
 
-This verifies that this a shallow copy method since both lists were modified when I only modified one of them.
+This verifies that this is a shallow copy method since both lists were modified when I only modified one of them.
 
 ##### ToList Speed Test
 
@@ -424,7 +422,7 @@ Function calls:25000, In 0m 0s 109ms
 ToList Method Average speed:115ms, In 10 tests
 ```
 
-With an average speed of 115ms we can see that this method is slower than the List constructor method for doing the same thing.
+With an average speed of 115ms, we can see that this method is slower than the List constructor method for doing the same thing.
 
 ##### ToList Method Memory Test
 
@@ -442,18 +440,17 @@ Console.WriteLine($"Difference In Memory is { memoryInMB} MB");//Print result
 ```
 ###### Code Output
 ```
-Difference In Memory is 7.63 MB
-```
+The difference In Memory is 7.63 MB
 
-The memory consuption is the same as for List constructor because both are shallow copy methods.
+The memory consumption is the same as for the List constructor because both are shallow copy methods.
 
 ### Deep Copy
 
-Deep copy is value types is the same a shallow copy. In both cases the there's a new instance of the value to each variable. For exmaple, if there's int and it assigned to another int then both will become seperate instances and can not affect one another. The difference between deep and shallow clone copies is when dealing with reference types. While shallow copies only create new reference pointer that point to the same object. Deep copy creates new reference pointer pointing to a new object all together. This insures that a deep copy of a list even if changed will not affect. When clone a list and you do not want it to affect the list it was clone from then you should use a deep clone copy. The trade off comes from speed and memory consuption since a deep copy is creating a new object. With each new created object is a memory and speed over head.
+A deep copy is a value type that is the same as a shallow copy. In both cases, there's a new instance of the value of each variable. For example, if there's an int and it is assigned to another int then both will become separate instances and can not affect one another. The difference between deep and shallow clone copies is when dealing with reference types. While shallow copies only create new reference pointers that point to the same object. Deep copy creates a new reference pointer pointing to a new object altogether. This insures that a deep copy of a list even if changed will not affect it. When cloning a list and you do not want it to affect the list it was cloned from then you should use a deep clone copy. The trade-off comes from speed and memory consumption since a deep copy is creating a new object. With each newly created object is a memory and speed overhead.
 
 ### Constructor Copy Method
 
-This is one way to create a deep clone copy of the list is the create a constructor that takes in the object and then creates a new object of every field in the object. Next we'll need to loop through all the objects of list one then clone all the objects from list to to list 2 using the constructor.
+This is one way to create a deep clone copy of the list is the create a constructor that takes in the object and then creates a new object of every field in the object. Next, we'll need to loop through all the objects of list one and then clone all the objects from the list to list 2 using the constructor.
 
 ```cs
 List<Transaction> transactionsSet1 = new List<Transaction>();
@@ -485,7 +482,7 @@ class Transaction
             return;
         }
         //deep copy clone method
-        Price = transaction.Price;//value type creates a new instance on assignment
+        Price = transaction.Price;//value type creates a new instance on the assignment
         TimeStamp = transaction.TimeStamp;//string creates a new instance on assignment
     }
     public Transaction(int price)
@@ -514,7 +511,7 @@ After Change set1 1,3,5
 After Change set2 2,4,6
 ```
 
-This returns exactly what we wanted. I'm able to modifiy one list objects without affecting the other.
+This returns exactly what we wanted. I'm able to modify one list of objects without affecting the other.
 
 ##### Constructor Copy Speed Test
 ```cs
@@ -537,7 +534,7 @@ double ConstructorCopyMethodSpeedTest()
     for (int i = 0; i < numberOfFunctionCalls; i++)
     {
         stopwatch.Stop();
-        List<Transaction> transactionList1 = GetInitialTransactionList();//Get intial random generated list
+        List<Transaction> transactionList1 = GetInitialTransactionList();//Get initial random generated list
         stopwatch.Start();
         List<Transaction> transactionsSet2 = new List<Transaction>();
         foreach (Transaction item in transactionList1)
@@ -599,11 +596,11 @@ Function calls:25000, In 0m 19s 608ms
 Constructor Copy Method Average speed:19861ms, In 10 tests
 ```
 
-With an average speed of 19 seconds the copy constructor is incredible slow when the shallow copy methods take less than a second to complete the same test.
+With an average speed of 19 seconds, the copy constructor is incredibly slow when the shallow copy methods take less than a second to complete the same test.
 
 ##### Constructor Copy Memory Test
 
-I'll use the same test parameters as with the shallow copy tests to measure the memory consuption
+I'll use the same test parameters as with the shallow copy tests to measure memory consumption.
 
 ```cs
 List<Transaction> transactionsSet1 = GetInitialTransactionList();
@@ -627,7 +624,7 @@ class Transaction
             return;
         }
         //deep copy method
-        Price = transaction.Price;//value type creates a new instance on assignment
+        Price = transaction.Price;//value type creates a new instance on the assignment
         TimeStamp = transaction.TimeStamp;//string creates a new instance on assignment
     }
     public Transaction(int price)
@@ -648,13 +645,13 @@ class Transaction
 
 ###### Code Output
 ```
-Difference In Memory is 34.62 MB
-```
-We can see that this is much bigger size increase compared to a shallow copy. It is almost 5 times bigger than the same sized list fromt he shallow copy.
+The difference In Memory is 34.62 MB
+
+We can see that this is a much bigger size increase compared to a shallow copy. It is almost 5 times bigger than the same-sized list from the shallow copy.
 
 ### ICloneable Interface Method
 
-This method requires to extend the class with the ICloneable interface then to overload the clone method. ICloneable depends on how it is implementated wheither or not is a deep or shallow copy. Which is when you'll need to understand the different types and what time of clone you want to do. For this example, I'm using ICloneable to create a deep copy. Then we'll be loop through the and call the clone method. Example below.
+This method requires extending the class with the ICloneable interface and then overloading the clone method. ICloneable depends on how it is implemented whether or not is a deep or shallow copy. Which is when you'll need to understand the different types and what time of clone you want to do. For this example, I'm using ICloneable to create a deep copy. Then we'll loop through the and call the clone method. Example below.
 
 ```cs
 
@@ -723,7 +720,7 @@ As we can see this method also produce a deep copy of the list.
 
 ##### ICloneable Interface Method Speed Test
 
-We'll conduct the same speed test as before in the other examples. Since this is a deep copy implementatation, it is expected to be slower than a shallow copy method.
+We'll conduct the same speed test as before in the other examples. Since this is a deep copy implementation, it is expected to be slower than a shallow copy method.
 
 ```cs
 
@@ -746,7 +743,7 @@ double ICloneableInterfaceMethodSpeedTest()
     for (int i = 0; i < numberOfFunctionCalls; i++)
     {
         stopwatch.Stop();
-        List<Transaction> transactionList1 = GetInitialTransactionList();//Get intial random generated list
+        List<Transaction> transactionList1 = GetInitialTransactionList();//Get initial random generated list
         stopwatch.Start();
         List<Transaction> transactionsSet2 = new List<Transaction>();
         foreach (Transaction item in transactionList1)
@@ -809,11 +806,11 @@ Function calls:25000, In 0m 19s 933ms
 Function calls:25000, In 0m 19s 901ms
 ICloneable Interface  Method Average speed:20007ms, In 10 tests
 ```
-This is very slow as expected but only one slightly slower than the copy constructor method.
+This is very slow as expected but only slightly slower than the copy constructor method.
 
 ##### ICloneable Interface Method Memory Test
 
-This method will be tested against 100 million objects to see what the memory consuption before and after the deep copy is made.
+This method will be tested against 100 million objects to see what the memory consumption is before and after the deep copy is made.
 
 ```cs
 
@@ -864,8 +861,7 @@ class Transaction : ICloneable
 
 ###### Code Output
 ```
-Difference In Memory is 34.6 MB
-```
+The difference In Memory is 34.6 MB
 
 This memory number is the same as the previous deep copy method and this is about 5 times what shallow copy would create.
 
@@ -873,9 +869,8 @@ This memory number is the same as the previous deep copy method and this is abou
 
 <Table header ="Overall Rank,Method,Clone Type,Speed,Memory Consumption" rows="1,List Constructor,Shallow Copy,87ms,7.63MB;2,ToList,Shallow Copy,115ms,7.63MB;3,Constructor Copy,Deep Copy,19861ms,34.62MB;4,ICloneable Interface,Deep Copy,20007ms,34.6MB;" />
 
-For overall, List Constructor is the best method to clone a list. It is fast, easy to setup and doesn't consume much memory. Use this if you are only working with value types and don't need a deep copy. 
+Overall, List Constructor is the best method to clone a list. It is fast, easy to set up, and doesn't consume much memory. Use this if you are only working with value types and don't need a deep copy.
 
-Second best method is the ToList method, it is also fast but requires the extra library of LINQ to set it up.
+The second best method is the ToList method, it is also fast but requires the extra library of LINQ to set it up.
 
-If you working with reference type objects in the list then constructor copy is best method to use. Even though it is slow and consume more memory. it will be worth it to have a deep copy of your lists so that they are completely seperate from each other. 
-
+If you working with reference-type objects in the list then constructor copy is the best method to use. Even though it is slow and consumes more memory. it will be worth it to have a deep copy of your lists so that they are completely separate from each other.

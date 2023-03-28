@@ -12,19 +12,19 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-A list by design allows duplicate items. It does no check on values that are stored on it. So it is usually best if you want to exclude duplicate values from entering the list in the first place but this is not always possible. So we'll look at different methods to remove duplicate items from a list and also methods that stop duplicate items from entering our list in the first place.
+A list by design allows duplicate items. It does not check on values that are stored on it. So it is usually best if you want to exclude duplicate values from entering the list in the first place but this is not always possible. So we'll look at different methods to remove duplicate items from a list and also methods that stop duplicate items from entering our list in the first place.
 
 ### Motivation 
 
-Starting with a simple case. If I create an object called transaction that has a user id, price and timestamp and there are duplicates in the list then to remove those duplicates then we could use a brute force method by using list contains.
+Starting with a simple case. If I create an object called transaction that has a user id, price, and timestamp and there are duplicates in the list then to remove those duplicates then we could use a brute force method by using list contains.
 
 This code loops through all the transactions and if it is not contained in the new list then it is added.
 
-This may work for small lists but it has a major flaw that is is not scalable. As the we loop through each transaction and check the new list. The new list grows and then checking contains on the new list each time becomes longer and longer. 
+This may work for small lists but it has a major flaw in that it is not scalable. As we loop through each transaction and check the new list. The new list grows and then checking contains on the new list each time becomes longer and longer.
 
 ### Set up
 
-To set up any of these methods and when dealing with objects. We override Equals and Hascode  so taht we can get a unqueie object. EAch of these methods calls these methods. 
+To set up any of these methods when dealing with objects. We override Equals and Hashcode so that we can get a unique object. Each of these methods calls these methods.
 
 ###### Assumptions About The Dataset
 
@@ -34,7 +34,7 @@ Objects rather than simple types
 
 Given a list to filter out duplicates
 
-DateTime are involved
+DateTime is involved
 
 
 ###### Desired Output
@@ -58,9 +58,9 @@ PrintDictionaryValues(transactionDictionary);//Print the unique into a table for
 List<Transaction> GetUniqueListWithListContains(List<Transaction> orderedTransactions)
 {
     List<Transaction> uniqueTransactions = new List<Transaction>();//Create new list to hold unique transactions
-    foreach (Transaction orderedTransaction in orderedTransactions)//loop through existing ordered list
+    foreach (Transaction orderedTransaction in orderedTransactions)//loop through an existing ordered list
     {
-        if (!uniqueTransactions.Contains(orderedTransaction))//If transaction does not exist in the new list then add it to the new list
+        if (!uniqueTransactions.Contains(orderedTransaction))//If the transaction does not exist in the new list then add it to the new list
         {
             uniqueTransactions.Add(orderedTransaction);//Add to List
         }
@@ -166,11 +166,11 @@ Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
 12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8442
 ```
 
-Take note of this table. It shows the follow about List contains that the order was preserve from id 0 to id 4 the id numbers are increasing. This gives us the desired result but we also need to check the performance which is the next test.
+Take note of this table. It shows the following about List contains that the order was preserved from id 0 to id 4 the id numbers are increasing. This gives us the desired result but we also need to check the performance which is the next test.
 
 #### List Contains Speed Test
 
-This is a test of the performance using the follow parameters many times over.
+This is a test of the performance using the following parameters many times over.
 
 10 tests with each test calling the function 10 times. Each function call processes a list with 250000 objects. The average time will be taken from the 10 tests. 
 
@@ -204,9 +204,9 @@ double ListContainsMethodSpeedTest()
 List<Transaction> GetUniqueListWithListContains(List<Transaction> orderedTransactions)
 {
     List<Transaction> uniqueTransactions = new List<Transaction>();//Create new list to hold unique transactions
-    foreach (Transaction orderedTransaction in orderedTransactions)//loop through existing ordered list
+    foreach (Transaction orderedTransaction in orderedTransactions)//loop through an existing ordered list
     {
-        if (!uniqueTransactions.Contains(orderedTransaction))//If transaction does not exist in the new list then add it to the new list
+        if (!uniqueTransactions.Contains(orderedTransaction))//If the transaction does not exist in the new list then add it to the new list
         {
             uniqueTransactions.Add(orderedTransaction);//Add to List
         }
@@ -312,16 +312,14 @@ Function calls:10, In 3m 20s 805ms
 List Contains Method Average speed:198207ms, In 10 tests
 ```
 
-This output shows that this method is not efficient that it takes and average of just over 3 minutes to complete. Let's look at the other methods to see if we can improve on the perofermance 
+This output shows that this method is not efficient in that it takes an average of just over 3 minutes to complete. Let's look at the other methods to see if we can improve the performance.
 
 
 ### LINQ Distinct Method
 
-This method uses LINQ functions. It very compact and fits into one line. Since it returns a IEnumerbale of T it needs to be converted into a List of T.
+This method uses LINQ functions. It is very compact and fits into one line. Since it returns an IEnumerbale of T it needs to be converted into a List of T.
 
 ```cs
-
-
 List<Transaction> orderedStartingTransactions = GetInitialTransactionList();//Get the starting order starting list
 List<Transaction> uniqueTransactions = GetUniqueListWithLINQDistinct(orderedStartingTransactions);//Baseline list contains method of getting unique items
 Dictionary<string, List<Transaction>> transactionDictionary = GroupByDateTime(uniqueTransactions);//Group by date unique items so that they can be printed to the screen
@@ -434,14 +432,13 @@ Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
 12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8438
 ```
 
-This confirms that LINQ distinct will provide for us what we need. List that supported datetime in filtering out duplicates. [It appears ordered but this method doesn't not guareentee the order.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0)
+This confirms that LINQ distinct will provide us with what we need. The list that supported datetime in filtering out duplicates. [It appears ordered but this method doesn't guarantee the order.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0)
 
 #### LINQ Distinct Speed Test
 
-Now I'll complete the test for the LINQ distinct method. Below is the code changes and result. It is expected that it would be faster than the List Contains method.
+Now I'll complete the test for the LINQ distinct method. Below are the code changes and results. It is expected that it would be faster than the List Contains method.
 
 ```cs
-
 using System.Diagnostics;
 int numberOfTests = 10;//Number of tests 
 List<double> testSpeedList = new List<double>();
@@ -571,11 +568,11 @@ Function calls:10, In 0m 0s 119ms
 LINQ Distinct Method Average speed:123ms, In 10 tests
 ```
 
-From this result of less than a second, this makes LINQ Distinct is a viable method and it was able to scale well. 
+This result of less than a second makes LINQ Distinct a viable method and it was able to scale well.
 
 ### HashSet Method
 
-While HashSet is not a list, but it is a collection type. HashSet by default only holds distinct values so we can use this to our advatage by putting our list item into then converting the HashSet to a List. See example below.
+While HashSet is not a list, it is a collection type. HashSet by default only holds distinct values so we can use this to our advantage by putting our list item into then converting the HashSet to a List. See the example below.
 
 ```cs
 List<Transaction> orderedStartingTransactions = GetInitialTransactionList();//Get the starting order starting list
@@ -700,11 +697,11 @@ Date      |   Id 0  |  Id 1   |  Id 2   |  Id 3   |  Id 4   |  Count
 12/4/2022 |   1000  |  1001   |  1002   |  1003   |  1004   |  8444
 ```
 
-This appears to be expected output with HashSet, however, there is a problem. [HashSet does not guarantee that the order is perserved](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-7.0) So if you don't need a ordered list in the output then HashSet would be good enough on it's own. 
+This appears to be the expected output with HashSet, however, there is a problem. [HashSet does not guarantee that the order is preserved.](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-7.0) So if you don't need an ordered list in the output then HashSet would be good enough on its own.
 
 #### HashSet Speed Test
 
-Next we'll test the speed of HashSet. I will use the same testing critrea as before.
+Next, we'll test the speed of HashSet. I will use the same testing criteria as before.
 
 ```cs
 using System.Diagnostics;
@@ -840,11 +837,12 @@ Function calls:10, In 0m 0s 116ms
 HashSet Method Average speed:122ms, In 10 tests
 ```
 
-It is a fast method and is sub second and is practically equal to the LINQ Distinct method.
+It is a fast method and is sub-second and is practically equal to the LINQ Distinct method.
 
 ### HashSet and List Combo Method
 
-Next I'll try to custom method that uses the distinct nature of Hashset we'll adding also to a list. This helps use to filter the incoming list and also adding each distinct entry in the our list. This also helps us solve the issue with HashSet not preserving order.
+Next, I'll try a custom method that uses the distinct nature of HashSet we'll adding also to a list. This helps us to filter the incoming list and also add each distinct entry to our list. This also helps us solve the issue of HashSet not preserving order.
+
 
 ```cs
 List<Transaction> orderedStartingTransactions = GetInitialTransactionList();//Get the starting order starting list

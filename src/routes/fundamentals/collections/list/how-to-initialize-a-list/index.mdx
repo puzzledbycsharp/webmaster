@@ -11,17 +11,18 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/how-to-initialize-a-list/how-to-initialize-a-list-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/how-to-initialize-a-list/how-to-initialize-a-list-small.webp 250w, ../../../../assets/fundamentals/collections/list/how-to-initialize-a-list/how-to-initialize-a-list-medium.webp 500w, ../../../../assets/fundamentals/collections/list/how-to-initialize-a-list/how-to-initialize-a-list-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Initialize A List Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
-One of first things to do when creating a list is initializing them or pre populating them with data. There are two main ways to initialize the lists. One is at compile time, which setting the values before the app is started. The other way is at runtime, which adding values to the list after the app has started. These could be small datasets, list that hold types of configuration or test data, etc.
+
+One of the first things to do when creating a list is to initialize them or pre-populating them with data. There are two main ways to initialize the lists. One is at compile time, which sets the values before the app is started. The other way is at runtime, which adds values to the list after the app has started. These could be small datasets, a list that holds types of configuration or test data, etc.
 
 ### Initialize A List At Compile Time
-One of the go to ways to initialize the data. When it happens before the program starts then visual studio will check to see if the syntax is correct. There are good reasons to do it this way. It's easy to read and out of the way. Perhaps there are drop down list that need to be populated. Usually doing it this way means there are few values to initialize to the list.
+One of the go-to ways to initialize the data. When it happens before the program starts then the visual studio will check to see if the syntax is correct. There are good reasons to do it this way. It's easy to read and out of the way. Perhaps there is a drop-down list that needs to be populated. Usually doing it this way means there are few values to initialize to the list.
 
 ###### Initialize A List At Compile Time Example Code
 
 ```cs
 List<string> stringList = new List<string>() { "first", "second", "third", "fourth", "fifth" };//Use double quotes for string
 List<int> intList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };//Only whole integer values
-List<double> doubleList = new List<double>() { 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0 };//large number with decemail places can be used.
+List<double> doubleList = new List<double>() { 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0 };//large number with decimal places can be used.
 List<float> floatList = new List<float>() { 1.0f, 2.0f, 3.0f, 4.0f, 5.1f, 6.2f };//floats are similar to double but the float has f at the end
 List<char> charList = new List<char>() { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'f' };//Characters are surrounded by single quotes 
 List<Car> carList = new List<Car>() { new Car(2, "SuperHType"), new Car(3, "XType"), new Car(4, "TruckXType"), new Car(4, "SUVType") };//Add any Object to the list as long as it has a defined constructor
@@ -59,10 +60,10 @@ a,b,c,d,e,f,g,h,f
 Wheels:2; Type:SuperHType,Wheels:3; Type:XType,Wheels:4; Type:TruckXType,Wheels:4; Type:SUVType
 ```
   
-This example gives what different types and how they are initialized. They are different syntax for each type. For strings, require double quotes. Ints are whole numbers. Double can be whole or numbers with decimals. Float have a f character at the end of the number and can be whole or decimals numbers. Characters are created by single quotes.
+This example gives different types and how they are initialized. They are different syntaxes for each type. For strings, require double quotes. Ints are whole numbers. Double can be whole or numbers with decimals. Float has an f character at the end of the number and can be whole or decimals numbers. Characters are created by single quotes.
  
 ### Initialize A List At Run Time
-Another way to set a list to initial values is to use Add. We can use hard coded values or variables. Perhaps we need to set the list of initial from the database or some files. Initializing this way, it is possible to add a great deal of data to the list.
+Another way to set a list to initial values is to use Add. We can use hard-coded values or variables. Perhaps we need to set the list of initials from the database or some files. Initializing this way, it is possible to add a great deal of data to the list.
 
 ###### Initialize A List At Run Time Example Code
 ```cs
@@ -157,9 +158,9 @@ class Car
   Wheels:3; Type:SuperHType,Wheels:4; Type:CompactModel,Wheels:4; Type:SUVType,Wheels:4; Type:TruckType
   ```
   
-With the lists populated with initial data they can be used for what ever purpose or checks that are needed.
+With the lists populated with initial data, they can be used for whatever purpose or checks are needed.
 
 ### Conclusion
 <Table header ="Rank,Method,Time,Concise,Readability(1-5)" rows="1,List Inline Initialize,Compile Time,4,4;2,List Initialize By Add,Run Time,3,4" />
 
-Initializing the list using the in line method is best used when there are only a few items because of the typing involved and also where the list won't change much very often. These are hardcoded values. But if you plan to initialize a list to a large amount of data from a file or database then going with a dynamic approach is preferable.
+Initializing the list using the in-line method is best used when there are only a few items because of the typing involved and also where the list won't change much very often. These are hardcoded values. But if you plan to initialize a list to a large amount of data from a file or database then going with a dynamic approach is preferable.

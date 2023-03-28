@@ -12,11 +12,11 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-Sorting data is important to organize the data in both a visual representation and organizing it for logical based reasons in the code. It may come from a database, from user inputs, automatically generated files to parse. Most of the time it is unorganized data, and it is best to sort it. CSharp comes with build in functionality for sorting single objects and even more complex objects with many times. We'll look at List Sort and also LINQ's order by and analyze the speed, readability, concise and memory impact.
+Sorting data is important to organize the data in both a visual representation and organizing for logical based reasons in the code. It may come from a database, from user inputs, and automatically generated files to parse. Most of the time it is unorganized data, and it is best to sort it. CSharp comes with build functionality for sorting single objects and even more complex objects many times. We'll look at List Sort and also LINQ's order by and analyze the speed, readability, conciseness, and memory impact.
 
 ### LINQ's Order By Sort Method
 
-LINQ provides a convenient way to sort the data in ascending order(called orderby) or descending order(called orderby desc) options. Even better it allows you to select which property on the class you would like to sort by.
+LINQ provides a convenient way to sort the data in ascending order(called order by) or descending order(called order by desc) options. Even better it allows you to select which property in the class you would like to sort by.
 
 Order by descending for numerical values will order from largest value to smallest value. While order by for numerical values will order by smallest to largest values.
 
@@ -108,7 +108,8 @@ VinNumber:435435123, Color:white, DoorNumber:4, Make:MakeT, Model:CrossOver, Yea
 ```
   
 ###### LINQ's Order By Sort Speed Test
-Next we want to test the performance. For this test, there will be a list with one hundred thousand random objects. The list will be sorted one thousand times. This will be run ten times to get the average amount of times. Next examine the code and see the result.
+
+Next, we want to test the performance. For this test, there will be a list with one hundred thousand random objects. The list will be sorted one thousand times. This will be run ten times to get the average amount of times. Next, examine the code and see the result.
 
 ###### LINQ's Order By Sort Speed Test Example Code
 
@@ -212,11 +213,12 @@ LINQ Order By Average speed:13220ms, In 10 tests
 As you can see LINQ's order by gives us a baseline of about 13 seconds. We'll see how this compares to the other sorting methods.
 
 ### LINQ's Order By Primary and Secondary Key Sort Method
-Another advantage to LINQ sorting method is that it can sort by a primary and secondary key. This is helpful if there are duplicates in the primary key and then sorting on a secondary key would help to add additional order. See below code example.
+
+Another advantage to the LINQ sorting method is that it can sort by a primary and secondary key. This is helpful if there are duplicates in the primary key and then sorting on a secondary key would help to add additional order. See below code example.
 
 ###### LINQ's Order By Primary and Secondary Key Sort Method Code Example
 ```cs
-List<Car> carList = new List<Car>();//Can hold multple car objects
+List<Car> carList = new List<Car>();//Can hold multiple car objects
 carList.Add(new Car(383958943, "blue", 4, "MakeT", "SuperM", 2014));//Add a new Car to the list
 carList.Add(new Car(435435123, "white", 4, "MakeT", "CrossOver", 2017));//Add a new Car to the list
 carList.Add(new Car(934904823, "red", 4, "MakeH", "Suv", 2022));//Add a new Car to the list
@@ -279,7 +281,8 @@ VinNumber:383958943, Color:blue, DoorNumber:4, Make:MakeT, Model:SuperM, Year:20
 ```
   
 ###### LINQ's Order By Primary and Secondary Key Sort Method Speed Test
-Next we'll test the speed of this method. We would expect it to slower than the original order by function but how much is the question. Let's look at the code and see.
+
+Next, we'll test the speed of this method. We would expect it to be slower than the original order by function but how much is the question. Let's look at the code and see.
 
 ###### LINQ's Order By Primary and Secondary Key Sort Method Speed Code
 
@@ -297,7 +300,7 @@ Console.WriteLine($"LINQ Order By Primary and Secondary Key Average speed:{Math.
 double LINQOrderByPrimaryAndSecondaryKeySpeedTest()
 {
     int numberOfFunctionCalls = 1000;//Number of function calls made
-    List<Car> carList = new List<Car>();//Can hold multple car objects
+    List<Car> carList = new List<Car>();//Can hold multiple car objects
     int numberOfObjectsToCreate = 100000;
     int maxNumberOfVinNumber = 999999999;
     int maxNumberOfColorCharacters = 4;
@@ -382,7 +385,8 @@ LINQ Order By Primary and Secondary Key Average speed:14085ms, In 10 tests
 ```
   
 ### List Sort Method
-The next method is a build into the list function. It requires some setup in the class object for this work. In the class, it needs to be extended on a IComparable. This gives you greater control on how want the list to sorted. Also, list sort doesn't not create any new list but it reorder the existing list in memory. This is different than LINQ's order by function as that creates a new list in memory and returns a new list. The following example orders the VIN numbers in ascending order. Examine the code below.
+
+The next method is a build into the list function. It requires some setup in the class object for this work. In the class, it needs to be extended on an IComparable. This gives you greater control over how want the list to be sorted. Also, list sort doesn't create any new list but it reorders the existing list in memory. This is different than LINQ's order by function as that creates a new list in memory and returns a new list. The following example orders the VINs in ascending order. Examine the code below.
 
 ###### List Sort Method Code Example
 ```cs
@@ -446,7 +450,8 @@ VinNumber:950348549, Color:gray, DoorNumber:4, Make:MakeF, Model:Truck, Year:202
 ```
   
 ###### List Sort Method Speed Test
-Let's now test the list sort method. This will be the same test as previous example.
+
+Let's now test the list sort method. This will be the same test as the previous example.
 
 
   
@@ -461,7 +466,7 @@ for (int i = 0; i < numberOfTests; i++)
 Console.WriteLine($"List Sort Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
 double ListSortKeySpeedTest()
 {
-    List<Car> carList = new List<Car>();//Can hold multple car objects
+    List<Car> carList = new List<Car>();//Can hold multiple car objects
     int numberOfObjectsToCreate = 100000;
     int maxNumberOfVinNumber = 999999999;
     int maxNumberOfColorCharacters = 4;
@@ -566,6 +571,6 @@ List Sort Average speed:18541ms, In 10 tests
       
 ## Conclusion
 
-<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5),Memory Consumption (1-5)" rows="1,LINQ's Order By Sort,13220ms,1 lines,4,4;2,LINQ's Order By Primary and Secondary Key Sort,14085ms,1 lines,4,4;3,List's Sort,18541ms,20 lines,2,1;" />
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5),Memory Consumption (1-5)" rows="1,LINQ's Order By Sort,13220ms,1 line,4,4;2,LINQ's Order By Primary and Secondary Key Sort,14085ms,1 line,4,4;3,List's Sort,18541ms,20 lines,2,1;" />
 
-The best sorting method in C# is LINQ's order by function. It is the fastest method, it is compact by taking up only one line of code. It is also easy to read, but it does consume memory as it returns an new list. For the vast majority of use cases this will serve you proposes. The second best method is again by LINQ and if you have a second key that you want to sort with then this also is good method. The third best is list's sort method. It has a more complicated set up and is the slowest of all the methods, but if you have a more complicated sort that needs to done and involves more than 2 columns then this would be the best custom way to go.
+The best sorting method in C# is LINQ's order by function. It is the fastest method, it is compact by taking up only one line of code. It is also easy to read, but it does consume memory as it returns a new list. For the vast majority of use cases, this will serve your proposes. The second best method is again by LINQ and if you have a second key that you want to sort with then this also is a good method. The third best is the list's sort method. It has a more complicated setup and is the slowest of all the methods, but if you have a more complicated sort that needs to be done and involves more than 2 columns then this would be the best custom way to go.
