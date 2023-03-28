@@ -11,7 +11,7 @@ export default component$(() => {
 
   return (
     <>
-      <aside class="md:h-screen overflow-y-auto hover:overflow-y-auto" >
+      <aside class="lg:h-screen overflow-y-auto hover:overflow-y-auto" >
 
         <nav>
           <div class="container flex flex-wrap justify-between items-center lg:mx-auto ">

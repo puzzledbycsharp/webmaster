@@ -61,15 +61,3 @@ from = "/fundamentals/collections/array/fill-the-array-with-one-value/"
 to = "/array/fill-the-array-with-one-value/"
 status = 301
 force = true
-
-[[redirects]]
-from = "/fundamentals/collections/array/"
-to = "/array/"
-status = 301
-force = true
-
-[[redirects]]
-from = "/fundamentals/collections/array/"
-to = "/array/"
-status = 301
-force = true
