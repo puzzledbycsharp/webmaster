@@ -1,11 +1,11 @@
 import { component$ } from '@builder.io/qwik';
-import { ContentMenu, Link, useContent, useLocation } from '@builder.io/qwik-city';
+import { ContentMenu, Link, useContent } from '@builder.io/qwik-city';
 import  OnThisPage  from '../onthispage/onthispage';
 
 export default component$(() => {
   const { menu } = useContent();
-  const loc = useLocation();
-   const currentMenu = createContextMenu(menu, loc.href);
+  //const loc = useLocation();
+   //const currentMenu = createContextMenu(menu, loc.href);
   // console.log("After createContextMenu" + currentMenu);
   // console.log("after createContextMenucurrentMenu?.items?.length:" + currentMenu.items?.length);
 
