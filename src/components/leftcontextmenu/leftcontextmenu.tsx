@@ -5,17 +5,16 @@ import  OnThisPage  from '../onthispage/onthispage';
 export default component$(() => {
   const { menu } = useContent();
   const loc = useLocation();
-
-  const currentMenu = createContextMenu(menu, loc.href);
+   const currentMenu = createContextMenu(menu, loc.href);
   // console.log("After createContextMenu" + currentMenu);
   // console.log("after createContextMenucurrentMenu?.items?.length:" + currentMenu.items?.length);
 
   return (
     <>
-      <aside >
+      <aside class="md:h-screen overflow-y-auto hover:overflow-y-auto" >
 
         <nav>
-          <div class="container flex flex-wrap justify-between items-center lg:mx-auto">
+          <div class="container flex flex-wrap justify-between items-center lg:mx-auto ">
 
             <button data-collapse-toggle="navbar-sidebar" type="button" class="inline-flex items-center p-3 mr-3 ml-3 text-sm text-gray-500 rounded-lg lg:hidden  text-customdark7 hover:bg-customdark6 hover:text-customdark5 duration-300" aria-controls="navbar-sidebar" aria-expanded="false" onClick$={() => {
               const sideMenu = document.getElementById('side-menu');
@@ -30,42 +29,60 @@ export default component$(() => {
               </svg>
             </button>
             <div class="hidden w-full lg:block lg:w-auto bg-customdark1 text-sm" id="navbar-sidebar">
-              <div class="flex flex-col">
-                <h5>{currentMenu.text}</h5>
 
-                {currentMenu
-                  ? currentMenu.items?.slice(1, currentMenu.items.length).map((item) => (
+                {/* <h5>{menu?.text}</h5> */}
+                {menu
+                  ? menu.items?.slice(1, menu.items.length).map((item) => (
+                    <details class="my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg  duration-300" >
+                    <summary>{item?.text}</summary>
+                    <div class="flex flex-col">
                     <>
-
+                {item
+                  ? item.items?.slice(1, item.items.length).map((item2) => (
 
                       <Link
-                        href={item.href}
-                        class="text-sm"
+                        href={item2.href}
+                        class="text-sm py-1"
                       >
-                        {item.text}
+                        {item2.text}
                       </Link>
+                          ))
+                          : null}
                     </>
+                    </div>
+                    </details>
                   ))
                   : null}
 
-              </div>
+
             </div>
           </div>
-          <div id="side-menu" class="fixed top-14 -left-3/4 w-9/12 h-screen  text-customdark5 duration-300 bg-customdark1 border-solid border-r-2 border-t-2 border-customdark2 ">
-          <div class="grid grid-cols-6">
-          <h5 class="col-span-5">{currentMenu.text}</h5>
-            {currentMenu
-                  ? currentMenu.items?.slice(1, currentMenu.items.length).map((item) => (
+          <div id="side-menu" class="fixed top-14 -left-3/4 w-9/12 h-screen  text-customdark5 duration-300 bg-customdark1 border-solid border-r-2 border-t-2 border-customdark2 overflow-y-auto hover:overflow-y-auto">
+          {menu
+                  ? menu.items?.slice(1, menu.items.length).map((item) => (
+                    <details class="mx-6 my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg overflow-y-auto duration-300">
+                    <summary>{item?.text}</summary>
                 <>
+
+                            {item
+                  ? item.items?.slice(1, item.items.length).map((item2) => (
               <a
-                        href={item.href}
+                        href={item2.href}
                         class="text-sm block pr-4 pl-3 col-span-6"
                       >
-                        {item.text}
+                        {item2.text}
                       </a>
+                                    ))
+                                    : null}
                 </>
+                </details>
               ))
               : null}
+          <div class="grid grid-cols-6">
+          {/* <h5 class="col-span-5">{menu?.text}</h5> */}
+
+
+
             <div class="col-span-6">
               <OnThisPage />
             </div>
