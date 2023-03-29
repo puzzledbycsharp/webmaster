@@ -8,16 +8,16 @@ export default component$(() => {
 
 
     <>
-      <header class="z-10 lg:opacity-60">
-        <nav >
-          <div class="container flex flex-wrap justify-between items-center mx-auto">
+      <header class="z-10 lg:opacity-60 ">
+        <nav  >
+          <div class="container flex flex-wrap justify-between items-center mx-auto fixed">
             <a href="/" class="flex items-center fill-customdark8">
               <svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" fill="currentColor" class="bi bi-puzzle-fill mx-3" viewBox="0 0 16 16">
                 <path d="M3.112 3.645A1.5 1.5 0 0 1 4.605 2H7a.5.5 0 0 1 .5.5v.382c0 .696-.497 1.182-.872 1.469a.459.459 0 0 0-.115.118.113.113 0 0 0-.012.025L6.5 4.5v.003l.003.01c.004.01.014.028.036.053a.86.86 0 0 0 .27.194C7.09 4.9 7.51 5 8 5c.492 0 .912-.1 1.19-.24a.86.86 0 0 0 .271-.194.213.213 0 0 0 .036-.054l.003-.01v-.008a.112.112 0 0 0-.012-.025.459.459 0 0 0-.115-.118c-.375-.287-.872-.773-.872-1.469V2.5A.5.5 0 0 1 9 2h2.395a1.5 1.5 0 0 1 1.493 1.645L12.645 6.5h.237c.195 0 .42-.147.675-.48.21-.274.528-.52.943-.52.568 0 .947.447 1.154.862C15.877 6.807 16 7.387 16 8s-.123 1.193-.346 1.638c-.207.415-.586.862-1.154.862-.415 0-.733-.246-.943-.52-.255-.333-.48-.48-.675-.48h-.237l.243 2.855A1.5 1.5 0 0 1 11.395 14H9a.5.5 0 0 1-.5-.5v-.382c0-.696.497-1.182.872-1.469a.459.459 0 0 0 .115-.118.113.113 0 0 0 .012-.025L9.5 11.5v-.003l-.003-.01a.214.214 0 0 0-.036-.053.859.859 0 0 0-.27-.194C8.91 11.1 8.49 11 8 11c-.491 0-.912.1-1.19.24a.859.859 0 0 0-.271.194.214.214 0 0 0-.036.054l-.003.01v.002l.001.006a.113.113 0 0 0 .012.025c.016.027.05.068.115.118.375.287.872.773.872 1.469v.382a.5.5 0 0 1-.5.5H4.605a1.5 1.5 0 0 1-1.493-1.645L3.356 9.5h-.238c-.195 0-.42.147-.675.48-.21.274-.528.52-.943.52-.568 0-.947-.447-1.154-.862C.123 9.193 0 8.613 0 8s.123-1.193.346-1.638C.553 5.947.932 5.5 1.5 5.5c.415 0 .733.246.943.52.255.333.48.48.675.48h.238l-.244-2.855z" />
               </svg>
               <span class="self-center text-xl font-semibold whitespace-nowrap text-customdark8">Puzzled By C#</span>
             </a>
-            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 mx-1 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-customdark2 hover:bg-customdark6 text-customdark7 hover:text-customdark5 duration-300" aria-controls="navbar-default" aria-expanded="false" onClick$={() => {
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 mx-1 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-customdark2 hover:bg-customdark6 text-customdark7 hover:text-customdark5 duration-300  " aria-controls="navbar-default" aria-expanded="false" onClick$={() => {
               const menu = document.getElementById("navbar-default");
               menu?.classList.toggle("hidden");
               const section = document.getElementById("main-body");
@@ -29,11 +29,14 @@ export default component$(() => {
               const sideMenu = document.getElementById('side-menu');
               sideMenu?.classList.remove('left-0');
               sideMenu?.classList.add('-left-3/4');
+
+              const mobileContextMenu = document.getElementById("mobile-context-menu");
+              mobileContextMenu?.classList.toggle("hidden")
             }}>
               <span class="sr-only">Open main menu</span>
               <svg class="w-6 h-6 " aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
             </button>
-            <div class="hidden w-full md:block md:w-auto bg-customdark1 duration-300" id="navbar-default">
+            <div class="hidden w-full md:block md:w-auto bg-customdark1 duration-300 top-12 md:top-0 " id="navbar-default">
               <ul class="flex flex-col  md:flex-row md:space-x-8  md:text-sm md:font-medium md:border-0 md:items-center">
                 {/* <li>
                   <a href="/code-snippets/" class="py-2 pl-3 text-customdark8 flex flex-row items-center whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +75,7 @@ export default component$(() => {
               </ul>
             </div>
           </div>
-          <div class="flex flex-row items-center bg-customdark1 lg:hidden border-2 border-customdark1 border-b-customdark2" >
+          <div class="flex flex-row items-center bg-customdark1 lg:hidden border-2 border-customdark1 border-b-customdark2 relative md:fixed top-12 w-full" id="mobile-context-menu" >
             <LeftContextMenu />
             <div class="lg:hidden" >
               <Breadcrumbs />
@@ -83,7 +86,7 @@ export default component$(() => {
       </header>
 
 
-      <div class="hidden lg:block lg:h-14 w-full backdrop-blur-md fixed top-0 sticky-0 -z-5">
+      <div class="hidden lg:block lg:h-14 w-full backdrop-blur-md fixed top-0 -z-5">
 
       </div >
     </>

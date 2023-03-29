@@ -11,23 +11,28 @@ import{Table} from "~/components/table/table";
 <ImageWrapper imageSource="../../../../assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-small.webp 500w, ../../../../assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp 1000w, ../../../../assets/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Merging Method For Two Dictionaries Banner Image" widthImage = "2304" heightImage = "1728" />
 
 
-
 ## Introduction
 
-There are three ways we can approach filling the whole array with a single value, with Enumerable Repeat, Array Fill and a for loop approach. Each of these will have pros and cons. Including aobut how wide the support for each of these methods. Also, discussion about how fast each these methods are and how they compare to each other. I'll also briefly talk about the how readable and consie the code is.
+There are three ways we can approach filling the whole array with a single value, with Enumerable Repeat, Array Fill and a for loop approach. Each of these will have pros and cons. Including aobut how wide the support for each of these methods. Also, discussion about how fast each these methods are and how they compare to each other. 
+
+This is useful because if you have a large array, then you don't want to set this manaully through the array initializer, it is better to have an automated process. This can be just in just one line of code or just a few lines.
+
+I'll also briefly talk about the how readable and consie the code is. Below is a summary table with all realivent parameters we will look at.
 
 
 ### Summary Table
 
-<Table header ="Analysis Type,Enumerable Repeat,Array Fill,For Loop" rows=".NET Version Available,>= .NET 3.5,>= .NET 3.5;Performance,O(N),O(N);Lines Of Code,1,6,;Order Maintained,No,Yes" />
+<Table header ="Analysis Type,Enumerable Repeat,Array Fill,For Loop" rows=".NET Version Available,>= .NET 3.5,>= .NET 3.5;Performance,O(N),O(N),O(N);Lines Of Code,1,6,;Order Maintained,No,Yes;Speed,," />
 
 ### Enumerable Repeat Method
 
-<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Repeat Flow Chart" widthImage = "1024" heightImage = "768" />
+<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Repeat Flow Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
-Enumaerable has a method called repeat. I
+Enumaerable has a static method called repeat. This means that you don't need  I
 
 #### Enumerable Repeat Code Example
+
+<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Repeat Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
 ```cs
 int arraySize = 20;
