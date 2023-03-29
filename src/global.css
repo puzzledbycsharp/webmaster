@@ -423,3 +423,8 @@ pre[class*="language-"] {
 	.swiper-button-next { width: 48px;height: 48px; }
 	.swiper-button-preview { width: 48px;height: 48px; }
 }
+
+/* .ais-SearchBox-submitIcon path
+.ais-SearchBox-resetIcon path {
+  fill: red,
+} */
