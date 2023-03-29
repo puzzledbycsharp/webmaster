@@ -1,11 +1,11 @@
 import { component$ } from '@builder.io/qwik';
-import { ContentMenu, Link, useContent } from '@builder.io/qwik-city';
+import { ContentMenu, Link, useContent, useLocation } from '@builder.io/qwik-city';
 import  OnThisPage  from '../onthispage/onthispage';
 
 export default component$(() => {
   const { menu } = useContent();
-  //const loc = useLocation();
-   //const currentMenu = createContextMenu(menu, loc.href);
+  const loc = useLocation();
+  const currentMenuItem = getContextMenuItem(menu, loc.href);
   // console.log("After createContextMenu" + currentMenu);
   // console.log("after createContextMenucurrentMenu?.items?.length:" + currentMenu.items?.length);
 
@@ -33,19 +33,21 @@ export default component$(() => {
                 {/* <h5>{menu?.text}</h5> */}
                 {menu
                   ? menu.items?.slice(1, menu.items.length).map((item) => (
-                    <details class="my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg  duration-300" >
+                    <details class="my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg  duration-300"  open={(item.text && currentMenuItem && currentMenuItem?.category &&  item?.text == (currentMenuItem?.category)) ? true :false } >
                     <summary>{item?.text}</summary>
                     <div class="flex flex-col">
                     <>
                 {item
                   ? item.items?.slice(1, item.items.length).map((item2) => (
 
-                      <Link
-                        href={item2.href}
-                        class="text-sm py-1"
-                      >
-                        {item2.text}
-                      </Link>
+                 
+<Link
+href={item2.href}
+class=   {(item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-lg py-1 font-bold text-customdark5' : 'text-sm py-1' }
+>
+{item2.text}
+</Link>
+                     
                           ))
                           : null}
                     </>
@@ -60,7 +62,7 @@ export default component$(() => {
           <div id="side-menu" class="fixed top-14 -left-3/4 w-9/12 h-screen  text-customdark5 duration-300 bg-customdark1 border-solid border-r-2 border-t-2 border-customdark2 overflow-y-auto hover:overflow-y-auto">
           {menu
                   ? menu.items?.slice(1, menu.items.length).map((item) => (
-                    <details class="mx-6 my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg overflow-y-auto duration-300">
+                    <details class="mx-6 my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg overflow-y-auto duration-300" open={(item.text && currentMenuItem && currentMenuItem?.category &&  item?.text == (currentMenuItem?.category)) ? true :false }>
                     <summary>{item?.text}</summary>
                 <>
 
@@ -68,7 +70,7 @@ export default component$(() => {
                   ? item.items?.slice(1, item.items.length).map((item2) => (
               <a
                         href={item2.href}
-                        class="text-sm block pr-4 pl-3 col-span-6"
+                        class= {(item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-sm block pr-4 pl-3 col-span-6 font-bold text-customdark5' : "text-sm block pr-4 pl-3 col-span-6" } 
                       >
                         {item2.text}
                       </a>
@@ -106,7 +108,7 @@ export default component$(() => {
 });
 
 let tempHeader = {} as ContentMenu;
-export function createContextMenu(menu: ContentMenu | undefined, pathname: string) {
+export function getContextMenuItem(menu: ContentMenu | undefined, pathname: string) {
   //console.log("in createContextMenu");
   let foundMatch = false;
   if (menu && menu.items && menu.items.length > 0) {
@@ -134,15 +136,15 @@ export function createContextMenu(menu: ContentMenu | undefined, pathname: strin
       if (item && item.items && item.items.length > 0) {
 
 //        console.log("item && item.items");
-        tempHeader = item;
+
         foundMatch = false;
         // item.items?.forEach(item2 => {
         for (const item2 of item.items) {
-          // console.log("item2.href:" + item2.href);
-          // console.log("item2.text:" + item2.text);
-          // console.log("(pathname:" + pathname);
+          //console.log("item2.href:" + item2.href);
+          //console.log("item2.text:" + item2.text);
+          //console.log("(pathname:" + pathname);
           if (item2.href && pathname.includes(item2.href)) {
-
+            tempHeader = item2;
             const pathNameSplit = pathname.split("/");
             const item2HrefSplit = item2.href.split('/');
             let count = 0;
@@ -159,7 +161,9 @@ export function createContextMenu(menu: ContentMenu | undefined, pathname: strin
 
             if (count >= item2HrefSplit.length) {
               foundMatch = true;
-             // console.log("found match pathname: " + item2.href);
+              //console.log("found match pathname: " + item2.href);
+              tempHeader.category = item.text;
+              //console.log("found match category: " + item.text);
             }
 
           }
@@ -169,8 +173,8 @@ export function createContextMenu(menu: ContentMenu | undefined, pathname: strin
       if (foundMatch) {
         if (tempHeader && tempHeader.items) {
 
-         /// console.log("found match tempHeader.text:" + tempHeader.text);
-         // console.log("found match tempHeader.items:" + tempHeader?.items.length);
+         // console.log("found match tempHeader.text:" + tempHeader.text);
+         //console.log("found match tempHeader.items:" + tempHeader?.items.length);
         }
         break;
       }
