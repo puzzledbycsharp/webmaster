@@ -424,7 +424,16 @@ pre[class*="language-"] {
 	.swiper-button-preview { width: 48px;height: 48px; }
 }
 
-/* .ais-SearchBox-submitIcon path
-.ais-SearchBox-resetIcon path {
-  fill: red,
-} */
+.aa-Autocomplete,
+.aa-Panel,
+.aa-DetachedContainer {
+	--color-mark: #85C8E1;
+	--color-background: #1e1c21;
+	--color-selected: #f5f5fa;
+	--color-text: #FAF3F0;
+	--color-input-icon: #85C8E1;
+	--color-source-icon: FAF3F0;
+	--height: 32px;
+	--height-icon: 16px;
+	--font-size: 16px
+}
