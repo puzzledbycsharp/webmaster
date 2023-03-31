@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'/array/fill-the-array-with-one-value', 
+    url: 'https://puzzledbycsharp.com/array/fill-the-array-with-one-value/',
+    title:'Fill The Array With One Value', 
+    dateCreated:'2023-03-31T00:15:53+00:00',
+    dateModified:'2023-03-31T00:15:53+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-small.webp',
+    imageLarge:'https://puzzledbycsharp.com/assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-large.webp',
+    description:'Enumerable Repeat is the fastest method to fill an array with one value. It is compact and readable a good combination.'
+  },
+  { 
     location:'array/best-method-for-slicing-arrays', 
     url: 'https://puzzledbycsharp.com/array/best-method-for-slicing-arrays/',
     title:'Best Method For Slicing Arrays', 
@@ -774,7 +786,7 @@ export const ROUTE_DATA = [
     image:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/string-substring-large.webp',
-    description:'The substring method is a function for copying a chunk of an existing string. It returns a sub-section of the original string and depends on the selected index range.'
+    description:'The substring method copies a chunks of an existing string. It returns a sub-section of the original string and depends on the selected index range.'
   },
   { 
     location:'fundamentals/strings/string-remove', 

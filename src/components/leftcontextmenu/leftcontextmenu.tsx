@@ -28,13 +28,13 @@ export default component$(() => {
                 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
               </svg>
             </button>
-            <div class="hidden w-full lg:block lg:w-auto bg-customdark1 text-sm" id="navbar-sidebar">
+            <div class="hidden w-full lg:block lg:w-auto bg-customdark1 text-sm " id="navbar-sidebar">
 
                 {/* <h5>{menu?.text}</h5> */}
                 {menu
                   ? menu.items?.slice(1, menu.items.length).map((item) => (
-                    <details class="my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg  duration-300"  open={(item.text && currentMenuItem && currentMenuItem?.category &&  item?.text == (currentMenuItem?.category)) ? true :false } >
-                    <summary>{item?.text}</summary>
+                    <details class="my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg duration-300"  open={(item.text && currentMenuItem && currentMenuItem?.category &&  item?.text == (currentMenuItem?.category)) ? true :false } >
+                    <summary class={(item.text && currentMenuItem && currentMenuItem?.category &&  item?.text == (currentMenuItem?.category)) ? "font-bold text-lg" : "" }>{item?.text}</summary>
                     <div class="flex flex-col">
                     <>
                 {item
@@ -43,7 +43,7 @@ export default component$(() => {
                  
 <Link
 href={item2.href}
-class=   {(item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-lg py-1 font-bold text-customdark5' : 'text-sm py-1' }
+class=   {(item2 && item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-sm py-1 font-bold text-customdark5 border-2 bg-customdark6 border-customdark1 px-2 border-l-customdark2' : 'text-sm py-1 border-2 border-customdark1 border-l-customdark3 px-2 hover:border-l-customdark2' }
 >
 {item2.text}
 </Link>
@@ -63,14 +63,14 @@ class=   {(item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.tex
           {menu
                   ? menu.items?.slice(1, menu.items.length).map((item) => (
                     <details class="mx-6 my-1 bg-customdark1 border-spacing-0 border-customdark1 text-customdark5 p-1 rounded-lg overflow-y-auto duration-300" open={(item.text && currentMenuItem && currentMenuItem?.category &&  item?.text == (currentMenuItem?.category)) ? true :false }>
-                    <summary>{item?.text}</summary>
+                    <summary class={(item.text && currentMenuItem && currentMenuItem?.category &&  item?.text == (currentMenuItem?.category)) ? "font-bold text-lg" : "" }>{item?.text}</summary>
                 <>
 
                             {item
                   ? item.items?.slice(1, item.items.length).map((item2) => (
               <a
                         href={item2.href}
-                        class= {(item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-sm block pr-4 pl-3 col-span-6 font-bold text-customdark5' : "text-sm block pr-4 pl-3 col-span-6" } 
+                        class= {(item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-sm block pr-4 pl-3 col-span-6 font-bold text-customdark5 border-2 bg-customdark6 border-customdark1 border-l-customdark2 ' : "text-sm block pr-4 pl-3 col-span-6 border-2 border-customdark1 border-l-customdark3 hover:border-l-customdark2" } 
                       >
                         {item2.text}
                       </a>

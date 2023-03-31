@@ -157,6 +157,7 @@ details{
 	@apply rounded-lg;
 	@apply overflow-x-auto;
 	@apply duration-300;
+
 }
 summary{
 	@apply text-customdark7;
@@ -167,6 +168,7 @@ summary{
 	@apply font-semibold;
 	@apply duration-300;
 	@apply cursor-pointer;
+	@apply font-bold;
 }
 
 
@@ -437,3 +439,31 @@ pre[class*="language-"] {
 	--height-icon: 16px;
 	--font-size: 16px
 }
+
+
+.swiper-wrapper {
+	padding: 3rem 0;
+  }
+  
+.swiper-slide {
+	-webkit-transition: 250ms all;
+	transition: 250ms all;
+  }
+  
+.swiper-slide:hover {
+	-webkit-transform: scale(1.15);
+			transform: scale(1.15);
+	z-index: 1;
+  }
+  
+/* .swiper-slide:first-child:hover {
+	margin: 0 40px;
+  }
+  
+.swiper-slide:last-child:hover {
+	margin: 0 -40px;
+  } */
+
+/* details > summary {
+	list-style: none ;
+  } */

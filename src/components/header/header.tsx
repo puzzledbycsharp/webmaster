@@ -86,7 +86,7 @@ export default component$(() => {
       </header>
 
 
-      <div class="hidden lg:block lg:h-14 w-full backdrop-blur-md fixed top-0 -z-5">
+      <div class="hidden lg:block lg:h-14 w-screen backdrop-blur-md fixed top-0 -z-5">
 
       </div >
     </>

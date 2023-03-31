@@ -84,7 +84,7 @@ dangerouslySetInnerHTML={'algoliasearchNetlify({appId: \'CXWBWJV7NI\', apiKey: \
 
         />
       </head>
-      <body lang="en">
+      <body>
 
         <RouterOutlet />
         <ServiceWorkerRegister />

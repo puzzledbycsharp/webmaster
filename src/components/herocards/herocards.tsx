@@ -42,7 +42,7 @@ export const Child = component$(() => {
   const updatedState = filterMetaData(myClonedArray);
   useClientEffect$(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const swiper = new Swiper(".swiper", {     modules: [Navigation],   preloadImages: false,  lazy: true, breakpoints: {  320: {  direction: 'horizontal',  slidesPerView: "1.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },  },  480: {  direction: 'horizontal',  slidesPerView: "2.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },     },  640: {  direction: 'horizontal',  slidesPerView: "3.1",  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },    },    768: {      direction: 'horizontal',      slidesPerView: "4.1",      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },              },       1024: {      direction: 'horizontal',      slidesPerView: "5.1",      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },            }  }      });
+    const swiper = new Swiper(".swiper", {     modules: [Navigation],   preloadImages: false,  lazy: true, breakpoints: {  320: {  direction: 'horizontal',  slidesPerView: 1.1,  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },  },  480: {  direction: 'horizontal',  slidesPerView: 2.1,  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },     },  640: {  direction: 'horizontal',  slidesPerView: 3.1,  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },    },    768: {      direction: 'horizontal',      slidesPerView: 4.1,      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },              },       1024: {      direction: 'horizontal',      slidesPerView: 5.1,      navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },            }  }      });
     
 });
  return (
@@ -73,7 +73,7 @@ export const Child = component$(() => {
             <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title.replace(" | Puzzled By CSharp", "")}</h3>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.description}</p>
-        <a href={item.url} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center border-2 bg-customdark1  hover:bg-customdark6 hover:text-customdark5 lg:mx-0 text-sm leading-5 rounded-md font-semibold text-customdark7 duration-300" aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>
+        <a href={item.url} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center border-2 bg-customdark1  hover:bg-customdark6 hover:text-customdark5 lg:mx-0 leading-5 rounded-md font-semibold text-customdark7 duration-300" aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>
             Read more in article
             <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </a>
