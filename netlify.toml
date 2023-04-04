@@ -10,7 +10,7 @@ package = "@netlify/plugin-sitemap"
   prettyURLs = true
   # Append missing trailing slash to pretty URL
   trailingSlash = true
-  changeFreq = "weekly"
+  changeFreq = "monthly"
   priority = 0.5
   
 [[redirects]]
