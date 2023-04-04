@@ -2,11 +2,20 @@
 publish = "dist"
 command = "npm run build"
 
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  buildDir = "public"
+  prettyURLs = true
+  # Append missing trailing slash to pretty URL
+  trailingSlash = true
+  
 [[redirects]]
-  from = "/fundamentals/collections/array/"
-  to = "/array/"
-  status = 301
-  force = true
+from = "/fundamentals/collections/array/"
+to = "/array/"
+status = 301
+force = true
 
 [[redirects]]
 from = "/fundamentals/collections/array/how-to-assign-values-to-an-array/"
