@@ -6,7 +6,7 @@ command = "npm run build"
 package = "@netlify/plugin-sitemap"
 
   [plugins.inputs]
-  buildDir = "public"
+  buildDir = "dist"
   prettyURLs = true
   # Append missing trailing slash to pretty URL
   trailingSlash = true
