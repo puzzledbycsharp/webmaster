@@ -10,11 +10,11 @@ package = "@netlify/plugin-sitemap"
   prettyURLs = true
   # Append missing trailing slash to pretty URL
   trailingSlash = true
-  
+
 [[redirects]]
 from = "/fundamentals/collections/array/"
 to = "/array/"
-status = 301
+status = 301 
 force = true
 
 [[redirects]]
