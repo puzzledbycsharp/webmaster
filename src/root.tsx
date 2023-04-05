@@ -14,7 +14,7 @@ export default component$(() => {
    */
 //console.log("loc:"+loc.href);
   return (
-    <QwikCityProvider>
+    <QwikCityProvider >
       <head>
         <meta charSet="utf-8" />
         <RouterHead />

@@ -3,6 +3,7 @@ import { extendConfig } from '@builder.io/qwik-city/vite';
 import baseConfig from '../../vite.config';
 
 export default extendConfig(baseConfig, () => {
+
   return {
     build: {
       ssr: true,
@@ -12,7 +13,7 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [
       staticAdaptor({
-        origin: 'https://puzzledbycsharp.com',
+        origin: 'https://puzzledbycsharp.com', sitemapOutFile: null as any,
       }),
     ],
   };
