@@ -6,7 +6,7 @@ export default extendConfig(baseConfig, () => {
 
   return {
     build: {
-      ssr: false,
+      ssr: true,
       rollupOptions: {
         input: ['@qwik-city-plan'],
       },
