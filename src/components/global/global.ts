@@ -843,9 +843,3 @@ export const ROUTE_DATA = [
     description: string;
     lazyLoadImage:boolean;
   }
-    dateCreated:string;
-    dateCreated:string;
-    dateCreated:string;
-    dateCreated:string;
-    dateCreated:string;
-    dateCreated:string;
