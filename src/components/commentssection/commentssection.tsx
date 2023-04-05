@@ -1,4 +1,4 @@
-import { component$, useClientEffect$ } from '@builder.io/qwik';
+import { component$, useBrowserVisibleTask$ } from '@builder.io/qwik';
 import { graphcomment } from './integration.js';
 import { useLocation } from '@builder.io/qwik-city';
 
@@ -6,7 +6,7 @@ export const CommentsSection = component$(() => {
 
   const loc = useLocation();
 
-  useClientEffect$(() => {
+  useBrowserVisibleTask$(() => {
     __semio__onload();
     function __semio__onload() {
       const gc_params = {

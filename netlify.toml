@@ -1,6 +1,6 @@
 [build]
 publish = "dist"
-command = "npm run build"
+command = "run build.server"
 
 [[redirects]]
 from = "/fundamentals/collections/array/"
