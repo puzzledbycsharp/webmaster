@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://puzzledbycsharp.com/sitemap.xml
+Sitemap: https://puzzledbycsharp.com/sitemap_v2.xml
 
 # Algolia-Crawler-Verif: 8692142961CAF875
