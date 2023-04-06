@@ -834,7 +834,7 @@ export const ROUTE_DATA = [
     location:string;
     url:string;
     title:string;
-    dateModified:'2023-04-04T04:26:22-04:00',
+    dateModified:string,
     dateCreated:string;
     twitterImage:string;
     image:string;
@@ -843,3 +843,4 @@ export const ROUTE_DATA = [
     description: string;
     lazyLoadImage:boolean;
   }
+
