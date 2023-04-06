@@ -7,6 +7,7 @@ title: Fill The Array With One Value
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 <ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Fill The Array With One Value Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -20,7 +21,13 @@ I'll also briefly talk about how readable and concise the code is. Below is a su
 
 ### Summary Table
 
-<Table header ="Analysis Type,Enumerable Repeat,Array Fill,For Loop" rows=".NET Version Available,>= .NET 3.5,>= .NET Core or .NET Standard 2.1,All;Performance,O(N),O(N),O(N);Lines Of Code,1,2,5;Speed,5922ms,6374ms,9941ms" />
+<Table header ="Analysis Type,Enumerable Repeat,Array Fill,For Loop" rows=".NET Version Available,>= .NET 3.5,>= .NET Core 2.0 or .NET Standard 2.1,All;Performance,O(N),O(N),O(N);Lines Of Code,1,2,5;Speed,5922ms,6374ms,9941ms" />
+
+
+### Summary Video 
+
+<YoutubeWrapper source="https://www.youtube.com/embed/2Y7CvSks1KY"/>
+
 
 ### Fill The Array With One Value Using The Enumerable Repeat Method
 

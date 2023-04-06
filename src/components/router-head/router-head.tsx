@@ -75,7 +75,7 @@ if(routeData){
                   <meta property="og:url" content={routeData.url}/>
                     <meta property="article:published_time" content={routeData.dateCreated}/>
                       <meta property="article:author" content="PuzzledByCSharp"/>
-                      <script type="application/ld+json">{structuredDataSingle(routeData)}</script>
+                      <script type="application/ld+json" dangerouslySetInnerHTML={structuredDataSingle(routeData)} ></script>
 
       {head.links.map((l) => (
         <link {...l} />
@@ -163,7 +163,7 @@ if(routeData)
     "author": {
       "@type": "Person",
       "name": "PuzzledByCSharp",
-      "url": "https://puzzledbycsharp.com"
+      "url": "https://puzzledbycsharp.com/"
     }
   };
 
