@@ -1,0 +1,264 @@
+---
+title: How To Combine Two Arrays Into One
+---
+
+# How To Combine Two Arrays Into One
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Combine Two Arrays Into One Banner" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+If you have two arrays and need combine them into one array then there are many built in options to use like Concat, CopyTo, AddRange, BlockCopy, Resize and Copy. These some of these produce a new array or reuse an existing array. Most of these are one line of code but we'll examine the conciseness of the code. I'll also take a look at the perfomrance and how each of these methods scale.
+
+
+### Summary Table
+
+<Table header ="Analysis Type,Enumerable Concat,Array CopyTo,AddRange,Concat,BlockCopy, Resize and Copy" rows=".NET Framework Version Available,>= .NET 3.5,>= .NET 1.1;Lines Of Code,1,5,;Duplicates Removed,No,No;Speed Test,14769ms,15608ms,," />
+
+### Combine Two Arrays Into One With The Enumerable Concat Method
+
+<ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-chart-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-chart-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-chart-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Concat Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
+[The concat method combines two sequences together.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.concat?view=net-7.0#definition) [This does not remove the duplicates from the two arrays.](https://dotnettutorials.net/lesson/linq-concat-operator/) These seqences can be of any of the collection types and doesn't just apply to arrays. So you could do combine lists as well for example. Since this is using defered excection which means that the action is not applied until it is needed which could improve performance. 
+
+The name also makes it easy to read and concat is also used in excel to combine differen cells so the name works well in this case as well.
+
+There is also wide support for this method because it was release in .NET 3.5 so it's been around since 2007. You most likely won't have to check which version of .NET, it should be there.
+
+This method will combine the second array to the first. So in the output you'll see the first array's items followed by the second array's items. Let's see this in action by an example.
+
+
+#### The Enumerable Concat Method Code Example
+
+<ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-sytax-image-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-sytax-image-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-sytax-image-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/enumerable-concat-sytax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Concat Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"  />
+
+This is code shows different arrays of the different types being combined into one. Since concat returns an IEnumerable object, we need to apply the ToArray to convert the IEnumerable to array type.  There no issue in applying this method to different types.
+
+The concat method takes up one line of code. Which is great that it is compact. 
+
+```cs
+//Create two different arrays of string for different exercises
+string[] stringArray1 = new string[] { "Push-ups", "Squats", "Lunges", "Crunches", "Burpees" };
+string[] stringArray2 = new string[] { "Deadlifts", "Bench press", "Pull-ups", "Planks", "Jumping jacks" };
+
+//Create two different arrays of int 
+int[] intArray1 = new int[] { 3, 7, 11, 19, 23 };
+int[] intArray2 = new int[] { 2, 5, 13, 17, 29 };
+
+//Create two different arrays of double
+double[] doubleArray1 = new double[] { 1.234, 4.567, 7.890, 10.111, 12.131 };
+double[] doubleArray2 = new double[] { 2.345, 5.678, 9.012, 11.113, 13.141 };
+
+//Create two different arrays of bool
+bool[] boolArray1 = new bool[] { true, false,s true, true, false };
+bool[] boolArray2 = new bool[] { false, true, false, false, true };
+
+//Create two different arrays of float
+float[] floatArray1 = new float[] { 1.23f, 4.56f, 7.89f, 10.11f, 12.13f };
+float[] floatArray2 = new float[] { 2.34f, 5.67f, 8.91f, 11.12f, 13.14f };
+
+//Combined array method
+string[] combinedStringArray = CombineTwoArraysIntoOne<string>(stringArray1, stringArray2);
+int[] combinedIntArray = CombineTwoArraysIntoOne<int>(intArray1, intArray2);
+double[] combinedDoubleArray = CombineTwoArraysIntoOne<double>(doubleArray1, doubleArray2);
+bool[] combinedBoolArray = CombineTwoArraysIntoOne<bool>(boolArray1, boolArray2);
+float[] combinedFloatArray = CombineTwoArraysIntoOne<float>(floatArray1, floatArray2);
+
+//Print out each array
+PrintArray<string>(combinedStringArray);
+PrintArray<int>(combinedIntArray);
+PrintArray<double>(combinedDoubleArray);
+PrintArray<bool>(combinedBoolArray);
+PrintArray<float>(combinedFloatArray);
+
+
+T[] CombineTwoArraysIntoOne<T>(T[] array1, T[] array2)
+{
+    return array1.Concat(array2).ToArray();//Use Enumerable Concat to combine array1 and array2 together
+}
+
+void PrintArray<T>(T[] array)
+{
+    int index = 0;
+    foreach (T item in array)//Loop through each item in the array
+    {
+        Console.WriteLine($"[{index++}] = {item}");//Print array item to the screen
+    }
+    Console.WriteLine();
+    Console.WriteLine();
+}
+```
+
+###### Code Output
+
+<Table header ="string,int,double,bool,float" rows="[0] = Push-ups,[0] = 3,[0] = 1.234,[0] = True,[0] = 1.23;[1] = Squats,[1] = 7,[1] = 4.567,[1] = False,[1] = 4.56;[2] = Lunges,[2] = 11,[2] = 7.89,[2] = True,[2] = 7.89;[3] = Crunches,[3] = 19,[3] = 10.111,[3] = True,[3] = 10.11;[4] = Burpees,[4] = 23,[4] = 12.131,[4] = False,[4] = 12.13;[5] = Deadlifts,[5] = 2,[5] = 2.345,[5] = False,[5] = 2.34;[6] = Bench press,[6] = 5,[6] = 5.678,[6] = True,[6] = 5.67;[7] = Pull-ups,[7] = 13,[7] = 9.012,[7] = False,[7] = 8.91;[8] = Planks,[8] = 17,[8] = 11.113,[8] = False,[8] = 11.12;[9] = Jumping jacks,[9] = 29,[9] = 13.141,[9] = True,[9] = 13.14;" />
+
+
+### Combine Two Arrays Into One With The Array CopyTo Method
+
+<ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array CopyTo Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
+
+Array CopyTo is a very old method. It has been around since .NET version 1.1 so it almost certain that this method will exist in your current version C# application. 
+
+This method has a 3 step process. First an empty array that will hold the two arrays combined. Next you'll need to copy the first array into empty array. Then finally copy the second array into the destination array at the start point where the first array ended. 
+
+Because of this process, the code is increased in size and there are potential more contacts of failure that the previous enumerable concat method. But the name CopyTo makes it easier to read and understand what is going on.
+
+
+
+#### The Array CopyTo Method Code Example
+
+<ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array CopyTo Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
+```cs
+//Create two different arrays of string for different exercises
+string[] stringArray1 = new string[] { "Bicep curls", "Tricep extensions", "Shoulder press", "Dumbbell rows", "Hammer curls" };
+string[] stringArray2 = new string[] { "Leg press", "Calf raises", "Hip thrusts", "Glute bridges", "Step-ups" };
+
+//Create two different arrays of int 
+int[] intArray1 = new int[] { 1, 3, 5, 7, 9 };
+int[] intArray2 = new int[] { 2, 4, 6, 8, 10 };
+
+//Create two different arrays of double
+double[] doubleArray1 = new double[] { 1.23, 3.45, 5.67, 7.89, 9.01 };
+double[] doubleArray2 = new double[] { 2.34, 4.56, 6.78, 8.90, 10.12 };
+
+//Create two different arrays of bool
+bool[] boolArray1 = new bool[] { true, false, true, true, false };
+bool[] boolArray2 = new bool[] { false, true, false, false, true };
+
+//Create two different arrays of float
+float[] floatArray1 = new float[] { 1.2f, 3.4f, 5.6f, 7.8f, 9.0f };
+float[] floatArray2 = new float[] { 2.3f, 4.5f, 6.7f, 8.9f, 10.1f };
+
+//Combined array method
+string[] combinedStringArray = CombineTwoArraysIntoOne<string>(stringArray1, stringArray2);
+int[] combinedIntArray = CombineTwoArraysIntoOne<int>(intArray1, intArray2);
+double[] combinedDoubleArray = CombineTwoArraysIntoOne<double>(doubleArray1, doubleArray2);
+bool[] combinedBoolArray = CombineTwoArraysIntoOne<bool>(boolArray1, boolArray2);
+float[] combinedFloatArray = CombineTwoArraysIntoOne<float>(floatArray1, floatArray2);
+
+T[] CombineTwoArraysIntoOne<T>(T[] array1, T[] array2)
+{
+    const int array1StartCopyIndex = 0;//Set the starting index for array1
+    T[] destinationArray = new T[array1.Length + array2.Length];//Create a new array that holds the combination
+    array1.CopyTo(destinationArray, array1StartCopyIndex);//Copy array1 to the destination array
+    array2.CopyTo(destinationArray, array1.Length);//Copy array2 to the destination array starting where array1 left off
+    return destinationArray;
+}
+```
+
+###### Code Output
+
+<Table header ="string,int,double,bool,float" rows="[0] = Bicep curls,[0] = 1,[0] = 1.23,[0] = True,[0] = 1.2;[1] = Tricep extensions,[1] = 3,[1] = 3.45,[1] = False,[1] = 3.4;[2] = Shoulder press,[2] = 5,[2] = 5.67,[2] = True,[2] = 5.6;[3] = Dumbbell rows,[3] = 7,[3] = 7.89,[3] = True,[3] = 7.8;[4] = Hammer curls,[4] = 9,[4] = 9.01,[4] = False,[4] = 9;[5] = Leg press,[5] = 2,[5] = 2.34,[5] = False,[5] = 2.3;[6] = Calf raises,[6] = 4,[6] = 4.56,[6] = True,[6] = 4.5;[7] = Hip thrusts,[7] = 6,[7] = 6.78,[7] = False,[7] = 6.7;[8] = Glute bridges,[8] = 8,[8] = 8.9,[8] = False,[8] = 8.9;[9] = Step-ups,[9] = 10,[9] = 10.12,[9] = True,[9] = 10.1;" />
+
+
+
+
+### Speed Test
+
+#### Enumerable Concat Speed Test Code
+
+```cs
+void TestMethod(TestArrayDataContainer testArrayDataContainer)
+{
+    string[] combinedStringArray = CombineTwoArraysIntoOne<string>(testArrayDataContainer.stringData1, testArrayDataContainer.stringData2);
+    int[] combinedIntArray = CombineTwoArraysIntoOne<int>(testArrayDataContainer.intData1, testArrayDataContainer.intData2);
+    double[] combinedDoubleArray = CombineTwoArraysIntoOne<double>(testArrayDataContainer.doubleData1, testArrayDataContainer.doubleData2);
+    bool[] combinedBoolArray = CombineTwoArraysIntoOne<bool>(testArrayDataContainer.boolData1, testArrayDataContainer.boolData2);
+    float[] combinedFloatArray = CombineTwoArraysIntoOne<float>(testArrayDataContainer.floatArray1, testArrayDataContainer.floatArray2);
+}
+
+T[] CombineTwoArraysIntoOne<T>(T[] array1, T[] array2)
+{
+    return array1.Concat(array2).ToArray();//Use Enumerable Concat to combine array1 and array2 together
+}
+```
+
+#### Array CopyTo Speed Test Code
+```cs
+T[] CombineTwoArraysIntoOne<T>(T[] array1, T[] array2)
+{
+    const int array1StartCopyIndex = 0;//Set the starting index for array1
+    T[] destinationArray = new T[array1.Length + array2.Length];//Create a new array that holds the combination
+    array1.CopyTo(destinationArray, array1StartCopyIndex);//Copy array1 to the destination array
+    array2.CopyTo(destinationArray, array1.Length);//Copy array2 to the destination array starting where array1 left off
+    return destinationArray;//return combined array
+}
+```
+
+
+###### Enumerable Concat Speed Test Code Output
+
+```
+Test 1: 0m 15s 56ms
+Test 2: 0m 15s 40ms
+Test 3: 0m 14s 819ms
+Test 4: 0m 14s 809ms
+Test 5: 0m 14s 625ms
+Test 6: 0m 14s 569ms
+Test 7: 0m 14s 601ms
+Test 8: 0m 14s 837ms
+Test 9: 0m 14s 633ms
+Test 10: 0m 14s 700ms
+Enumerable Concat Average Speed:14769ms, In 10 Tests
+```
+
+###### Array CopyTo Speed Test Code Output
+
+```
+Test 1: 0m 15s 923ms
+Test 2: 0m 16s 48ms
+Test 3: 0m 15s 558ms
+Test 4: 0m 15s 601ms
+Test 5: 0m 15s 442ms
+Test 6: 0m 15s 414ms
+Test 7: 0m 14s 718ms
+Test 8: 0m 15s 390ms
+Test 9: 0m 15s 910ms
+Test 10: 0m 16s 74ms
+Array CopyTo Average Speed:15608ms, In 10 Tests
+```
+
+
+
+<details>
+<summary>Test Code</summary>
+
+```cs
+```
+</details>
+
+### Test
+
+####  Test Code
+```cs
+```
+
+###### Code Output
+
+```
+```
+
+<details>
+<summary> Test Code</summary>
+
+```cs
+```
+</details>
+
+
+
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,Merge Loop,797ms;2,LINQ ForEach,823ms;3,LINQ Concat,1641ms;" />
+
+
+Know any other ways ? Let me know in the comments below.
