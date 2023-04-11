@@ -1,8 +1,9 @@
-import { component$} from '@builder.io/qwik';
+import { component$, useBrowserVisibleTask$} from '@builder.io/qwik';
 
 interface YoutubeItemProps {
   source?: string;
   youtubeId?:string;
+  youtubescript:string;
 }
 
 
@@ -10,20 +11,24 @@ interface YoutubeItemProps {
 export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
 
 
-   //useBrowserVisibleTask$(() => {
+   useBrowserVisibleTask$(() => {
 
   //   const partytown = <div data-partycage data-partytype="iframe" data-partysrc="https://www.youtube.com/embed/2Y7CvSks1KY" style={{ width: '640px', height: '360px' }}></div>;
   //  <QwikPartytown>
 
   //  </QwikPartytown>
-  //const tag = document.createElement('script'); 
-  //tag.type = "text/javascript";
+  // const div = document.createElement('div'); 
+  // div.id = 'ytplayer'
+
+  const tag = document.createElement('script'); 
+  tag.type = "text/javascript";
   //tag.src = 'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }';
-  // tag.innerHTML = 'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }';
+  tag.innerHTML = props.youtubescript;
   //   <script type="text/javascript"  dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }'}>
-  
+  const firstScriptTag = document.getElementById('ytplayer'); 
+  firstScriptTag?.parentNode?.insertBefore(tag,firstScriptTag );
   // </script>
-   //});
+   });
 
   return (
     <>
@@ -43,13 +48,15 @@ export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
 
    {/* <iframe class="w-full md:w-3/4 mx-auto h-96" loading="lazy" src={props.source} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>  
      */}
-  
-  <div id="ytplayer"></div>
 
 
-    <script type="text/partytown"  dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }'}>
+  <div class="w-full md:w-3/4 mx-auto h-96" id="ytplayer"></div>
+
+
+
+    {/* <script type="text/partytown"  dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }'}>
   
-   </script>
+   </script> */}
 
     </>
 
