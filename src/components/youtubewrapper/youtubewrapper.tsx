@@ -1,7 +1,8 @@
-import { component$} from '@builder.io/qwik';
+import { component$, useBrowserVisibleTask$} from '@builder.io/qwik';
 
 interface YoutubeItemProps {
   source?: string;
+  youtubeId?:string;
 }
 
 
@@ -14,11 +15,10 @@ export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
 
   //  </QwikPartytown>
   // });
-  // useBrowserVisibleTask$(() => {
 
-  // });
   return (
     <>
+    
       {/* <div id="partytown"></div> */}
         {/* <div id="player"></div> */}
     {/* <script type="text/partytown" dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');tag.src = "https://www.youtube.com/iframe_api";      var firstScriptTag = document.getElementsByTagName(\'script\')[0];      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);      var player;      function onYouTubeIframeAPIReady() {        player = new YT.Player(\'player\', {          height: \'390\',          width: \'640\',          videoId: \'2Y7CvSks1KY\',          playerVars: {            \'playsinline\': 1          },          events: {            \'onReady\': onPlayerReady,            \'onStateChange\': onPlayerStateChange          }        });      }      function onPlayerReady(event) {        event.target.playVideo();      }      var done = false;      function onPlayerStateChange(event) {        if (event.data == YT.PlayerState.PLAYING && !done) {          setTimeout(stopVideo, 6000);          done = true;        }      }      function stopVideo() {        player.stopVideo();      }     window.dispatchEvent(new CustomEvent(\'ptupdate\'));'}>
@@ -32,14 +32,14 @@ export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
     </script>  */}
 
 
-   <iframe class="w-full md:w-3/4 mx-auto h-96" loading="lazy" src={props.source} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>  
-    
+   {/* <iframe class="w-full md:w-3/4 mx-auto h-96" loading="lazy" src={props.source} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>  
+     */}
   
-  {/* <div id="ytplayer"></div>
+  <div id="ytplayer"></div>
 
-  <script type="text/javascript"  dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'rmTWWQHM27A\'    });  }'}>
+  <script type="text/partytown"  dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'{props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }'}>
   
-  </script> */}
+  </script>
 
 
     </>
