@@ -102,16 +102,16 @@ void PrintArray<T>(T[] array)
 
 <ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array CopyTo Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
+This method copies the source array to the destination array at the starting index. Because we are combining two arrays into one we need to use two CopyTo operations for each source array.
 
 Array CopyTo is a very old method. It has been around since .NET version 1.1 so it almost certain that this method will exist in your current version C# application. 
+
+
+#### The Array CopyTo Method Code Example
 
 This method has a 3 step process. First an empty array that will hold the two arrays combined. Next you'll need to copy the first array into empty array. Then finally copy the second array into the destination array at the start point where the first array ended. 
 
 Because of this process, the code is increased in size and there are potential more contacts of failure that the previous enumerable concat method. But the name CopyTo makes it easier to read and understand what is going on.
-
-
-
-#### The Array CopyTo Method Code Example
 
 <ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/array-copyto-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array CopyTo Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
@@ -161,6 +161,10 @@ T[] CombineTwoArraysIntoOne<T>(T[] array1, T[] array2)
 
 
 ### Speed Test
+
+This speed test is an average of 10 tests. Each test will have a loop that calls the test function 100 times. Each test function has 5 million items per array with two arrays per type.
+
+This will throughly test these method across a variety of types so that we can compare.
 
 #### Enumerable Concat Speed Test Code
 
