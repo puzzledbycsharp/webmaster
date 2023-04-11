@@ -105,7 +105,7 @@ export const Child = component$(() => {
 export function filterMetaData(routeDatas:  MyRouteData [] ) {
   const newArray : MyRouteData [] = [];
   let  count: number = 0;
-  routeDatas.sort((a, b) => a.dateModified > b.dateModified ? -1 : a.dateModified < b.dateModified ? 1 : 0);
+  routeDatas.sort((a, b) => a.dateCreated > b.dateCreated ? -1 : a.dateCreated < b.dateCreated ? 1 : 0);
   for (const routeData of routeDatas) {
     if( count <= 1){
       routeData.lazyLoadImage = false;
