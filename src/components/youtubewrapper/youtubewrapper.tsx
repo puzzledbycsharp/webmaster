@@ -1,4 +1,4 @@
-import { component$, useBrowserVisibleTask$} from '@builder.io/qwik';
+import { component$} from '@builder.io/qwik';
 
 interface YoutubeItemProps {
   source?: string;
