@@ -18,18 +18,18 @@ export default component$(() => {
 
 
   <div
-    class="z-5 md:p-5 font-bold text-customdark7 rounded-xl whitespace-pre-wrap col-span-1 col-start-2 row-start-2"
+    class="z-5 py-4 md:p-5 font-bold text-customdark7 rounded-xl whitespace-pre-wrap col-span-1 col-start-2 row-start-2"
   >
 Welcome! This site was created for you to gain new insights into the C# programming language. There are a variety of how-to articles, and code snippets. Search below to quickly browse the content.
   </div>
  
 
-  <div id="search" class=" bg-customdark1 col-span-1 col-start-2 z-5 row-start-3 h-min"></div>
+  <div id="search" class=" bg-customdark1 col-span-1 col-start-2 z-5 row-start-3 h-min my-10"></div>
   </div>
   {/* <img class="absolute -z-10 w-auto min-w-full min-h-full max-w-none  block md:hidden" src="../../assets/home/big-data-scan-still.webp">
   </img> */}
 
-  <ImageWrapper imageSource="../../../../assets/home/Big-data-scan-still-medium.webp" imageSrcSet="../../../../assets/home/Big-data-scan-still-small.webp 500w, ../../../../assets/home/Big-data-scan-still-medium.webp 1000w, ../../../../assets/home/Big-data-scan-still-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Home Page Splash Video Looped" widthImage = "1280" heightImage = "720" classInfo="absolute -z-10 w-auto min-w-full min-h-full max-w-none block md:hidden" />
+  <ImageWrapper imageSource="../../../../assets/home/Big-data-scan-still-medium.webp" imageSrcSet="../../../../assets/home/Big-data-scan-still-small.webp 500w, ../../../../assets/home/Big-data-scan-still-medium.webp 1000w, ../../../../assets/home/Big-data-scan-still-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Home Page Splash Video Looped" widthImage = "1280" heightImage = "720" classInfo="absolute -z-10 w-auto min-w-full min-h-full max-w-none block md:hidden my-15" />
   <video 
     autoplay
     loop
