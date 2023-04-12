@@ -1,6 +1,5 @@
 import { component$ } from '@builder.io/qwik';
 import { Subscriberpushnotification } from '../subscriberpushnotification/subscriberpushnotification';
-import { Lazy } from 'swiper';
 
 export default component$(() => {
 
