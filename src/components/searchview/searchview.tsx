@@ -2,6 +2,7 @@ import {
   component$} from '@builder.io/qwik';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { ImageWrapper } from '../imagewrapper/imagewrapper';
 
 
 
@@ -25,8 +26,10 @@ Welcome! This site was created for you to gain new insights into the C# programm
 
   <div id="search" class=" bg-customdark1 col-span-1 col-start-2 z-5 row-start-3 h-min"></div>
   </div>
-  <img class="absolute -z-10 w-auto min-w-full min-h-full max-w-none  block md:hidden" src="../../assets/home/big-data-scan-still.webp">
-  </img>
+  {/* <img class="absolute -z-10 w-auto min-w-full min-h-full max-w-none  block md:hidden" src="../../assets/home/big-data-scan-still.webp">
+  </img> */}
+
+  <ImageWrapper imageSource="../../../../assets/home/Big-data-scan-still-medium.webp" imageSrcSet="../../../../assets/home/Big-data-scan-still-small.webp 500w, ../../../../assets/home/Big-data-scan-still-medium.webp 1000w, ../../../../assets/home/Big-data-scan-still-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Home Page Splash Video Looped" widthImage = "1280" heightImage = "720" classInfo="absolute -z-10 w-auto min-w-full min-h-full max-w-none block md:hidden" />
   <video 
     autoplay
     loop
