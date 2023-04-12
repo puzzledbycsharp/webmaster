@@ -41,11 +41,11 @@ dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mu
   */}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.css" />
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js"></script>
-<script type="text/javascript" 
+<script type="text/partytown" src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js"></script>
+{/* <script type="text/javascript" 
 dangerouslySetInnerHTML={'algoliasearchNetlify({appId: \'CXWBWJV7NI\', apiKey: \'a6395b8da54d8d637629536196fbd5a1\',  siteId: \'5ddddc23-db8c-4e93-8648-085e71e0052a\',  branch: \'main\',  selector: \'div#search\',});'}>
   
-</script>
+</script> */}
 
 
 
@@ -59,7 +59,7 @@ dangerouslySetInnerHTML={'algoliasearchNetlify({appId: \'CXWBWJV7NI\', apiKey: \
         <QwikPartytown
           //debug={true}
          // forward={['dataLayer.push', 'gtag','Swiper']}
-          forward={['dataLayer.push', 'gtag','YT']}
+          forward={['dataLayer.push', 'gtag','algoliasearchNetlify','$e (d2367885-06',' (blob:http:']}
         // logCalls={true} 
         // logGetters={true}
         // logSetters={true}
