@@ -37,8 +37,7 @@ export default component$(() => {
 
   <div
     class="z-5 py-4 md:p-5 font-bold text-customdark7 rounded-xl whitespace-pre-wrap col-span-1 col-start-2 row-start-2"
-  >
-Welcome! This site was created for you to gain new insights into the C# programming language. There are a variety of how-to articles, and code snippets. Search below to quickly browse the content.
+  ><h3>Welcome!</h3>This site was created for you to gain new insights into the C# programming language. There are a variety of how-to articles, and code snippets. Search below to quickly browse the content.
   </div>
  
 
