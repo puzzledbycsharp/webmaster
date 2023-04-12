@@ -1,8 +1,29 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useBrowserVisibleTask$ } from '@builder.io/qwik';
 import { Breadcrumbs } from "~/components/breadcrumbs/breadcrumbs";
 import  LeftContextMenu  from '../leftcontextmenu/leftcontextmenu';
 
 export default component$(() => {
+
+
+  useBrowserVisibleTask$(() => {
+
+    //   const partytown = <div data-partycage data-partytype="iframe" data-partysrc="https://www.youtube.com/embed/2Y7CvSks1KY" style={{ width: '640px', height: '360px' }}></div>;
+    //  <QwikPartytown>
+  
+    //  </QwikPartytown>
+    // const div = document.createElement('div'); 
+    // div.id = 'ytplayer'
+  
+    const tag = document.createElement('script'); 
+    tag.type = "text/javascript";
+    //tag.src = 'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }';
+    tag.innerHTML = 'algoliasearchNetlify({appId: \'CXWBWJV7NI\', apiKey: \'a6395b8da54d8d637629536196fbd5a1\',  siteId: \'5ddddc23-db8c-4e93-8648-085e71e0052a\',  branch: \'main\',  selector: \'div#search\',});'
+    //   <script type="text/javascript"  dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }'}>
+    const firstScriptTag = document.getElementById('search'); 
+    firstScriptTag?.parentNode?.insertBefore(tag,firstScriptTag );
+    // </script>
+     });
+     
   return (
 
 
