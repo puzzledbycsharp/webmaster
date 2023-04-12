@@ -18,13 +18,16 @@ export default component$(() => {
 
 
   <div
-    class="z-5 py-4 md:p-5 font-bold text-customdark7 rounded-xl whitespace-pre-wrap col-span-1 col-start-2 row-start-2"
+    class="z-5 py-4 md:p-5 font-bold text-customdark7 rounded-xl col-span-1 col-start-2 row-start-2"
   >
-Welcome! This site was created for you to gain new insights into the C# programming language. There are a variety of how-to articles, and code snippets. Search below to quickly browse the content.
+Welcome! This site was created for you to gain new insights into the C# programming language. There are a variety of how-to articles, and code snippets.   <span class="hidden md:block">
+  Search below to quickly browse the content.
+  </span>
   </div>
+
  
 
-  <div id="search" class=" bg-customdark1 col-span-1 col-start-2 z-5 row-start-3 h-min my-10"></div>
+  <div id="search" class=" bg-customdark1 col-span-1 col-start-2 z-5 row-start-3 h-min my-10 hidden md:block"></div>
   </div>
   {/* <img class="absolute -z-10 w-auto min-w-full min-h-full max-w-none  block md:hidden" src="../../assets/home/big-data-scan-still.webp">
   </img> */}
