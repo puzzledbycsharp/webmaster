@@ -66,7 +66,7 @@ export const Child = component$(() => {
         {/* <img class="rounded-t-lg" src={item.image} alt={item.title + " Image"}  /> */}
 
         <ImageWrapper imageSource={item.image} imageSrcSet={item.imageSmall +" 500w, "+ item.image + " 1000w, " +item.imageLarge +" 2000w "} imageSizes="(max-width: 500w) 80vw, (max-width: 1000px) 25vw, (max-width: 2000px) 10vw" altImage = {item.title.replace(" | Puzzled By CSharp", "") + " Image"} widthImage = "6000" heightImage = "4000" classInfo='rounded-t-lg' lazyLoad={true} />
-        <div class="swiper-lazy-preloader"></div>
+        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
     </a>
     <div class="">
         <a href={item.url} aria-label={item.title.replace(" | Puzzled By CSharp", "") + " Link"}>
