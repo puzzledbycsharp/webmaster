@@ -51,7 +51,7 @@ export default component$(() => {
                   </svg>Strings</a>
                 </li> */}
                                 <li>
-                <div id="search" class="bg-customdark1"></div>
+
                 </li>
                 <li>
                   <a href="/about/" class="py-2 pl-3 text-customdark8 flex flex-row items-center"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
