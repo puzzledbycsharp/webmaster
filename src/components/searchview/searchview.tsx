@@ -25,12 +25,15 @@ Welcome! This site was created for you to gain new insights into the C# programm
 
   <div id="search" class=" bg-customdark1 col-span-1 col-start-2 z-5 row-start-3 h-min"></div>
   </div>
-  <video
+  <img class="absolute -z-10 w-auto min-w-full min-h-full max-w-none  block md:hidden" src="../../assets/home/big-data-scan-still.webp">
+  </img>
+  <video 
     autoplay
     loop
     muted
+    controls
     poster="../../assets/home/big-data-scan-still.webp"
-    class="absolute -z-10 w-auto min-w-full min-h-full max-w-none"
+    class="absolute -z-10 w-auto min-w-full min-h-full max-w-none hidden md:block"
   >
     <source
 
