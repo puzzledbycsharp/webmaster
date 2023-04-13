@@ -59,7 +59,7 @@ dangerouslySetInnerHTML={'algoliasearchNetlify({appId: \'CXWBWJV7NI\', apiKey: \
         <QwikPartytown
           //debug={true}
          // forward={['dataLayer.push', 'gtag','Swiper']}
-          forward={['dataLayer.push', 'gtag','algoliasearchNetlify','$e (d2367885-06',' (blob:http:']}
+          forward={['dataLayer.push', 'gtag','algoliasearchNetlify','$e (d2367885-06',' (blob:http:','e (86aedffc-a']}
         // logCalls={true} 
         // logGetters={true}
         // logSetters={true}
