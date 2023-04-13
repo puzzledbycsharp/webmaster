@@ -352,7 +352,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/fundamentals/collections/array-vs-list-vs-linked-list/',
     title:'Array Vs List Vs Linked List | Puzzled By CSharp',
     dateCreated:'2021-12-24T00:08:56+00:00',
-    dateModified:'2023-03-26T04:29:48-04:00',
+    dateModified:'2023-04-13T16:03:55-04:00',
     twitterImage:'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-medium.webp',
     imageSmall:'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-small.webp',
