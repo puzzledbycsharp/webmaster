@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'array/how-to-combine-two-arrays-into-one', 
+    url: 'https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/',
+    title:'How To Combine Two Arrays Into One', 
+    dateCreated:'2023-03-14T00:11:55+00:00',
+    dateModified:'2023-03-14T00:11:55+00:00',
+    twitterImage:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-twitter.webp',
+    image:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp',
+    imageSmall:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webpp',
+    imageLarge:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-large.webp',
+    description:'The best method for combining two arrays into one is Enumerable Concat. It is fast, easy to read, and fits on one line.'
+  },
+  { 
     location:'array/fill-the-array-with-one-value', 
     url: 'https://puzzledbycsharp.com/array/fill-the-array-with-one-value/',
     title:'Fill The Array With One Value', 

@@ -52,6 +52,7 @@
 - [Search An Array If It Contains The Keyword](array/search-an-array-if-it-contains-the-keyword/index.mdx)
 - [Best Removal Method Of Duplicates From An Array](array/best-removal-method-of-duplicates-from-an-array/index.mdx)
 - [Best Method For Slicing Arrays](array/best-method-for-slicing-arrays/index.mdx)
+- [How To Combine Two Arrays Into One](array/how-to-combine-two-arrays-into-one/index.mdx)
 
 
 ## Strings
