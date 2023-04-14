@@ -7,7 +7,7 @@ export const ROUTE_DATA = [
     dateModified:'2023-03-14T00:11:55+00:00',
     twitterImage:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp',
-    imageSmall:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webpp',
+    imageSmall:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webp',
     imageLarge:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-large.webp',
     description:'The best method for combining two arrays into one is Enumerable Concat. It is fast, easy to read, and fits on one line.'
   },
