@@ -12,6 +12,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</loc>
+		<lastmod>2023-04-14T15:40:20-04:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://puzzledbycsharp.com/array/best-initializer-to-get-an-empty-array/</loc>
 		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
 		<changefreq>monthly</changefreq>
