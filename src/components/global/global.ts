@@ -1,9 +1,9 @@
 export const ROUTE_DATA = [
   { 
-    location:'array/how-to-combine-two-arrays-into-one', 
+    location:'array/how-to-combine-two-arrays-into-one/', 
     url: 'https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/',
     title:'How To Combine Two Arrays Into One', 
-    dateCreated:'2023-03-14T00:11:55+00:00',
+    dateCreated:'2023-04-13T00:11:55+00:00',
     dateModified:'2023-03-14T00:11:55+00:00',
     twitterImage:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-twitter.webp',
     image:'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp',
