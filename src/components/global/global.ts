@@ -384,8 +384,8 @@ export const ROUTE_DATA = [
     description:'The exception CS1736:Default parameter value must be a compile-time constant comes when assigning an optional parameter value is not a constant or default value.'
   },
   { 
-    location:'fundamentals/collections/dictionary-best-practices-and-what-to-avoid', 
-    url: 'https://puzzledbycsharp.com/fundamentals/collections/dictionary-best-practices-and-what-to-avoid/',
+    location:'dictionary/dictionary-best-practices-and-what-to-avoid', 
+    url: 'https://puzzledbycsharp.com/dictionary/dictionary-best-practices-and-what-to-avoid/',
     title:'Dictionary Best Practices And What To Avoid | Puzzled By CSharp',
     dateCreated:'2021-12-24T00:08:56+00:00',
     dateModified:'2022-12-26T19:59:32-05:00',
