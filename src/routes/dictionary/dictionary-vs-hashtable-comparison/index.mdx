@@ -1,0 +1,913 @@
+---
+title: Dictionary Vs Hashtable Comparison
+---
+
+# Dictionary Vs Hashtable Comparison
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp" imageSrcSet="../../../../assets/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-small.webp 250w, ../../../../assets/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-medium.webp 500w, ../../../../assets/dictionary/dictionary-vs-hashtable-comparison/dictionary-vs-hashtable-comparison-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Dictionary Vs Hashtable Comparison Banner Image" widthImage = "2304" heightImage = "1728" />
+## Introduction
+
+Dictionary and Hashtable are two key-value pair types of data structures. They are similar but with some key differences. You may be wondering why there are two very similar data structures in C#. Well, Microsoft adds to the language but doesn't remove much from it. With that in mind, I'll be going over in detail the similarities and differences between the generic dictionary and hashtable.
+
+### Summary Table
+
+<Table header ="Analysis Type,Dictionary,Hashtable" rows=".NET Version, >= 2.0, >= 1.1;Performance,Fastest,Fast;Namespace,System.Collections.Generic,System.Collections;Element Type,KeyValuePair,DictionaryEntry;Generic,Yes,No;Key Immutable,Yes,Yes;Thread Safe,No | Multiple Readers Only,No | Multiple Readers and One Writer;Underlying Data Structure,Hashtable,Hashtable" />
+
+{/* wanted to add delete but didn't get to it. */}
+### .NET Version
+
+Hashtable has been around a long time since the 1.1 version of .NET but Dictionary came in in 2.0 of .NET.
+
+### Performance
+
+The most important consideration between Dictionary and Hashtable is how fast are they. The testing methods are as follows.
+
+Below is a summary table of the results.
+
+###### Performance Summary Table
+
+<Table header ="Method,Dictionary Speed,Hashtable Speed" rows="Add,8003ms,28178ms;Iterator,662ms,1725ms;Indexer,5021ms,9561ms;Update,13673ms,26548ms;" />
+
+
+###### Boxing and Unboxing
+Before we get into testing these data structures we need to talk about boxing and unboxing. Since Hashtable uses boxing and unboxing to store and retrieve the items, it is a performance hit. Boxing is assigning a variable to a class of type object. So if I had an int equal to 3, I could assign it to a variable and type Object. See example.
+
+
+```cs
+int number = 3;//Starting number
+Console.WriteLine("Starting value:" + number);//Print to screen
+Object storedValue = number;//boxing, converting to type Object
+int retievedValue = (int)storedValue;//unboxing, converting to original type
+Console.WriteLine("Ending value:" + number);//Print to screen
+```
+
+It is this converting to an object and back again that is a concern for Hyashtable's performance. We'll do some testing to see how much this impacts performance and in which uses cases.
+
+###### Type-Safe
+
+The opposite of boxing and unboxing is the usage of type-safe methods and classes. [It is an understanding the type is consistent and you can assume to be interacting with the same type and methods of that type.](https://www.oreilly.com/library/view/c-40-in/9781449379629/ch01.html#:~:text=Type%20Safety,it%20were%20an%20integer%20type.) C# is a mostly type-safe language. A dictionary is a type-safe object that uses generics.
+
+#### Add Speed Test
+
+This will be a test to add a million objects to a Hashtable to see how it scales.
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 million" />
+
+###### Hashtable Add Test Method
+```cs
+void TestMethod(Dictionary<string, DateTime> dictionary, Hashtable destinationHashtable)
+{
+    foreach (KeyValuePair<string, DateTime> source in dictionary)
+    {
+        destinationHashtable.Add(source.Key, source.Value);//Add key and value to Hashtable
+    }
+}
+```
+
+###### Dictionary Add Test Method
+
+```cs
+void TestMethod(Dictionary<string, DateTime> dictionary, Dictionary<string, DateTime> destinationDictionary)
+{
+    foreach (KeyValuePair<string, DateTime> source in dictionary)
+    {
+        destinationDictionary.Add(source.Key, source.Value);//Add key and value to Dictionary
+    }
+}
+```
+
+###### Hashtable Add Code Output
+```
+Test 1:Function Calls:100, In 0m 27s 526ms
+Test 2:Function Calls:100, In 0m 27s 510ms
+Test 3:Function Calls:100, In 0m 27s 919ms
+Test 4:Function Calls:100, In 0m 27s 560ms
+Test 5:Function Calls:100, In 0m 28s 308ms
+Test 6:Function Calls:100, In 0m 27s 984ms
+Test 7:Function Calls:100, In 0m 27s 613ms
+Test 8:Function Calls:100, In 0m 28s 64ms
+Test 9:Function Calls:100, In 0m 29s 506ms
+Test 10:Function Calls:100, In 0m 29s 786ms
+Hashtable Add Method Average Speed:28178ms, In 10 Tests
+```
+###### Dictionary Add Code Output
+```
+Test 1:Function calls:100, In 0m 8s 116ms
+Test 2:Function calls:100, In 0m 8s 263ms
+Test 3:Function calls:100, In 0m 8s 24ms
+Test 4:Function calls:100, In 0m 8s 348ms
+Test 5:Function calls:100, In 0m 8s 117ms
+Test 6:Function calls:100, In 0m 7s 931ms
+Test 7:Function calls:100, In 0m 7s 758ms
+Test 8:Function calls:100, In 0m 7s 870ms
+Test 9:Function calls:100, In 0m 7s 889ms
+Test 10:Function calls:100, In 0m 7s 711ms
+Dictionary Add Method Average speed:8003ms, In 10 tests
+```
+
+<details>
+<summary>Full Hashtable Add Test Code</summary>
+
+```cs
+using System.Collections;
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Hashtable Add Method";//Test name to print to average
+
+void TestMethod(Dictionary<string, DateTime> dictionary, Hashtable destinationHashtable)
+{
+    foreach (KeyValuePair<string, DateTime> source in dictionary)
+    {
+        destinationHashtable.Add(source.Key, source.Value);
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        Hashtable destinationHashtable = new Hashtable();
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData, destinationHashtable);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+<details>
+<summary>Full Dictionary Add Test Code</summary>
+
+```cs
+using System.Collections;
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Dictionary Add Method";//Test name to print to average
+
+void TestMethod(Dictionary<string, DateTime> dictionary, Dictionary<string, DateTime> destinationDictionary)
+{
+    foreach (KeyValuePair<string, DateTime> source in dictionary)
+    {
+        destinationDictionary.Add(source.Key, source.Value);
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        Dictionary<string, DateTime> destinationDictionary = new Dictionary<string, DateTime>();
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData, destinationDictionary);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+
+```
+</details>
+
+##### Hashtable Iterator Speed Test
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 million" />
+</details>
+
+###### Hashtable Iterator Speed Test Code
+
+```cs
+void TestMethod(Hashtable hashtable)
+{
+    foreach (DictionaryEntry dicEntry in hashtable)
+    {
+        //some logic
+    }
+}
+```
+
+###### Dictionary Iterator Speed Test Code
+```cs
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (KeyValuePair<string,DateTime> keyValuePair in dictionary)
+    {
+        //some logic
+    }
+}
+```
+###### Hashtable Iterator Code Output
+
+```
+Test 1:Function Calls:100, In 0m 1s 755ms
+Test 2:Function Calls:100, In 0m 1s 700ms
+Test 3:Function Calls:100, In 0m 1s 706ms
+Test 4:Function Calls:100, In 0m 1s 719ms
+Test 5:Function Calls:100, In 0m 1s 686ms
+Test 6:Function Calls:100, In 0m 1s 724ms
+Test 7:Function Calls:100, In 0m 1s 761ms
+Test 8:Function Calls:100, In 0m 1s 745ms
+Test 9:Function Calls:100, In 0m 1s 695ms
+Test 10:Function Calls:100, In 0m 1s 756ms
+Hashtable Iterator Average Speed:1725ms, In 10 Tests
+```
+###### Dictionary Iterator Code Output
+```
+Test 1:Function Calls:100, In 0m 0s 688ms
+Test 2:Function Calls:100, In 0m 0s 659ms
+Test 3:Function Calls:100, In 0m 0s 658ms
+Test 4:Function Calls:100, In 0m 0s 658ms
+Test 5:Function Calls:100, In 0m 0s 658ms
+Test 6:Function Calls:100, In 0m 0s 659ms
+Test 7:Function Calls:100, In 0m 0s 657ms
+Test 8:Function Calls:100, In 0m 0s 657ms
+Test 9:Function Calls:100, In 0m 0s 660ms
+Test 10:Function Calls:100, In 0m 0s 664ms
+Dictionary Iterator Average Speed:662ms, In 10 Tests
+```
+
+
+<details>
+<summary>Full Hashtable Iterator Test Code</summary>
+
+```cs
+using System.Collections;
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Hashtable Iterator";//Test name to print to average
+void TestMethod(Hashtable hashtable)
+{
+    foreach (DictionaryEntry dicEntry in hashtable)
+    {
+        //some logic
+    }
+}
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Hashtable testData = GetHashtableData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        Hashtable destinationHashtable = new Hashtable();
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Hashtable GetHashtableData()
+{
+    Hashtable testData = new Hashtable();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+<details>
+<summary>Full Dictionary Iterator Test Code</summary>
+
+```cs
+using System.Collections;
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Dictionary Iterator";//Test name to print to average
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (KeyValuePair<string,DateTime> keyValuePair in dictionary)
+    {
+        //some logic
+    }
+}
+
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string,DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+
+##### Indexer Speed Test
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 million" />
+</details>
+
+###### Hashtable Indexer Speed Test Code
+
+```cs
+void TestMethod(Hashtable hashtable)
+{
+    foreach (string key in keysList)
+    {
+        DateTime dateTime = ((DateTime)hashtable[key]).AddHours(1);//Get data through the Indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+```
+###### Dictionary Indexer Speed Test Code
+```cs
+void TestMethod(Dictionary<string,DateTime> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        DateTime dateTime = dictionary[key].AddHours(1);//Get data through the Indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+```
+
+###### Hashtable Indexer Code Output
+
+```
+Test 1:Function Calls:100, In 0m 10s 40ms
+Test 2:Function Calls:100, In 0m 9s 428ms
+Test 3:Function Calls:100, In 0m 9s 273ms
+Test 4:Function Calls:100, In 0m 9s 467ms
+Test 5:Function Calls:100, In 0m 9s 510ms
+Test 6:Function Calls:100, In 0m 9s 503ms
+Test 7:Function Calls:100, In 0m 9s 553ms
+Test 8:Function Calls:100, In 0m 9s 500ms
+Test 9:Function Calls:100, In 0m 9s 646ms
+Test 10:Function Calls:100, In 0m 9s 682ms
+Hashtable Indexer Average Speed:9561ms, In 10 Tests
+```
+
+###### Dictionary Indexer Code Output
+```
+Test 1:Function Calls:100, In 0m 4s 997ms
+Test 2:Function Calls:100, In 0m 4s 780ms
+Test 3:Function Calls:100, In 0m 4s 957ms
+Test 4:Function Calls:100, In 0m 4s 997ms
+Test 5:Function Calls:100, In 0m 4s 866ms
+Test 6:Function Calls:100, In 0m 4s 960ms
+Test 7:Function Calls:100, In 0m 5s 342ms
+Test 8:Function Calls:100, In 0m 5s 754ms
+Test 9:Function Calls:100, In 0m 4s 804ms
+Test 10:Function Calls:100, In 0m 4s 752ms
+Dictionary Indexer Average Speed:5021ms, In 10 Tests
+```
+
+<details>
+<summary>Full Hashtable Indexer Test Code</summary>
+
+```cs
+using System.Collections;
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Hashtable Indexer";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Hashtable hashtable)
+{
+    foreach (string key in keysList)
+    {
+        DateTime dateTime = ((DateTime)hashtable[key]).AddHours(1);//Get data through the Indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Hashtable testData = GetHashtableData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Hashtable GetHashtableData()
+{
+    Hashtable testData = new Hashtable();
+    keysList = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+            keysList.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+
+<details>
+<summary>Full Dictionary Indexer Test Code</summary>
+
+```cs
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Dictionary Indexer";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string,DateTime> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        DateTime dateTime = dictionary[key].AddHours(1);//Get data through the Indexer
+        double ticks = dateTime.Ticks;
+    }
+}
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string,DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    keysList = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+            keysList.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+##### Update Speed Test
+
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 million" />
+</details>
+
+###### Hashtable Update Speed Test Code
+
+```cs
+void TestMethod(Hashtable hashtable)
+{
+    foreach (string key in keysList)
+    {
+        hashtable[key] = DateTime.Now;
+    }
+}
+```
+
+###### Dictionary Update Speed Test Code
+
+```cs
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        dictionary[key] = DateTime.Now;
+    }
+}
+```
+
+###### Hashtable Update Code Output
+
+```
+Test 1:Function Calls:100, In 0m 26s 619ms
+Test 2:Function Calls:100, In 0m 27s 341ms
+Test 3:Function Calls:100, In 0m 27s 156ms
+Test 4:Function Calls:100, In 0m 26s 735ms
+Test 5:Function Calls:100, In 0m 26s 582ms
+Test 6:Function Calls:100, In 0m 26s 706ms
+Test 7:Function Calls:100, In 0m 24s 860ms
+Test 8:Function Calls:100, In 0m 26s 759ms
+Test 9:Function Calls:100, In 0m 26s 276ms
+Test 10:Function Calls:100, In 0m 26s 438ms
+Hashtable Update Average Speed:26548ms, In 10 Tests
+```
+###### Dictionary Update Code Output
+```
+Test 1:Function Calls:100, In 0m 13s 805ms
+Test 2:Function Calls:100, In 0m 13s 644ms
+Test 3:Function Calls:100, In 0m 13s 879ms
+Test 4:Function Calls:100, In 0m 13s 697ms
+Test 5:Function Calls:100, In 0m 13s 900ms
+Test 6:Function Calls:100, In 0m 13s 373ms
+Test 7:Function Calls:100, In 0m 13s 706ms
+Test 8:Function Calls:100, In 0m 13s 246ms
+Test 9:Function Calls:100, In 0m 14s 94ms
+Test 10:Function Calls:100, In 0m 13s 381ms
+Dictionary Update Average Speed:13673ms, In 10 Tests
+```
+
+<details>
+<summary>Full Hashtable Update Test Code</summary>
+
+```cs
+using System.Collections;
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Hashtable Update";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Hashtable hashtable)
+{
+    foreach (string key in keysList)
+    {
+        hashtable[key] = DateTime.Now;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Hashtable testData = GetHashtableData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Hashtable GetHashtableData()
+{
+    Hashtable testData = new Hashtable();
+    keysList = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+            keysList.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+<details>
+<summary>Full Dictionary Update Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Dictionary Update";//Test name to print to average
+List<string> keysList = new List<string>();
+void TestMethod(Dictionary<string, DateTime> dictionary)
+{
+    foreach (string key in keysList)
+    {
+        dictionary[key] = DateTime.Now;
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    keysList = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+            keysList.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+
+```
+</details>
+
+
+### Namespace
+
+Both dictionaries and hashtables reside in the System.Collections namespace. The dictionary is found in a subsection of System.Collection.Generic. It is aptly named as it uses generics to set the type of the key-value pairs at run time.
+
+
+### Element Type
+
+Hashtable uses the DictionaryEntry for the key and value properties while the Dictionary uses the KeyValuePair generics that have key and value properties. So they both have key and value properties just the class is different.
+
+### Generic 
+The dictionary uses generics which means that type for the key and values are known at compile time. This makes it faster and less error-prone than the box and unboxing way that Hashtable uses. It seems like not using generics makes things more generalized but there is a performance paid.
+
+### Key Immutable
+
+This is important for the consistency of the data structure. Both Dictionary and Hashtable require this other wise they might become unstable.
+
+### Thread Safe
+Both allow multiple readers, which makes that there can be multiple threads reading the Dictionary or HashTable. The dictionary is not considered thread-safe. But does it need to be when there is a Concurrent Dictionary collection type that is thread-safe? The interesting thing is that Hashtable does allow for one thread to write to the hashtable but it can't happen while another thread is looping through the dictionary. Some may consider hashtables to be thread-safe and a good reason to use a hashtable. I do not because if there's a change in the hashtable while another reader thread is looping through the hashtable then an exception will occur. This is not thread-safe.
+
+### Conclusion
+
+What should you use Hashtable or Dictionary? You should use Dictionary, it has significant performance improvements that I have tested throughout this article. All of my tests show that Dictionary had almost twice as much speed improvement over the hashtable. It shows as the data grows larger.  [The other thing is that Microsoft says not to use a nongeneric collection which the hashtable is.](https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md) This is because of the performance issue but also because they are error-prone.
+Do you know any interesting facts about Dictionary or Hashtable that I missed? Let me know in the comments below.
+
+Do you know any interesting facts about Dictionary or Hashtable that I missed? Let me know in the comments below.
+
+

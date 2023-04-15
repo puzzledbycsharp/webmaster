@@ -61,3 +61,130 @@ from = "/fundamentals/collections/array/fill-the-array-with-one-value/"
 to = "/array/fill-the-array-with-one-value/"
 status = 301
 force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary-best-practices-and-what-to-avoid/"
+to = "/dictionary/dictionary-best-practices-and-what-to-avoid/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary-best-practices-and-what-to-avoid/"
+to = "/dictionary/dictionary-best-practices-and-what-to-avoid/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/"
+to = "/dictionary/dictionary-best-practices-and-what-to-avoid/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/best-way-to-iterate-through-a-dictionary/"
+to = "/dictionary/best-way-to-iterate-through-a-dictionary/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/get-the-dictionary-keys-by-their-value/"
+to = "/dictionary/get-the-dictionary-keys-by-their-value/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/how-to-update-dictionary-values/"
+to = "/dictionary/how-to-update-dictionary-values/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/best-sort-method-for-dictionary-values/"
+to = "/dictionary/best-sort-method-for-dictionary-values/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/check-if-the-key-exists-in-the-dictionary/"
+to = "/dictionary/check-if-the-key-exists-in-the-dictionary/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/dictionary-vs-hashtable-comparison/"
+to = "/dictionary/dictionary-vs-hashtable-comparison/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/how-to-initialize-a-dictionary/"
+to = "/dictionary/how-to-initialize-a-dictionary/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/get-dictionary-element-by-index/"
+to = "/dictionary/get-dictionary-element-by-index/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/best-merging-method-for-two-dictionaries/"
+to = "/dictionary/best-merging-method-for-two-dictionaries/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/convert-a-list-into-a-dictionary/"
+to = "/dictionary/convert-a-list-into-a-dictionary/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/"
+to = "/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/how-to-change-a-dictionary-key/"
+to = "/dictionary/how-to-change-a-dictionary-key/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/make-a-dictionary-key-case-insensitive/"
+to = "/dictionary/make-a-dictionary-key-case-insensitive/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/declare-a-new-dictionary-in-function-calls/"
+to = "/dictionary/declare-a-new-dictionary-in-function-calls/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/get-a-list-of-dictionary-keys/"
+to = "/dictionary/get-a-list-of-dictionary-keys/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/"
+to = "/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/trygetvalue-vs-containskey-with-indexer/"
+to = "/dictionary/trygetvalue-vs-containskey-with-indexer/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/dictionary/dictionary-with-one-to-many-relationship/"
+to = "/dictionary/dictionary-with-one-to-many-relationship/"
+status = 301
+force = true
+

@@ -1,0 +1,483 @@
+---
+title: Convert A List Into a Dictionary
+---
+
+# Convert A List Into a Dictionary
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-medium.webp" imageSrcSet="../../../../assets/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-small.webp 500w, ../../../../assets/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-medium.webp 1000w, ../../../../assets/dictionary/convert-a-list-into-a-dictionary/convert-a-list-into-a-dictionary-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A List Into a Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+There are advantages to converting a list to a dictionary. Which is that the dictionary contains a quick Containskey look-up for the value. Also, if the value is going to change, then the dictionary can be seeded with the initial key and values. Also, sometimes the components in the legacy code can dictate the inputs and may force different collection types in your implementation. There are different to create the dictionary with LINQ and by writing our code so let's look at those different ways.
+
+### Dictionary Indexer Method 
+
+The first method we're going to look at is to loop through the list and use the dictionary indexer to assign the keys and values. This also works with or without duplicates.
+
+#### Dictionary Indexer Method Example Code
+
+In this example, we have a list of movies that need to be converted to a dictionary so each movie title will be assigned the key and value.
+
+```cs
+List<string> movieList = new List<string>() { "Avatar (2009)", "Titanic (1997)", "Star Wars: Episode VII - The Force Awakens (2015)", "Avengers: Endgame (2019)", "The Lion King (2019", "Jurassic World (2015)", "Marvel's The Avengers (2012)", "Furious 7 (2015)", "Frozen II (2019)", "Frozen (2013)" };//Initialize List
+
+Dictionary<string, string> convertedDictionary = ConvertListToDictionary(movieList);//List to Dicitonary Function
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in convertedDictionary)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+Dictionary<string,string> ConvertListToDictionary(List<string> movieList)
+{
+    Dictionary<string,string> movieDictionary = new Dictionary<string,string>();
+    foreach (string movie in movieList)//Loop through the List
+    {
+        movieDictionary[movie] = movie;//Assign list entry to dictionary key and value
+    }
+    return movieDictionary;
+}
+```
+
+###### Code Output
+```
+1. key:Avatar (2009), value:Avatar (2009)
+2. key:Titanic (1997), value:Titanic (1997)
+3. key:Star Wars: Episode VII - The Force Awakens (2015), value:Star Wars: Episode VII - The Force Awakens (2015)
+4. key:Avengers: Endgame (2019), value:Avengers: Endgame (2019)
+5. key:The Lion King (2019, value:The Lion King (2019
+6. key:Jurassic World (2015), value:Jurassic World (2015)
+7. key:Marvel's The Avengers (2012), value:Marvel's The Avengers (2012)
+8. key:Furious 7 (2015), value:Furious 7 (2015)
+9. key:Frozen II (2019), value:Frozen II (2019)
+10. key:Frozen (2013), value:Frozen (2013)
+```
+
+#### Dictionary Indexer Method Speed Test
+
+This is a speed test that takes an average of 10 tests and with each test, there are 100 function calls and then each function call will have 1 million objects. In this case, I will loop through the 1 million unique objects and add them to the dictionary through the dictionary indexer.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 million" />
+</details>
+
+###### Dictionary Indexer Method Speed Code
+
+```cs
+void TestMethod(List<string> testData)
+{
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    foreach (string item in testData)//Loop through the List
+    {
+        dictionary[item] = item;//Assign list entry to dictionary key and value
+    }
+}
+```
+
+###### Code Output
+```
+Test 1:Function Calls:100, In 0m 7s 435ms
+Test 2:Function Calls:100, In 0m 6s 958ms
+Test 3:Function Calls:100, In 0m 7s 161ms
+Test 4:Function Calls:100, In 0m 7s 113ms
+Test 5:Function Calls:100, In 0m 7s 281ms
+Test 6:Function Calls:100, In 0m 7s 391ms
+Test 7:Function Calls:100, In 0m 7s 211ms
+Test 8:Function Calls:100, In 0m 7s 760ms
+Test 9:Function Calls:100, In 0m 7s 464ms
+Test 10:Function Calls:100, In 0m 7s 652ms
+Dictionary Indexer Method Average Speed:7343ms, In 10 Tests
+```
+
+This is the baseline test method. It should be done in around 7 seconds.
+
+
+<details>
+<summary>Full Dictionary Indexer Method Speed Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Dictionary Indexer Method";//Test name to print to average
+void TestMethod(List<string> testData)
+{
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    foreach (string item in testData)//Loop through the List
+    {
+        dictionary[item] = item;//Assign list entry to dictionary key and value
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    List<string> testData = GetListData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<string> GetListData()
+{
+    HashSet<string> unique = new HashSet<string>();
+    List<string> testData = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!unique.Contains(dateString))
+        {
+            unique.Add(dateString);
+            testData.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+
+```
+</details>
+
+### LINQ ToDictionary Method With No Duplicates
+
+We can use the ToDictionary method in the LINQ namespace. It has a set of parameters that the first two parameters let assign the key and value and since they are the same in the case they are assigned a variable of p. ToDictionary requires that there be no duplicates in the standard form. Otherwise, an exception will be thrown if there's a duplicate key entry.
+
+#### LINQ ToDictionary Method Code Example
+
+This example, takes the movie titles and uses the LINQ function ToDictionary that converts the single input of the list and assigns it to the key and values based on the parameters inputs.
+
+```cs
+List<string> movieList = new List<string>() { "Avatar (2009)", "Titanic (1997)", "Star Wars: Episode VII - The Force Awakens (2015)", "Avengers: Endgame (2019)", "The Lion King (2019", "Jurassic World (2015)", "Marvel's The Avengers (2012)", "Furious 7 (2015)", "Frozen II (2019)", "Frozen (2013)" };//Initialize List
+
+Dictionary<string, string> convertedDictionary = ConvertListToDictionary(movieList);//List to Dicitonary Function
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in convertedDictionary)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+Dictionary<string, string> ConvertListToDictionary(List<string> movieList)
+{
+    Dictionary<string, string> dictionary = movieList.ToDictionary(p => p, p=> p);//ToDictionary to convert the list to a dictionary
+    return dictionary;
+}
+```
+
+###### Code Output
+```
+1. key:Avatar (2009), value:Avatar (2009)
+2. key:Titanic (1997), value:Titanic (1997)
+3. key:Star Wars: Episode VII - The Force Awakens (2015), value:Star Wars: Episode VII - The Force Awakens (2015)
+4. key:Avengers: Endgame (2019), value:Avengers: Endgame (2019)
+5. key:The Lion King (2019, value:The Lion King (2019
+6. key:Jurassic World (2015), value:Jurassic World (2015)
+7. key:Marvel's The Avengers (2012), value:Marvel's The Avengers (2012)
+8. key:Furious 7 (2015), value:Furious 7 (2015)
+9. key:Frozen II (2019), value:Frozen II (2019)
+10. key:Frozen (2013), value:Frozen (2013)
+```
+
+
+#### LINQ ToDictionary Method Speed Test
+
+
+This is the same test based on the test parameters below.
+
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 million" />
+</details>
+
+#### LINQ ToDictionary Method Speed Test Code
+
+```cs
+void TestMethod(List<string> testData)
+{
+    Dictionary<string, string> dictionary = testData.ToDictionary(p => p, p => p);
+}
+```
+
+###### Code Output
+```
+Test 1:Function Calls:100, In 0m 7s 99ms
+Test 2:Function Calls:100, In 0m 6s 200ms
+Test 3:Function Calls:100, In 0m 6s 626ms
+Test 4:Function Calls:100, In 0m 6s 148ms
+Test 5:Function Calls:100, In 0m 6s 580ms
+Test 6:Function Calls:100, In 0m 6s 191ms
+Test 7:Function Calls:100, In 0m 6s 177ms
+Test 8:Function Calls:100, In 0m 5s 852ms
+Test 9:Function Calls:100, In 0m 6s 218ms
+Test 10:Function Calls:100, In 0m 5s 695ms
+LINQ ToDictionary Method Average Speed:6279ms, In 10 Tests
+```
+
+This is now the fastest method but the requirement is that there be no duplicates in the list.
+
+
+<details>
+<summary>Full LINQ ToDictionary Method Code Example</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "LINQ ToDictionary Method";//Test name to print to average
+void TestMethod(List<string> testData)
+{
+    Dictionary<string, string> dictionary = testData.ToDictionary(p => p, p => p);//ToDictionary to convert the list to a dictionary
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    List<string> testData = GetListData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<string> GetListData()
+{
+    HashSet<string> unique = new HashSet<string>();
+    List<string> testData = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!unique.Contains(dateString))
+        {
+            unique.Add(dateString);
+            testData.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+
+### LINQ ToDictionary + Distinct Method With Duplicates
+
+We can modify the LINQ expression to remove any duplicates before ToDictionary is called.
+
+#### LINQ ToDictionary + Distinct Method Example Code
+
+I have now added duplicate entries to the list. The list can have duplicates by its nature. It's not tracking what's on the list.
+
+```cs
+List<string> movieList = new List<string>() { "Avatar (2009)", "Titanic (1997)", "Star Wars: Episode VII - The Force Awakens (2015)", "Avengers: Endgame (2019)", "The Lion King (2019", "Jurassic World (2015)", "Marvel's The Avengers (2012)", "Furious 7 (2015)", "Frozen II (2019)", "Frozen (2013)", "Frozen (2013)", "Avatar (2009)" };//Initialize List with duplicates
+
+Dictionary<string, string> convertedDictionary = ConvertListToDictionary(movieList);//List to Dicitonary Function
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in convertedDictionary)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+Dictionary<string, string> ConvertListToDictionary(List<string> movieList)
+{
+    Dictionary<string, string> dictionary = movieList.Distinct().ToDictionary(p => p, p => p);//ToDictionary to convert the list to a dictionary with distinct values from the list
+    return dictionary;
+}
+```
+
+###### Code Output
+
+```
+1. key:Avatar (2009), value:Avatar (2009)
+2. key:Titanic (1997), value:Titanic (1997)
+3. key:Star Wars: Episode VII - The Force Awakens (2015), value:Star Wars: Episode VII - The Force Awakens (2015)
+4. key:Avengers: Endgame (2019), value:Avengers: Endgame (2019)
+5. key:The Lion King (2019, value:The Lion King (2019
+6. key:Jurassic World (2015), value:Jurassic World (2015)
+7. key:Marvel's The Avengers (2012), value:Marvel's The Avengers (2012)
+8. key:Furious 7 (2015), value:Furious 7 (2015)
+9. key:Frozen II (2019), value:Frozen II (2019)
+10. key:Frozen (2013), value:Frozen (2013)
+```
+As expected, I see only distinct items in the dictionary even though the list had duplicate values.
+
+#### LINQ ToDictionary + Distinct Method Speed Test
+
+This will be the same test as in the other examples. Test parameters are listed below.
+
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 million" />
+</details>
+
+#### LINQ ToDictionary + Distinct Method Speed Test Code
+
+```cs
+void TestMethod(List<string> testData)
+{
+    Dictionary<string, string> dictionary = testData.Distinct().ToDictionary(p => p, p => p);//ToDictionary to convert the list to a dictionary with distinct values from the list
+}
+```
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 18s 501ms
+Test 2:Function Calls:100, In 0m 18s 614ms
+Test 3:Function Calls:100, In 0m 18s 481ms
+Test 4:Function Calls:100, In 0m 17s 450ms
+Test 5:Function Calls:100, In 0m 16s 930ms
+Test 6:Function Calls:100, In 0m 17s 493ms
+Test 7:Function Calls:100, In 0m 17s 212ms
+Test 8:Function Calls:100, In 0m 16s 580ms
+Test 9:Function Calls:100, In 0m 16s 664ms
+Test 10:Function Calls:100, In 0m 16s 899ms
+LINQ ToDictionary + Distinct Method Average Speed:17483ms, In 10 Tests
+```
+<details>
+<summary>Full LINQ ToDictionary + Distinct Method Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "LINQ ToDictionary + Distinct Method";//Test name to print to average
+void TestMethod(List<string> testData)
+{
+    Dictionary<string, string> dictionary = testData.Distinct().ToDictionary(p => p, p => p);//ToDictionary to convert the list to a dictionary with distinct values from the list
+}
+
+    List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    List<string> testData = GetListData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<string> GetListData()
+{
+    HashSet<string> unique = new HashSet<string>();
+    List<string> testData = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!unique.Contains(dateString))
+        {
+            unique.Add(dateString);
+            testData.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed,Duplicates Allowed" rows="1,Dictionary Indexer,7343ms,Yes;2,LINQ ToDictionary,6279ms,No;3,LINQ ToDictionary + Distinct,17483ms,Yes;" />
+
+The best method for converting a list to a dictionary is to use the dictionary indexer and write it yourself. It might not be the fastest method but it is the most versatile in that it can handle duplicate values in the dictionary. It will simply overwrite them. This code is simple to write and there wouldn't be any errors resulting from this which would save time in the long run.
+
+LINQ ToDictionary is the fastest method on this list but it has one drawback that keeps it from the top spot. In this form, it requires distinct list values otherwise an exception will be thrown on the duplicate key in the dictionary. So you have to be sure that the list you working with doesn't have duplicates.
+
+LINQ ToDictionary plus Distinct method is the slowest and should not be considered. The distinct clause causes this method to slow down considerably.
+
+Know any other ways to convert a list to a dictionary? Let me know in the comments below.
+

@@ -1,0 +1,407 @@
+---
+title: Two Lists of Keys and Values Mapped To a Dictionary
+---
+
+# Two Lists of Keys and Values Mapped To a Dictionary
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-medium.webp" imageSrcSet="../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-small.webp 500w, ../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-medium.webp 1000w, ../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Two Lists of Keys and Values Mapped To a Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+Two lists can be mapped to a dictionary if the two lists are separated into a list of keys and a list of values. This is an interesting issue to resolve. The lists will are related based on the position in the list. The first entry of each key and value list will be the first entry in the dictionary and so forth. There are a couple of ways to accomplish this. Of course, we can write a method ourselves and then there is the LINQ query expression that we can utilize. Let's start with writing our own and how that looks.
+
+### Manual Mapping Method
+
+The idea here is to have the two lists and take the length of the list with keys and use the list indexer to obtain the values from each list index by index. There needs to be protection in case one list is short or longer than the other so we don't hit an index out-of-range exception. Let's look at an example.
+
+#### Manual Mapping Method Example Code
+
+In this example, there are two lists of movies and their directors. Our code will check to make sure that the length of the key is less than the value's length other wise there would be an exception in our code. If there are duplicate keys then the last value overwrites the previous but there no exception will be thrown on duplicated keys.
+
+```cs
+List<string> movieNames = new List<string>(){
+    "Avatar",
+    "Titanic",
+    "Star Wars: Episode VII - The Force Awakens",
+    "Avengers: Endgame",
+    "The Lion King",
+    "Jurassic World",
+    "Marvel's The Avengers",
+    "Furious 7",
+    "Frozen II",
+    "Frozen"
+};
+
+List<string> directorNames = new List<string>(){
+    "James Cameron",
+    "James Cameron",
+    "J.J. Abrams",
+    "Anthony and Joe Russo",
+    "Jon Favreau",
+    "Colin Trevorrow",
+    "Joss Whedon",
+    "James Wan",
+    "Chris Buck and Jennifer Lee",
+    "Chris Buck and Jennifer Lee"
+};
+
+Dictionary<string, string> dictionary = MapListToDictionary(movieNames, directorNames);//Map the two lists to a dictionary
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in dictionary)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+Dictionary<string, string> MapListToDictionary(List<string> movieNames, List<string> directorNames)
+{
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    int movieNameCount = movieNames.Count;//Get count of the keys
+    for (int i = 0; i < movieNameCount; i++)//loop through all the indexes of the key list
+    {
+        if (i < directorNames.Count)//make sure that index exists in the value list
+        {
+            dictionary[movieNames[i]] = directorNames[i];//if an entry exists already then overwrite otherwise add a new entry.
+        }
+    }
+    return dictionary;
+}
+```
+
+###### Code Output
+
+```
+1. key:Avatar, value:James Cameron
+2. key:Titanic, value:James Cameron
+3. key:Star Wars: Episode VII - The Force Awakens, value:J.J. Abrams
+4. key:Avengers: Endgame, value:Anthony and Joe Russo
+5. key:The Lion King, value:Jon Favreau
+6. key:Jurassic World, value:Colin Trevorrow
+7. key:Marvel's The Avengers, value:Joss Whedon
+8. key:Furious 7, value:James Wan
+9. key:Frozen II, value:Chris Buck and Jennifer Lee
+10. key:Frozen, value:Chris Buck and Jennifer Lee
+```
+
+In this case, there were no duplicated keys but there is more than one of the same value and that's ok. Next, we want to test the speed of this method.
+
+#### Manual Mapping Method Speed Test
+
+This will be a test that averages the speed of 10 separate tests. Each test has 100 loops of the function call. Each function call will be dealing with two lists of 1 million objects each. Below are the summarized test parameters.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million Per List" />
+</details>
+
+#### Manual Mapping Method Speed Test Code
+
+```cs
+void TestMethod(List<string> testKeysData, List<string> testValuesData)
+{
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    int testKeysDataCount = testKeysData.Count;//Get count of the keys
+    for (int i = 0; i < testKeysDataCount; i++)//loop through all the indexes of the key list
+    {
+        if (i < testValuesData.Count)//make sure that index exists in the value list
+        {
+            dictionary[testKeysData[i]] = testValuesData[i];//if an entry exists already then overwrite otherwise add a new entry
+        }
+    }
+}
+```
+
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 9s 164ms
+Test 2:Function Calls:100, In 0m 8s 642ms
+Test 3:Function Calls:100, In 0m 8s 712ms
+Test 4:Function Calls:100, In 0m 8s 635ms
+Test 5:Function Calls:100, In 0m 8s 488ms
+Test 6:Function Calls:100, In 0m 8s 669ms
+Test 7:Function Calls:100, In 0m 8s 692ms
+Test 8:Function Calls:100, In 0m 8s 956ms
+Test 9:Function Calls:100, In 0m 8s 925ms
+Test 10:Function Calls:100, In 0m 8s 795ms
+Manual Mapper Method Average Speed:8768ms, In 10 Tests
+```
+
+This is the baseline test that we'll compare the other tests to. 9 seconds is not bad and we'll see if the other tests can do any better.
+
+<details>
+<summary>Full Manual Mapping Method Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "Manual Mapper Method";//Test name to print to average
+void TestMethod(List<string> testKeysData, List<string> testValuesData)
+{
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    int testKeysDataCount = testKeysData.Count;//Get count of the keys
+    for (int i = 0; i < testKeysDataCount; i++)//loop through all the indexes of the key list
+    {
+        if (i < testValuesData.Count)//make sure that index exists in the value list
+        {
+            dictionary[testKeysData[i]] = testValuesData[i];//if entry exists already then overwrite otherwise add new entry.
+        }
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    List<string> testData = GetListData();//Get intial random generated data
+    List<string> testData2 = GetListData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData, testData2);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<string> GetListData()
+{
+    HashSet<string> unique = new HashSet<string>();
+    List<string> testData = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!unique.Contains(dateString))
+        {
+            unique.Add(dateString);
+            testData.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+### LINQ Zip + ToDictionary Method
+
+We can use LINQ functions to quicken the time it takes to write our method as some handy functions of Zip make collections and then the ToDictionary to convert the mapping to a dictionary. The nice thing about this is that is very compact and only takes up one line. Let's see it in action by an example.
+
+
+#### LINQ Zip + ToDictionary Method Example Code
+
+We use the Zip function to map the movie and director together then use the ToDictionary to map them to a dictionary. [The zip function can take in different lengths of lists](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.zip?view=net-8.0)
+
+```cs
+List<string> movieNames = new List<string>(){
+    "Avatar",
+    "Titanic",
+    "Star Wars: Episode VII - The Force Awakens",
+    "Avengers: Endgame",
+    "The Lion King",
+    "Jurassic World",
+    "Marvel's The Avengers",
+    "Furious 7",
+    "Frozen II",
+    "Frozen"
+};
+
+List<string> directorNames = new List<string>(){
+    "James Cameron",
+    "James Cameron",
+    "J.J. Abrams",
+    "Anthony and Joe Russo",
+    "Jon Favreau",
+    "Colin Trevorrow",
+    "Joss Whedon",
+    "James Wan",
+    "Chris Buck and Jennifer Lee",
+    "Chris Buck and Jennifer Lee"
+};
+
+Dictionary<string, string> dictionary = MapListToDictionary(movieNames, directorNames);//Map the two lists to a dictionary
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in dictionary)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+Dictionary<string, string> MapListToDictionary(List<string> movieNames, List<string> directorNames)
+{
+    Dictionary<string, string> dictionary = movieNames.Zip(directorNames).ToDictionary(kvp => kvp.First, kvp => kvp.Second);
+    return dictionary;
+}
+
+```
+
+###### Code Output
+```
+1. key:Avatar, value:James Cameron
+2. key:Titanic, value:James Cameron
+3. key:Star Wars: Episode VII - The Force Awakens, value:J.J. Abrams
+4. key:Avengers: Endgame, value:Anthony and Joe Russo
+5. key:The Lion King, value:Jon Favreau
+6. key:Jurassic World, value:Colin Trevorrow
+7. key:Marvel's The Avengers, value:Joss Whedon
+8. key:Furious 7, value:James Wan
+9. key:Frozen II, value:Chris Buck and Jennifer Lee
+10. key:Frozen, value:Chris Buck and Jennifer Lee
+```
+
+We get the same result as the manual approach. Next is to test the speed of this function.
+
+#### LINQ Zip + ToDictionary Method Speed Test
+
+This will be the same test as the previous one. If you want to see the test parameters then expand the below arrow.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,100;Objects Per Function Call,1 Million Per List" />
+</details>
+
+#### LINQ Zip + ToDictionary Method Speed Test Code
+
+```cs
+void TestMethod(List<string> testKeysData, List<string> testValuesData)
+{
+    Dictionary<string, string> dictionary = testKeysData.Zip(testValuesData).ToDictionary(kvp => kvp.First, kvp => kvp.Second);
+}
+```
+
+
+###### Code Output
+
+```
+Test 1:Function Calls:100, In 0m 10s 332ms
+Test 2:Function Calls:100, In 0m 9s 995ms
+Test 3:Function Calls:100, In 0m 10s 868ms
+Test 4:Function Calls:100, In 0m 10s 480ms
+Test 5:Function Calls:100, In 0m 10s 686ms
+Test 6:Function Calls:100, In 0m 10s 794ms
+Test 7:Function Calls:100, In 0m 10s 712ms
+Test 8:Function Calls:100, In 0m 10s 205ms
+Test 9:Function Calls:100, In 0m 10s 471ms
+Test 10:Function Calls:100, In 0m 10s 582ms
+LINQ Zip + ToDictionary  Method Average Speed:10513ms, In 10 Tests
+```
+
+We can see that this is about 10 seconds and is slower than the manual method.
+
+<details>
+<summary>Full LINQ Zip + ToDictionary Method Speed Test Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 100;//Number of function calls made per test
+int numberOfObjectsToCreate = 1000000;//Number test objects
+string testName = "LINQ Zip + ToDictionary  Method";//Test name to print to average
+void TestMethod(List<string> testKeysData, List<string> testValuesData)
+{
+    Dictionary<string, string> dictionary = testKeysData.Zip(testValuesData).ToDictionary(kvp => kvp.First, kvp => kvp.Second);
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    List<string> testData = GetListData();//Get intial random generated data
+    List<string> testData2 = GetListData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod(testData, testData2);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+List<string> GetListData()
+{
+    HashSet<string> unique = new HashSet<string>();
+    List<string> testData = new List<string>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!unique.Contains(dateString))
+        {
+            unique.Add(dateString);
+            testData.Add(dateString);
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+
+```
+</details>
+
+
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed,Duplicate Keys Allowed" rows="1,Manual Mapping,8768ms,Yes;2,LINQ Zip + ToDictionary,10513ms,No;" />
+
+
+The best method for converting two lists into a dictionary is to manually write the code ourselves into a for loop that gets an entry the index from both the key and value list. This is the fastest approach. It is versatile that we don't have to be concerned about duplicated keys.
+
+Using LINQ with Zip + ToDictionary is slower but not that much slower so I would still recommend you use this method from a productive and readability angle. The other downside to ToDictionary is that it requires keys to be unique in the list. So you would need to ensure that they are unique before calling ToDictionary otherwise an exception will be thrown. Also, this method is extremely compact and only takes up one line so it's hard to avoid its simplicity. But if you need top performance and have key duplicates then the first method is a clear choice.
+
+Do you know any ways to map two lists to a dictionary that I missed? Let me know in the comments below.

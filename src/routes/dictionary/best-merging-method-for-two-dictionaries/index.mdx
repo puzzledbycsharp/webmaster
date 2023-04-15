@@ -1,0 +1,457 @@
+---
+title: Best Merging Method For Two Dictionaries
+---
+
+# Best Merging Method For Two Dictionaries
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp" imageSrcSet="../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-small.webp 500w, ../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp 1000w, ../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Merging Method For Two Dictionaries Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+Consolidating dictionaries is the process of combining the key-value pairs from one dictionary into another dictionary. This merge can be done in several ways using LINQ, but I'm going to focus on a couple of methods. The other question is what to do when a key already exists in the destination dictionary. I'm going to assume that the key already exists then that entry will be skipped. Let's take a look at an example.
+
+### Merge Loop Method
+
+If I have two dictionaries that hold countries as the key and capital as values, if I merge these two dictionaries with some duplicate keys then there should only be one dictionary with both sets of entries.
+
+```cs
+Dictionary<string, string> sourceDict = new Dictionary<string, string>() { { "United States", "Washington, D.C." }, { "Canada", "Ottawa" }, { "Mexico", "Mexico City" }, { "Brazil", "Brasília" }, { "United Kingdom", "London" } };
+Dictionary<string, string> destinationDict = new Dictionary<string, string>() { { "France", "Paris" }, { "United States", "Washington, D.C." }, { "United Kingdom", "London" }, { "Spain", "Madrid" }, { "Italy", "Rome" }, };
+
+MergeDictionaries<string, string>(sourceDict, destinationDict);//Merge dictinoary function
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in destinationDict)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+void MergeDictionaries<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    foreach (KeyValuePair<Tkey, TValue> sourceEntry in sourceDictionary)//loop through each source dictionary entries
+    {
+        if(!destinationDictionary.ContainsKey(sourceEntry.Key ))//Skip if key already exists in the destiation dictionary
+        {
+            destinationDictionary[sourceEntry.Key] = sourceEntry.Value;//Merge source dictionary entry into destination dictionary
+        }
+    }
+}
+```
+
+###### Code Output
+
+```
+1. key:France, value:Paris
+2. key:United States, value:Washington, D.C.
+3. key:United Kingdom, value:London
+4. key:Spain, value:Madrid
+5. key:Italy, value:Rome
+6. key:Canada, value:Ottawa
+7. key:Mexico, value:Mexico City
+8. key:Brazil, value:Brasília
+```
+
+#### Merge Loop Method Speed Test
+
+The next step is to test how this performance by merging two dictionaries with 500,000 each into one dictionary. The test parameters are as follows.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10;Objects Per Function Call,500000" />
+</details>
+
+###### Merge Loop Method Example Code
+
+```cs
+void TestMethod<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    foreach (KeyValuePair<Tkey, TValue> sourceEntry in sourceDictionary)//loop through each source dictionary entries
+    {
+        destinationDictionary[sourceEntry.Key] = sourceEntry.Value;//Merge source dictionary entry into destination dictionary
+    }
+}
+```
+
+###### Code Output
+```
+Test 1:Function Calls:10, In 0m 0s 841ms
+Test 2:Function Calls:10, In 0m 0s 749ms
+Test 3:Function Calls:10, In 0m 0s 773ms
+Test 4:Function Calls:10, In 0m 0s 787ms
+Test 5:Function Calls:10, In 0m 0s 770ms
+Test 6:Function Calls:10, In 0m 0s 779ms
+Test 7:Function Calls:10, In 0m 0s 861ms
+Test 8:Function Calls:10, In 0m 0s 780ms
+Test 9:Function Calls:10, In 0m 0s 797ms
+Test 10:Function Calls:10, In 0m 0s 829ms
+Merge Loop Method Average Speed:797ms, In 10 Tests
+```
+
+With two dictionaries that are 500,000 each, this merges them in less than 1 second which is pretty good. But let's take a look at how the other methods perform.
+
+<details>
+<summary>Full Merge Loop Method Example Code</summary>
+
+```cs
+
+using System.Diagnostics;
+
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10;//Number of function calls made per test
+int numberOfObjectsToCreate = 500000;//Number test objects
+string testName = "Merge Loop Method";//Test name to print to average
+void TestMethod<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    foreach (KeyValuePair<Tkey, TValue> sourceEntry in sourceDictionary)//loop through each source dictionary entries
+    {
+        destinationDictionary[sourceEntry.Key] = sourceEntry.Value;//Merge source dictionary entry into destination dictionary
+    }
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testSourceData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        Dictionary<string, DateTime> testDestinationData = GetDictionaryData();//Get intial random generated data
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod<string,DateTime>(testSourceData, testDestinationData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+
+```
+</details>
+
+### LINQ Concat Method
+
+Another way is to Concat the method in LINQ to merge the two dictionaries. [It can be used to put together different collections.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.concat?view=net-8.0) It is very compact in a LINQ statement so if you don't mind losing some readability for less typing then this is the way to go. See the example below.
+
+###### LINQ Concat Method Example Code
+```cs
+Dictionary<string, string> sourceDict = new Dictionary<string, string>() { { "United States", "Washington, D.C." }, { "Canada", "Ottawa" }, { "Mexico", "Mexico City" }, { "Brazil", "Brasília" }, { "United Kingdom", "London" } };
+Dictionary<string, string> destinationDict = new Dictionary<string, string>() { { "France", "Paris" }, { "United States", "Washington, D.C." }, { "United Kingdom", "London" }, { "Spain", "Madrid" }, { "Italy", "Rome" }, };
+
+Dictionary<string, string> mergedDictionary = MergeDictionaries<string, string>(sourceDict, destinationDict);//Merge dictinoary function
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in mergedDictionary)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+Dictionary<Tkey, TValue> MergeDictionaries<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    Dictionary<Tkey, TValue> returnDict = destinationDictionary.Concat(sourceDictionary.Where(p => !destinationDictionary.ContainsKey(p.Key))).ToDictionary(p => p.Key, p => p.Value);
+    return returnDict;
+}
+```
+
+###### Code Output
+```
+1. key:France, value:Paris
+2. key:United States, value:Washington, D.C.
+3. key:United Kingdom, value:London
+4. key:Spain, value:Madrid
+5. key:Italy, value:Rome
+6. key:Canada, value:Ottawa
+7. key:Mexico, value:Mexico City
+8. key:Brazil, value:Brasília
+```
+
+###### LINQ Concat Method Speed Test
+
+I'm going to complete the same test as before on this Concat method to merge the dictionaries. Let's see the test results below.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10;Objects Per Function Call,500000" />
+</details>
+
+###### LINQ Concat Method Example Test Code
+```cs
+void TestMethod<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    Dictionary<Tkey, TValue> returnDict = destinationDictionary.Concat(sourceDictionary.Where(p => !destinationDictionary.ContainsKey(p.Key))).ToDictionary(p => p.Key, p => p.Value);
+}
+```
+
+###### Code Output
+
+```
+Test 1:Function Calls:10, In 0m 1s 620ms
+Test 2:Function Calls:10, In 0m 1s 601ms
+Test 3:Function Calls:10, In 0m 1s 666ms
+Test 4:Function Calls:10, In 0m 1s 576ms
+Test 5:Function Calls:10, In 0m 1s 611ms
+Test 6:Function Calls:10, In 0m 1s 722ms
+Test 7:Function Calls:10, In 0m 1s 647ms
+Test 8:Function Calls:10, In 0m 1s 713ms
+Test 9:Function Calls:10, In 0m 1s 617ms
+Test 10:Function Calls:10, In 0m 1s 635ms
+LINQ Concat Method Average Speed:1641ms, In 10 Tests
+```
+
+This returns the correct result but it is slower than the first manual method. It is less than 2 seconds to complete the decent test.
+
+<details>
+<summary>Full LINQ Concat Method Speed Test</summary>
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10;//Number of function calls made per test
+int numberOfObjectsToCreate = 500000;//Number test objects
+string testName = "LINQ Concat Method";//Test name to print to average
+void TestMethod<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    Dictionary<Tkey, TValue> returnDict = destinationDictionary.Concat(sourceDictionary.Where(p => !destinationDictionary.ContainsKey(p.Key))).ToDictionary(p => p.Key, p => p.Value);
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testSourceData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        Dictionary<string, DateTime> testDestinationData = GetDictionaryData();//Get intial random generated data
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod<string, DateTime>(testSourceData, testDestinationData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+
+### LINQ ForEach Method
+
+Still another way in LINQ is to convert one of the dictionaries to a list then loop through each of the entries and add them to the destination dictionary.
+
+```cs
+Dictionary<string, string> sourceDict = new Dictionary<string, string>() { { "United States", "Washington, D.C." }, { "Canada", "Ottawa" }, { "Mexico", "Mexico City" }, { "Brazil", "Brasília" }, { "United Kingdom", "London" } };
+Dictionary<string, string> destinationDict = new Dictionary<string, string>() { { "France", "Paris" }, { "United States", "Washington, D.C." }, { "United Kingdom", "London" }, { "Spain", "Madrid" }, { "Italy", "Rome" }, };
+
+MergeDictionaries<string, string>(sourceDict, destinationDict);//Merge dictinoary function
+
+int count = 1;
+foreach (KeyValuePair<string, string> entry in destinationDict)
+{
+    Console.WriteLine($"{count++}. key:{entry.Key}, value:{entry.Value}");//Print screen
+}
+
+void MergeDictionaries<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    sourceDictionary.ToList().ForEach(x => { if (!destinationDictionary.ContainsKey(x.Key)) { destinationDictionary[x.Key] = x.Value; } });
+}
+```
+
+###### Code Output
+
+```
+1. key:France, value:Paris
+2. key:United States, value:Washington, D.C.
+3. key:United Kingdom, value:London
+4. key:Spain, value:Madrid
+5. key:Italy, value:Rome
+6. key:Canada, value:Ottawa
+7. key:Mexico, value:Mexico City
+8. key:Brazil, value:Brasília
+```
+#### LINQ ForEach Method Speed Test
+
+This will be the same test as before. The test parameters are below.
+
+<details>
+<summary>Test Parameters</summary>
+<Table header ="Test Parameters,Total" rows="Tests,10;Function Calls Per Test,10;Objects Per Function Call,500000" />
+</details>
+
+#### LINQ ForEach Method Speed Test Code
+
+```cs
+void TestMethod<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    sourceDictionary.ToList().ForEach(x => { if (!destinationDictionary.ContainsKey(x.Key)) { destinationDictionary[x.Key] = x.Value; } });
+}
+```
+
+###### Code Output
+```
+Test 1:Function Calls:10, In 0m 0s 808ms
+Test 2:Function Calls:10, In 0m 0s 843ms
+Test 3:Function Calls:10, In 0m 0s 825ms
+Test 4:Function Calls:10, In 0m 0s 810ms
+Test 5:Function Calls:10, In 0m 0s 864ms
+Test 6:Function Calls:10, In 0m 0s 846ms
+Test 7:Function Calls:10, In 0m 0s 813ms
+Test 8:Function Calls:10, In 0m 0s 804ms
+Test 9:Function Calls:10, In 0m 0s 810ms
+Test 10:Function Calls:10, In 0m 0s 796ms
+LINQ Foreach Method Average Speed:823ms, In 10 Tests
+```
+
+This is fast but is still not faster than the manual loop method. But it is faster than LINQ Concat.
+
+<details>
+<summary>Supporting Code</summary>
+
+```cs
+
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+int numberOfFunctionCalls = 10;//Number of function calls made per test
+int numberOfObjectsToCreate = 500000;//Number test objects
+string testName = "LINQ Foreach Method";//Test name to print to average
+void TestMethod<Tkey, TValue>(Dictionary<Tkey, TValue> sourceDictionary, Dictionary<Tkey, TValue> destinationDictionary)
+{
+    sourceDictionary.ToList().ForEach(x => { if (!destinationDictionary.ContainsKey(x.Key)) { destinationDictionary[x.Key] = x.Value; } });
+}
+
+List<double> testSpeedList = new List<double>();
+for (int testIndex = 0; testIndex < numberOfTests; testIndex++)
+{
+    testSpeedList.Add(StartTest(testIndex));
+}
+Console.WriteLine($"{testName} Average Speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} Tests");
+
+double StartTest(int testIndex)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    Dictionary<string, DateTime> testSourceData = GetDictionaryData();//Get intial random generated data
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        Dictionary<string, DateTime> testDestinationData = GetDictionaryData();//Get intial random generated data
+        stopwatch.Start();//Start the Stopwatch timer
+        TestMethod<string, DateTime>(testSourceData, testDestinationData);//
+        stopwatch.Stop();//Stop the Stopwatch timer
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"Test {testIndex + 1}:Function Calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+
+Dictionary<string, DateTime> GetDictionaryData()
+{
+    Dictionary<string, DateTime> testData = new Dictionary<string, DateTime>();
+    while (numberOfObjectsToCreate > testData.Count)
+    {
+        DateTime date = GetDateTime();
+        string dateString = date.ToShortDateString();
+        if (!testData.ContainsKey(dateString))
+        {
+            testData[dateString] = date;
+        }
+    }
+    return testData;
+}
+
+int GetRandomInt(int minNumber, int maxNumber)
+{
+    Random random = new Random();//Create Random class
+    int randomInt = random.Next(minNumber, maxNumber);//Get a random number between 1 and the maxnumber
+    return randomInt;
+}
+
+DateTime GetDateTime()
+{
+    DateTime dateTime = new DateTime(GetRandomInt(1, 6000), GetRandomInt(1, 12), GetRandomInt(1, 29));
+    return dateTime;
+}
+```
+</details>
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,Merge Loop,797ms;2,LINQ ForEach,823ms;3,LINQ Concat,1641ms;" />
+
+The best method for merging dictionaries is the Merge Loop method which you can write yourself. it may not be as compact as the other two LINQ methods but it is the fastest. That is what we care about the most is the performance. This doesn't take too long to write so it is worth learning it.
+
+LINQ Concat is just a single line but it turns out to be almost twice as slow as the fastest method so you should avoid a merging operation with this method.
+
+LINQ ForEach method comes very close to the top spot but wasn't fast enough. It does have a compacted form but it is similar to the first method.
+
+Know any other ways to merge dictionaries? Let me know in the comments below.
+
