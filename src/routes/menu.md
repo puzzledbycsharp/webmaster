@@ -46,7 +46,7 @@
 - [How To Assign Values To An Array](array/how-to-assign-values-to-an-array/index.mdx)
 - [How To Initialize Arrays](array/how-to-initialize-arrays/index.mdx)
 - [Best Initializer To Get An Empty Array](array/best-initializer-to-get-an-empty-array/index.mdx)
-- [Fill The Array With One Value](array/fill-the-array-with-one-value/index.mdx)
+- [Solutions For Fill The Array With One Value](array/solutions-for-fill-the-array-with-one-value/index.mdx)
 - [How To Encode Strings and Decode Byte Arrays](array/how-to-encode-strings-and-decode-byte-arrays/index.mdx)
 - [Check If The Text Contains A Keyword From The Array](array/check-if-the-text-contains-a-keyword-from-the-array/index.mdx)
 - [Search An Array If It Contains The Keyword](array/search-an-array-if-it-contains-the-keyword/index.mdx)

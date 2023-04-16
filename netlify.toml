@@ -58,7 +58,13 @@ force = true
 
 [[redirects]]
 from = "/fundamentals/collections/array/fill-the-array-with-one-value/"
-to = "/array/fill-the-array-with-one-value/"
+to = "/array/solutions-for-fill-the-array-with-one-value/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/array/fill-the-array-with-one-value/"
+to = "/array/solutions-for-fill-the-array-with-one-value/"
 status = 301
 force = true
 

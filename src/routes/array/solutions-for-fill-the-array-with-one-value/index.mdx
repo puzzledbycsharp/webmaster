@@ -1,15 +1,15 @@
 ---
-title: Fill The Array With One Value
+title: Solutions For Fill The Array With One Value
 ---
 
-# Fill The Array With One Value
+# Solutions For Fill The Array With One Value
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
-<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/fill-the-array-with-one-value-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Fill The Array With One Value Banner Image" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../../assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-medium.webp" imageSrcSet="../../../../assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-small.webp 500w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-medium.webp 1000w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Solutions For Fill The Array With One Value Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
 
@@ -32,7 +32,7 @@ I'll also briefly talk about how readable and concise the code is. Below is a su
 
 ### Fill The Array With One Value Using The Enumerable Repeat Method
 
-<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Repeat Flow Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+<ImageWrapper imageSource="../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-flow-chart-small.webp 500w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-flow-chart-medium.webp 1000w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Repeat Flow Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
 Enumerable has a static method called repeat. This means that you don't need to create a new instance of the class but can call it directly on the class name itself. Then there's the method itself called Repeat. It just comes in one flavor with no overloads. It takes in the value which can be any object including C# reference and value types and classes that you can create. This object and its value will be repeated several times you give in the next parameter which will be the size of the output array. This method returns an IEnumerable object which is why we need to apply the LINQ ToArray method to convert it from IEnumerable to Array type.
 
@@ -44,7 +44,7 @@ It's great that it is only one line of code. This is what we would expect for a 
 
 #### Enumerable Repeat Code Example
 
-<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/enumerable-repeat-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Repeat Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+<ImageWrapper imageSource="../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-syntax-image-medium.webp" imageSrcSet="../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-syntax-image-small.webp 500w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-syntax-image-medium.webp 1000w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/enumerable-repeat-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Enumerable Repeat Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
 This example, takes in various different types into a method that calls the Enumerable Repeat method. This shows how the repeat method can take in any type and how each type can be configured and passed to the method. Then the values are printed. Below is the example code and sample output.
 
@@ -90,7 +90,7 @@ This shows how each type was correctly output the number of times that was asked
 
 ### Fill The Array With One Value Using The Array Fill Method
 
-<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/array-fill-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/array-fill-flow-chart-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/array-fill-flow-chart-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/array-fill-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array Fill Flow Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+<ImageWrapper imageSource="../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-flow-chart-small.webp 500w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-flow-chart-medium.webp 1000w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array Fill Flow Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
 The Array class also provides a static method that can be called by creating a variable with a typed array. This helps make the method compact which is down to two lines of code. To use this method is a two-step process. You'll need to create an array of the size that you want and the array that you want to be filled with the one value. Then pass that array to the Array Fill method. That is the first parameter in Array Fill. The next parameter is the value that you want to be repeated in the entire array. How this is different from Enumerable Repeat is that in Array Fill you'll have to create an array first and pass it to the function. While Enumerable Repeat generates an array itself.
 
@@ -104,7 +104,7 @@ Internally this method loops through the array elements and assigned a new value
 
 #### Array Fill Method Code Example
 
-<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/array-fill-syntax-image-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/array-fill-syntax-image-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/array-fill-syntax-image-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/array-fill-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array Fill Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"  />
+<ImageWrapper imageSource="../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-syntax-image-medium.webp" imageSrcSet="../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-syntax-image-small.webp 500w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-syntax-image-medium.webp 1000w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/array-fill-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Array Fill Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"  />
 
 In this method wrapper, it still takes in array size and the value to be duplicated in the array. Once the array is created with the right size then we can pass the array and the value to the Array Fill function. Array Fill doesn't return anything but fills the array that was passed to it.
 
@@ -131,7 +131,7 @@ T[] FillArrayWithOneValue<T>(int arraySize, T value)
 
 ### Fill The Array With One Value Using For Loop Method
 
-<ImageWrapper imageSource="../../../../assets/array/fill-the-array-with-one-value/for-loop-fill-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/fill-the-array-with-one-value/for-loop-fill-flow-chart-small.webp 500w, ../../../../assets/array/fill-the-array-with-one-value/for-loop-fill-flow-chart-medium.webp 1000w, ../../../../assets/array/fill-the-array-with-one-value/for-loop-fill-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "For Loop Flow Chart" widthImage = "1024" heightImage = "768"  classInfo ="mx-auto p-15" />
+<ImageWrapper imageSource="../../../../assets/array/solutions-for-fill-the-array-with-one-value/for-loop-fill-flow-chart-medium.webp" imageSrcSet="../../../../assets/array/solutions-for-fill-the-array-with-one-value/for-loop-fill-flow-chart-small.webp 500w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/for-loop-fill-flow-chart-medium.webp 1000w, ../../../../assets/array/solutions-for-fill-the-array-with-one-value/for-loop-fill-flow-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "For Loop Flow Chart" widthImage = "1024" heightImage = "768"  classInfo ="mx-auto p-15" />
 
 We can write out our method to fill the array with a value. I started by initializing the array of a certain size then looped through this array and used the array indexer to assign the value to all the entries. We can reuse this in our code in different places or modify it however we see fit.
 
@@ -333,4 +333,4 @@ Array Fill is the second fastest method, but its support is more limited. There 
 
 For loop, method turned out to be the slowest method and it takes up more lines of code so it would be better to use the built-in methods for this use case.
 
-Know any other ways to fill an entire array with one value? Let me know in the comments below.
+Know any other solution to fill an entire array with one value? Let me know in the comments below.
