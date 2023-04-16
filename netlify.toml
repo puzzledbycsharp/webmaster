@@ -188,3 +188,9 @@ to = "/dictionary/dictionary-with-one-to-many-relationship/"
 status = 301
 force = true
 
+[[redirects]]
+from = "/fundamentals/collections/"
+to = "/dictionary/dictionary-best-practices-and-what-to-avoid/"
+status = 301
+force = true
+
