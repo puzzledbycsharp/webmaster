@@ -1,15 +1,14 @@
 ---
-title: Best Method For Slicing Arrays
+title: Best Solution For Slicing Arrays
 ---
 
-# Best Method For Slicing Arrays
+# Best Solution For Slicing Arrays
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 
-<ImageWrapper imageSource="../../../../assets/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-medium.webp" imageSrcSet="../../../../assets/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-small.webp 500w, ../../../../assets/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-medium.webp 1000w, ../../../../assets/array/best-method-for-slicing-arrays/best-method-for-slicing-arrays-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Method For Slicing Arrays Banner Image" widthImage = "2304" heightImage = "1728" />
-
+<ImageWrapper imageSource="../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-medium.webp" imageSrcSet="../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-small.webp 500w, ../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-medium.webp 1000w, ../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Solution For Slicing Arrays Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
 
 The C# array slice methods I'm going to look at are ArraySegment, Span Slice, Range Operator, and LINQ Skip Take. Each of these has pros and cons which I will get into and also test the performance of each. Slicing arrays is an important topic since a lot of data is array-based and we may not want all the data in an array but different portions of it. Some common examples of array slices could be string related since strings are an array of characters. Another place could be file-based CSV parsing and file IO operations or even parsing data from a database. We're going to start with ArraySegment for our first analysis.

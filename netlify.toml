@@ -58,7 +58,13 @@ force = true
 
 [[redirects]]
 from = "/fundamentals/collections/array/best-method-for-slicing-arrays/"
-to = "/array/best-method-for-slicing-arrays/"
+to = "/array/best-solution-for-slicing-arrays/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/array/best-method-for-slicing-arrays/"
+to = "/array/best-solution-for-slicing-arrays/"
 status = 301
 force = true
 
