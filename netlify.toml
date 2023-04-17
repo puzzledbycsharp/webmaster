@@ -28,7 +28,13 @@ force = true
 
 [[redirects]]
 from = "/fundamentals/collections/array/best-initializer-to-get-an-empty-array/"
-to = "/array/best-initializer-to-get-an-empty-array/"
+to = "/array/initializers-to-get-an-empty-array/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/array/best-initializer-to-get-an-empty-array/"
+to = "/array/initializers-to-get-an-empty-array/"
 status = 301
 force = true
 
