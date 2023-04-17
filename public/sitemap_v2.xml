@@ -6,14 +6,14 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/array/fill-the-array-with-one-value/</loc>
-		<lastmod>2023-04-11T16:04:13-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/</loc>
+		<lastmod>2023-04-16T23:37:38-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/array/best-method-for-slicing-arrays/</loc>
-		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/</loc>
+		<lastmod>2023-04-17T04:42:46-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -36,14 +36,14 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/array/best-initializer-to-get-an-empty-array/</loc>
-		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/array/initializers-to-get-an-empty-array/</loc>
+		<lastmod>2023-04-17T04:22:55-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-initialize-arrays/</loc>
-		<lastmod>2023-04-06T21:35:01-04:00</lastmod>
+		<lastmod>2023-04-17T04:22:55-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -175,7 +175,7 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/</loc>
-		<lastmod>2023-04-12T12:25:51-04:00</lastmod>
+		<lastmod>2023-04-16T22:59:05-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -373,7 +373,7 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/</loc>
-		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
+		<lastmod>2023-04-17T04:22:55-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
