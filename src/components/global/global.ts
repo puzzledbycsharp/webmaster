@@ -4,7 +4,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/',
     title: 'How To Combine Two Arrays Into One',
     dateCreated: '2023-04-14T15:40:20-04:00',
-    dateModified:'2023-04-14T15:40:20-04:00',
+    dateModified:'2023-04-18T16:23:48-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webp',
@@ -399,7 +399,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-large.webp',
     description: 'Array vs Lists vs Linked Lists is a common collection type, each has pros and cons so it is important to understand these as we make our collection choices.',
-    pageCount:72,
+    pageCount:74,
   },
   {
     location: 'code-snippets/exceptions/default-parameter-value-not-compile-time-constant',
@@ -412,7 +412,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-large.webp',
     description: 'The exception CS1736:Default parameter value must be a compile-time constant comes when assigning an optional parameter value is not a constant or default value.',
-    pageCount:97,
+    pageCount:104,
   },
   {
     location: 'dictionary/dictionary-best-practices-and-what-to-avoid',
@@ -660,7 +660,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/fundamentals/strings/substring/get-a-substring-between-two-strings/get-a-substring-between-two-strings-large.webp',
     description: 'The most effective function for getting a substring between two strings is the span slice. Speed is an important factor because that has an impact on the end user.',
-    pageCount:8,
+    pageCount:10,
   },
   {
     location: 'fundamentals/collections/list/best-way-to-sort-a-list',
