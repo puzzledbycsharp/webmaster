@@ -7,6 +7,7 @@ title: How To Combine Two Arrays Into One
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 <ImageWrapper imageSource="../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp" imageSrcSet="../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webp 500w, ../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-medium.webp 1000w, ../../../../assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Combine Two Arrays Into One Banner" widthImage = "2304" heightImage = "1728" />
 
@@ -19,6 +20,12 @@ If you have two arrays and need to combine them into one array then there are ma
 <Table header ="Analysis Type,Enumerable Concat,Array CopyTo,List AddRange,Buffer BlockCopy" rows="Rank,1,2,3,4;.NET Framework Version Available,>= .NET 3.5,>= .NET 1.1,>= .NET 2.0,>= .NET 1.1;Lines Of Code,1,5,4,6;Duplicates Removed,No,No,No,No;Speed Test,14769ms,15608ms,28993ms,N/A;Value Type Speed Test,7172ms,7240ms,12272ms,7123ms;Limitations,None,None,None,Only Value Types Supported;" />
 
 {/* not an exhastive list- wanted to add two more including a manual method. */}
+
+### Summary Video 
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("ytplayer", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); }'/>
+
+
 
 ### Combine Two Arrays Into One With The Enumerable Concat Method
 
