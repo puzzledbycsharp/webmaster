@@ -10,14 +10,14 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-large.webp',
     description: 'The best method for combining two arrays into one is Enumerable Concat. It is fast, easy to read, and fits on one line.',
-    pageCount:0,
+    pageCount:7,
   },
   {
     location: 'array/solutions-for-fill-the-array-with-one-value',
     url: 'https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/',
     title: 'Solutions For Fill The Array With One Value',
     dateCreated: '2023-03-31T00:15:53+00:00',
-    dateModified:'2023-04-16T23:37:38-04:00',
+    dateModified:'2023-04-24T03:02:33-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-small.webp',
@@ -30,7 +30,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/',
     title: 'Best Solution For Slicing Arrays',
     dateCreated: '2023-03-24T00:12:40+00:00',
-    dateModified:'2023-04-17T04:42:46-04:00',
+    dateModified:'2023-04-24T03:03:24-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-small.webp',
@@ -399,7 +399,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/fundamentals/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-large.webp',
     description: 'Array vs Lists vs Linked Lists is a common collection type, each has pros and cons so it is important to understand these as we make our collection choices.',
-    pageCount:74,
+    pageCount:76,
   },
   {
     location: 'code-snippets/exceptions/default-parameter-value-not-compile-time-constant',
@@ -412,7 +412,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-large.webp',
     description: 'The exception CS1736:Default parameter value must be a compile-time constant comes when assigning an optional parameter value is not a constant or default value.',
-    pageCount:104,
+    pageCount:107,
   },
   {
     location: 'dictionary/dictionary-best-practices-and-what-to-avoid',
@@ -503,7 +503,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/code-snippets/open-file-programmatically/open-a-file-programmatically-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/code-snippets/open-file-programmatically/open-a-file-programmatically-large.webp',
     description: 'When testing or writing programs that generate files you may want automate opening the file in code than manually opening those files.',
-    pageCount:0,
+    pageCount:6,
   },
   {
     location: 'fundamentals/strings/new-line-in-stringbuilder',
@@ -763,7 +763,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/fundamentals/collections/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-large.webp',
     description: 'Cloning a list is a matter of understanding the differences in shallow, and deep copies and the difference between value and reference types.',
-    pageCount:0,
+    pageCount:5,
   }
 
   , {
@@ -883,7 +883,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-large.webp',
     description: 'Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.',
-    pageCount:0,
+    pageCount:5,
   }
 ] as const;
 
