@@ -7,6 +7,7 @@ title: Best Solution For Slicing Arrays
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 <ImageWrapper imageSource="../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-medium.webp" imageSrcSet="../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-small.webp 500w, ../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-medium.webp 1000w, ../../../../assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Solution For Slicing Arrays Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
@@ -16,9 +17,16 @@ The C# array slice methods I'm going to look at are ArraySegment, Span Slice, Ra
 
 ### Summary Table
 
-<Table header ="Analysis Type,ArraySegment,Span,Range Operator,LINQ Skip Take" rows=".NET Version Available,>= .NET 2.0,>= .NET 3.5,>= C#8.0, >= NET 3.5;Lines Of Code,1,1,1,1;Copies Array,No,Yes,No,No" />
+<Table header ="Analysis Type,ArraySegment,Span,Range Operator,LINQ Skip Take" rows=".NET Version Available,>= .NET 2.0,>= .NET Core 2.1,>= C#8.0, >= NET 3.5;Lines Of Code,1,1,1,1;Copies Array,No,Yes,No,No" />
 
 {/*NOTE: maybe add array copy some day */}
+
+### Summary Video
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("ytplayer", {      height: "360",      width: "640",      videoId: "HAfJpmg-ARw"    }); }'/>
+
+
+https://youtu.be/HAfJpmg-ARw
 
 ### ArraySegment Method For Slicing Arrays
 
@@ -161,7 +169,7 @@ Sliced array:
 
 ### Span Method For Slicing Arrays
 
-Span allocates memory to the stack rather than the managed heap. This is can have an advantage in speed in some cases. It does make a copy of the data so can keep that in mind if you need to refer to the array or not. 
+Span allocates memory to the stack rather than the managed heap. This is can have an advantage in speed in some cases. It does make a copy of the data so can keep that in mind if you need to refer to the array or not. This was also release in 2018 so you'll need to check the version that you working to see if it's there.
 
 #### Span Slice Method Example Code
 
