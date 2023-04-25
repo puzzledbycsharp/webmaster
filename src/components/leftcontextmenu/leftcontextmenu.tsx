@@ -43,7 +43,7 @@ export default component$(() => {
                  
 <Link
 href={item2.href}
-class=   {(item2 && item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-sm py-1 font-bold text-customdark5 border-2 bg-customdark6 border-customdark1 px-2 border-l-customdark2' : 'text-sm py-1 border-2 border-customdark1 border-l-customdark3 px-2 hover:border-l-customdark2' }
+class=   {(item2 && item2.text && currentMenuItem && currentMenuItem.contentMenu?.text &&  item2?.text.includes(currentMenuItem.contentMenu?.text)) ? 'text-sm py-1 font-bold text-customdark5 border-2 bg-customdark6 border-customdark1 px-2 border-l-customdark2' : 'text-sm py-1 border-2 border-customdark1 border-l-customdark3 px-2 hover:border-l-customdark2' }
 >
 {item2.text}
 </Link>
@@ -70,7 +70,7 @@ class=   {(item2 && item2.text && currentMenuItem && currentMenuItem?.text &&  i
                   ? item.items?.slice(1, item.items.length).map((item2) => (
               <a
                         href={item2.href}
-                        class= {(item2.text && currentMenuItem && currentMenuItem?.text &&  item2?.text.includes(currentMenuItem?.text)) ? 'text-sm block pr-4 pl-3 col-span-6 font-bold text-customdark5 border-2 bg-customdark6 border-customdark1 border-l-customdark2 ' : "text-sm block pr-4 pl-3 col-span-6 border-2 border-customdark1 border-l-customdark3 hover:border-l-customdark2" } 
+                        class= {(item2.text && currentMenuItem && currentMenuItem.contentMenu?.text &&  item2?.text.includes(currentMenuItem.contentMenu?.text)) ? 'text-sm block pr-4 pl-3 col-span-6 font-bold text-customdark5 border-2 bg-customdark6 border-customdark1 border-l-customdark2 ' : "text-sm block pr-4 pl-3 col-span-6 border-2 border-customdark1 border-l-customdark3 hover:border-l-customdark2" } 
                       >
                         {item2.text}
                       </a>
@@ -107,7 +107,7 @@ class=   {(item2 && item2.text && currentMenuItem && currentMenuItem?.text &&  i
   );
 });
 
-let tempHeader = {} as ContentMenu;
+const tempHeader = {} as ContentMenuExtre;
 export function getContextMenuItem(menu: ContentMenu | undefined, pathname: string) {
   //console.log("in createContextMenu");
   let foundMatch = false;
@@ -144,7 +144,7 @@ export function getContextMenuItem(menu: ContentMenu | undefined, pathname: stri
           //console.log("item2.text:" + item2.text);
           //console.log("(pathname:" + pathname);
           if (item2.href && pathname.includes(item2.href)) {
-            tempHeader = item2;
+            tempHeader.contentMenu = item2;
             const pathNameSplit = pathname.split("/");
             const item2HrefSplit = item2.href.split('/');
             let count = 0;
@@ -171,7 +171,7 @@ export function getContextMenuItem(menu: ContentMenu | undefined, pathname: stri
       }
       // })
       if (foundMatch) {
-        if (tempHeader && tempHeader.items) {
+        if (tempHeader && tempHeader.contentMenu.items) {
 
          // console.log("found match tempHeader.text:" + tempHeader.text);
          //console.log("found match tempHeader.items:" + tempHeader?.items.length);
@@ -183,4 +183,9 @@ export function getContextMenuItem(menu: ContentMenu | undefined, pathname: stri
 
   }
   return tempHeader;
+}
+
+export declare interface ContentMenuExtre {
+  contentMenu: ContentMenu;
+  category?: string;
 }

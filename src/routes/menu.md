@@ -1,5 +1,6 @@
 # Home
 
+## Collections
 
 ## List
 - [List](list/introduction-to-lists/index.mdx)
