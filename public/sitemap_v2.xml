@@ -198,6 +198,12 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://puzzledbycsharp.com/dictionary/</loc>
+		<lastmod>2023-04-25T17:56:07-04:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://puzzledbycsharp.com/code-snippets/project-build/copy-files-via-project-script-on-build/</loc>
 		<lastmod>2023-03-26T04:29:48-04:00</lastmod>
 		<changefreq>monthly</changefreq>
@@ -378,8 +384,20 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
+		<loc>https://puzzledbycsharp.com/array/</loc>
+		<lastmod>2023-04-25T17:56:07-04:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://puzzledbycsharp.com/list/introduction-to-lists/</loc>
 		<lastmod>2023-04-25T00:46:38-04:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://puzzledbycsharp.com/list/</loc>
+		<lastmod>2023-04-25T17:56:07-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
