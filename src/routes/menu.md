@@ -3,7 +3,7 @@
 ## Collections
 
 ## List
-- [List](list/introduction-to-lists/index.mdx)
+- [List](list/index.mdx)
 - [Introduction To Lists](list/introduction-to-lists/index.mdx)
 - [Access Items From A List By Index](list/access-items-from-a-list-by-index/index.mdx)
 - [Convert A List To A String With A Delimiter](list/convert-list-to-string-with-a-delimiter/index.mdx)
