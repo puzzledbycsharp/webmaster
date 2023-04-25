@@ -428,6 +428,19 @@ export const ROUTE_DATA = [
     pageCount:0,
   },
   {
+    location: 'dictionary',
+    url: 'https://puzzledbycsharp.com/dictionary/',
+    title: 'Dictionary Section',
+    dateCreated: '2021-12-24T00:08:56+00:00',
+    dateModified:'2023-04-15T04:51:58-04:00',
+    twitterImage: '',
+    image: '',
+    imageSmall: '',
+    imageLarge: '',
+    description: '',
+    pageCount:0,
+  },
+  {
     location: 'code-snippets/project-build/copy-files-via-project-script-on-build',
     url: 'https://puzzledbycsharp.com/code-snippets/project-build/copy-files-via-project-script-on-build/',
     title: 'Copying Files via Project Script On Build | Puzzled By CSharp',
@@ -819,7 +832,22 @@ export const ROUTE_DATA = [
     description: 'Arrays are a fundamental data structure in programming. C# provides a fast, simple and generic array implementation',
     pageCount:0,
   }
-  , {
+  , 
+  {
+    location: 'array',
+    url: 'https://puzzledbycsharp.com/array/',
+    title: 'Array Section',
+    dateCreated: '2023-03-20T00:11:23+00:00',
+    dateModified:'2023-04-25T00:46:38-04:00',
+    twitterImage: '',
+    image: '',
+    imageSmall: '',
+    imageLarge: '',
+    description: '',
+    pageCount:0,
+  }
+  ,
+  {
     location: 'list/introduction-to-lists',
     url: 'https://puzzledbycsharp.com/list/introduction-to-lists/',
     title: 'Introduction To Lists | Puzzled By CSharp',
@@ -830,6 +858,20 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/list/introduction-to-lists/list-banner-image-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/list/introduction-to-lists/list-banner-image-large.webp',
     description: 'List are the backbone of collections and often the most used. They are versatile and flexible, they increase and decrease the underline array automatically.',
+    pageCount:0,
+  }
+  ,
+  {
+    location: 'list',
+    url: 'https://puzzledbycsharp.com/list/',
+    title: 'List Section',
+    dateCreated: '2022-12-23T00:11:56+00:00',
+    dateModified:'2023-04-25T00:46:38-04:00',
+    twitterImage: '',
+    image: '',
+    imageSmall: '',
+    imageLarge: '',
+    description: '',
     pageCount:0,
   }
   ,

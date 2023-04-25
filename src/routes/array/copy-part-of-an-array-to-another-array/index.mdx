@@ -1,0 +1,93 @@
+---
+title: Copy Part Of An Array To Another Array
+---
+
+# Copy Part Of An Array To Another Array
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp" imageSrcSet="../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-small.webp 500w, ../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-medium.webp 1000w, ../../../../assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best Merging Method For Two Dictionaries Banner Image" widthImage = "2304" heightImage = "1728" />
+
+
+
+## Introduction
+
+You may want to do a partial copy of an array to another for various reasons. It could be copying the entire array is more expensive or just too big if you are working with a lot of data. It can be more memory efficitent. 
+
+This is more important in low memory use cases such as embeded systems. Or You may face memory limitations in 32-bit applications. In today's appliations memory ussage usually isn't a problem with 64 bit having access to large amounts of memory. But you still don't want to be wasteful of that resource because there may   
+
+In general it is good programming practice to only do what is needed. The other advantage is that it is faster to only copy part of an array rather than the whole array. If you have an array of a million objects and you only need copy a few thousand then this copy operation would over time be more effeccient. This of course works best when you can copy chunks of data at a time. Since an array is a continous block of memory have a range of data is best and so make sure to originaze your data as such so that a block of data can be copied at a time.
+
+Also another area that copying only part of the array could lead to more efficient code. Let me explain. If you have a subsection of data in an array. It could lead to less compilcated code if you have an array that decicated to the task.
+
+### Is The Destination Array Length Equal To Source Array Length?
+
+The first question we need to ask is the destination array equal or smaller the source array? If the destination array is the same size as the part we are taking from the source array then that is called a subsection or slice of the source array. Then you would take a look at an article I've written that deals with exactly that called [Best Solution For Slicing Arrays](https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/)
+
+If the destination array is of equal size of the source array then read on as I will cover in more detail on the methods you can use for the partial copy.
+
+
+### Summary Table
+
+<Table header ="Analysis Type,Array CopyTo,Buffer BlockCopy" rows="Rank,1,2,3,4;.NET Framework Version Available,>= .NET 3.5,>= .NET 1.1,>= .NET 2.0,>= .NET 1.1;Lines Of Code,1,5,4,6;Duplicates Removed,No,No,No,No;Speed Test,14769ms,15608ms,28993ms,N/A;Value Type Speed Test,7172ms,7240ms,12272ms,7123ms;Limitations,None,None,None,Only Value Types Supported;" />
+
+### Array CopyTo Method To Copy Part Of An Array To Another Array
+
+### Array CopyTo Method Code Example
+
+```cs
+```
+
+###### Code Output
+```
+```
+
+### Speed Test
+
+#### Speed Test Code
+
+```cs
+```
+
+###### Code Output
+
+```
+```
+
+<details>
+<summary>Test Code</summary>
+
+```cs
+```
+</details>
+
+### Test
+
+####  Test Code
+```cs
+```
+
+###### Code Output
+
+```
+```
+
+<details>
+<summary> Test Code</summary>
+
+```cs
+```
+</details>
+
+
+
+
+
+### Conclusion
+
+<Table header ="Overall Rank,Method,Speed" rows="1,Merge Loop,797ms;2,LINQ ForEach,823ms;3,LINQ Concat,1641ms;" />
+
+
+Know any other ways ? Let me know in the comments below.

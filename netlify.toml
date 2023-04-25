@@ -8,11 +8,6 @@ to = "/array/introduction-to-arrays/"
 status = 301
 force = true
 
-[[redirects]]
-from = "/array/"
-to = "/array/introduction-to-arrays/"
-status = 301
-force = true
 
 [[redirects]]
 from = "/fundamentals/collections/array/how-to-assign-values-to-an-array/"

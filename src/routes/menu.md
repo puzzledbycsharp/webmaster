@@ -19,7 +19,7 @@
 - [List vs Dictionary Collection Types](list/list-vs-dictionary/index.mdx)
 
 ## Dictionary
-- [Dictionary](dictionary/dictionary-best-practices-and-what-to-avoid/index.mdx)
+- [Dictionary](dictionary/index.mdx)
 - [Dictionary Best Practices And What To Avoid](dictionary/dictionary-best-practices-and-what-to-avoid/index.mdx)
 - [Best Way To Iterate Through A Dictionary](dictionary/best-way-to-iterate-through-a-dictionary/index.mdx)
 - [Get The Dictionary Keys By Their Value](dictionary/get-the-dictionary-keys-by-their-value/index.mdx)
@@ -41,7 +41,7 @@
 - [Dictionary With One To Many Relationship](dictionary/dictionary-with-one-to-many-relationship/index.mdx)
 
 ## Array
-- [Array](array/introduction-to-arrays/index.mdx)
+- [Array](array/index.mdx)
 - [Introduction To Arrays](array/introduction-to-arrays/index.mdx)
 - [How To Assign Values To An Array](array/how-to-assign-values-to-an-array/index.mdx)
 - [How To Initialize Arrays](array/how-to-initialize-arrays/index.mdx)
@@ -56,7 +56,7 @@
 
 
 ## Strings
-- [Strings](fundamentals/strings//index.mdx)
+- [Strings](fundamentals/strings/index.mdx)
 - [Examining String Equals In Detail](fundamentals/strings/string-equals/index.mdx)
 - [Using String Insert Effectively](fundamentals/strings/string-insert/index.mdx)
 - [Best Ways To Use String Remove](fundamentals/strings/string-remove/index.mdx)
