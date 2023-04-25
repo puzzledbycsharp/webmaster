@@ -180,7 +180,7 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/array-vs-list-vs-linked-list/</loc>
+		<loc>https://puzzledbycsharp.com/list/array-vs-list-vs-linked-list/</loc>
 		<lastmod>2023-04-13T16:03:55-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -204,7 +204,7 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list-vs-dictionary/</loc>
+		<loc>https://puzzledbycsharp.com/list/list-vs-dictionary/</loc>
 		<lastmod>2023-03-26T04:29:48-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -306,31 +306,31 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/best-way-to-sort-a-list/</loc>
+		<loc>https://puzzledbycsharp.com/list/best-way-to-sort-a-list/</loc>
 		<lastmod>2023-03-28T05:23:28-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/access-items-from-a-list-by-index/</loc>
+		<loc>https://puzzledbycsharp.com/list/access-items-from-a-list-by-index/</loc>
 		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/how-to-initialize-a-list/</loc>
+		<loc>https://puzzledbycsharp.com/list/how-to-initialize-a-list/</loc>
 		<lastmod>2023-03-28T05:23:28-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/</loc>
+		<loc>https://puzzledbycsharp.com/list/convert-list-to-string-with-a-delimiter/</loc>
 		<lastmod>2023-03-27T16:13:43-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/how-to-find-an-item-in-the-list/</loc>
+		<loc>https://puzzledbycsharp.com/list/how-to-find-an-item-in-the-list/</loc>
 		<lastmod>2023-03-28T05:23:28-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -348,25 +348,25 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/clone-a-list-in-depth-review/</loc>
+		<loc>https://puzzledbycsharp.com/list/clone-a-list-in-depth-review/</loc>
 		<lastmod>2023-03-28T05:23:28-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/remove-duplicate-items-from-a-list/</loc>
+		<loc>https://puzzledbycsharp.com/list/remove-duplicate-items-from-a-list/</loc>
 		<lastmod>2023-03-28T14:38:06-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/</loc>
+		<loc>https://puzzledbycsharp.com/list/understanding-the-best-set-theory-methods-between-lists/</loc>
 		<lastmod>2023-03-28T14:38:06-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/convert-a-system-array-to-a-list/</loc>
+		<loc>https://puzzledbycsharp.com/list/convert-a-system-array-to-a-list/</loc>
 		<lastmod>2023-03-28T14:38:06-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
@@ -378,7 +378,7 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/collections/list/</loc>
+		<loc>https://puzzledbycsharp.com/list/</loc>
 		<lastmod>2023-01-22T06:47:40-05:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>

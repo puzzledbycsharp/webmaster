@@ -1,22 +1,21 @@
 # Home
 
-## Collections
-- [Collections](./index.mdx)
 
 ## List
-- [List](fundamentals/collections/list/index.mdx)
-- [Access Items From A List By Index](fundamentals/collections/list/access-items-from-a-list-by-index/index.mdx)
-- [Convert A List To A String With A Delimiter](fundamentals/collections/list/convert-list-to-string-with-a-delimiter/index.mdx)
-- [Best Way To Sort A List](fundamentals/collections/list/best-way-to-sort-a-list/index.mdx)
-- [How To Find An Item In The List](fundamentals/collections/list/how-to-find-an-item-in-the-list/index.mdx)
-- [How To Initialize A List](fundamentals/collections/list/how-to-initialize-a-list/index.mdx)
-- [Clone A List In Depth Review](fundamentals/collections/list/clone-a-list-in-depth-review/index.mdx)
-- [Remove Duplicate Items from A List](fundamentals/collections/list/remove-duplicate-items-from-a-list/index.mdx)
-- [Understanding The Best Set Theory Methods Between Lists](fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/index.mdx)
-- [Convert A System Array To A List](fundamentals/collections/list/convert-a-system-array-to-a-list/index.mdx)
-- [A Comparison Between IEnumerable<T> and List<T>](fundamentals/collections/list/a-comparison-between-ienumerable-and-list/index.mdx)
-- [Array vs List vs Linked List](fundamentals/collections/array-vs-list-vs-linked-list/index.mdx)
-- [List vs Dictionary Collection Types](fundamentals/collections/list-vs-dictionary/index.mdx)
+- [List](list/introduction-to-lists/index.mdx)
+- [Introduction To Lists](list/introduction-to-lists/index.mdx)
+- [Access Items From A List By Index](list/access-items-from-a-list-by-index/index.mdx)
+- [Convert A List To A String With A Delimiter](list/convert-list-to-string-with-a-delimiter/index.mdx)
+- [Best Way To Sort A List](list/best-way-to-sort-a-list/index.mdx)
+- [How To Find An Item In The List](list/how-to-find-an-item-in-the-list/index.mdx)
+- [How To Initialize A List](list/how-to-initialize-a-list/index.mdx)
+- [Clone A List In Depth Review](list/clone-a-list-in-depth-review/index.mdx)
+- [Remove Duplicate Items from A List](list/remove-duplicate-items-from-a-list/index.mdx)
+- [Understanding The Best Set Theory Methods Between Lists](list/understanding-the-best-set-theory-methods-between-lists/index.mdx)
+- [Convert A System Array To A List](list/convert-a-system-array-to-a-list/index.mdx)
+- [A Comparison Between IEnumerable<T> and List<T>](list/a-comparison-between-ienumerable-and-list/index.mdx)
+- [Array vs List vs Linked List](list/array-vs-list-vs-linked-list/index.mdx)
+- [List vs Dictionary Collection Types](list/list-vs-dictionary/index.mdx)
 
 ## Dictionary
 - [Dictionary](dictionary/dictionary-best-practices-and-what-to-avoid/index.mdx)
@@ -41,8 +40,8 @@
 - [Dictionary With One To Many Relationship](dictionary/dictionary-with-one-to-many-relationship/index.mdx)
 
 ## Array
-- [Array](array/index.mdx)
-- [Introduction To Arrays](array/index.mdx)
+- [Array](array/introduction-to-arrays/index.mdx)
+- [Introduction To Arrays](array/introduction-to-arrays/index.mdx)
 - [How To Assign Values To An Array](array/how-to-assign-values-to-an-array/index.mdx)
 - [How To Initialize Arrays](array/how-to-initialize-arrays/index.mdx)
 - [6 Initializers To Get An Empty Array In 2023](array/initializers-to-get-an-empty-array/index.mdx)

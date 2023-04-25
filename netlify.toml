@@ -4,7 +4,13 @@ command = "npm run build"
 
 [[redirects]]
 from = "/fundamentals/collections/array/"
-to = "/array/"
+to = "/array/introduction-to-arrays/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/array/"
+to = "/array/introduction-to-arrays/"
 status = 301
 force = true
 
@@ -211,4 +217,86 @@ from = "/fundamentals/collections/"
 to = "/dictionary/dictionary-best-practices-and-what-to-avoid/"
 status = 301
 force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/a-comparison-between-ienumerable-and-list/"
+to = "/list/a-comparison-between-ienumerable-and-list/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/access-items-from-a-list-by-index/"
+to = "/list/access-items-from-a-list-by-index/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/best-way-to-sort-a-list/"
+to = "/list/best-way-to-sort-a-list/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/clone-a-list-in-depth-review/"
+to = "/list/clone-a-list-in-depth-review/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/convert-a-system-array-to-a-list/"
+to = "/list/convert-a-system-array-to-a-list/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/convert-list-to-string-with-a-delimiter/"
+to = "/list/convert-list-to-string-with-a-delimiter/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/how-to-find-an-item-in-the-list/"
+to = "/list/how-to-find-an-item-in-the-list/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/how-to-initialize-a-list/"
+to = "/list/how-to-initialize-a-list/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/remove-duplicate-items-from-a-list/"
+to = "/list/remove-duplicate-items-from-a-list/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/list/understanding-the-best-set-theory-methods-between-lists/"
+to = "/list/understanding-the-best-set-theory-methods-between-lists/"
+status = 301
+force = true
+
+
+[[redirects]]
+from = "/fundamentals/collections/list/"
+to = "/list/introduction-to-lists/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/collections/array-vs-list-vs-linked-list/"
+to = "/list/array-vs-list-vs-linked-list/"
+status = 301
+force = true
+
+
+[[redirects]]
+from = "/fundamentals/collections/list-vs-dictionary/"
+to = "/list/list-vs-dictionary/"
+status = 301
+force = true
+
+
 

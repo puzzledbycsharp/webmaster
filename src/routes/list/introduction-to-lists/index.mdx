@@ -8,7 +8,7 @@ import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 
-<ImageWrapper imageSource="../../../assets/fundamentals/collections/list/list-banner-image-medium.webp" imageSrcSet="../../../assets/fundamentals/collections/list/list-banner-image-small.webp 250w, ../../../assets/fundamentals/collections/list/list-banner-image-medium.webp 500w, ../../../assets/fundamentals/collections/list/list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "List Banner Image" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../assets/list/introduction-to-lists/list-banner-image-medium.webp" imageSrcSet="../../../assets/list/introduction-to-lists/list-banner-image-small.webp 250w, ../../../assets/list/introduction-to-lists/list-banner-image-medium.webp 500w, ../../../assets/list/introduction-to-lists/list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "List Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
 
@@ -16,7 +16,7 @@ List are the backbone of collections and often the most used. They are verstile 
 
 ### What Are Lists In C#?
 
-Lists are a collection of a type in which the underlying data structure is an array. Even though an array is of fixed length at it's creation. The list manages the array so it grows when when the lists needs to grow. [This enables list items to be accessed by an index for fast access, add items without being concerned about a limit, remove, search and sort items](https://puzzledbycsharp.com/fundamentals/collections/list/). Lists also allow duplicates items and the order is preserved as we add items. 
+Lists are a collection of a type in which the underlying data structure is an array. Even though an array is of fixed length at it's creation. The list manages the array so it grows when when the lists needs to grow. This enables list items to be accessed by an index for fast access, add items without being concerned about a limit, remove, search and sort items. Lists also allow duplicates items and the order is preserved as we add items. 
 
 ### Why Do We Need Lists?
 
@@ -60,7 +60,7 @@ public class Car
 As you can see that the list can hold any type but also once a list is assigned a type then only that type can be added the to the list. The won't even compile if it's not the right type.
 
 ###### See More Create List Initialization Examples
-[How To Initialize A List](https://puzzledbycsharp.com/fundamentals/collections/list/how-to-initialize-a-list/)
+[How To Initialize A List](https://puzzledbycsharp.com/list/how-to-initialize-a-list/)
 
 #### Create List With Initial Capacity
 Sometimes if with working with huge amounts of data you may want to set an initial size of the list. We can do this by passing an int value as a parameter to the list. Since the list's underlying data structure is an array. It will create an array that is set to the initial capacity. Otherwise what would happen if you didn't' set it and you had a huge amount of data is that the array would be the default starting size and as the data in the list grows the default sized array would fill up and then grow as the list grew so that the array would not fill up. This operation of increasing the underlying array as item are added adds a slight performance hit. See below for an example.
@@ -389,7 +389,7 @@ Retrieving the items in this way is a powerful and quick way to get the items if
 
 ##### Additional Sort Examples
 
-[Access Items From A List By Index](https://puzzledbycsharp.com/fundamentals/collections/list/access-items-from-a-list-by-index/)
+[Access Items From A List By Index](https://puzzledbycsharp.com/list/access-items-from-a-list-by-index/)
 
 ### Add A List To Another List
 The quick way to add a list of the same type to another list is to the AddRange function. The other alternative to loop through the list and add each element to the other list. This undesirable to write each time so we use the build in function AddRange. An example is below.

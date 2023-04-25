@@ -8,7 +8,7 @@ import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
 
-<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp" imageSrcSet="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-small.webp 250w, ../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp 500w, ../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A System Array To A List Banner Image" widthImage = "2304" heightImage = "1728" />
+<ImageWrapper imageSource="../../../../assets/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp" imageSrcSet="../../../../assets/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-small.webp 250w, ../../../../assets/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-medium.webp 500w, ../../../../assets/list/convert-a-system-array-to-a-list/convert-a-system-array-to-a-list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A System Array To A List Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
 
@@ -19,7 +19,7 @@ System Array is an abstract class that can only be instantiated through a functi
 There are a few ways to do this and all of them involve a cast of some sort. One is to write our method to loop the system array and add them to a list. The second uses an array cast and then uses ToList. Lastly, the other method is to use OfType to cast the objects and then use ToList to assign them to a list. All of these methods can get the result that we want but the difference in performance will be key to determining which is the best to use.
 
 ### Loop Method
-<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/loop-method-section-image.webp" altImage = "Loop Method Section Image" widthImage = "1400" heightImage = "300" />
+<ImageWrapper imageSource="../../../../assets/list/convert-a-system-array-to-a-list/loop-method-section-image.webp" altImage = "Loop Method Section Image" widthImage = "1400" heightImage = "300" />
 
 The first method to convert all the System Array items to a list is through the brute force method of looping through all the items. Then apply a cast to each item retrieved and then adding it to the list. Examine the below code.
 
@@ -131,7 +131,7 @@ From this basic loop, the average speed from the test is about 3 and a half seco
 
 ### Cast and ToList Method
 
-<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/cast-and-tolist-section.webp" altImage = "Cast and ToList Method Section Image" widthImage = "1400" heightImage = "300" />
+<ImageWrapper imageSource="../../../../assets/list/convert-a-system-array-to-a-list/cast-and-tolist-section.webp" altImage = "Cast and ToList Method Section Image" widthImage = "1400" heightImage = "300" />
 
 Another way we can solve this issue is to cast The System Array object to an array. Then convert that array to a list.
 
@@ -233,7 +233,7 @@ This method is very fast at only 109 milliseconds and is so much faster than jus
 
 ### OfType and ToList Method
 
-<ImageWrapper imageSource="../../../../assets/fundamentals/collections/list/convert-a-system-array-to-a-list/oftype-tolist-section.webp" altImage = "OfType and ToList Method Section Image" widthImage = "1400" heightImage = "300" />
+<ImageWrapper imageSource="../../../../assets/list/convert-a-system-array-to-a-list/oftype-tolist-section.webp" altImage = "OfType and ToList Method Section Image" widthImage = "1400" heightImage = "300" />
 
 Lastly, we'll look at the OfType Method. [This method filters out objects that can be cast as the type and returns an IEnumerable.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.oftype?view=net-7.0) We can use this method to convert a System Array to an IEnumerable and then to a list.
 
