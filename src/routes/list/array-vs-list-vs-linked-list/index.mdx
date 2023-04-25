@@ -21,7 +21,7 @@ Array vs Lists vs Linked Lists is a common collection comparison with each havin
 
 ### Summary Video
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("ytplayer", {      height: "360",      width: "640",      videoId: "MbNzMCBNMHo"    }); }'/>
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("MbNzMCBNMHo", {      height: "360",      width: "640",      videoId: "MbNzMCBNMHo"    }); }' youtubeId="MbNzMCBNMHo"/>
 
 Item search speed is the time it takes to find an item in the list. If we don't know where the item is in the list then for all the list we need to traverse the list until we find the item. The worst case is that we have to go through the entire list. This worst case is for these three types. For Array, and List there is a workaround to this worst case if we associate the item to a number or index but then we may have unused slots in our collection.
 

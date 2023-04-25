@@ -21,11 +21,9 @@ If you have two arrays and need to combine them into one array then there are ma
 
 {/* not an exhastive list- wanted to add two more including a manual method. */}
 
-### Summary Video 
+### Video With Examples 
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("ytplayer", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); }'/>
-
-
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="8r43IETaIPQ"/>
 
 ### Combine Two Arrays Into One With The Enumerable Concat Method
 
@@ -39,6 +37,9 @@ There is also wide support for this method because it was released in .NET 3.5 s
 
 This method will combine the second array with the first. So in the output, you'll see the first array's items followed by the second array's items. Let's see this in action by an example.
 
+### Enumerable Concat Video Example
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player2;  function onYouTubePlayerAPIReady() { player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    });   player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="ZLLXo9hhVV8"/>
 
 #### The Enumerable Concat Method Code Example
 

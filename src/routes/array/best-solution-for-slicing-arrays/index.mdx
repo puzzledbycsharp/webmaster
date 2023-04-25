@@ -21,14 +21,18 @@ The C# array slice methods I'm going to look at are ArraySegment, Span Slice, Ra
 
 {/*NOTE: maybe add array copy some day */}
 
-### Summary Video
+### Video With Examples
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("ytplayer", {      height: "360",      width: "640",      videoId: "HAfJpmg-ARw"    }); }'/>
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("HAfJpmg-ARw", {      height: "360",      width: "1280",      videoId: "HAfJpmg-ARw"    });   player2 = new YT.Player("BgpuYa4VKqs", {      height: "360",      width: "640",      videoId: "BgpuYa4VKqs"    });}' youtubeId ="HAfJpmg-ARw"/>
 
 
 ### ArraySegment Method For Slicing Arrays
 
 ArraySegment has been around for a long time and has been available since .NET 2.0. [It doesn't make a copy of the array but works from the original reference and must be a one-dimensional array](https://learn.microsoft.com/en-us/dotnet/api/system.arraysegment-1?redirectedfrom=MSDN&view=net-7.0#remarks)
+
+### ArraySegment Video Example
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player2;  function onYouTubePlayerAPIReady() {  player1 = new YT.Player("HAfJpmg-ARw", {      height: "360",      width: "640",      videoId: "HAfJpmg-ARw"    });   player2 = new YT.Player("BgpuYa4VKqs", {      height: "360",      width: "640",      videoId: "BgpuYa4VKqs"    }); }' youtubeId="BgpuYa4VKqs"/>
 
 #### ArraySegment Code Example
 

@@ -2,7 +2,7 @@ import { component$, useBrowserVisibleTask$} from '@builder.io/qwik';
 
 interface YoutubeItemProps {
   source?: string;
-  youtubeId?:string;
+  youtubeId:string;
   youtubescript:string;
 }
 
@@ -25,7 +25,7 @@ export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
   //tag.src = 'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }';
   tag.innerHTML = props.youtubescript;
   //   <script type="text/javascript"  dangerouslySetInnerHTML={'var tag = document.createElement(\'script\');  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName(\'script\')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player(\'ytplayer\', {      height: \'360\',      width: \'640\',      videoId: \'${props.youtubeId}\'    }); console.log("props.youtubeId"+props.youtubeId);  }'}>
-  const firstScriptTag = document.getElementById('ytplayer'); 
+  const firstScriptTag = document.getElementById(props.youtubeId); 
   firstScriptTag?.parentNode?.insertBefore(tag,firstScriptTag );
   // </script>
    });
@@ -50,7 +50,7 @@ export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
      */}
 
 
-  <div class="w-full md:w-3/4 mx-auto h-96" id="ytplayer"></div>
+  <div class="w-full md:w-3/4 mx-auto min-h-[2.5%]" id={props.youtubeId}></div>
 
 
 
