@@ -31,18 +31,78 @@ If the destination array is of equal size of the source array then read on as I 
 
 ### Summary Table
 
-<Table header ="Analysis Type,Array CopyTo,Buffer BlockCopy" rows="Rank,1,2,3,4;.NET Framework Version Available,>= .NET 3.5,>= .NET 1.1,>= .NET 2.0,>= .NET 1.1;Lines Of Code,1,5,4,6;Duplicates Removed,No,No,No,No;Speed Test,14769ms,15608ms,28993ms,N/A;Value Type Speed Test,7172ms,7240ms,12272ms,7123ms;Limitations,None,None,None,Only Value Types Supported;" />
+<Table header ="Analysis Type,Array Copy,Buffer BlockCopy" rows="Rank,1,2,3,4;.NET Framework Version Available,>= .NET 1.1,>= .NET 1.1,>= .NET 2.0,>= .NET 1.1;Lines Of Code,1,5,4,6;Duplicates Removed,No,No,No,No;Speed Test,14769ms,15608ms,28993ms,N/A;Value Type Speed Test,7172ms,7240ms,12272ms,7123ms;Limitations,None,None,None,Only Value Types Supported;" />
 
-### Array CopyTo Method To Copy Part Of An Array To Another Array
+### Array Copy Method
 
-### Array CopyTo Method Code Example
+Array Copy lets you copy a range of elements and lets you pick the starting point in the source array and the starting point to copy it to to in the destination array. This is uesful in case we need a method to do a partial copy. Since this method is a static method you don't need to create array object to call this method.
+
+
+### Array Copy Method Code Example
 
 ```cs
+
+//Create two different arrays of string for different healthly lifestyles
+string[] stringArraySource = new string[] { "Exercise regularly", "Eat a balanced diet", "Stay hydrated", "Get enough sleep", "Manage stress" };
+string[] stringArrayDestination = new string[] { "", "", "", "","" };
+
+//Create two different arrays of int 
+int[] intArraySource = new int[] { 21, 63, 88, 1, 16 };
+int[] intArrayDestination = new int[] { 0, 0, 0, 0 ,0};
+
+//Create two different arrays of double
+double[] doubleArraySource = new double[] { 14.51, 11.45, 67.57, 19.23, 0.1 };
+double[] doubleArrayDestination = new double[] { 0, 0, 0, 0, 0 };
+
+//Create two different arrays of bool
+bool[] boolArraySource = new bool[] { true, false, false, true, false };
+bool[] boolArrayDestination = new bool[] { false, false, false, false, false };
+
+//Create two different arrays of float
+float[] floatArraySource = new float[] { 2.05f, 32.62f, 3.45f, 16.7f, 0.54f };
+float[] floatArrayDestination = new float[] { 0, 0, 0, 0,0 };
+
+int sourceStartIndex = 1;
+int destinationStartIndex = 1;
+int length = 2;
+
+//Combined array method
+CopyPartOfArrayAnotherArray<string>(stringArraySource, sourceStartIndex, stringArrayDestination, destinationStartIndex, length);
+CopyPartOfArrayAnotherArray<int>(intArraySource, sourceStartIndex, intArrayDestination, destinationStartIndex, length);
+CopyPartOfArrayAnotherArray<double>(doubleArraySource, sourceStartIndex, doubleArrayDestination, destinationStartIndex, length);
+CopyPartOfArrayAnotherArray<bool>(boolArraySource, sourceStartIndex, boolArrayDestination, destinationStartIndex, length);
+CopyPartOfArrayAnotherArray<float>(floatArraySource, sourceStartIndex, floatArrayDestination, destinationStartIndex, length);
+
+//Print out each array
+PrintArray<string>(stringArrayDestination);
+PrintArray<int>(intArrayDestination);
+PrintArray<double>(doubleArrayDestination);
+PrintArray<bool>(boolArrayDestination);
+PrintArray<float>(floatArrayDestination);
+
+
+void CopyPartOfArrayAnotherArray<T>(T[] arraySource, int sourceStartIndex, T[] arrayDestination, int destinationStartIndex, int length)
+{
+    Array.Copy(arraySource, sourceStartIndex, arrayDestination, destinationStartIndex, length);//Use Copy to partial copy part of the source array into the destination array 
+}
+
+void PrintArray<T>(T[] array)
+{
+    int index = 0;
+    foreach (T item in array)//Loop through each item in the array
+    {
+        Console.WriteLine($"[{index++}] = {item}");//Print array item to the screen
+    }
+    Console.WriteLine();
+    Console.WriteLine();
+}
 ```
 
 ###### Code Output
-```
-```
+
+<Table header ="string,int,double,bool,float" rows="[0] =,[0] = 0,[0] = 0,[0] = False,[0] = 0;[1] = Eat a balanced diet,[1] = 63,[1] = 11.45,[1] = False,[1] = 32.62;[2] = Stay hydrated,[2] = 88,[2] = 67.57,[2] = False,[2] = 3.45;[3] =,[3] = 0,[3] = 0,[3] = False,[3] = 0;[4] =,[4] = 0,[4] = 0,[4] = False,[4] = 0;" />
+
+
 
 ### Speed Test
 
