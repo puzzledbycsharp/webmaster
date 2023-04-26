@@ -223,94 +223,17 @@
       <description> This a private policy about your rights and to info you on how your information is collected from you</description>
     </item>
     <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
+      <title> Best Way To Iterate Through A Dictionary</title>
+      <pubDate>Mon, 23 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
       <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
+      <description> Dictionary fastest methods are iterating over just the Keys and Values but looping through both Key and Value a list with a class container performs better</description>
     </item>
     <item>
       <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
       <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
-    </item>
-    <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
-      <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
-      <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
-      <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
+      <link>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</link>
+      <guid>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</guid>
       <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
     </item>
     <item>

@@ -367,7 +367,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/',
     title: 'A Comparison Between IEnumerable<T> and List<T>',
     dateCreated: '2023-01-22T00:11:56+00:00',
-    dateModified:'2023-04-15T04:51:58-04:00',
+    dateModified:'2023-04-25T02:57:23-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-small.webp',
@@ -935,7 +935,7 @@ export const ROUTE_DATA = [
 
 export interface MyRouteData {
   location: string;
-  dateCreated: string;
+  location: string;
   twitterImage: string;
   image: string;
   imageSmall: string;
