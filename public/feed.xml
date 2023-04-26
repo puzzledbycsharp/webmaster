@@ -6,7 +6,7 @@
     <description>This site was created for you to gain new insights into the C# programming language. There are a variety of how to articles, code snippets and practice code</description>
     <language>en-us</language>
     <image>
-      <title>PuzzledByCSharp Home Page Image</title>
+      <title>Home Page | Puzzled By CSharp</title>
       <link>http://puzzledbycsharp.com/</link>
       <url>https://puzzledbycsharp.com/assets/home/main-pinterest.webp</url>
       <width>70</width>
@@ -230,7 +230,7 @@
       <description> Dictionary fastest methods are iterating over just the Keys and Values but looping through both Key and Value a list with a class container performs better</description>
     </item>
     <item>
-      <title> A Comparison Between IEnumerable&lt;T&gt; and List&lt;T&gt;</title>
+      <title> A Comparison Between IEnumerable and List</title>
       <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</link>
       <guid>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</guid>

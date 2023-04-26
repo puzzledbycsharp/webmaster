@@ -365,7 +365,7 @@ export const ROUTE_DATA = [
   {
     location: 'list/a-comparison-between-ienumerable-and-list',
     url: 'https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/',
-    title: 'A Comparison Between IEnumerable<T> and List<T>',
+    title: 'A Comparison Between IEnumerable and List',
     dateCreated: '2023-01-22T00:11:56+00:00',
     dateModified:'2023-04-25T02:57:23-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-twitter.webp',
