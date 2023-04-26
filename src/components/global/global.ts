@@ -935,7 +935,6 @@ export const ROUTE_DATA = [
 
 export interface MyRouteData {
   location: string;
-  url: string;
   dateCreated: string;
   twitterImage: string;
   image: string;
