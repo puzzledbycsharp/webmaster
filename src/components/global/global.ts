@@ -1,7 +1,7 @@
 export const ROUTE_DATA = [
   { 
     location:'array/copy-part-of-an-array-to-another-array', 
-    url: 'https://puzzledbycsharp.com/fundamentals/copy-part-of-an-array-to-another-array/',
+    url: 'https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/',
     title:'Copy Part Of An Array To Another Array', 
     dateCreated:'2023-04-28T00:00:10+00:00',
     dateModified:'2023-04-28T00:00:10+00:00',
