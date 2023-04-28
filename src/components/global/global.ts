@@ -3,8 +3,8 @@ export const ROUTE_DATA = [
     location:'array/copy-part-of-an-array-to-another-array', 
     url: 'https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/',
     title:'Copy Part Of An Array To Another Array', 
-    dateCreated:'2023-04-28T00:00:10+00:00',
-    dateModified:'2023-04-28T00:00:10+00:00',
+    dateCreated:'2023-04-28T04:19:34-04:00',
+    dateModified:'2023-04-28T04:19:34-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/array/copy-part-of-an-array-to-another-array/copy-part-of-an-array-to-another-array-banner-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/array/copy-part-of-an-array-to-another-array/copy-part-of-an-array-to-another-array-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/array/copy-part-of-an-array-to-another-array/copy-part-of-an-array-to-another-array-banner-small.webp',
@@ -424,7 +424,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/',
     title: 'Home Page | Puzzled By CSharp',
     dateCreated: '2021-12-24T00:08:56+00:00',
-    dateModified:'2023-04-16T22:59:05-04:00',
+    dateModified:'2023-04-28T04:19:34-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/home/c-programming-insights-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/home/main-pinterest.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/home/main-pinterest.webp',
@@ -917,7 +917,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/array/',
     title: 'Array Section',
     dateCreated: '2023-03-20T00:11:23+00:00',
-    dateModified:'2023-04-25T17:56:07-04:00',
+    dateModified:'2023-04-28T04:19:34-04:00',
     twitterImage: '',
     image: '',
     imageSmall: '',
@@ -1021,7 +1021,7 @@ export const ROUTE_DATA = [
 
 export interface MyRouteData {
   location: string;
-  url:string;
+  location: string;
   title:string;
   dateCreated: string;
   dateModified:string;

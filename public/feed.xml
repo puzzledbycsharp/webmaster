@@ -13,6 +13,13 @@
       <height>55</height>
     </image>
     <item>
+      <title>Copy Part Of An Array To Another Array </title>
+      <pubDate>Fri, 28 Apr 2023 00:00:10 GMT</pubDate>
+      <link>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</link>
+      <guid>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</guid>
+      <description>Array Copy is best to use when copying part of an array to another array. It fits on one line and it fast. Also it has no limitation on types.</description>
+    </item>
+    <item>
       <title> How To Combine Two Arrays Into One</title>
       <pubDate>Fri, 14 Apr 2023 19:40:20 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</link>
