@@ -53,6 +53,7 @@
 - [Best Removal Method Of Duplicates From An Array](array/best-removal-method-of-duplicates-from-an-array/index.mdx)
 - [Best Solution For Slicing Arrays](array/best-solution-for-slicing-arrays/index.mdx)
 - [How To Combine Two Arrays Into One](array/how-to-combine-two-arrays-into-one/index.mdx)
+- [Copy Part Of An Array To Another Array](array/copy-part-of-an-array-to-another-array/index.mdx)
 
 
 ## Strings

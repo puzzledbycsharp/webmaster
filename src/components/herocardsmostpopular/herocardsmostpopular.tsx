@@ -107,6 +107,9 @@ export function filterMetaData(routeDatas:  MyRouteData [] ) {
   let  count: number = 0;
   routeDatas.sort((a, b) => a.pageCount > b.pageCount ? -1 : a.pageCount < b.pageCount ? 1 : 0);
   for (const routeData of routeDatas) {
+    if(routeData.image ==''){
+      continue;
+    }
     if( count <= 1){
       routeData.lazyLoadImage = false;
     }
