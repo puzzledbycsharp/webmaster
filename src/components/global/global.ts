@@ -1021,7 +1021,7 @@ export const ROUTE_DATA = [
 
 export interface MyRouteData {
   location: string;
-  location: string;
+  url:string;
   title:string;
   dateCreated: string;
   dateModified:string;
@@ -1034,4 +1034,6 @@ export interface MyRouteData {
   pageCount:0;
   feedDescription:string;
 }
+
+
 
