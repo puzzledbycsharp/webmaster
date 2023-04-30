@@ -157,7 +157,7 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/how-to-update-dictionary-values/</loc>
-		<lastmod>2023-04-15T04:51:58-04:00</lastmod>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -234,8 +234,8 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-vs-stringbuilder-comparison/</loc>
-		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/string-vs-stringbuilder-comparison/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -246,74 +246,74 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/new-line-in-stringbuilder/</loc>
-		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/new-line-in-stringbuilder/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-insert/</loc>
-		<lastmod>2023-03-27T05:29:12-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/using-string-insert-effectively/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-trim/</loc>
-		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/walkthrough-of-the-string-trim-function/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-equals/</loc>
-		<lastmod>2023-03-27T05:29:12-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/examining-string-equals-in-detail/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-replace/</loc>
-		<lastmod>2023-03-27T05:29:12-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/string-replace-in-depth/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-substring/get-a-substring-before-or-after-a-certain-character/</loc>
-		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/get-a-substring-before-or-after-a-certain-character/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-substring/best-first-character-removal-function-in-a-string/</loc>
-		<lastmod>2023-03-27T05:29:12-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/best-first-character-removal-function-in-a-string/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/</loc>
-		<lastmod>2023-03-27T05:29:12-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/efficiently-remove-the-first-keyword-occurrence-from-a-string/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-substring/get-substring-after-finding-a-keyword/</loc>
-		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/get-substring-after-finding-a-keyword/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-substring/how-best-to-get-last-n-characters/</loc>
-		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/how-best-to-get-last-n-characters/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-substring/analysis-of-getting-first-n-characters-methods/</loc>
-		<lastmod>2023-03-27T05:29:12-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/analysis-of-getting-first-n-characters-methods/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-substring/get-a-substring-between-two-strings/</loc>
-		<lastmod>2023-03-27T16:12:20-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/get-a-substring-between-two-strings/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -408,20 +408,20 @@
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-substring/</loc>
-		<lastmod>2023-04-25T01:47:58-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/how-to-use-substring/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/string-remove/</loc>
-		<lastmod>2023-03-27T05:29:12-04:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/best-ways-to-use-string-remove/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>https://puzzledbycsharp.com/fundamentals/strings/</loc>
-		<lastmod>2022-12-26T19:59:32-05:00</lastmod>
+		<loc>https://puzzledbycsharp.com/string/</loc>
+		<lastmod>2023-04-30T05:05:58-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
