@@ -1,0 +1,344 @@
+---
+title: Examining String Equals In Detail
+---
+
+# Examining String Equals In Detail
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../../assets/string/examining-string-equals-in-detail/string-equals-page-header-banner-medium.webp" imageSrcSet="../../../assets/string/examining-string-equals-in-detail/string-equals-page-header-banner-small.webp 250w, ../../../assets/string/examining-string-equals-in-detail/string-equals-page-header-banner-medium.webp 500w, ../../../assets/string/examining-string-equals-in-detail/string-equals-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "String Equals Page Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+String Equals is a fundamental C# method. There are different flavors of the method. It can be case or case-insensitive, but the list of characters would need to match. It can be called explicitly by the keyword Equals or it can be called by two equal signs(==). Which one to use can be a personal preference as the first one reads slightly better while the second is shorter and easier to type. Equals are not limited to just strings, they can be used on classes and types so just keep that in mind.
+
+#### What is String Equals?
+
+The basic String Equals compare two strings to find out if they are the same. That means that the lower or upper case of each character must match the string that is it being compared to which is called case sensitive. It is used on conditional statements because it returns true or false. Very useful as oftentimes equals are preferred over contains to limit the scope and bugs.
+
+###### Syntax Function Overload 1
+
+```cs
+public bool Equals(string? textToCompare);
+```
+
+This is the simplest and most basic form of string equals which takes in a string and returns a true or false boolean value to see if there is an exact match. See the example below.
+
+```cs
+string userEmail = "CSharpIsFun@gmail.com";
+string userEmailCompare = "csharpisfun@gmail.com";
+Console.WriteLine($"Email1:{userEmail} equals Email2:{userEmailCompare} is " + userEmail.Equals(userEmailCompare));//Both emails have the same number of characters but the case is different so they are not equal
+
+string userEmail2 = "CSharpIsFun@gmail.com";
+string userEmailCompare3 = "CSharpIsFun@gmail.com";
+Console.WriteLine($"Email1:{userEmail2} equals Email2:{userEmailCompare3} is " + userEmail2.Equals(userEmailCompare3));//Since both emails have the same text and the case of each letter is the same then they are equal
+```
+
+###### Code Output
+
+```
+Email1:CSharpIsFun@gmail.com equals Email2:csharpisfun@gmail.com is False
+Email1:CSharpIsFun@gmail.com equals Email2:CSharpIsFun@gmail.com is True
+```
+
+###### Syntax Function Overload 2
+
+```cs
+public bool Equals(object? textToCompare);
+```
+
+This function overload is almost identical to the previous version except that the type is passed as an object instead of a string. The object is automatically cast as a string internally in the function before the comparison is made. Typically, you would not use this as csharp is a type-safe language so when you don't have to use the object as a type you do not use it, but there may be rare cases where you might use it. See the example below.
+
+```cs
+object userEmail = "CSharpIsFun@gmail.com";
+object userEmailCompare = "csharpisfun@gmail.com";
+Console.WriteLine($"Email1:{userEmail} equals Email2:{userEmailCompare} is " + userEmail.Equals(userEmailCompare));//Both emails have the same number of characters but the case is different so they are not equal
+object userEmail2 = "CSharpIsFun@gmail.com";
+object userEmailCompare3 = "CSharpIsFun@gmail.com";
+Console.WriteLine($"Email1:{userEmail2} equals Email2:{userEmailCompare3} is " + userEmail2.Equals(userEmailCompare3));//Since both emails have the same text and the case of each letter is the same then they are equal
+```
+
+###### Code Output
+```
+Email1:CSharpIsFun@gmail.com equals Email2:csharpisfun@gmail.com is False
+Email1:CSharpIsFun@gmail.com equals Email2:CSharpIsFun@gmail.com is True
+```
+
+As you can see, having string as an object is allowed by the language since an object is the root of all types. But passing an object type hurts readability, bypasses compile type checks, and adds an overhead of when the object will be eventually cast into a type so this is not recommended.
+
+###### Function Overload 3
+
+```cs
+public bool Equals(string textToCompare, StringComparison stringComparison);
+```
+
+Lastly, function overload has a string parameter to compare to. Then the next parameter is an enum with six options that can affect when a match is found. Let's go through each of the enum types.
+
+### CurrentCulture Option
+
+This option evaluates string equal based on the current culture rules and formats. This is good to know if you have an application that is working in multiple languages or regions. You wouldn't want to compare a language to a different set of rules as this can have an impact on whether equals is true or not. Capitals will matter in this case. See the example below.
+
+```cs
+using System.Globalization;
+string cultureName = "en-US";//Get the country code
+Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);//Apply the country code culture to the current culture
+string[] englishVowels = { "a", "e", "i", "o", "u",  };//Vowels
+string[] englishCompareVowels = { "A", "e", "I", "o","U" };//Vowels 
+Console.WriteLine("Current Culture:" + CultureInfo.CurrentCulture);//Print current Culture
+for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the characters
+{
+    string englishLetter = englishVowels[i];//Get the current letter
+    string englishCompareLetter = englishCompareVowels[i];//Get the current letter
+    Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + englishLetter.Equals(englishCompareLetter, StringComparison.CurrentCulture));//Equals check
+}
+```
+
+###### Code Output
+
+```
+Current Culture:en-US
+englishLetter:a equals englishCompareLetter:A is False
+englishLetter:e equals englishCompareLetter:e is True
+englishLetter:i equals englishCompareLetter:I is False
+englishLetter:o equals englishCompareLetter:o is True
+englishLetter:u equals englishCompareLetter:U is False
+```
+### CurrentCultureIgnoreCase Option
+
+Current Culture Ignore Case will take the current culture and will do an equal check with case insensitive. Meaning that it won't matter whether the letters are capitalized or not as long as it is the same letter. See the example below.
+
+```cs
+using System.Globalization;
+string cultureName = "en-US";//Get the country code
+Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);//Apply the country code culture to the current culture
+string[] englishVowels = { "a", "e", "i", "o", "u", };//Vowels
+string[] englishCompareVowels = { "A", "e", "I", "o", "U" };//Vowels 
+Console.WriteLine("Current Culture:" + CultureInfo.CurrentCulture);//Print current Culture
+for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the characters
+{
+    string englishLetter = englishVowels[i];//Get the current letter
+    string englishCompareLetter = englishCompareVowels[i];//Get the current letter
+    Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + englishLetter.Equals(englishCompareLetter, StringComparison.CurrentCultureIgnoreCase));//Equals check case insesitive 
+}
+```
+
+###### Code Output
+
+```
+Current Culture:en-US
+englishLetter:a equals englishCompareLetter:A is True
+englishLetter:e equals englishCompareLetter:e is True
+englishLetter:i equals englishCompareLetter:I is True
+englishLetter:o equals englishCompareLetter:o is True
+englishLetter:u equals englishCompareLetter:U is True
+```
+
+### InvariantCulture Option
+
+This option is based on the English language but not on a particular country. The rules for compare and equal are consistent, don't change over time, and can't be modified by users. This is useful if you wanted a consistent output based on English. See the example below.
+
+```cs
+using System.Globalization;
+string[] englishVowels = { "a", "e", "i", "o", "u", };//Vowels
+string[] englishCompareVowels = { "A", "e", "I", "o", "U" };//Vowels 
+for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the characters
+{
+    string englishLetter = englishVowels[i];//Get the current letter
+    string englishCompareLetter = englishCompareVowels[i];//Get the current letter
+    Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + englishLetter.Equals(englishCompareLetter, StringComparison.InvariantCulture));//Equals check with invariant culture
+}
+```
+###### Code Output
+
+```
+englishLetter:a equals englishCompareLetter:A is False
+englishLetter:e equals englishCompareLetter:e is True
+englishLetter:i equals englishCompareLetter:I is False
+englishLetter:o equals englishCompareLetter:o is True
+englishLetter:u equals englishCompareLetter:U is False
+```
+
+As you can see in this example that the invariant culture output shows the same as the current culture as 'en-US' Which is what we expect it to be very similar to it.
+
+
+### InvariantCultureIgnoreCase Option
+
+This uses the InvariantCulture language rules, but then it also ignores cases of characters. Below is an example.
+
+```cs
+string[] englishVowels = { "a", "e", "i", "o", "u", };//Vowels
+string[] englishCompareVowels = { "A", "e", "I", "o", "U" };//Vowels 
+for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the characters
+{
+    string englishLetter = englishVowels[i];//Get the current letter
+    string englishCompareLetter = englishCompareVowels[i];//Get the current letter
+    Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + englishLetter.Equals(englishCompareLetter, StringComparison.InvariantCultureIgnoreCase));//Equals check with Ignore Case invariant culture
+}
+```
+
+###### Code Output
+
+```
+englishLetter:a equals englishCompareLetter:A is True
+englishLetter:e equals englishCompareLetter:e is True
+englishLetter:i equals englishCompareLetter:I is True
+englishLetter:o equals englishCompareLetter:o is True
+englishLetter:u equals englishCompareLetter:U is True
+```
+
+### Ordinal Option
+
+This option does a check based on the binary value of the character so it's not based on a language and is considered the fastest of the options. Example below.
+
+```cs
+string[] englishVowels = { "a", "e", "i", "o", "u", };//Vowels
+string[] englishCompareVowels = { "A", "e", "I", "o", "U" };//Vowels 
+for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the characters
+{
+    string englishLetter = englishVowels[i];//Get the current letter
+    string englishCompareLetter = englishCompareVowels[i];//Get the current letter
+    Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + englishLetter.Equals(englishCompareLetter, StringComparison.Ordinal));//Equals check with Ordinal
+}
+```
+
+###### Code Output
+
+```
+englishLetter:a equals englishCompareLetter:A is False
+englishLetter:e equals englishCompareLetter:e is True
+englishLetter:i equals englishCompareLetter:I is False
+englishLetter:o equals englishCompareLetter:o is True
+englishLetter:u equals englishCompareLetter:U is False
+```
+
+### OrdinalIgnoreCase Option
+
+This is similar to the Ordinal option but the case will be ignored. Example below.
+
+```cs
+string[] englishVowels = { "a", "e", "i", "o", "u", };//Vowels
+string[] englishCompareVowels = { "A", "e", "I", "o", "U" };//Vowels 
+for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the characters
+{
+    string englishLetter = englishVowels[i];//Get the current letter
+    string englishCompareLetter = englishCompareVowels[i];//Get the current letter
+    Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + englishLetter.Equals(englishCompareLetter, StringComparison.OrdinalIgnoreCase));//Equals check with OrdinalIgnoreCase
+}
+```
+
+###### Code Output
+
+```
+englishLetter:a equals englishCompareLetter:A is True
+englishLetter:e equals englishCompareLetter:e is True
+englishLetter:i equals englishCompareLetter:I is True
+englishLetter:o equals englishCompareLetter:o is True
+englishLetter:u equals englishCompareLetter:U is True
+```
+
+#### Exceptions
+
+There are no exceptions that are generated from this function. However, if you decide to override equals then you'll need to be careful checking for nulls.
+
+#### When Might This Function Be Used?
+
+For the most part string equals are used in flow control. If a string is equal then some other logic is then used. The user inputs from menus and drop-down options are often used by string equals so that if the user selects a certain opinion the corresponding logic is executed. Equals also help guard against bugs because the more specific you can be in programming the better. Some may be tempted to use contains in some cases when equals are better.
+
+#### Alternatives
+
+One alternative to string equals is to use contains but contains should be used carefully because they can return true in cases in undesirable cases. Also, there is another way of calling the equals function by using the double equals sign. This calls just the basic Equals function overload and doesn't include the other overloads with more options. See the example below.
+
+```cs
+string[] items = { "storage box", "cooler", "bike", "tires", "xbox", };
+foreach (string item in items)
+{
+    if (item.Contains("box"))//risky, and can be true for multiple entries
+    {
+        Console.WriteLine("Contains box:" + item);
+    }
+    if (item.Equals("cooler"))//only lets in what is equals
+    {
+        Console.WriteLine("Equals cooler:" + item);
+    }
+    if (item == "bike")//same as Equals but different syntax
+    {
+        Console.WriteLine("Equals bike:" + item);
+    }
+}
+```
+
+###### Code Output
+
+```
+Contains box:storage box
+Equals cooler:cooler
+Equals bike:bike
+Contains box:xbox
+```
+
+As you can see, contains was true on more than one item in the list. This can be avoided by using equals, especially what we want to be true so contains should be handled with care. Also, see that the double equal signs for equals work the same way as equals and only was true on what we wanted.
+
+### How String Equals Works
+
+This is best done with a character check on each character on the corresponding index to see if there is a match. For ignore cases, there's a logic to convert all the strings to lowercase (it could be upper) so that case is not a factor. See the example below.
+
+```cs
+string[] englishVowels = { "a", "e", "i", "o", "u", };//Vowels
+string[] englishCompareVowels = { "A", "e", "I", "o", "U" };//Vowels 
+for (int i = 0; i < englishVowels.Length; i++)//Loop through each of the characters
+{
+string englishLetter = englishVowels[i];//Get the current letter
+string englishCompareLetter = englishCompareVowels[i];//Get the current letter
+Console.WriteLine($"englishLetter:{englishLetter} equals englishCompareLetter:{englishCompareLetter} is " + IsStringEquals(englishLetter, englishCompareLetter, Options.Regular));//Equals check with function
+}
+bool IsStringEquals(string firstText, string secondText, Options options)
+{
+if (options == Options.IgnoreCase)//In this case putting all strings to the same case is the same as ignoring the case
+{
+    firstText = firstText.ToLower();
+    secondText = secondText.ToLower();
+}
+int index = 0;//tracking the index of firstText
+foreach (char firstTextCharacter in firstText)//loop through each character of firstText to see if it matches secondText
+{
+    if (index <= (secondText.Length - 1))//check to see if the index exists in secondText
+    {
+        char secondTextCharacter = secondText[index];
+        if (firstTextCharacter.Equals(secondTextCharacter))
+        {
+            //do nothing until all the characters are evaluated 
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;//If an index doesn't exist in secondText then return false, the strings do not match. 
+    }
+    index++;
+}
+return true;
+}
+enum Options
+{
+Regular,
+IgnoreCase
+}
+```
+
+###### Code Output
+
+```
+englishLetter:a equals englishCompareLetter:A is False
+englishLetter:e equals englishCompareLetter:e is True
+englishLetter:i equals englishCompareLetter:I is False
+englishLetter:o equals englishCompareLetter:o is True
+englishLetter:u equals englishCompareLetter:U is False
+```
+
+### Conclusion
+String Equals has good flexibility and it is essential, to learn at least the basic forms so that you can be an effective programmer. It is good for defensive programming as you only let through what you want and this can reduce bugs. Of course, consider the case-insensitive versions as well so that they would be the main ones you need.
+

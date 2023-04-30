@@ -1,0 +1,284 @@
+---
+title: Get Substring After Finding A Keyword
+---
+
+# Get Substring After Finding A Keyword
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Table} from "~/components/table/table";
+
+<ImageWrapper imageSource="../../../../assets/string/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-medium.webp" imageSrcSet="../../../../assets/string/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-small.webp 250w, ../../../../assets/string/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-medium.webp 500w, ../../../../assets/string/get-substring-after-finding-a-keyword/get-substring-after-finding-a-keyword-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get Substring After Finding A Keyword Banner Image" widthImage = "2304" heightImage = "1728" />
+
+## Introduction
+
+During string parsing is not always neatly come in a comma-separated format or the pattern is not based on a single character but on a word. User-generated system logs and different texts may have a pattern but it is based on certain keywords to signal when to get the information that is needed. Consider the following example.
+
+#### User-Generated Log Example
+
+```
+System Services Start
+System Services Start End
+Service1 Start
+Service1 Error Code:39322
+System Service2 Start
+Service1 Error Code:48340
+```
+
+### Get Substring Using Span Slice After A Keyword Search
+
+In this example, we get a list of different logs, however, we are interested in the error codes. If we just want to write a function that when we find the lines that have keyword text 'Error Code:' get the rest of the string by using a substring method so that we can get the numerical value. Later in our code, we could convert the numerical value to an int if need to.
+
+###### Span Slice After A Keyword Search Code Example
+
+```cs
+string errorCodeLine = "Service1 Error Code:39322";//starting error code line
+string newText = GetStringBasedOnKeyword("Error Code:",errorCodeLine);
+Console.WriteLine(newText);
+string GetStringBasedOnKeyword(string keyword, string textToParse)
+{
+    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find the start of the keyword and to find the end need to add the length of the keyword 
+    Span<char> textSpan = new Span<char>(textToParse.ToCharArray());//Convert text to a span for faster memory allocation
+    Span<char> newText = textSpan.Slice(keywordIndex);//Get the rest of the string based on the start index of the keyword
+    return newText.ToString();
+}
+```
+
+###### Code Output
+
+```
+39322
+```
+
+As you can see this works to separate the number by using a keyword. This method uses span slice as it is the fastest way method to get the rest of the string.
+
+###### Span Slice After A Keyword Search Speed Code Example
+
+Since span slice is not using the heap and so avoids garbage collection, it is expected that this method would be fast. Let's see how it performs.
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(SliceSpeedTest());
+}
+Console.WriteLine($"Slice Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double SliceSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string errorCodeLine = "Service1 Error Code:39322";//starting error code line
+    string keyword = "Error Code:";
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = GetSliceBasedOnKeyword(keyword, errorCodeLine);//Function under test
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{errorCodeLine}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+string GetSliceBasedOnKeyword(string keyword, ReadOnlySpan<char> newText)
+{
+    int keywordIndex = newText.LastIndexOf(keyword) + keyword.Length;//find start the keyword and to find the end need to add the length of the keyword 
+    ReadOnlySpan<char> newText2 = newText.Slice(keywordIndex);//Convert text to a span for faster memory allocation
+    return newText2.ToString();
+}
+```
+
+###### Code Output
+
+```
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 16ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 767ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 768ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 758ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 751ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 777ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 763ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 750ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 723ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 3s 724ms
+Slice Average speed:3780ms, In 10 tests
+```
+
+###### How Concise Is The Code Using Span Slice?
+
+We evaluate how concise it is by how many lines of code it takes for each step. In this case, 3 lines of code are good. One line to find the keyword and another to get the substring.
+
+###### How Readable Is The Code Using Span Slice?
+
+There are a couple of setup steps along with the new Span syntax and there is a background to understanding implementing the span but once that is done. It comes down to setting up and allocating memory then calling the Slice method which is fairly easy to understand.
+
+### Get Substring Using String Substring After Keyword Search
+
+Here is an example of the same process but instead of using span slice the string substring method is used. This is still a viable approach but I have it second here because the performance is slower than span slice. Substring is easier to read because there is one less line for allocating memory. See the example below.
+
+###### String Substring After Keyword Search Code Example
+```cs
+string errorCodeLine = "Service1 Error Code:39322";//starting error code line
+string newText = GetSubstringBasedOnKeyword("Error Code:", errorCodeLine);
+Console.WriteLine(newText);
+string GetSubstringBasedOnKeyword(string keyword, string textToParse)
+{
+    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find the start of the keyword and to find the end need to add the length of the keyword 
+    string newText = textToParse.Substring(keywordIndex);//Get the rest of the string based on the start index of the keyword
+    return newText;
+}
+```
+
+###### Code Output
+```
+39322
+```
+
+As expected, the substring returns the same result as the slice.
+
+###### String Substring After A Keyword Search Speed Code Example
+
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(SubstringSpeedTest());
+}
+Console.WriteLine($"Substring Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double SubstringSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string errorCodeLine = "Service1 Error Code:39322";//starting error code line
+    string keyword = "Error Code:";
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = GetSubstringBasedOnKeyword(keyword, errorCodeLine);//Function under test
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{errorCodeLine}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+string GetSubstringBasedOnKeyword(string keyword, string textToParse)
+{
+    int keywordIndex = textToParse.LastIndexOf(keyword) + keyword.Length;//find the start of the keyword and to find the end need to add the length of the keyword 
+    string newText = textToParse.Substring(keywordIndex);//Get the rest of the string based on the start index of the keyword
+    return newText;
+}
+```
+
+###### Code Output
+```
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 771ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 645ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 624ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 621ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 610ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 617ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 618ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 604ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 611ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 6s 568ms
+Substring Average speed:6629ms, In 10 tests
+```
+
+Although the substring is not slow it seems slow compared to span slice.
+
+###### How Concise Is The Code Using String Substring?
+The setup and function call of the substring takes only 3 lines of code which is compact.
+
+###### How Readable Is The Code Using Span Slice?
+Readable suffers a little since that is short and it doesn't describe what is happening that well. Probably would have to debug this to understand better what is happening.
+
+### Get Substring Using String Split After A Keyword Search
+Using string split we can cut the string in half by the keyword. Then take the second half and immediately return to the substring. This is the most compact way to solve this problem but it does suffer from readability as it would not be as clear from reading the code what is happening without an example. See the code below.
+
+######  String Split On Keyword Code Example
+
+```cs
+string errorCodeLine = "Service1 Error Code:39322";//starting error code line
+string newText = GetSplitBasedOnKeyword("Error Code:", errorCodeLine);
+Console.WriteLine(newText);
+string GetSplitBasedOnKeyword(string keyword, string textToParse)
+{
+    string[] cutText = textToParse.Split(keyword);//find start the keyword and to find the end need to add the length of the keyword 
+    return cutText[1];//return the second half the string which will be the error code
+}
+```
+
+###### Code Output
+```
+39322
+```
+
+#### Get Substring Using String Split After A Keyword Search
+Based on how many lines of code we might expect to find that split would be fast but let's test to see how fast it is.
+
+###### String Substring After A Keyword Search Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(SplitSpeedTest());
+}
+Console.WriteLine($"Split Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double SplitSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string errorCodeLine = "Service1 Error Code:39322";//starting error code line
+    string keyword = "Error Code:";
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = GetSplitBasedOnKeyword(keyword, errorCodeLine);//Function under test
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{errorCodeLine}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+string GetSplitBasedOnKeyword(string keyword, string textToParse)
+{
+    string[] cutText = textToParse.Split(keyword);//find start the keyword and to find the end need to add the length of the keyword 
+    return cutText[1];//return the second half of the string which will be the error code
+}
+```
+
+###### Code Output
+
+```
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 5s 212ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 810ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 779ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 791ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 744ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 749ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 775ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 749ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 780ms
+sampleText:Service1 Error Code:39322, alteredText:39322, Function calls:100000000, In 0m 4s 756ms
+Split Average speed:4815ms, In 10 tests
+```
+
+We see how that split is faster than substring but not as fast as a slice. It has good speed.
+
+###### How Concise Is The Code Using Span Slice?
+This is pretty compact at only 2 lines so this means less typing.
+
+###### How Readable Is The Code Using Span Slice?
+Readable suffers a little since that is short and it doesn't really describe what is happening that well. Probably would have to debug this to understand better what is happening.
+
+### Conclusion
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,3780ms,3 lines,4;2,String Split,4815ms,2 lines,3;3,String Substring,6629ms,3 lines,5" />
+
+The overall best way to solve this problem statement is with Span Slice because of the huge performance gain and we weigh the performance so much because that would most impact the customer. Also, while slice may not be as readable and concise as the other two methods it still isn't that bad. Concise and readability are more productivity metrics for the developer and they are important to the developmental process. If another developer has a harder time reading your code then impacts the productivity of the whole team. While having fewer lines of code that do the same improves productivity and you get more done.

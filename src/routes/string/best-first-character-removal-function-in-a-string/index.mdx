@@ -1,0 +1,420 @@
+---
+title: Best First Character Removal Function In A String
+---
+
+# Best First Character Removal Function In A String
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+<ImageWrapper imageSource="../../../../../assets/string/best-first-character-removal-function-in-a-string/best-first-character-removal-function-in-a-string-medium.webp" imageSrcSet="../../../../../assets/string/best-first-character-removal-function-in-a-string/best-first-character-removal-function-in-a-string-small.webp 250w, ../../../../../assets/string/best-first-character-removal-function-in-a-string/best-first-character-removal-function-in-a-string-medium.webp 500w, ../../../../../assets/string/best-first-character-removal-function-in-a-string/best-first-character-removal-function-in-a-string-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Best First Character Removal Function In A String Banner Image" widthImage = "1200" heightImage = "675" />
+
+## Introduction
+
+This is a study on what is the best way to remove the first character in a string. There are many ways of doing it and we will look at some of those ways. The best could mean different things but for this study, we will consider the performance or speed, the readability, and how compact the code is. This helps us be productive when we write code to consider all these things.
+
+
+#### What Functions Are Being Considered To Remove The First Character
+
+String Remove
+
+String Substring
+
+LINQ Skip
+
+Range Operator
+
+String ToCharArray
+
+String TrimStart
+
+Span Slice
+
+### String Remove
+
+Pluses to string Remove provides clear readability as it is short and understandable that the first character is being removed. Let's look at an example.
+
+###### String Remove Code Example
+
+```cs
+string sampleText = "This sentence is a short one";//Starting text
+int startIndex = 0;//Start index 1 so that index 0 is removed
+int length = 1;//Start index 1 so that index 0 is removed
+string alteredText = sampleText.Remove(startIndex, length);
+Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}");
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one
+```
+
+As you can see this syntax is simple and readable but how is the performance. To test this, record the time it takes we run this sample code 100 million times and try that 10 times to see what the average time is. We only run the function call in the loop because we are only interested in the function's performance. Sample code below.
+
+###### String Remove Speed Test Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(RemoveSpeedTest());
+}
+Console.WriteLine($"Remove Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double RemoveSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string sampleText = "This sentence is a short one";//Starting text
+    int startIndex = 0;//Start index 1 so that index 0 is removed
+    int length = 1;//Start index 1 so that index 0 is removed
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = sampleText.Remove(startIndex, length);//Function under test
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 966ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 959ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 976ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 987ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 930ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 950ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 972ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 967ms
+Remove Average speed:1015ms, In 10 tests
+```
+
+For String remove, we see that the average time it took was 1015ms milliseconds. We'll keep this in mind as we go through the other tests.
+
+### String Substring
+
+This function also gives us good readability and it is simple to understand that we just all the characters after the first one. There is only one parameter needed and the start index. It just needs to skip the first character. Let's look at the speed test.
+
+###### String Substring Speed Test Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(SubstringSpeedTest());
+}
+Console.WriteLine($"Substring Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double SubstringSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string sampleText = "This sentence is a short one";//Starting text
+    int startIndex = 1;//Start index 1 so that index 0 is removed
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = sampleText.Substring(startIndex);//Function under test
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 797ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 794ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 778ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 790ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 803ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 787ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 786ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 781ms
+Substring Average speed:834ms, In 10 tests
+```
+
+We see that the substring method performs the test in 834ms so this is the current leader in our speed test with remove in second.
+
+### LINQ Skip Method
+
+LINQ provides a function called skip that lets us skip several elements in a sequence so we can use it to skip the first character in the string. Since the string is a sequence of characters. For LINQ skip, we need to have two lines of code. One for getting the new array of characters and another line to convert the array of characters to a string. Let's look at an example below.
+
+###### LINQ Skip Speed Test Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartLinqSkipSpeedTest());
+}
+Console.WriteLine($"LINQ Skip Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double StartLinqSkipSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string sampleText = "This sentence is a short one";//Starting text
+    int startIndex = 1;//Start index 1 so that index 0 is removed
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        char[] characterSet = sampleText.Skip(startIndex).ToArray();//Get character array that has skipped the first character
+        alteredText = new string(characterSet);//form new string from character array
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 531ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 281ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 190ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 602ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 377ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 134ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 200ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 235ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 189ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 21s 172ms
+LINQ Skip Average speed:21292ms, In 10 tests
+```
+
+As we can see this method is quite slow taking an average of 21 seconds and it also adds another line of code which is not much but we would want to minimize the code complicity as much as possible so I wouldn't suggest using this for removing the first character in a string.
+
+### Range Operator Method
+
+The range operator is a new operator in C# 8.0. It allows us the select the index range.
+
+###### Range Operator Speed Test Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(StartRangeOperatorSpeedTest());
+}
+Console.WriteLine($"Range Operator Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double StartRangeOperatorSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string sampleText = "This sentence is a short one";//Starting text
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = sampleText[1..];//Like saying sampleText[Range.Start(1)]
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 379ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 898ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 879ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 910ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 899ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 934ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 891ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 908ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 927ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 905ms
+Range Operator Average speed:954ms, In 10 tests
+```
+
+The range operator has a compact syntax that is fairly easy to understand once it is recognized. This can make it a little harder to read because it is unlike a function name that describes what it is doing. But it is nice that is fast and one par with string substring.
+
+### ToCharArray Method
+
+###### ToCharArray Speed Test Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(ToCharArrayOperatorSpeedTest());
+}
+Console.WriteLine($"ToCharArray Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double ToCharArrayOperatorSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string sampleText = "This sentence is a short one";//Starting text
+    int startIndex = 1;//Start index 1 so that index 0 is removed
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        char[] characterSet = sampleText.ToCharArray(startIndex,sampleText.Length - 1);
+        alteredText = new string(characterSet);
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 2s 144ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 588ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 600ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 643ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 618ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 626ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 675ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 635ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 573ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 583ms
+ToCharArray Average speed:1669ms, In 10 tests
+```
+
+This function takes two sets or two lines of code to create a new character array and then passes this array into a new string. It is readable but it is also slightly slower than the remove, substring, and range operator methods.
+
+### TrimStart Method
+
+This method just removes a character from the beginning of the string if it is found. It is very readable and short. It takes up a single line so let's show its performance on it.
+
+###### TrimStart Speed Test Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(TrimStartSpeedTest());
+}
+Console.WriteLine($"TrimStart Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double TrimStartSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    string sampleText = "This sentence is a short one";//Starting text
+    int startIndex = 1;//Start index 1 so that index 0 is removed
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    string alteredText = "";
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = sampleText.TrimStart('T');//remove the first character but it must be known ahead of time
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 508ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 988ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 999ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 3ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 998ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 18ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 996ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 4ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 4ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 1s 1ms
+TrimStart Average speed:1052ms, In 10 tests
+```
+
+We can see that TrimStart is pretty fast but substring is still the fastest so far.
+
+### Span Slice Method
+
+Span is fast as it allocates memory on the stack rather than the heap. This gives us the advantage of avoiding garbage collection which could slow down the performance of the other methods. We get a single method with a start index to provide so this is good readability in a compact form.
+
+###### Span Slice Speed Test Code Example
+
+```cs
+using System.Diagnostics;
+int numberOfTests = 10;//Number of tests 
+List<double> testSpeedList = new List<double>();
+for (int i = 0; i < numberOfTests; i++)
+{
+    testSpeedList.Add(SliceSpeedTest());
+}
+Console.WriteLine($"SliceSpeedTest Average speed:{Math.Round(testSpeedList.Average())}ms, In {numberOfTests} tests");
+double SliceSpeedTest()
+{
+    int numberOfFunctionCalls = 100000000;//Number of function calls made
+    Span<char> sampleText = new Span<char>("This sentence is a short one".ToArray());//Starting text, can only slice another span
+    int startIndex = 1;//Start index 1 where the cut starts at happens
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();//Start the Stopwatch timer
+    Span<char> alteredText = new Span<char>();//allocating space for a new array of characters
+    for (int i = 0; i < numberOfFunctionCalls; i++)
+    {
+        alteredText = sampleText.Slice(startIndex);
+    }
+    stopwatch.Stop();//Stop the Stopwatch timer
+    Console.WriteLine($"sampleText:{sampleText}, alteredText:{alteredText}, Function calls:{numberOfFunctionCalls}, In {stopwatch.Elapsed.Minutes}m {stopwatch.Elapsed.Seconds}s {stopwatch.Elapsed.Milliseconds}ms");
+    return stopwatch.Elapsed.TotalMilliseconds;
+}
+```
+
+###### Code Output
+
+```
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 566ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 542ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 483ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 483ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 479ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 480ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 477ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 476ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 478ms
+sampleText:This sentence is a short one, alteredText:his sentence is a short one, Function calls:100000000, In 0m 0s 477ms
+SliceSpeedTest Average speed:495ms, In 10 tests
+```
+
+We get a blazing 495ms for this method which is 59% faster than the next method. This is a big performance gain over substring.
+
+### Conclusion
+
+1. Span Slice at 495ms
+
+2. String Substring at 834ms
+
+3. Range Operator at 954ms
+
+4. String Remove at 1015ms
+
+5. String TrimStart at 1052ms
+
+6. String ToCharArray at 1669ms
+
+7. LINQ Skip at 21 seconds
+
+Span Slice came at the fastest in the test at about half a second while substring, range operator, remove, and trim start were pretty fast as well at just at or under 1 second in the test. The range operator had the most compact syntax so if you prefer less typing then this would be the way to go. ToCharArray's speed ok but it did require two lines of code making it slightly less readable. LINQ Skip was terrible in performance coming in at 21 seconds so this method wouldn't be recommended while all the other methods can be recommended especially span slice.

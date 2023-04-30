@@ -294,4 +294,99 @@ status = 301
 force = true
 
 
+[[redirects]]
+from = "/fundamentals/strings/string-vs-stringbuilder-comparison/"
+to = "/string/string-vs-stringbuilder-comparison/"
+status = 301
+force = true
 
+[[redirects]]
+from = "/fundamentals/strings/new-line-in-stringbuilder/"
+to = "/string/new-line-in-stringbuilder/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/using-string-insert-effectively/"
+to = "/string/using-string-insert-effectively/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-trim/"
+to = "/string/walkthrough-of-the-string-trim-function/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-equals/"
+to = "/string/examining-string-equals-in-detail/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-replace/"
+to = "/string/string-replace-in-depth/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-substring/get-a-substring-before-or-after-a-certain-character/"
+to = "/string/get-a-substring-before-or-after-a-certain-character/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-substring/best-first-character-removal-function-in-a-string/"
+to = "/string/best-first-character-removal-function-in-a-string/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-remove/efficiently-remove-the-first-keyword-occurrence-from-a-string/"
+to = "/string/efficiently-remove-the-first-keyword-occurrence-from-a-string/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-substring/get-substring-after-finding-a-keyword/"
+to = "/string/get-substring-after-finding-a-keyword/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-substring/how-best-to-get-last-n-characters/"
+to = "/string/how-best-to-get-last-n-characters/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-substring/analysis-of-getting-first-n-characters-methods/"
+to = "/string/analysis-of-getting-first-n-characters-methods/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-substring/get-a-substring-between-two-strings/"
+to = "/string/get-a-substring-between-two-strings/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/string-substring/"
+to = "/string/how-to-use-substring/"
+status = 301
+force = true
+
+
+[[redirects]]
+from = "/fundamentals/strings/string-remove/"
+to = "/string/best-ways-to-use-string-remove/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/strings/"
+to = "/string/"
+status = 301
+force = true
