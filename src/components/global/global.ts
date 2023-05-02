@@ -9,7 +9,7 @@ export const ROUTE_DATA = [
     image: 'https://puzzledbycsharp.com/assets/array/copy-part-of-an-array-to-another-array/copy-part-of-an-array-to-another-array-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/array/copy-part-of-an-array-to-another-array/copy-part-of-an-array-to-another-array-banner-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/copy-part-of-an-array-to-another-array/copy-part-of-an-array-to-another-array-banner-large.webp',
-    description:'Array Copy is best to use when copying part of an array to another array. It fits on one line and it fast. Also, it has no limitation on types.',
+    description:'Array Copy is best to use when copying part of an array to another array. It fits on one line and it is fast. Also, it has no limitation on types.',
     pageCount:0,
     feedDescription:'You may want to do a partial copy of an array to another for various reasons. It could be copying the entire array is more expensive or just too big if you are working with a lot of data. It can be more memory efficient. This is more important in low-memory use cases such as embedded systems. Or You may face memory limitations in 32-bit applications. In today\'s applications, memory usage usually isn\'t a problem with 64-bit having access to large amounts of memory. ',
   },
