@@ -13,81 +13,81 @@
       <height>55</height>
     </image>
     <item>
-      <title>Copy Part Of An Array To Another Array </title>
+      <title>Copy Part Of An Array To Another Array In C# </title>
       <pubDate>Fri, 28 Apr 2023 08:19:34 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</link>
       <guid>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</guid>
-      <description>Array Copy is best to use when copying part of an array to another array. It fits on one line and it fast. Also it has no limitation on types.</description>
+      <description>In C# Array Copy is best to use when copying part of an array to another array. It fits on one line and it is fast. Also it has no limitation on types.</description>
     </item>
     <item>
-      <title> How To Combine Two Arrays Into One</title>
+      <title> How To Combine Two Arrays Into One In C#</title>
       <pubDate>Fri, 14 Apr 2023 19:40:20 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</guid>
-      <description> The best method for combining two arrays into one is Enumerable Concat. It is fast easy to read and fits on one line.</description>
+      <description> The best method for combining two arrays into one in C# is Enumerable Concat. It is fast easy to read and fits on one line.</description>
     </item>
     <item>
-      <title> Solutions For Fill The Array With One Value</title>
+      <title> Solutions For Fill The Array With One Value In C#</title>
       <pubDate>Fri, 31 Mar 2023 00:15:53 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/</link>
       <guid>https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/</guid>
-      <description> Enumerable Repeat is the fastest method to fill an array with one value. It is compact and readable a good combination.</description>
+      <description> In C# Enumerable Repeat is the fastest method to fill an array with one value. It is compact and readable a good combination.</description>
     </item>
     <item>
-      <title> Best Solution For Slicing Arrays</title>
+      <title> Best Solution In .NET For Slicing Arrays</title>
       <pubDate>Fri, 24 Mar 2023 00:12:40 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/</link>
       <guid>https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/</guid>
-      <description> ArraySegment is the fastest method for slicing an array with many other good ones to choose from. With a short syntax and has a long framework support.</description>
+      <description> The C# ArraySegment Method is the fastest for slicing an array with many other good ones to choose from. With a short syntax and has a long framework support.</description>
     </item>
     <item>
-      <title> Best Removal Method Of Duplicates From An Array</title>
+      <title> Best Removal Method In C# Of Duplicates From An Array</title>
       <pubDate>Thu, 23 Mar 2023 00:23:30 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/best-removal-method-of-duplicates-from-an-array/</link>
       <guid>https://puzzledbycsharp.com/array/best-removal-method-of-duplicates-from-an-array/</guid>
-      <description> LINQ Distinct is the best method for removing duplicate items from an array. It is the fastest methodand really compact and readably.</description>
+      <description> In C# LINQ Distinct is the best method for removing duplicate items from an array. It is the fastest methodand really compact and readably.</description>
     </item>
     <item>
-      <title> Search An Array If It Contains The Keyword</title>
+      <title> Search An Array If It Contains The Keyword In C#</title>
       <pubDate>Thu, 23 Mar 2023 00:11:10 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/search-an-array-if-it-contains-the-keyword/</link>
       <guid>https://puzzledbycsharp.com/array/search-an-array-if-it-contains-the-keyword/</guid>
-      <description> LINQ Contains provides the fastest method for searching an array for an element match. it is on one line but it is not as flexible as Array Exits.</description>
+      <description> In C# LINQ Contains provides the fastest method for searching an array for an element match. it is on one line but it is not as flexible as Array Exits.</description>
     </item>
     <item>
-      <title> Check If The Text Contains A Keyword From The Array</title>
+      <title> In C# Check If The Text Contains A Keyword From The Array</title>
       <pubDate>Wed, 22 Mar 2023 00:23:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/check-if-the-text-contains-a-keyword-from-the-array/</link>
       <guid>https://puzzledbycsharp.com/array/check-if-the-text-contains-a-keyword-from-the-array/</guid>
-      <description> LINQ Any provides a quick and compact syntax for checking if the text contains a keyword from a string array.</description>
+      <description> In C# LINQ Any provides a quick and compact syntax for checking if the text contains a keyword from a string array.</description>
     </item>
     <item>
-      <title> 6 Initializer To Get An Empty Array In 2023</title>
+      <title> 6 C# Initializers To Get An Empty Array In 2023 </title>
       <pubDate>Wed, 22 Mar 2023 00:11:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/initializers-to-get-an-empty-array/</link>
       <guid>https://puzzledbycsharp.com/array/initializers-to-get-an-empty-array/</guid>
-      <description> The static array empty method is the best initializer for an empty array. It does what it says and quick to use by using one step.</description>
+      <description> In C# the static array empty method is the best initializer for an empty array. It does what it says and quick to use by using one step.</description>
     </item>
     <item>
-      <title> How To Initialize Arrays</title>
+      <title> How To Initialize C# Arrays</title>
       <pubDate>Wed, 22 Mar 2023 00:11:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-initialize-arrays/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-initialize-arrays/</guid>
-      <description> There are 4 main ways to initialize an array. One initializes to null or default array initializers shorthand and new operator.</description>
+      <description> There are 4 main ways to initialize a C# array. One initializes to null or default array initializers shorthand and new operator.</description>
     </item>
     <item>
-      <title> How To Encode Strings and Decode Byte Arrays</title>
+      <title> How To Encode C# Strings and Decode Byte Arrays</title>
       <pubDate>Tue, 21 Mar 2023 00:11:25 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-encode-strings-and-decode-byte-arrays/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-encode-strings-and-decode-byte-arrays/</guid>
-      <description> A string can be converted to a byte array and visa versa. C# provides encoders classes that can do this operation by GetString and GetBytes.</description>
+      <description> A C# string can be converted to a byte array and visa versa. C# provides encoders classes that can do this operation by GetString and GetBytes.</description>
     </item>
     <item>
-      <title> How To Assign Values to An Array</title>
+      <title> How To Assign Values To A C# Array</title>
       <pubDate>Mon, 20 Mar 2023 00:23:28 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-assign-values-to-an-array/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-assign-values-to-an-array/</guid>
-      <description> The Array Indexer is the best way assign values for the entire array. It\s fast less code and no need to convert between types.</description>
+      <description> The Array Indexer is the best way in C# to assign values for the entire array. It\s fast less code and no need to convert between types.</description>
     </item>
     <item>
       <title> Introduction To Array | Puzzled By CSharp</title>

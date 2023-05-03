@@ -1,67 +1,67 @@
 ﻿<urlset xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</loc>
-		<lastmod>2023-05-02T18:06:39-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</loc>
-		<lastmod>2023-04-25T01:47:58-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/</loc>
-		<lastmod>2023-04-25T01:47:58-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/</loc>
-		<lastmod>2023-04-25T01:47:58-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/best-removal-method-of-duplicates-from-an-array/</loc>
-		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/search-an-array-if-it-contains-the-keyword/</loc>
-		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/check-if-the-text-contains-a-keyword-from-the-array/</loc>
-		<lastmod>2023-03-29T13:47:52-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/initializers-to-get-an-empty-array/</loc>
-		<lastmod>2023-04-17T04:22:55-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-initialize-arrays/</loc>
-		<lastmod>2023-04-17T04:22:55-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-encode-strings-and-decode-byte-arrays/</loc>
-		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-assign-values-to-an-array/</loc>
-		<lastmod>2023-03-28T20:02:27-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -385,7 +385,7 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/introduction-to-arrays/</loc>
-		<lastmod>2023-04-25T00:46:38-04:00</lastmod>
+		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
