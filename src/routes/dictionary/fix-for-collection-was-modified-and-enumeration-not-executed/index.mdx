@@ -1,8 +1,8 @@
 ---
-title: Fix For Collection Was Modified And Enumeration Operation May Not Execute
+title: Fix For Collection Was Modified And Enumeration Not Executed In .NET
 ---
 
-# Fix For Collection Was Modified And Enumeration Operation May Not Execute
+# Fix For Collection Was Modified And Enumeration Not Executed In .NET
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
@@ -12,7 +12,7 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-This collection-modified exception can happen in dictionaries when there are two tasks. One iterating through the dictionary and another is adding or removing items from the dictionary. The tasks that are looping through the dictionary will throw this exception. The dictionary is not a thread-safe collection type but there are some ways around this issue by copying the parts of the dictionary to another collection type. Let's look at those in detail.
+In .NET, this collection-modified exception can happen in dictionaries when there are two tasks. One iterating through the dictionary and another is adding or removing items from the dictionary. The tasks that are looping through the dictionary will throw this exception. The dictionary is not a thread-safe collection type but there are some ways around this issue by copying the parts of the dictionary to another collection type. Let's look at those in detail.
 
 ### Motivation
 
