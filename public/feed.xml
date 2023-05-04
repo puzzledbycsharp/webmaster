@@ -13,497 +13,497 @@
       <height>55</height>
     </image>
     <item>
-      <title>Copy Part Of An Array To Another Array In C# </title>
+      <title>Copy Part Of An Array To Another Array In C#</title>
       <pubDate>Fri, 28 Apr 2023 08:19:34 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</link>
       <guid>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</guid>
       <description>In C# Array Copy is best to use when copying part of an array to another array. It fits on one line and it is fast. Also it has no limitation on types.</description>
     </item>
     <item>
-      <title> How To Combine Two Arrays Into One In C#</title>
+      <title>How To Combine Two Arrays Into One In C#</title>
       <pubDate>Fri, 14 Apr 2023 19:40:20 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</guid>
       <description> The best method for combining two arrays into one in C# is Enumerable Concat. It is fast easy to read and fits on one line.</description>
     </item>
     <item>
-      <title> Solutions For Fill The Array With One Value In C#</title>
+      <title>Solutions For Fill The Array With One Value In C#</title>
       <pubDate>Fri, 31 Mar 2023 00:15:53 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/</link>
       <guid>https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/</guid>
       <description> In C# Enumerable Repeat is the fastest method to fill an array with one value. It is compact and readable a good combination.</description>
     </item>
     <item>
-      <title> Best Solution In .NET For Slicing Arrays</title>
+      <title>Best Solution In .NET For Slicing Arrays</title>
       <pubDate>Fri, 24 Mar 2023 00:12:40 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/</link>
       <guid>https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/</guid>
       <description> The C# ArraySegment Method is the fastest for slicing an array with many other good ones to choose from. With a short syntax and has a long framework support.</description>
     </item>
     <item>
-      <title> Best Removal Method In C# Of Duplicates From An Array</title>
+      <title>Best Removal Method In C# Of Duplicates From An Array</title>
       <pubDate>Thu, 23 Mar 2023 00:23:30 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/best-removal-method-of-duplicates-from-an-array/</link>
       <guid>https://puzzledbycsharp.com/array/best-removal-method-of-duplicates-from-an-array/</guid>
       <description> In C# LINQ Distinct is the best method for removing duplicate items from an array. It is the fastest methodand really compact and readably.</description>
     </item>
     <item>
-      <title> Search An Array If It Contains The Keyword In C#</title>
+      <title>Search An Array If It Contains The Keyword In C#</title>
       <pubDate>Thu, 23 Mar 2023 00:11:10 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/search-an-array-if-it-contains-the-keyword/</link>
       <guid>https://puzzledbycsharp.com/array/search-an-array-if-it-contains-the-keyword/</guid>
       <description> In C# LINQ Contains provides the fastest method for searching an array for an element match. it is on one line but it is not as flexible as Array Exits.</description>
     </item>
     <item>
-      <title> In C# Check If The Text Contains A Keyword From The Array</title>
+      <title>In C# Check If The Text Contains A Keyword From The Array</title>
       <pubDate>Wed, 22 Mar 2023 00:23:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/check-if-the-text-contains-a-keyword-from-the-array/</link>
       <guid>https://puzzledbycsharp.com/array/check-if-the-text-contains-a-keyword-from-the-array/</guid>
       <description> In C# LINQ Any provides a quick and compact syntax for checking if the text contains a keyword from a string array.</description>
     </item>
     <item>
-      <title> 6 C# Initializers To Get An Empty Array In 2023 </title>
+      <title>6 C# Initializers To Get An Empty Array In 2023</title>
       <pubDate>Wed, 22 Mar 2023 00:11:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/initializers-to-get-an-empty-array/</link>
       <guid>https://puzzledbycsharp.com/array/initializers-to-get-an-empty-array/</guid>
       <description> In C# the static array empty method is the best initializer for an empty array. It does what it says and quick to use by using one step.</description>
     </item>
     <item>
-      <title> How To Initialize C# Arrays</title>
+      <title>How To Initialize C# Arrays</title>
       <pubDate>Wed, 22 Mar 2023 00:11:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-initialize-arrays/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-initialize-arrays/</guid>
       <description> There are 4 main ways to initialize a C# array. One initializes to null or default array initializers shorthand and new operator.</description>
     </item>
     <item>
-      <title> How To Encode C# Strings and Decode Byte Arrays</title>
+      <title>How To Encode C# Strings and Decode Byte Arrays</title>
       <pubDate>Tue, 21 Mar 2023 00:11:25 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-encode-strings-and-decode-byte-arrays/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-encode-strings-and-decode-byte-arrays/</guid>
       <description> A C# string can be converted to a byte array and visa versa. C# provides encoders classes that can do this operation by GetString and GetBytes.</description>
     </item>
     <item>
-      <title> How To Assign Values To A C# Array</title>
+      <title>How To Assign Values To A C# Array</title>
       <pubDate>Mon, 20 Mar 2023 00:23:28 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/how-to-assign-values-to-an-array/</link>
       <guid>https://puzzledbycsharp.com/array/how-to-assign-values-to-an-array/</guid>
       <description> The Array Indexer is the best way in C# to assign values for the entire array. It\s fast less code and no need to convert between types.</description>
     </item>
     <item>
-      <title> Introduction To Array | Puzzled By CSharp</title>
+      <title>Introduction To Array | Puzzled By CSharp</title>
       <pubDate>Mon, 20 Mar 2023 00:11:23 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/introduction-to-arrays/</link>
       <guid>https://puzzledbycsharp.com/array/introduction-to-arrays/</guid>
       <description> Arrays are a fundamental data structure in programming. C# provides a fast simple and generic array implementation</description>
     </item>
     <item>
-      <title> Array Section</title>
+      <title>Array Section</title>
       <pubDate>Mon, 20 Mar 2023 00:11:23 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/</link>
       <guid>https://puzzledbycsharp.com/array/</guid>
       <description> </description>
     </item>
     <item>
-      <title> Dictionary With One To Many Relationship</title>
+      <title>C# Dictionary With One To Many Relationship</title>
       <pubDate>Sun, 19 Mar 2023 00:19:33 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/dictionary-with-one-to-many-relationship/</link>
       <guid>https://puzzledbycsharp.com/dictionary/dictionary-with-one-to-many-relationship/</guid>
-      <description> There are a couple of ways to have a one-to-many collection type. You can use a dictionary with a List or List of KeyValuePairs. Each with pros and cons.</description>
+      <description> There are a couple of ways to have a one-to-many collection type. You can use a dictionary in C# with a List or List of KeyValuePairs. Each with pros and cons.</description>
     </item>
     <item>
-      <title> TryGetValue Vs ContainsKey With Indexer</title>
+      <title>TryGetValue Vs ContainsKey With Indexer In .NET</title>
       <pubDate>Sun, 19 Mar 2023 00:08:46 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/trygetvalue-vs-containskey-with-indexer/</link>
       <guid>https://puzzledbycsharp.com/dictionary/trygetvalue-vs-containskey-with-indexer/</guid>
-      <description> TryGetValue is the best method for getting values from a dictionary. It performs better and takes up less code than using ContainsKey with Indexer.</description>
+      <description> TryGetValue is the best .NET method for getting values from a dictionary. It performs better and takes up less code than using ContainsKey with Indexer.</description>
     </item>
     <item>
-      <title> Fix For Collection Was Modified And Enumeration Not Executed</title>
+      <title>Fix For Collection Was Modified And Enumeration Not Executed In .NET</title>
       <pubDate>Fri, 17 Mar 2023 00:10:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/</link>
       <guid>https://puzzledbycsharp.com/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/</guid>
       <description> A Fix For Collection Was Modified And Enumeration Not Executed comes by copying parts or the whole dictionary in the reader thread.</description>
     </item>
     <item>
-      <title> Get A List Of Dictionary Keys</title>
+      <title>Get A List Of Dictionary Keys In C#</title>
       <pubDate>Thu, 16 Mar 2023 00:11:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/get-a-list-of-dictionary-keys/</link>
       <guid>https://puzzledbycsharp.com/dictionary/get-a-list-of-dictionary-keys/</guid>
-      <description> To get a list from the dictionary\s keys LINQ\s ToList is concise and easy to read and just as fast as the list constructor.</description>
+      <description> To get a list from the dictionary\s keys C# has LINQ\s ToList is concise and easy to read and just as fast as the list constructor.</description>
     </item>
     <item>
-      <title> Declare A New Dictionary in Function Calls</title>
+      <title>Declare A New Dictionary in Function Calls Using C#</title>
       <pubDate>Thu, 16 Mar 2023 00:09:45 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/declare-a-new-dictionary-in-function-calls/</link>
       <guid>https://puzzledbycsharp.com/dictionary/declare-a-new-dictionary-in-function-calls/</guid>
-      <description> There are small differences in creating a dictionary in a function but the Index Initializer has the best performance and easiest-to-read syntax.</description>
+      <description> There are small differences in creating a C# dictionary in a function but the Index Initializer has the best performance and easiest-to-read syntax.</description>
     </item>
     <item>
-      <title> Make A Dictionary Key Case Insensitive</title>
+      <title>Make A .NET Dictionary Key Case Insensitive</title>
       <pubDate>Tue, 14 Mar 2023 00:11:55 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/make-a-dictionary-key-case-insensitive/</link>
       <guid>https://puzzledbycsharp.com/dictionary/make-a-dictionary-key-case-insensitive/</guid>
-      <description> To make a dictionary case insensitive it must be done in the declaration. There are three options and OrdinalIgnoreCase is the fastest.</description>
+      <description> In .NET to make a dictionary case insensitive it must be done in the declaration. There are three options and OrdinalIgnoreCase is the fastest.</description>
     </item>
     <item>
-      <title> How To Change A Dictionary Key</title>
+      <title>How To Change A Dictionary Key In C#</title>
       <pubDate>Tue, 14 Mar 2023 00:09:34 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/how-to-change-a-dictionary-key/</link>
       <guid>https://puzzledbycsharp.com/dictionary/how-to-change-a-dictionary-key/</guid>
-      <description> Changing the dictionary key is only possible by removing the existing key and adding the new key and existing value. This has the best performance.</description>
+      <description> Changing the C# dictionary key is only possible by removing the existing key and adding the new key and existing value. This has the best performance.</description>
     </item>
     <item>
-      <title> Two Lists of Keys and Values Mapped To a Dictionary</title>
+      <title>Two Lists of Keys and Values Mapped To a Dictionary In C#</title>
       <pubDate>Mon, 13 Mar 2023 00:11:34 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/</link>
       <guid>https://puzzledbycsharp.com/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/</guid>
       <description> Mapping two lists into a dictionary is best done manually. It has the best performance and also can handle duplicate keys without throwing exceptions.</description>
     </item>
     <item>
-      <title> Convert A List Into a Dictionary</title>
+      <title>Convert A List Into a Dictionary In C#</title>
       <pubDate>Mon, 13 Mar 2023 00:03:11 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/convert-a-list-into-a-dictionary/</link>
       <guid>https://puzzledbycsharp.com/dictionary/convert-a-list-into-a-dictionary/</guid>
-      <description> The best way to convert a list to a dictionary is to use the dictionary indexer. It is fast enough has simple syntax and works with duplicates.</description>
+      <description> The best way in C# to convert a list to a dictionary is to use the dictionary indexer. It is fast enough has simple syntax and works with duplicates.</description>
     </item>
     <item>
-      <title> Best Merging Method For Two Dictionaries</title>
+      <title>Best C# Merging Method For Two Dictionaries</title>
       <pubDate>Sun, 12 Mar 2023 00:11:43 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/best-merging-method-for-two-dictionaries/</link>
       <guid>https://puzzledbycsharp.com/dictionary/best-merging-method-for-two-dictionaries/</guid>
-      <description> The best dictionary merge method is the merge loop method. You can write yourself and it is faster than the LINQ methods.</description>
+      <description> The best dictionary merge method is the merge loop method. You can write yourself and it is faster than the C# LINQ methods.</description>
     </item>
     <item>
-      <title> Get Dictionary Element By Index</title>
+      <title>Get C# Dictionary Element By Index</title>
       <pubDate>Fri, 10 Mar 2023 00:11:43 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/get-dictionary-element-by-index/</link>
       <guid>https://puzzledbycsharp.com/dictionary/get-dictionary-element-by-index/</guid>
-      <description> ElemenatAt lets a dictionary be accessed by numeric values but this is far not the best way.</description>
+      <description> ElemenatAt lets a dictionary be accessed by numeric values but this is far not the best way in C#</description>
     </item>
     <item>
-      <title> How To Initialize A Dictionary</title>
+      <title>How To Initialize A Dictionary In C#</title>
       <pubDate>Fri, 10 Mar 2023 00:02:23 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/how-to-initialize-a-dictionary/</link>
       <guid>https://puzzledbycsharp.com/dictionary/how-to-initialize-a-dictionary/</guid>
       <description> C# provides Collection Initializers syntax to initialize dictionaries to simple quick and readable code.</description>
     </item>
     <item>
-      <title> Dictionary Vs Hashtable Comparison</title>
+      <title>Dictionary Vs Hashtable Comparison In .NET</title>
       <pubDate>Thu, 09 Mar 2023 00:11:58 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/dictionary-vs-hashtable-comparison/</link>
       <guid>https://puzzledbycsharp.com/dictionary/dictionary-vs-hashtable-comparison/</guid>
-      <description> Dictionary performs much better than Hashtable. It is a clear example why it is better to use a generic collection type.</description>
+      <description> In .NET Dictionary performs much better than Hashtable. It is a clear example why it is better to use a generic collection type.</description>
     </item>
     <item>
-      <title> Check If The Key Exists In The Dictionary</title>
+      <title>Check If The Key Exists In The C# Dictionary</title>
       <pubDate>Wed, 08 Mar 2023 00:12:24 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/</link>
       <guid>https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/</guid>
-      <description> TryGetValue is best suited for the check if the key exists in the dictionary because it checks then returns the value too.</description>
+      <description> In C# TryGetValue is best suited for the check if the key exists in the dictionary because it checks then returns the value too.</description>
     </item>
     <item>
-      <title> Best Sort Method for Dictionary Values</title>
+      <title>Best C# Sort Method for Dictionary Values</title>
       <pubDate>Tue, 07 Mar 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/best-sort-method-for-dictionary-values/</link>
       <guid>https://puzzledbycsharp.com/dictionary/best-sort-method-for-dictionary-values/</guid>
       <description> Using a LINQ Extension method is the best way to sort a dictionary by value. It is quick and easy to implement.</description>
     </item>
     <item>
-      <title> How To Update Dictionary Values</title>
+      <title>How To Update Dictionary Values In C#</title>
       <pubDate>Mon, 06 Feb 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/how-to-update-dictionary-values/</link>
       <guid>https://puzzledbycsharp.com/dictionary/how-to-update-dictionary-values/</guid>
-      <description> TryGetValue is the best method for updating a value because it checks if the key exists and retrieves and returns the value to use right away.</description>
+      <description> TryGetValue is the best method in C# for updating a value because it checks if the key exists and retrieves and returns the value to use right away.</description>
     </item>
     <item>
-      <title> Get The Dictionary Keys By Their Value</title>
+      <title>Get The Dictionary Keys By Their Value Using .NET</title>
       <pubDate>Tue, 31 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/get-the-dictionary-keys-by-their-value/</link>
       <guid>https://puzzledbycsharp.com/dictionary/get-the-dictionary-keys-by-their-value/</guid>
-      <description> The best way to get keys by their value from a dictionary is to use the dictionary and list combo. This gives speed and flexibility.</description>
+      <description> The best way in .NET to get keys by their value from a dictionary is to use the dictionary and list combo. This gives speed and flexibility.</description>
     </item>
     <item>
-      <title> Privacy Policy | Puzzled By CSharp</title>
+      <title>Privacy Policy | Puzzled By CSharp</title>
       <pubDate>Wed, 25 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/privacy-policy/</link>
       <guid>https://puzzledbycsharp.com/privacy-policy/</guid>
       <description> This a private policy about your rights and to info you on how your information is collected from you</description>
     </item>
     <item>
-      <title> Best Way To Iterate Through A Dictionary</title>
+      <title>Best Way To Iterate Through A Dictionary In C#</title>
       <pubDate>Mon, 23 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</link>
       <guid>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</guid>
-      <description> Dictionary fastest methods are iterating over just the Keys and Values but looping through both Key and Value a list with a class container performs better</description>
+      <description> Dictionary fastest C# methods are iterating over just the Keys and Values but looping through both Key and Value a list with a class container performs better</description>
     </item>
     <item>
-      <title> A Comparison Between IEnumerable and List</title>
+      <title>A Comparison Between IEnumerable and List</title>
       <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</link>
       <guid>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</guid>
       <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
     </item>
     <item>
-      <title>  Convert A System Array To A List</title>
+      <title>Convert A System Array To A List</title>
       <pubDate>Thu, 12 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/convert-a-system-array-to-a-list/</link>
       <guid>https://puzzledbycsharp.com/list/convert-a-system-array-to-a-list/</guid>
       <description> The fastest method for converting a system array to a list is to use an array cast and then use ToList. It is short and compact and easy to read.</description>
     </item>
     <item>
-      <title> Understanding The Best Set Theory Methods Between Lists</title>
+      <title>Understanding The Best Set Theory Methods Between Lists</title>
       <pubDate>Sun, 08 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/understanding-the-best-set-theory-methods-between-lists/</link>
       <guid>https://puzzledbycsharp.com/list/understanding-the-best-set-theory-methods-between-lists/</guid>
       <description> The best methods for intersect union and except are with the HashSet collection type. The HashSet functions are faster than LINQs.</description>
     </item>
     <item>
-      <title> Remove Duplicate Items from A List | Puzzled By CSharp</title>
+      <title>Remove Duplicate Items from A List | Puzzled By CSharp</title>
       <pubDate>Fri, 30 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/remove-duplicate-items-from-a-list/</link>
       <guid>https://puzzledbycsharp.com/list/remove-duplicate-items-from-a-list/</guid>
       <description> The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order of the items is preserved.</description>
     </item>
     <item>
-      <title> Clone A List In Depth Review | Puzzled By CSharp</title>
+      <title>Clone A List In Depth Review | Puzzled By CSharp</title>
       <pubDate>Fri, 23 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/clone-a-list-in-depth-review/</link>
       <guid>https://puzzledbycsharp.com/list/clone-a-list-in-depth-review/</guid>
       <description> Cloning a list is a matter of understanding the differences in shallow and deep copies and the difference between value and reference types.</description>
     </item>
     <item>
-      <title> Introduction To Lists | Puzzled By CSharp</title>
+      <title>Introduction To Lists | Puzzled By CSharp</title>
       <pubDate>Fri, 23 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/introduction-to-lists/</link>
       <guid>https://puzzledbycsharp.com/list/introduction-to-lists/</guid>
       <description> List are the backbone of collections and often the most used. They are versatile and flexible they increase and decrease the underline array automatically.</description>
     </item>
     <item>
-      <title> List Section</title>
+      <title>List Section</title>
       <pubDate>Fri, 23 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/</link>
       <guid>https://puzzledbycsharp.com/list/</guid>
       <description> </description>
     </item>
     <item>
-      <title> String | Puzzled By CSharp</title>
+      <title>String | Puzzled By CSharp</title>
       <pubDate>Fri, 23 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/</link>
       <guid>https://puzzledbycsharp.com/string/</guid>
       <description> Strings are some of the first data types to learn in the csharp so it becomes important to manipulate strings and to parsing strings</description>
     </item>
     <item>
-      <title> Code Snippets | Puzzled By CSharp</title>
+      <title>Code Snippets | Puzzled By CSharp</title>
       <pubDate>Fri, 23 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/</guid>
       <description> Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.</description>
     </item>
     <item>
-      <title> About | Puzzled By CSharp</title>
+      <title>About | Puzzled By CSharp</title>
       <pubDate>Sun, 02 Oct 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/about/</link>
       <guid>https://puzzledbycsharp.com/about/</guid>
       <description> I&amp;#8217;m a software engineer with nine years of experience. This site is intended for programmers from all skill set levels in C#/CSharp programming language.</description>
     </item>
     <item>
-      <title> How To Find An Item In The List | Puzzled By CSharp</title>
+      <title>How To Find An Item In The List | Puzzled By CSharp</title>
       <pubDate>Tue, 06 Sep 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/how-to-find-an-item-in-the-list/</link>
       <guid>https://puzzledbycsharp.com/list/how-to-find-an-item-in-the-list/</guid>
       <description> The best method for finding an item in a list is the List Find method however the best collection type for finding an item in the dictionary.</description>
     </item>
     <item>
-      <title> Convert A List To A String With A Delimiter</title>
+      <title>Convert A List To A String With A Delimiter</title>
       <pubDate>Fri, 02 Sep 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/convert-list-to-string-with-a-delimiter/</link>
       <guid>https://puzzledbycsharp.com/list/convert-list-to-string-with-a-delimiter/</guid>
       <description> The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest it is compact and also easy to set up.</description>
     </item>
     <item>
-      <title> How To Initialize A List | Puzzled By CSharp</title>
+      <title>How To Initialize A List | Puzzled By CSharp</title>
       <pubDate>Wed, 31 Aug 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/how-to-initialize-a-list/</link>
       <guid>https://puzzledbycsharp.com/list/how-to-initialize-a-list/</guid>
       <description> Initializing the list using the in-line method is best used when there are only a few items and also where the list won\t change much very often.</description>
     </item>
     <item>
-      <title> Best Way To Sort A List | Puzzled By CSharp</title>
+      <title>Best Way To Sort A List | Puzzled By CSharp</title>
       <pubDate>Fri, 26 Aug 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/best-way-to-sort-a-list/</link>
       <guid>https://puzzledbycsharp.com/list/best-way-to-sort-a-list/</guid>
       <description> The best sorting method in C# is LINQ\s order by function. It is the fastest method and it is compact.</description>
     </item>
     <item>
-      <title> Access Items From A List By Index | Puzzled By CSharp</title>
+      <title>Access Items From A List By Index | Puzzled By CSharp</title>
       <pubDate>Fri, 26 Aug 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/access-items-from-a-list-by-index/</link>
       <guid>https://puzzledbycsharp.com/list/access-items-from-a-list-by-index/</guid>
       <description> The best way to access an item on a list is to use the Indexer property. It is extremely fast and once used to the syntax it becomes a go-to property.</description>
     </item>
     <item>
-      <title> Get A Substring Between Two Strings | Puzzled By CSharp</title>
+      <title>Get A Substring Between Two Strings | Puzzled By CSharp</title>
       <pubDate>Tue, 09 Aug 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/get-a-substring-between-two-strings/</link>
       <guid>https://puzzledbycsharp.com/string/get-a-substring-between-two-strings/</guid>
       <description> The most effective function for getting a substring between two strings is the span slice. Speed is an important factor because that has an impact on the end user.</description>
     </item>
     <item>
-      <title> Analysis Of Getting First N Characters Methods</title>
+      <title>Analysis Of Getting First N Characters Methods</title>
       <pubDate>Sat, 06 Aug 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/analysis-of-getting-first-n-characters-methods/</link>
       <guid>https://puzzledbycsharp.com/string/analysis-of-getting-first-n-characters-methods/</guid>
       <description> The best method for getting the first n characters is span slice. Performance is the best metric to determine which is best because it affects the end users.</description>
     </item>
     <item>
-      <title> How Best To Get Last N Characters | Puzzled By CSharp</title>
+      <title>How Best To Get Last N Characters | Puzzled By CSharp</title>
       <pubDate>Tue, 02 Aug 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/how-best-to-get-last-n-characters/</link>
       <guid>https://puzzledbycsharp.com/string/how-best-to-get-last-n-characters/</guid>
       <description> The best way to get the last n characters is to use a string substring. It has one of the fastest methods and is readable so you don\t have to guess what it does.</description>
     </item>
     <item>
-      <title> Get Substring After Finding A Keyword | Puzzled By CSharp</title>
+      <title>Get Substring After Finding A Keyword | Puzzled By CSharp</title>
       <pubDate>Mon, 01 Aug 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/get-substring-after-finding-a-keyword/</link>
       <guid>https://puzzledbycsharp.com/string/get-substring-after-finding-a-keyword/</guid>
       <description> The overall best way to solve getting a substring after finding a keyword is with Span Slice because of the huge performance gain.</description>
     </item>
     <item>
-      <title> Best First Character Removal Function In A String</title>
+      <title>Best First Character Removal Function In A String</title>
       <pubDate>Sat, 23 Jul 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/best-first-character-removal-function-in-a-string/</link>
       <guid>https://puzzledbycsharp.com/string/best-first-character-removal-function-in-a-string/</guid>
       <description> Span Slice came at the fastest first character removal method at about half a second while substring range operator remove and trim start were pretty fast.</description>
     </item>
     <item>
-      <title> Efficiently Remove The First Keyword Occurrence From A String</title>
+      <title>Efficiently Remove The First Keyword Occurrence From A String</title>
       <pubDate>Sat, 23 Jul 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/efficiently-remove-the-first-keyword-occurrence-from-a-string/</link>
       <guid>https://puzzledbycsharp.com/string/efficiently-remove-the-first-keyword-occurrence-from-a-string/</guid>
       <description> Data can have duplicated and errors can be in the inputs and fields it is important to efficiently remove the first keyword occurrence from a string.</description>
     </item>
     <item>
-      <title> Get A Substring Before Or After A Certain Character</title>
+      <title>Get A Substring Before Or After A Certain Character</title>
       <pubDate>Sun, 26 Jun 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/get-a-substring-before-or-after-a-certain-character/</link>
       <guid>https://puzzledbycsharp.com/string/get-a-substring-before-or-after-a-certain-character/</guid>
       <description> Getting a substring before or after a certain character is common in parsing strings user data database data and automatic data generated by scripts.</description>
     </item>
     <item>
-      <title> Examining String Equals In Detail | Puzzled By CSharp</title>
+      <title>Examining String Equals In Detail | Puzzled By CSharp</title>
       <pubDate>Wed, 15 Jun 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/examining-string-equals-in-detail/</link>
       <guid>https://puzzledbycsharp.com/string/examining-string-equals-in-detail/</guid>
       <description> String Equals comparing two strings to find out if they are exactly the same. The comparison is case-sensitive and usually used in conditional statements.</description>
     </item>
     <item>
-      <title> String Replace In Depth | Puzzled By CSharp</title>
+      <title>String Replace In Depth | Puzzled By CSharp</title>
       <pubDate>Wed, 15 Jun 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/string-replace-in-depth/</link>
       <guid>https://puzzledbycsharp.com/string/string-replace-in-depth/</guid>
       <description> String replace are a string and character substitute with another string. It finds the characters and then replaces them it a new set of characters.</description>
     </item>
     <item>
-      <title> Walkthrough of the String Trim Function | Puzzled By CSharp</title>
+      <title>Walkthrough of the String Trim Function | Puzzled By CSharp</title>
       <pubDate>Sun, 22 May 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/walkthrough-of-the-string-trim-function/</link>
       <guid>https://puzzledbycsharp.com/string/walkthrough-of-the-string-trim-function/</guid>
       <description> String trim removes space tabs and various lengths of whitespace at the beginning or end of a string. This is good for user inputs.</description>
     </item>
     <item>
-      <title> Using String Insert Effectively | Puzzled By CSharp</title>
+      <title>Using String Insert Effectively | Puzzled By CSharp</title>
       <pubDate>Mon, 09 May 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/using-string-insert-effectively/</link>
       <guid>https://puzzledbycsharp.com/string/using-string-insert-effectively/</guid>
       <description> String insert puts a single string between a section of the string. The first parameter is an index of insert and the second parameter is the string to insert.</description>
     </item>
     <item>
-      <title> Best Ways To Use String Remove | Puzzled By CSharp</title>
+      <title>Best Ways To Use String Remove | Puzzled By CSharp</title>
       <pubDate>Mon, 09 May 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/best-ways-to-use-string-remove/</link>
       <guid>https://puzzledbycsharp.com/string/best-ways-to-use-string-remove/</guid>
       <description> String remove takes an existing string and based on the start index and length for removal then will return a string with that section removed.</description>
     </item>
     <item>
-      <title> How to Use Substring | Puzzled By CSharp</title>
+      <title>How to Use Substring | Puzzled By CSharp</title>
       <pubDate>Thu, 24 Mar 2022 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/how-to-use-substring/</link>
       <guid>https://puzzledbycsharp.com/string/how-to-use-substring/</guid>
       <description> The substring method copies a chunks of an existing string. It returns a sub-section of the original string and depends on the selected index range.</description>
     </item>
     <item>
-      <title> Array Vs List Vs Linked List | Puzzled By CSharp</title>
+      <title>Array Vs List Vs Linked List | Puzzled By CSharp</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/array-vs-list-vs-linked-list/</link>
       <guid>https://puzzledbycsharp.com/list/array-vs-list-vs-linked-list/</guid>
       <description> Array vs Lists vs Linked Lists is a common collection type each has pros and cons so it is important to understand these as we make our collection choices.</description>
     </item>
     <item>
-      <title> Fix For Default Parameter Value Not Compile Time Constant Error</title>
+      <title>Fix For Default Parameter Value Not Compile Time Constant Error</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/exceptions/default-parameter-value-not-compile-time-constant/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/exceptions/default-parameter-value-not-compile-time-constant/</guid>
       <description> The exception CS1736</description>
     </item>
     <item>
-      <title> Dictionary Best Practices And What To Avoid | Puzzled By CSharp</title>
+      <title>C# Dictionary Best Practices And What To Avoid</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/dictionary-best-practices-and-what-to-avoid/</link>
       <guid>https://puzzledbycsharp.com/dictionary/dictionary-best-practices-and-what-to-avoid/</guid>
-      <description> Dictionary using best practices with the right key scales well over large datasets. There are several pitfalls that should be avoided.</description>
+      <description> C# Dictionary using best practices with the right key scales well over large datasets. There are several pitfalls that should be avoided.</description>
     </item>
     <item>
-      <title> Dictionary Section</title>
+      <title>Dictionary Section</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/dictionary/</link>
       <guid>https://puzzledbycsharp.com/dictionary/</guid>
       <description> </description>
     </item>
     <item>
-      <title> Copying Files via Project Script On Build | Puzzled By CSharp</title>
+      <title>Copying Files via Project Script On Build | Puzzled By CSharp</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/project-build/copy-files-via-project-script-on-build/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/project-build/copy-files-via-project-script-on-build/</guid>
       <description> One way to copy files to the output folder is to edit the .csproj file and add a command to copy files from a certain directory into the output folder.</description>
     </item>
     <item>
-      <title> List vs Dictionary Collection Types</title>
+      <title>List vs Dictionary Collection Types</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/list-vs-dictionary/</link>
       <guid>https://puzzledbycsharp.com/list/list-vs-dictionary/</guid>
       <description> List and Dictionary are useful collection types. They are accessible and convenient to use. There are advantages over an array or hash tables.</description>
     </item>
     <item>
-      <title> Identify If a DLL is 32bit or 64bit | Puzzled By CSharp</title>
+      <title>Identify If a DLL is 32bit or 64bit | Puzzled By CSharp</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/project-build/identify-dll-is-x86-or-x64/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/project-build/identify-dll-is-x86-or-x64/</guid>
       <description> Want to find out if a DLL or assembly is targeting 32bit or 64bit then Visual Studio comes with a handy tool called Corflags accessed by the command prompt.</description>
     </item>
     <item>
-      <title> Hex String to Int | Puzzled By CSharp</title>
+      <title>Hex String to Int | Puzzled By CSharp</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/hex-string-to-int/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/hex-string-to-int/</guid>
       <description> Hex is a base 16 number system and the C# has a build function that can convert a string hex value into an int value.</description>
     </item>
     <item>
-      <title> String vs StringBuilder Comparison | Puzzled By CSharp</title>
+      <title>String vs StringBuilder Comparison | Puzzled By CSharp</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/string-vs-stringbuilder-comparison/</link>
       <guid>https://puzzledbycsharp.com/string/string-vs-stringbuilder-comparison/</guid>
       <description> String vs StringBuilder are similar and in most cases we will use string but we need a more efficient option in StringBuilder.</description>
     </item>
     <item>
-      <title> Open File Programmatically | Puzzled By CSharp</title>
+      <title>Open File Programmatically | Puzzled By CSharp</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/open-file-programmatically/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/open-file-programmatically/</guid>
       <description> When testing or writing programs that generate files you may want automate opening the file in code than manually opening those files.</description>
     </item>
     <item>
-      <title> New Line in StringBuilder | Puzzled By CSharp</title>
+      <title>New Line in StringBuilder | Puzzled By CSharp</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/string/new-line-in-stringbuilder/</link>
       <guid>https://puzzledbycsharp.com/string/new-line-in-stringbuilder/</guid>
