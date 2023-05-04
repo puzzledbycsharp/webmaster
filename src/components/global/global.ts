@@ -660,7 +660,7 @@ export const ROUTE_DATA = [
   },
   {
     location: 'string/best-first-character-removal-function-in-a-string',
-    url: 'https://puzzledbycsharp.com/string/how-to-use-substring/best-first-character-removal-function-in-a-string/',
+    url: 'https://puzzledbycsharp.com/string/best-first-character-removal-function-in-a-string/',
     title: 'Best First Character Removal Function In A String',
     dateCreated: '2022-07-23T00:08:56+00:00',
     dateModified:'2023-04-30T05:05:58-04:00',
