@@ -1,8 +1,8 @@
 ---
-title: Convert A System Array To A List
+title: Convert A System Array To A List In C#
 ---
 
-# Convert A System Array To A List
+# Convert A System Array To A List In C#
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
@@ -12,7 +12,7 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-System Array is an abstract class that can only be instantiated through a function. From the class name itself, it's hard to tell what type it encapsulates so you'll need to plan and be sure what time it is ahead of time. [Since System Array is not in the collection namespace but it is still considered a collection since it implements IList.](https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-7.0) There are other types of arrays in the collection namespace so I will be referring to this array as a system array to avoid confusion. With this, we can convert System Array to a List so I'll go over the methods one by one and provide an analysis of each one.
+In C#, a System Array is an abstract class that can only be instantiated through a function. From the class name itself, it's hard to tell what type it encapsulates so you'll need to plan and be sure what time it is ahead of time. [Since System Array is not in the collection namespace but it is still considered a collection since it implements IList.](https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-7.0) There are other types of arrays in the collection namespace so I will be referring to this array as a system array to avoid confusion. With this, we can convert System Array to a List so I'll go over the methods one by one and provide an analysis of each one.
 
 #### What Methods Convert a System Array into a List?
 

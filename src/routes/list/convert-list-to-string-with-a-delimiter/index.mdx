@@ -1,8 +1,8 @@
 ---
-title: Convert A List To A String With A Delimiter
+title:  Convert A List To A String With A Delimiter In .NET
 ---
 
-# Convert A List To A String With A Delimiter
+# Convert A List To A String With A Delimiter In .NET
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
@@ -12,8 +12,10 @@ import{Table} from "~/components/table/table";
 {/* *****************NOTE need to redirect the url to the new title*********************************************** */}
 
 <ImageWrapper imageSource="../../../../assets/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp" imageSrcSet="../../../../assets/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-small.webp 250w, ../../../../assets/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-medium.webp 500w, ../../../../assets/list/convert-list-to-string-with-a-delimiter/convert-list-to-string-with-a-delimiter-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Convert A List To String With A Delimiter Banner Image" widthImage = "2304" heightImage = "1728" />
+
 ## Introduction
-While working with lists it is often necessary to convert them into a string. With each item separated by a delimiter or character. This is helpful if there is a file or database to write the data to and it is in a consistent format that can be easily reversed and put into a list or loop through. There are different ways to achieve this and we are going to look at the pros and cons of each such as string join, LINQ aggregate, StringBuilder append join, or string concatenation. Let's look at string join first.
+
+In .NET, While working with lists it is often necessary to convert them into a string. With each item separated by a delimiter or character. This is helpful if there is a file or database to write the data to and it is in a consistent format that can be easily reversed and put into a list or loop through. There are different ways to achieve this and we are going to look at the pros and cons of each such as string join, LINQ aggregate, StringBuilder append join, or string concatenation. Let's look at string join first.
 
 ### String Join Method
 String join provides a function overload to take in a string which is the delimiter and a list. This will insert the delimiter between each of the list items. This will help to quickly generate a comma separate row or separate the data by another character.

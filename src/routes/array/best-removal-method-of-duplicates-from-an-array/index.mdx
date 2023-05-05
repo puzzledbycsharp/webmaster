@@ -14,7 +14,7 @@ import{Table} from "~/components/table/table";
 
 To remove duplicate items from a list we have a couple of options in C#. One is to use LINQ Distinct to remove the items and then apply ToArray to convert the IEnumerable to an array. The other option is to write a method. Sometimes LINQ doesn't perform well and I'm going to test both of these methods to see which is faster. For one smaller array, it may not matter so much which one we choose, but if you are working with large datasets then you'll pick the fastest method.
 
-<Table header ="Analysis Type,LINQ Distinct,For Loop With HashSet And List" rows=".NET Version Available,>= .NET 3.5,>= .NET 3.5;Performance,Approaches O(N),Approaches O(N);Lines Of Code,1,11,;Order Maintained,No,Yes" />
+<Table header ="Analysis Type,LINQ Distinct,For Loop With HashSet And List" rows=".NET Version Available,>= .NET 3.5,>= .NET 3.5;Performance,Approaches O(N),Approaches O(N);Lines Of Code,1,11;Order Maintained,No,Yes" />
 
 ### Distinct Values Using LINQ Distinct
 

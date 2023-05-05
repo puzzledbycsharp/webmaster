@@ -1,8 +1,8 @@
 ---
-title: List vs Dictionary Collection Types
+title: List vs Dictionary .NET Collection Types
 ---
 
-# List vs Dictionary Collection Types
+# List vs Dictionary .NET Collection Types
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
@@ -12,7 +12,7 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-List and Dictionary are useful collection types. They are easy accessibility and convenient to use. There are advantages to using these types over an array or hash tables. There are also a lot of different variations and even concurrent versions but for now, we will cover the most basic types. Next, we’ll start with the list collection.
+In .NET, list and dictionary are useful collection types. They are easy accessibility and convenient to use. There are advantages to using these types over an array or hash tables. There are also a lot of different variations and even concurrent versions but for now, we will cover the most basic types. Next, we’ll start with the list collection.
 
 <Table header ="#,Analysis Type,List,Dictionary" rows="1,Item Search Speed,O(N),O(1);2,Index Speed,O(1),O(1);3,Initial Size,Yes,Yes;4,Automatic Resize,O(1),O(1);5,Size Property,Count(),Count();6,Add,O(N)(If expansion is required),O(N)(If expansion is required);7,Insert,O(N)(If expansion is required),none;8,Delete,O(N),O(1);9,Duplicates,Yes,Keys:No | Values:Yes" />
 

@@ -1,8 +1,8 @@
 ---
-title: Access Items From A List By Index
+title: Access Items From A C# List By Index
 ---
 
-# Access Items From A List By Index
+# Access Items From A C# List By Index
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
@@ -10,7 +10,7 @@ import{Table} from "~/components/table/table";
 
 <ImageWrapper imageSource="../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp" imageSrcSet="../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-small.webp 250w, ../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp 500w, ../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Access Items From A List By Index Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
-A list has an underlying data structure of an array so the elements of the array can be accessed by an indexer. But only if that index exists on the array can the element's data be accessed. This is useful to know as there are times when we only want to access certain elements such as the last or first element so we don't want to loop through the entire list. C# provides two solid ways to access the data by the index. The indexer and the ElementAt function. They work in similar ways but the indexer only works on certain IEnumerable types ElementAt will work on any IEnumerable type which includes a list.
+A C# list has an underlying data structure of an array so the elements of the array can be accessed by an indexer. But only if that index exists on the array can the element's data be accessed. This is useful to know as there are times when we only want to access certain elements such as the last or first element so we don't want to loop through the entire list. C# provides two solid ways to access the data by the index. The indexer and the ElementAt function. They work in similar ways but the indexer only works on certain IEnumerable types ElementAt will work on any IEnumerable type which includes a list.
 
 ## Get Item In List By Indexer
 Using the indexer is the go-to method of getting an element's data. It is easy to use and many collection types in C# have an indexer. If you know the location or index address of the element you want to get data then you pass that integer value to the indexer and it will return the data almost instantaneously. See below for several use cases of how we can quickly get the first, last, and value in between with the indexer.

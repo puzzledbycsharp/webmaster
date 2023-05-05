@@ -1,8 +1,8 @@
 ---
-title: How To Initialize A List
+title: How To Initialize A List In .NET
 ---
 
-# How To Initialize A List
+# How To Initialize A List In .NET
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
@@ -12,9 +12,10 @@ import{Table} from "~/components/table/table";
 
 ## Introduction
 
-One of the first things to do when creating a list is to initialize them or pre-populating them with data. There are two main ways to initialize the lists. One is at compile time, which sets the values before the app is started. The other way is at runtime, which adds values to the list after the app has started. These could be small datasets, a list that holds types of configuration or test data, etc.
+One of the first things to do when creating a list is to initialize them or pre-populating them with data. In .NET, There are two main ways to initialize the lists. One is at compile time, which sets the values before the app is started. The other way is at runtime, which adds values to the list after the app has started. These could be small datasets, a list that holds types of configuration or test data, etc.
 
 ### Initialize A List At Compile Time
+
 One of the go-to ways to initialize the data. When it happens before the program starts then the visual studio will check to see if the syntax is correct. There are good reasons to do it this way. It's easy to read and out of the way. Perhaps there is a drop-down list that needs to be populated. Usually doing it this way means there are few values to initialize to the list.
 
 ###### Initialize A List At Compile Time Example Code
