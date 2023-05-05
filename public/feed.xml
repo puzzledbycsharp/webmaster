@@ -237,46 +237,46 @@
       <description> Dictionary fastest C# methods are iterating over just the Keys and Values but looping through both Key and Value a list with a class container performs better</description>
     </item>
     <item>
-      <title>A Comparison Between IEnumerable and List</title>
+      <title>A Comparison Between IEnumerable and List In C#</title>
       <pubDate>Sun, 22 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</link>
       <guid>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</guid>
-      <description> When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
+      <description> In C# When comparing List to IEnumerable List has more functionality but using LINQ with IEnumerable it has better performance than List.</description>
     </item>
     <item>
-      <title>Convert A System Array To A List</title>
+      <title>Convert A System Array To A List In C#</title>
       <pubDate>Thu, 12 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/convert-a-system-array-to-a-list/</link>
       <guid>https://puzzledbycsharp.com/list/convert-a-system-array-to-a-list/</guid>
-      <description> The fastest method for converting a system array to a list is to use an array cast and then use ToList. It is short and compact and easy to read.</description>
+      <description> The fastest C# method for converting a system array to a list is to use an array cast and then use ToList. It is short and compact and easy to read.</description>
     </item>
     <item>
-      <title>Understanding The Best Set Theory Methods Between Lists</title>
+      <title>Understanding The Best C# Set Theory Methods Between Lists</title>
       <pubDate>Sun, 08 Jan 2023 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/understanding-the-best-set-theory-methods-between-lists/</link>
       <guid>https://puzzledbycsharp.com/list/understanding-the-best-set-theory-methods-between-lists/</guid>
       <description> The best methods for intersect union and except are with the HashSet collection type. The HashSet functions are faster than LINQs.</description>
     </item>
     <item>
-      <title>Remove Duplicate Items from A List | Puzzled By CSharp</title>
+      <title>Remove Duplicate Items from A C# List</title>
       <pubDate>Fri, 30 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/remove-duplicate-items-from-a-list/</link>
       <guid>https://puzzledbycsharp.com/list/remove-duplicate-items-from-a-list/</guid>
-      <description> The best method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order of the items is preserved.</description>
+      <description> The best C# method for getting unique items from a list is to use a combination of HashSet and List. It has good performance and the order of the items is preserved.</description>
     </item>
     <item>
-      <title>Clone A List In Depth Review | Puzzled By CSharp</title>
+      <title>Clone A C# List In Depth Review</title>
       <pubDate>Fri, 23 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/clone-a-list-in-depth-review/</link>
       <guid>https://puzzledbycsharp.com/list/clone-a-list-in-depth-review/</guid>
-      <description> Cloning a list is a matter of understanding the differences in shallow and deep copies and the difference between value and reference types.</description>
+      <description> Cloning a C# list is a matter of understanding the differences in shallow and deep copies and the difference between value and reference types.</description>
     </item>
     <item>
-      <title>Introduction To Lists | Puzzled By CSharp</title>
+      <title>Introduction to C# Lists</title>
       <pubDate>Fri, 23 Dec 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/introduction-to-lists/</link>
       <guid>https://puzzledbycsharp.com/list/introduction-to-lists/</guid>
-      <description> List are the backbone of collections and often the most used. They are versatile and flexible they increase and decrease the underline array automatically.</description>
+      <description> C# list are the backbone of collections and often the most used. They are versatile and flexible they increase and decrease the underline array automatically.</description>
     </item>
     <item>
       <title>List Section</title>
@@ -307,25 +307,25 @@
       <description> I&amp;#8217;m a software engineer with nine years of experience. This site is intended for programmers from all skill set levels in C#/CSharp programming language.</description>
     </item>
     <item>
-      <title>How To Find An Item In The List | Puzzled By CSharp</title>
+      <title>How To Find An Item In The List In C#</title>
       <pubDate>Tue, 06 Sep 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/how-to-find-an-item-in-the-list/</link>
       <guid>https://puzzledbycsharp.com/list/how-to-find-an-item-in-the-list/</guid>
-      <description> The best method for finding an item in a list is the List Find method however the best collection type for finding an item in the dictionary.</description>
+      <description> The best C# method for finding an item in a list is the List Find method however the best collection type for finding an item in the dictionary.</description>
     </item>
     <item>
-      <title>Convert A List To A String With A Delimiter</title>
+      <title>Convert A List To A String With A Delimiter In .NET</title>
       <pubDate>Fri, 02 Sep 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/convert-list-to-string-with-a-delimiter/</link>
       <guid>https://puzzledbycsharp.com/list/convert-list-to-string-with-a-delimiter/</guid>
-      <description> The best method to convert a list to a string with a delimiter is the string join method. It is by far the fastest it is compact and also easy to set up.</description>
+      <description> The best .NET method to convert a list to a string with a delimiter is the string join method. It is by far the fastest it is compact and also easy to set up.</description>
     </item>
     <item>
-      <title>How To Initialize A List | Puzzled By CSharp</title>
+      <title>How To Initialize A List In .NET</title>
       <pubDate>Wed, 31 Aug 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/how-to-initialize-a-list/</link>
       <guid>https://puzzledbycsharp.com/list/how-to-initialize-a-list/</guid>
-      <description> Initializing the list using the in-line method is best used when there are only a few items and also where the list won\t change much very often.</description>
+      <description> Initializing the C# list using the in-line method is best used when there are only a few items and also where the list won\t change much very often.</description>
     </item>
     <item>
       <title>Best Way To Sort A List | Puzzled By CSharp</title>
@@ -335,11 +335,11 @@
       <description> The best sorting method in C# is LINQ\s order by function. It is the fastest method and it is compact.</description>
     </item>
     <item>
-      <title>Access Items From A List By Index | Puzzled By CSharp</title>
+      <title>Access Items From A C# List By Index</title>
       <pubDate>Fri, 26 Aug 2022 00:11:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/access-items-from-a-list-by-index/</link>
       <guid>https://puzzledbycsharp.com/list/access-items-from-a-list-by-index/</guid>
-      <description> The best way to access an item on a list is to use the Indexer property. It is extremely fast and once used to the syntax it becomes a go-to property.</description>
+      <description> The best way in C# to access an item on a list is to use the Indexer property. It is extremely fast and once used to the syntax it becomes a go-to property.</description>
     </item>
     <item>
       <title>Get A Substring Between Two Strings | Puzzled By CSharp</title>
@@ -433,11 +433,11 @@
       <description> The substring method copies a chunks of an existing string. It returns a sub-section of the original string and depends on the selected index range.</description>
     </item>
     <item>
-      <title>Array Vs List Vs Linked List | Puzzled By CSharp</title>
+      <title>Array Vs List Vs Linked List In .NET</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/array-vs-list-vs-linked-list/</link>
       <guid>https://puzzledbycsharp.com/list/array-vs-list-vs-linked-list/</guid>
-      <description> Array vs Lists vs Linked Lists is a common collection type each has pros and cons so it is important to understand these as we make our collection choices.</description>
+      <description> In .NET Array vs Lists vs Linked Lists is a common collection type each has pros and cons so it is important to understand these as we make our collection choices.</description>
     </item>
     <item>
       <title>Fix For Default Parameter Value Not Compile Time Constant Error</title>
@@ -468,11 +468,11 @@
       <description> One way to copy files to the output folder is to edit the .csproj file and add a command to copy files from a certain directory into the output folder.</description>
     </item>
     <item>
-      <title>List vs Dictionary Collection Types</title>
+      <title>List vs Dictionary .NET Collection Types</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/list/list-vs-dictionary/</link>
       <guid>https://puzzledbycsharp.com/list/list-vs-dictionary/</guid>
-      <description> List and Dictionary are useful collection types. They are accessible and convenient to use. There are advantages over an array or hash tables.</description>
+      <description> In .NET list and dictionary are useful collection types. They are accessible and convenient to use. There are advantages over an array or hash tables.</description>
     </item>
     <item>
       <title>Identify If a DLL is 32bit or 64bit | Puzzled By CSharp</title>
