@@ -1,5 +1,5 @@
 ---
-title: Fix For Default Parameter Value Not Compile Time Constant Error
+title: Fix For C# Default Parameter Value Not Compile Time Constant Error
 ---
 
 import { useStore} from '@builder.io/qwik';
@@ -8,14 +8,14 @@ import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 import{Table} from "~/components/table/table";
 
 
-# Fix For Default Parameter Value Not Compile Time Constant Error
+# Fix For C# Default Parameter Value Not Compile Time Constant Error
 
 
 <ImageWrapper imageSource="../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-medium.webp" imageSrcSet="../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-small.webp 250w, ../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-medium.webp 500w, ../../../assets/code-snippets/default-parameter-value-not-compile-time-constant/default-parameter-value-not-compile-time-constant-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Fix For Default Parameter Value Not Compile Time Constant Error Banner" widthImage = "2304" heightImage = "1728" />
 
 ### Introduction
 
-This compile exception ‘CS1736: Default parameter value must be a compile-time constant’ occurs when you try to assign a optional parameter value that is not a constant or is not the correct default value. It works with numerical data types and strings in the list of parameters but not for objects or structs. Different objects have different default values and it is important to know which ones are valid parameter values to use on a given type. To understand this further, I will first tell you about compile time constants.
+In C#, this compile exception ‘CS1736: Default parameter value must be a compile-time constant’ occurs when you try to assign a optional parameter value that is not a constant or is not the correct default value. It works with numerical data types and strings in the list of parameters but not for objects or structs. Different objects have different default values and it is important to know which ones are valid parameter values to use on a given type. To understand this further, I will first tell you about compile time constants.
 
 
 #### Video With Examples
