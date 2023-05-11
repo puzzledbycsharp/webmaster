@@ -440,11 +440,11 @@
       <description> In .NET Array vs Lists vs Linked Lists is a common collection type each has pros and cons so it is important to understand these as we make our collection choices.</description>
     </item>
     <item>
-      <title>Fix For Default Parameter Value Not Compile Time Constant Error</title>
+      <title>Fix For C# Default Parameter Value Not Compile Time Constant Error</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/exceptions/default-parameter-value-not-compile-time-constant/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/exceptions/default-parameter-value-not-compile-time-constant/</guid>
-      <description> The exception CS1736</description>
+      <description> In C# the exception CS1736</description>
     </item>
     <item>
       <title>C# Dictionary Best Practices And What To Avoid</title>
@@ -482,11 +482,11 @@
       <description> Want to find out if a DLL or assembly is targeting 32bit or 64bit then Visual Studio comes with a handy tool called Corflags accessed by the command prompt.</description>
     </item>
     <item>
-      <title>Hex String to Int | Puzzled By C#</title>
+      <title>Hex To Int Conversion In C#</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/hex-string-to-int/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/hex-string-to-int/</guid>
-      <description> Hex is a base 16 number system and the C# has a build function that can convert a string hex value into an int value.</description>
+      <description> Hex is a base 16 number system and C# has a built-in function that can convert a string hex value into an int value.</description>
     </item>
     <item>
       <title>String Vs StringBuilder Comparison In .NET</title>
@@ -496,7 +496,7 @@
       <description> String vs StringBuilder are similar and in most cases in .NET we will use string but we need a more efficient option in StringBuilder.</description>
     </item>
     <item>
-      <title>Open File Programmatically | Puzzled By C#</title>
+      <title>In C# Open A File Programmatically</title>
       <pubDate>Fri, 24 Dec 2021 00:08:56 GMT</pubDate>
       <link>https://puzzledbycsharp.com/code-snippets/open-file-programmatically/</link>
       <guid>https://puzzledbycsharp.com/code-snippets/open-file-programmatically/</guid>
