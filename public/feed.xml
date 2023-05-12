@@ -13,6 +13,13 @@
       <height>55</height>
     </image>
     <item>
+      <title>The Best C# Deserializer To Convert JSON To An Object</title>
+      <pubDate>Fri, 12 May 2023 01:03:55 GMT</pubDate>
+      <link>https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/</link>
+      <guid>https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/</guid>
+      <description>In C# JsonSerializer Deserialize is the best JSON Deserializer method as it is the fastest based on my testing. It has native C# support.</description>
+    </item>
+    <item>
       <title>Copy Part Of An Array To Another Array In C#</title>
       <pubDate>Fri, 28 Apr 2023 08:19:34 GMT</pubDate>
       <link>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</link>
