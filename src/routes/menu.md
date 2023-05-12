@@ -82,3 +82,8 @@
 - [Identify If a DLL is 32bit or 64bit](code-snippets/project-build/identify-dll-is-x86-or-x64/index.mdx)
 - [Open File Programmatically](code-snippets/open-file-programmatically/index.mdx)
 
+## JSON
+- [JSON](json/index.mdx)
+- [The Best C# Deserializer To Convert JSON To An Object](json/the-best-csharp-deserializer-to-convert-json-to-an-object/index.mdx)
+
+

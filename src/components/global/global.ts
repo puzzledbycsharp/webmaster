@@ -1,5 +1,19 @@
 export const ROUTE_DATA = [
   { 
+    location:'json/the-best-csharp-deserializer-to-convert-json-to-an-object', 
+    url: 'https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/',
+    title:'The Best C# Deserializer To Convert JSON To An Object', 
+    dateCreated:'2023-05-12T01:03:55+00:00',
+    dateModified:'2023-05-12T01:03:55+00:00',
+    twitterImage: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-twitter.webp',
+    image: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-medium.webp',
+    imageSmall: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-small.webp',
+    imageLarge: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-large.webp',
+    description:'In C#, JsonSerializer Deserialize is the best JSON Deserializer method as it is the fastest based on my testing. It has native C# support.',
+    pageCount:0,
+    feedDescription:'',
+  },
+  { 
     location:'array/copy-part-of-an-array-to-another-array', 
     url: 'https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/',
     title:'Copy Part Of An Array To Another Array In C#', 
