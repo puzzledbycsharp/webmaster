@@ -1,0 +1,52 @@
+---
+title: How To Install Visual Studio
+---
+
+# How To Install Visual Studio
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
+
+
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Install Visual Studio Banner" widthImage = "2304" heightImage = "1728" />
+
+
+## Introduction
+
+Visual Studio is a powerful IDE. [It supports the many of the  popular languages](https://visualstudio.microsoft.com/vs/features/web/languages/) C#, Python, Visual Basic, C++, F#, javascript, etc.
+
+I have been using Visual Studio all the back to the 2010 version and I used every version since then. There's usually a new visual studio with every major .NET release. Visual Studio helps speed up the production of writing code. It is good at debugging and helping to resolve syntax and compile issues. Now there is even AI-suggested auto fill which is a nice touch.
+
+So in this article, I'll show you how to set it up for the use of C#.
+
+
+### How To Set up Visual Studio For Windows
+
+1. The first step is go to the Visual Studio website at:  [https://visualstudio.microsoft.com/](https://visualstudio.microsoft.com/)
+2. Go down to download Visual Studio and click the button. There are three options Community 2022, Professional 2022, and Enterprise 2022. We'll go with the free version of Community 2022.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/download-community-2022-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/download-community-2022-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/download-community-2022-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/download-community-2022-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Which Visual Studio Version To Download" widthImage = "1672" heightImage = "630" />
+3. The download will start. Once the download is completed. Go to where the VisualStudioSetup.exe is downloaded. For Windows, it is usually in C:/User/'user_name'/Downloads
+4. Double-click or right-click on the file and click open.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/open-visual-studio-exe-file-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/open-visual-studio-exe-file-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/open-visual-studio-exe-file-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/open-visual-studio-exe-file-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Open The Visual Studio Exe File" widthImage = "805" heightImage = "457" />
+5. Visual Studio will ask you to agree to the privacy and license terms by hitting continue. Click continue.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-initial-prompt-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-initial-prompt-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-initial-prompt-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-initial-prompt-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Visual Studio Privacy and License Agreement" widthImage = "345" heightImage = "203" />
+6. Next, there will be a window that shows the Visual Studio installer downloading and installing them. This is only for the installer. There will be additional prompts after this for installing Visual Studio.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-install-updates-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-install-updates-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-install-updates-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-install-updates-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Visual Studio Installer Updates" widthImage = "343" heightImage = "205" />
+7. After some time, The next screen will show what workload will be installed. There are different packages to choose from. Don't worry about what you pick here, you can always come back and install or uninstall the different workloads. For this example, I'm just going to install, the .NET desktop development workload. If you see on the right side there are the different components that will be installed. There is a tab for the specific components, and language packs but to just get started I'm just going to install the current workload. Click Install in the bottom right-hand corner.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-workload-screen-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-workload-screen-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-workload-screen-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-workload-screen-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Visual Studio Installer Workload Tab" widthImage = "885" heightImage = "448" />
+8. This brings us to where Visual Studio is downloading and then installed at the same time. You can see the other visual studio versions that are installed. It'll take a few minutes to download and install.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-installer-download-install-screen-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-installer-download-install-screen-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-installer-download-install-screen-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-installer-download-install-screen-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Visual Studio Installer Download Installer Progress Screen" widthImage = "916" heightImage = "515" />
+9. Visual Studio will open up and will ask for your preference on the theme.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-theme-selection-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-theme-selection-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-theme-selection-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-theme-selection-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Visual Studio Theme Selection" widthImage = "695" heightImage = "352" />
+10. Visual Studio is now ready to be used. This is the start screen.
+<ImageWrapper imageSource="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-ready-medium.webp" imageSrcSet="../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-ready-small.webp 500w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-ready-medium.webp 1000w, ../../../../assets/visual-studio/how-to-install-visual-studio/visual-studio-ready-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Visual Studio Start Screen" widthImage = "729" heightImage = "481" />
+
+
+
+
+
+
+
+
+

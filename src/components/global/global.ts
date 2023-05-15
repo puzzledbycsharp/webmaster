@@ -1,5 +1,17 @@
 export const ROUTE_DATA = [
   { 
+    location:'visual-studio/how-to-install-visual-studio', 
+    url: 'https://puzzledbycsharp.com/visual-studio/how-to-install-visual-studio/',
+    title:'How To Install Visual Studio', 
+    dateCreated:'2023-05-14T00:11:55+00:00',
+    dateModified:'2023-05-14T00:11:55+00:00',
+    twitterImage: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-twitter.webp',
+    image: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-medium.webp',
+    imageSmall: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-small.webp',
+    imageLarge: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-large.webp',
+    description:'This is a step-by-step guild to install Visual Studio. It is a great IDE to work with and rich features and debugging tools.'
+  },
+  { 
     location:'json/the-best-csharp-deserializer-to-convert-json-to-an-object', 
     url: 'https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/',
     title:'The Best C# Deserializer To Convert JSON To An Object', 
