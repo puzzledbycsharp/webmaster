@@ -13,8 +13,15 @@
       <height>55</height>
     </image>
     <item>
+      <title>How To Install Visual Studio</title>
+      <pubDate>Sun, 14 May 2023 00:11:55 GMT</pubDate>
+      <link>https://puzzledbycsharp.com/visual-studio/how-to-install-visual-studio/</link>
+      <guid>https://puzzledbycsharp.com/visual-studio/how-to-install-visual-studio/</guid>
+      <description>This is a step-by-step guild to install Visual Studio. It is a great IDE to work with and rich features and debugging tools.</description>
+    </item>
+    <item>
       <title>The Best C# Deserializer To Convert JSON To An Object</title>
-      <pubDate>Fri, 12 May 2023 01:03:55 GMT</pubDate>
+      <pubDate>Fri, 12 May 2023 09:32:49 GMT</pubDate>
       <link>https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/</link>
       <guid>https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/</guid>
       <description>In C# JsonSerializer Deserialize is the best JSON Deserializer method as it is the fastest based on my testing. It has native C# support.</description>

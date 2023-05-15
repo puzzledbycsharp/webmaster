@@ -1,7 +1,13 @@
 ﻿<urlset xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
+		<loc>https://puzzledbycsharp.com/visual-studio/how-to-install-visual-studio/</loc>
+		<lastmod>2023-05-15T04:27:56-04:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/</loc>
-		<lastmod>2023-05-12T05:32:49-04:00</lastmod>
+		<lastmod>2023-05-15T04:27:56-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
