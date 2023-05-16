@@ -9,7 +9,7 @@ export const ROUTE_DATA = [
     image: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-large.webp',
-    description:'This is a step-by-step guild to install Visual Studio. It is a great IDE to work with and rich features and debugging tools.'
+    description:'This is a step-by-step guild to install Visual Studio. It is a great IDE to work with and has rich features and debugging tools.'
   },
   { 
     location:'json/the-best-csharp-deserializer-to-convert-json-to-an-object', 
