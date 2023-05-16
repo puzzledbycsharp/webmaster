@@ -4,7 +4,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/visual-studio/how-to-install-visual-studio/',
     title:'How To Install Visual Studio', 
     dateCreated:'2023-05-15T04:27:56-04:00',
-    dateModified:'2023-05-15T04:27:56-04:00',
+    dateModified:'2023-05-16T02:45:58-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-small.webp',
