@@ -128,3 +128,9 @@ Add `--prod` flag to deploy to production.
 ```
 npm run build.server
 ```
+
+## Static Site Generator (Node.js)
+
+```
+npm run build.server
+```
