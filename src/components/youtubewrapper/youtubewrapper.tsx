@@ -1,4 +1,4 @@
-import { component$, useBrowserVisibleTask$} from '@builder.io/qwik';
+import { component$, useVisibleTask$} from '@builder.io/qwik';
 
 interface YoutubeItemProps {
   source?: string;
@@ -11,7 +11,7 @@ interface YoutubeItemProps {
 export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
 
 
-   useBrowserVisibleTask$(() => {
+   useVisibleTask$(() => {
 
   //   const partytown = <div data-partycage data-partytype="iframe" data-partysrc="https://www.youtube.com/embed/2Y7CvSks1KY" style={{ width: '640px', height: '360px' }}></div>;
   //  <QwikPartytown>

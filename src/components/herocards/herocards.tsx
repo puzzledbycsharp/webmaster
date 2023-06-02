@@ -1,5 +1,5 @@
 import {
-  component$, useBrowserVisibleTask$} from '@builder.io/qwik';
+  component$, useVisibleTask$} from '@builder.io/qwik';
 import { ImageWrapper } from '../imagewrapper/imagewrapper';
 import Swiper, { Navigation } from 'swiper';
 import 'swiper/css';
@@ -40,7 +40,7 @@ export const Child = component$(() => {
   const myClonedArray  = Object.assign([], ROUTE_DATA);
 
   const updatedState = filterMetaData(myClonedArray);
-  useBrowserVisibleTask$(() => {
+  useVisibleTask$(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const swiper = new Swiper(".swiper", {   modules: [Navigation],  spaceBetween:10, breakpoints: {  320: {  direction: 'horizontal',  slidesPerView: 1.1,  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },  },  480: {  direction: 'horizontal',  slidesPerView: 2.1, slidesPerGroup:2,   navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },     },  640: {  direction: 'horizontal',  slidesPerView: 3.1,slidesPerGroup:3,  navigation: {  nextEl: '.swiper-button-next',  prevEl: '.swiper-button-prev',  },    },    768: {      direction: 'horizontal',      slidesPerView: 4.1,  slidesPerGroup:4,    navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },              },       1024: {      direction: 'horizontal',      slidesPerView: 5.1,   slidesPerGroup:5,   navigation: {        nextEl: '.swiper-button-next',        prevEl: '.swiper-button-prev',      },            }  }      });
     

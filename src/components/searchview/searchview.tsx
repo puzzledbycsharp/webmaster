@@ -1,5 +1,5 @@
 import {
-  component$, useBrowserVisibleTask$} from '@builder.io/qwik';
+  component$, useVisibleTask$} from '@builder.io/qwik';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { ImageWrapper } from '../imagewrapper/imagewrapper';
@@ -8,7 +8,7 @@ import { ImageWrapper } from '../imagewrapper/imagewrapper';
 
 export default component$(() => {
 
-  useBrowserVisibleTask$(() => {
+  useVisibleTask$(() => {
 
     //   const partytown = <div data-partycage data-partytype="iframe" data-partysrc="https://www.youtube.com/embed/2Y7CvSks1KY" style={{ width: '640px', height: '360px' }}></div>;
     //  <QwikPartytown>

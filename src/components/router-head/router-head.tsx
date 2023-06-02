@@ -133,11 +133,11 @@ export function filterMetaData(routeDatas:  MyRouteData [], loc:RouteLocation) {
    // console.log("routedata.location:"+routeData.location);
  // console.log("loc.href:"+loc.href);
 
-if(routeData.location != '' && loc.href.includes( routeData.location))
+if(routeData.location != '' && loc.href != undefined && loc.href.includes( routeData.location))
 {
   return routeData;
 }
-else if(routeData.location === '' && loc.href.includes( routeData.location) && (loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/') ){
+else if(routeData.location === ''&& loc.href != undefined  && loc.href.includes( routeData.location) && (loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/') ){
 return routeData;
 }
 

@@ -6,7 +6,7 @@ export const TwitterSocialShare = component$(() => {
   const topContentHeadings = headings?.filter((h) => h.level === 1 ) || [];
 
   const { pathname } = useLocation();
-  const completeUri = `https://puzzledbycsharp.com${pathname.substring(0, pathname.length -1) }`;
+  const completeUri = `https://puzzledbycsharp.com${(pathname ? pathname.substring(0, pathname.length -1): '')  }`;
   const h1Title = `${topContentHeadings[0].text}`;
   const tweetTemplate = `https://twitter.com/intent/tweet?text=${h1Title} ${completeUri} via @puzzledbycsharp`;
 

@@ -14,7 +14,7 @@ export default component$(() => {
   return (
     <main>
       <Header />
-      <section class="section" >
+      <section class="section relative top-12" >
         <div class="grid grid-cols-6 lg:gap-6">
           <div class="col-span-6 lg:col-span-1">
             <div class="grid grid-rows-2 mx-3 sticky top-16" id="bread-crumb">
@@ -45,9 +45,9 @@ export default component$(() => {
               <SubscribeForm />
             </div>
             <div class="py-3 md:border-2 md:border-customdark1 md:border-t-customdark3 md:hover:border-t-customdark2 duration-300">
-              <h6>
+              {/* <h6>
                 Comments Section
-              </h6>
+              </h6> */}
               <CommentsSection />
             </div>
           </div>

@@ -143,7 +143,7 @@ export function getContextMenuItem(menu: ContentMenu | undefined, pathname: stri
           //console.log("item2.href:" + item2.href);
           //console.log("item2.text:" + item2.text);
           //console.log("(pathname:" + pathname);
-          if (item2.href && pathname.includes(item2.href)) {
+          if (item2.href &&pathname != undefined &&  pathname.includes(item2.href)) {
             tempHeader.contentMenu = item2;
             const pathNameSplit = pathname.split("/");
             const item2HrefSplit = item2.href.split('/');

@@ -1,10 +1,10 @@
-import { component$, useBrowserVisibleTask$} from '@builder.io/qwik';
+import { component$, useVisibleTask$} from '@builder.io/qwik';
 import { useLocation } from '@builder.io/qwik-city';
 
 export const FacebookButtonScript = component$(() => {
 
   const loc = useLocation();
-  useBrowserVisibleTask$(() => {
+  useVisibleTask$(() => {
   
     
 //     const id =  'facebook-jssdk'; 

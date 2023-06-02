@@ -1,4 +1,4 @@
-import { component$, useStore, useWatch$ } from '@builder.io/qwik';
+import { component$, useStore, useVisibleTask$ } from '@builder.io/qwik';
 import { useLocation } from '@builder.io/qwik-city';
 
 
@@ -17,20 +17,36 @@ export const Copyurl = component$(() => {
     check: false,
   });
 
-  useWatch$(({ track }) => {
-    track(() => store.check);
+  // useWatch$(({ track }) => {
+  //   track(() => store.check);
 
-    const timer = setTimeout(() => {
-      if(store.check)
-      {
-        store.check = false;
-      }
+  //   const timer = setTimeout(() => {
+  //     if(store.check)
+  //     {
+  //       store.check = false;
+  //     }
       
-    }, 3000);
-    return () => {
-      clearTimeout(timer);
-    };
-  });
+  //   }, 3000);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // });
+
+    // The `useVisibleTask$` hook is used to create a task that runs eagarly on the client.
+    useVisibleTask$((taskContext) => {
+      // Since this VisibleTask is not tracking any signals, it will only run once.
+   
+      const interval = setInterval(() => {
+        if(store.check)
+        {
+          store.check = false;
+        }
+      }, 3000);
+   
+      // The `cleanup` function is called when the component is unmounted, or when the task is re-run.
+      taskContext.cleanup(() => clearInterval(interval));
+    });
+
   
   return (
 <>

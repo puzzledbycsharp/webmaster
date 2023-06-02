@@ -45,7 +45,7 @@ dangerouslySetInnerHTML={'const observer = new MutationObserver(mutations => {mu
 {/* <script type="text/javascript" 
 dangerouslySetInnerHTML={'algoliasearchNetlify({appId: \'CXWBWJV7NI\', apiKey: \'a6395b8da54d8d637629536196fbd5a1\',  siteId: \'5ddddc23-db8c-4e93-8648-085e71e0052a\',  branch: \'main\',  selector: \'div#search\',});'}>
   
-</script> */}
+</script> */}c
 
 <link rel="alternate" type="application/rss+xml" href="https://puzzledbycsharp.com/feed.xml" title="Home Page | Puzzled By CSharp"/>
 
