@@ -49,7 +49,7 @@ export default component$(() => {
 
   <ImageWrapper imageSource="../../../../assets/home/Big-data-scan-still-medium.webp" imageSrcSet="../../../../assets/home/Big-data-scan-still-small.webp 500w, ../../../../assets/home/Big-data-scan-still-medium.webp 1000w, ../../../../assets/home/Big-data-scan-still-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Home Page Splash Video Looped" widthImage = "1280" heightImage = "720" classInfo="absolute -z-10 w-auto min-w-full h-screen max-w-none block md:hidden my-15" />
   <video 
-    
+    autoPlay
     loop
     muted
     controls
