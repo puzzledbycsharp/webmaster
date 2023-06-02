@@ -14,7 +14,7 @@ export default component$(() => {
   return (
     <main>
       <Header />
-      <section class="section relative top-12" >
+      <section class="section relative md:top-3 lg:top-12" >
         <div class="grid grid-cols-6 lg:gap-6">
           <div class="col-span-6 lg:col-span-1">
             <div class="grid grid-rows-2 mx-3 sticky top-16" id="bread-crumb">

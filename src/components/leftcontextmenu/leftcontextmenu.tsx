@@ -5,7 +5,7 @@ import  OnThisPage  from '../onthispage/onthispage';
 export default component$(() => {
   const { menu } = useContent();
   const loc = useLocation();
-  const currentMenuItem = getContextMenuItem(menu, loc.href);
+  const currentMenuItem = getContextMenuItem(menu, loc.url.href);
   // console.log("After createContextMenu" + currentMenu);
   // console.log("after createContextMenucurrentMenu?.items?.length:" + currentMenu.items?.length);
 

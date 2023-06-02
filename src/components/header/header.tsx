@@ -97,7 +97,7 @@ export default component$(() => {
               </ul>
             </div>
           </div>
-          <div class="flex flex-row items-center bg-customdark1 lg:hidden border-2 border-customdark1 border-b-customdark2 relative md:fixed top-12 w-full" id="mobile-context-menu" >
+          <div class="flex flex-row items-center bg-customdark1 lg:hidden border-2 border-customdark1 border-b-customdark2 fixed md:fixed top-8 md:top-10 w-full" id="mobile-context-menu" >
             <LeftContextMenu />
             <div class="lg:hidden" >
               <Breadcrumbs />

@@ -13,10 +13,10 @@ export const SubscribeForm = component$(() => {
       <form >
         <label for="email" class="block text-sm font-medium text-customdark5">
           <div class="mt-1 mr-6">
-            <input type="email" name="email" id="email" class="px-3 mx-3 lg:mx-0 py-2 hover:bg-customdark6 hover:text-customdark5 bg-customdark3 boader-2 border-customdark3 placeholder-customdark5 disabled:bg-red-100 disabled:text-black disabled:border-slate-200 focus:outline-none focus:border-customdark2 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 duration-300" value="" placeholder="you@example.com"
+            {/* <input type="email" name="email" id="email" class="px-3 mx-3 lg:mx-0 py-2 hover:bg-customdark6 hover:text-customdark5 bg-customdark3 boader-2 border-customdark3 placeholder-customdark5 disabled:bg-red-100 disabled:text-black disabled:border-slate-200 focus:outline-none focus:border-customdark2 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 duration-300" value="" placeholder="you@example.com"
               onInput$={(ev) => (inputValue.value = (ev.target as HTMLInputElement).value)}>
 
-            </input>
+            </input> */}
 
           </div>
         </label>

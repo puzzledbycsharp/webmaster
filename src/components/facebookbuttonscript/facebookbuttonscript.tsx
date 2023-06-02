@@ -49,7 +49,7 @@ if(document)
 <>
 <div  id="fb-root"></div>
 <div class="fb-share-button" 
-data-href={loc.href}
+data-href={loc.url.href}
 data-layout="button">
 </div>
 

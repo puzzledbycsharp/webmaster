@@ -1,5 +1,5 @@
 import { component$ } from '@builder.io/qwik';
-import { SubscribeForm } from '../subscribeform/subscribeform';
+//import { SubscribeForm } from '../subscribeform/subscribeform';
 //import { FacebookButtonScript } from '../facebookbuttonscript/facebookbuttonscript';
 import { Copyurl } from '../copyurl/copyurl';
 import { TwitterSocialShare } from '../twittersocialshare/twittersocialshare';
@@ -31,11 +31,11 @@ export const RightAside = component$(() => {
           <FacebookButtonScript />
         </div> */}
       </div>
-      <h6>Get Latest Updates</h6>
+      {/* <h6>Get Latest Updates</h6>
       <div class="border-2 border-customdark1 border-l-customdark3 px-3 hover:border-l-customdark2 duration-300">
 
         <SubscribeForm />
-      </div>
+      </div> */}
       <h6>Connect</h6>
       <div class="border-2 border-customdark1 border-l-customdark3 px-3 hover:border-l-customdark2 duration-300">
 

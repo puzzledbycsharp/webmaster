@@ -40,7 +40,7 @@ if(routeData){
 
       {/* <title>{head.title}</title> */}
       <title>{routeData?.title}</title>
-      <link rel="canonical" href={loc.href} />
+      <link rel="canonical" href={loc.url.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/ico" href="/favicon.ico" />
 
@@ -95,7 +95,7 @@ else{
 
     
       <title>{head.title}</title>
-      <link rel="canonical" href={loc.href} />
+      <link rel="canonical" href={loc.url.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/ico" href="/favicon.ico" />
 
@@ -133,11 +133,11 @@ export function filterMetaData(routeDatas:  MyRouteData [], loc:RouteLocation) {
    // console.log("routedata.location:"+routeData.location);
  // console.log("loc.href:"+loc.href);
 
-if(routeData.location != '' && loc.href != undefined && loc.href.includes( routeData.location))
+if(routeData.location != '' && loc.url.href != undefined && loc.url.href.includes( routeData.location))
 {
   return routeData;
 }
-else if(routeData.location === ''&& loc.href != undefined  && loc.href.includes( routeData.location) && (loc.href === 'https://puzzledbycsharp.com/' || loc.href === 'http://127.0.0.1:5173/') ){
+else if(routeData.location === ''&& loc.url.href != undefined  && loc.url.href.includes( routeData.location) && (loc.url.href === 'https://puzzledbycsharp.com/' || loc.url.href === 'http://127.0.0.1:5173/') ){
 return routeData;
 }
 
