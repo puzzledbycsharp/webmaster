@@ -6,7 +6,7 @@ export default component$(() => {
 
 
     <>
-      <header class="z-10 lg:opacity-60">
+      <header class="z-10 lg:opacity-100">
         <nav >
           <div class="container flex flex-wrap justify-between items-center mx-auto">
             <a href="/" class="flex items-center fill-customdark8">
@@ -68,9 +68,9 @@ export default component$(() => {
       </header>
 
 
-      <div class="hidden lg:block lg:h-14 w-full backdrop-blur-md fixed top-0 sticky-0 -z-5">
+      {/* <div class="hidden lg:block lg:h-14 w-full backdrop-blur-md fixed top-0 sticky-0 -z-5">
 
-      </div >
+      </div > */}
     </>
   );
 });
