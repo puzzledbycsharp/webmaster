@@ -40,6 +40,12 @@ System.Json was [designed for Silverlight and is no longer supported for many ye
 Windows.Data.Json JsonValue [is very specific to Windows 8.x and Windows phone 8.x development](https://learn.microsoft.com/en-us/previous-versions/windows/apps/hh770289(v=win.10))
 
 
+### Third-Party Deserializers Not Considered
+
+Jil is considered to be a fast JSON deserializer but there haven't been any updates in years so it makes me think that it isn't supported anymore. You don't want to be using a library that isn't supported in case you run into issues then may not be able to get around those.
+
+Utf8Json has over 27 million downloads yet it hasn't been updated since 2018.
+
 ### JsonSerializer Deserialize Method
 
 <ImageWrapper imageSource="../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-serializer-deserialize-method-chart-medium.webp" imageSrcSet="../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-serializer-deserialize-method-chart-small.webp 500w, ../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-serializer-deserialize-method-chart-medium.webp 1000w, ../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-serializer-deserialize-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "JSON Serializer Deserialize Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"  />
@@ -301,7 +307,7 @@ Class ID: 102
 
 <ImageWrapper imageSource="../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-net-deserialize-object-method-chart-medium.webp" imageSrcSet="../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-net-deserialize-object-method-chart-small.webp 500w, ../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-net-deserialize-object-method-chart-medium.webp 1000w, ../../../../assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/json-net-deserialize-object-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "JSON.NET Deserialize Object Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
 
-JSON.NET has been around for some time, it grew out of a library when there weren't any libraries to work with JSON on the .NET platform at the time.  [It boasts that is the most popular .NET Nuget package with over 1 billion downloads.](https://www.newtonsoft.com/json)I have also used it during my career so it is well-known and reliable. It has broad support across the .NET platform and is even compatible with a none supported .NET platform like Silverlight. This is where I first encountered JSON.NET when I was working on a Silverlight project. It was indeed to go to method and our company continued to use it for some time after that.
+JSON.NET has been around for some time, it grew out of a library when there weren't any libraries to work with JSON on the .NET platform at the time.  [It boasts that is the most popular .NET Nuget package with over 1 billion downloads.](https://www.newtonsoft.com/json) I have also used it during my career so it is well-known and reliable. It has broad support across the .NET platform and is even compatible with a none supported .NET platform like Silverlight. This is where I first encountered JSON.NET when I was working on a Silverlight project. It was indeed to go to method and our company continued to use it for some time after that.
 
 It is feature-rich and has wide community support so you might want to check out its additional features if you considering using it in your application over the other options.
 
@@ -572,11 +578,241 @@ public class CustomClass
 ```
 </details>
 
+### Feature Comparison
+
+Since Newtonsoft.JSON has been around much longer it has more features compared to JsonSerializer but I'll show how to use each feature from both methods.
+
+This is not an exhaustive list of all the features between these two methods. A more complete list can be found [here](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft?source=recommendations&pivots=dotnet-7-0#table-of-differences-between-newtonsoftjson-and-systemtextjson).
+
+All cases use the following class and have the following output unless otherwise stated.
+
+
+```cs
+public class Student
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public char Grade { get; set; }
+    public bool IsPresent { get; set; }
+    public float GPA { get; set; }
+    public double Height { get; set; }
+    public Dictionary<string, int> Grades { get; set; }
+    public List<string> Subjects { get; set; }
+    public CustomClass[] CustomClasses { get; set; }
+}
+
+public class CustomClass
+{
+    public string ClassName { get; set; }
+    public int ClassId { get; set; }
+}
+
+```
+
+Output for each of the cases is the following unless otherwise stated.
+```
+Deserialized Object:
+Name: John Doe
+Age: 18
+Grade: A
+IsPresent: True
+GPA: 0
+Height: 170.5
+
+Grades:
+math: 90
+science: 85
+english: 92
+
+Subjects:
+Math
+Science
+English
+
+Custom Classes:
+Class Name: History
+Class ID: 101
+
+Class Name: Art
+Class ID: 102
+```
+
+
+#### Case-Insensitive
+
+JsonSerializer default is case sensitive which helps to improve speed. While NewTonsoft.JSON is case-insensitive by default.
+
+Case-insensitive property names can be enabled by using the JsonSerializerOptions and passing it to the method.
+
+
+##### Case-Insensitive JsonSerializer
+```cs
+//Case-insensitive
+using System.Text.Json;
+//JSON can be assigned as a string
+string json = "{\"name\":\"john doe\",\"age\":18,\"grade\":\"a\",\"ispresent\":true,\"gpa\":3.8,\"height\":170.5,\"grades\":{\"math\":90,\"science\":85,\"english\":92},\"subjects\":[\"math\",\"science\",\"english\"],\"customclasses\":[{\"classname\":\"history\",\"classid\":101},{\"classname\":\"art\",\"classid\":102}]}";
+
+JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+jsonSerializerOptions.PropertyNameCaseInsensitive = true;//Enable case insenstive property names
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonSerializer.Deserialize<Student>(json, jsonSerializerOptions);//Convert JSON String to an object
+...
+```
+
+##### Case-Insensitive JSON.NET
+```cs
+//Case-insensitive
+using System.Text.Json;
+//JSON can be assigned as a string
+string json = "{\"name\":\"john doe\",\"age\":18,\"grade\":\"a\",\"ispresent\":true,\"gpa\":3.8,\"height\":170.5,\"grades\":{\"math\":90,\"science\":85,\"english\":92},\"subjects\":[\"math\",\"science\",\"english\"],\"customclasses\":[{\"classname\":\"history\",\"classid\":101},{\"classname\":\"art\",\"classid\":102}]}";
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Convert JSON String to an object
+...
+```
+
+
+#### Camel Case Property Names
+
+Camel case is when the first letter of the first word is lower case and then all following word's first letters are upper case. The JSON can be camel case when the class properties don't need to be changed. We'll use JsonSerializerOptions to set the JSON properties.
+
+##### Camel Case JsonSerializer
+```cs
+//Camel case
+using System.Text.Json;
+//JSON can be assigned as a string
+string json = "{\"name\":\"John Doe\",\"age\":18,\"grade\":\"A\",\"isPresent\":true,\"gPA\":3.8,\"height\":170.5,\"grades\":{\"math\":90,\"science\":85,\"english\":92},\"subjects\":[\"Math\",\"Science\",\"English\"],\"customClasses\":[{\"className\":\"History\",\"classId\":101},{\"className\":\"Art\",\"classId\":102}]}";
+
+JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+jsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonSerializer.Deserialize<Student>(json, jsonSerializerOptions);//Convert JSON String to an object
+...
+```
+
+##### Camel Case JSON.NET
+
+```cs
+//camel case
+using Newtonsoft.Json;
+//JSON can be assigned as a string
+string json = "{\"name\":\"John Doe\",\"age\":18,\"grade\":\"A\",\"isPresent\":true,\"gPA\":3.8,\"height\":170.5,\"grades\":{\"math\":90,\"science\":85,\"english\":92},\"subjects\":[\"Math\",\"Science\",\"English\"],\"customClasses\":[{\"className\":\"History\",\"classId\":101},{\"className\":\"Art\",\"classId\":102}]}";
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Convert JSON String to an object
+...
+```
+
+
+##### Ignore All Null Properties With JsonSerializer
+
+If I remove the Age("Age":18,) property from the JSON, then it will fail to deserialize unless I add the following JSON Serializer option when writing null.
+
+```cs
+//Ignore null value properties
+using System.Text.Json;
+//JSON can be assigned as a string
+string json = "{\"Name\":\"John Doe\",\"Grade\":\"A\",\"IsPresent\":true,\"GPA\":3.8,\"Height\":170.5,\"Grades\":{\"Math\":90,\"Science\":85,\"English\":92},\"Subjects\":[\"Math\",\"Science\",\"English\"],\"CustomClasses\":[{\"ClassName\":\"History\",\"ClassId\":101},{\"ClassName\":\"Art\",\"ClassId\":102}]}";
+
+JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+jsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonSerializer.Deserialize<Student>(json, jsonSerializerOptions);//Convert JSON String to an object
+...
+```
+##### Ignore All Null Properties With JSON.NET
+
+```cs
+//Ignore null value properties
+using Newtonsoft.Json;
+
+//JSON can be assigned as a string
+string json = "{\"Name\":\"John Doe\",\"Grade\":\"A\",\"IsPresent\":true,\"GPA\":3.8,\"Height\":170.5,\"Grades\":{\"Math\":90,\"Science\":85,\"English\":92},\"Subjects\":[\"Math\",\"Science\",\"English\"],\"CustomClasses\":[{\"ClassName\":\"History\",\"ClassId\":101},{\"ClassName\":\"Art\",\"ClassId\":102}]}";
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Convert JSON String to an object
+...
+```
+
+##### Allow Comments, Trailing Commas With JsonSerializer 
+
+```cs
+
+//Allow comments, trailing commas
+using System.Text.Json;
+
+//JSON can be assigned as a string
+string json = "{\"Name\":\"John Doe\", // name comment\r\n \"Age\":18,\"Grade\":\"A\",\"IsPresent\":true,\"GPA\":3.8,\"Height\":170.5,\"Grades\":{\"Math\":90,\"Science\":85,\"English\":92},\"Subjects\":[\"Math\",\"Science\",\"English\"],\"CustomClasses\":[{\"ClassName\":\"History\",\"ClassId\":101},{\"ClassName\":\"Art\",\"ClassId\":102}, /* comment for multiline */]}";
+
+JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+jsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
+jsonSerializerOptions.AllowTrailingCommas = true;
+
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonSerializer.Deserialize<Student>(json, jsonSerializerOptions);//Convert JSON String to an object
+```
+
+
+##### Allow Comments, Trailing Commas With JSON.NET 
+
+```cs
+//Allow comments, trailing commas
+using Newtonsoft.Json;
+
+//JSON can be assigned as a string
+string json = "{\"Name\":\"John Doe\", // name comment\r\n \"Age\":18,\"Grade\":\"A\",\"IsPresent\":true,\"GPA\":3.8,\"Height\":170.5,\"Grades\":{\"Math\":90,\"Science\":85,\"English\":92},\"Subjects\":[\"Math\",\"Science\",\"English\"],\"CustomClasses\":[{\"ClassName\":\"History\",\"ClassId\":101},{\"ClassName\":\"Art\",\"ClassId\":102}, /* comment for multiline */]}";
+
+// Deserializing the JSON string back to a Student object
+Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Convert JSON String to an object
+```
+
+### JSON Tips 
+
+You can get a class structure based on the JSON through visual studio.
+
+Once you copy the JSON, then go to visual studio. Edit -> Past Special -> Past JSON as Classes will create the class structure for you. There's an example of the output. If I have the following JSON, visual studio will convert it into the following.
+```json
+{"Name":"John Doe", "Age":18,"Grade":"A","IsPresent":true,"GPA":3.8,"Height":170.5,"Grades":{"Math":90,"Science":85,"English":92},"Subjects":["Math","Science","English"],"CustomClasses":[{"ClassName":"History","ClassId":101},{"ClassName":"Art","ClassId":102}]}
+
+```
+
+```cs
+public class Rootobject
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public string Grade { get; set; }
+    public bool IsPresent { get; set; }
+    public float GPA { get; set; }
+    public float Height { get; set; }
+    public Grades Grades { get; set; }
+    public string[] Subjects { get; set; }
+    public Customclass[] CustomClasses { get; set; }
+}
+
+public class Grades
+{
+    public int Math { get; set; }
+    public int Science { get; set; }
+    public int English { get; set; }
+}
+
+public class Customclass
+{
+    public string ClassName { get; set; }
+    public int ClassId { get; set; }
+}
+
+```
 
 ### Conclusion
 
 JsonSerializer Deserialize is the best JSON Deserializer method as it is the fastest based on my testing. It is almost twice as fast as the other method. It has native C# support there may not be a need for an additional library. There are options object to explore with other features. This is best used when you're working with .NET versions 4.7.2 and greater.
 
-JSON.NET DeserializeObject is slower JsonSerializer Deserialize which is why it is in a second-place finish this time. It has been a reliable library for so long even when .NET didn't have native JSON deserializer support. It continues to be supported and it is best used when working with .NET 4.7.1 and lower.
+JSON.NET DeserializeObject is slower JsonSerializer Deserialize which is why it is in a second-place finish this time. It has been a reliable library and very easy to use for so long even when .NET didn't have native JSON deserializer support. It continues to be supported and it is best used when working with .NET 4.7.1 and lower.
 
 Know any other ways to deserialize a JSON into an object? Let me know in the comments below.
