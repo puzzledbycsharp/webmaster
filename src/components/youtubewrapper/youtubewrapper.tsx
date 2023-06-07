@@ -50,7 +50,8 @@ export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
      */}
 
 
-  <div class="w-full md:w-3/4 mx-auto min-h-[2.5%]" id={props.youtubeId}></div>
+
+  <div class="mx-auto w-full md:w-3/4 lg:w-[640px] lg:h-[360px]" id={props.youtubeId}></div>
 
 
 
