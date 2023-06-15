@@ -21,9 +21,9 @@ In C#, we can use JSON to communicate data to and from applications. It is a str
 <Table header ="Analysis Type,JsonSerializer Deserialize,JSON.NET DeserializeObject" rows="Rank,1,2;Speed Test,2569ms,4801ms;.NET Version Available,>= .NET 5 | >= .NET Framework 4.6.2 | >= .NET Standard 2.0  | >= .NET Core 2.1 ,  >= .NET Standard 2.0 | >= .NET 5 | Silverlight | Windows Phone | Windows 8 Store;Namespace,System.Text.Json,Newtonsoft.Json;Lines Of Code,1,1;Thread Safe,Yes,Yes;" />
 
 
-{/* ### Video With Examples 
+#### Video With Examples
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="8r43IETaIPQ"/> */}
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); }' youtubeId="NdpDkJy6M0s"/>
 
 ### Unsupported JSON Deserializers
 
@@ -705,37 +705,6 @@ Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Conver
 ...
 ```
 
-
-##### Ignore All Null Properties With JsonSerializer
-
-If I remove the Age("Age":18,) property from the JSON, then it will fail to deserialize unless I add the following JSON Serializer option when writing null.
-
-```cs
-//Ignore null value properties
-using System.Text.Json;
-//JSON can be assigned as a string
-string json = "{\"Name\":\"John Doe\",\"Grade\":\"A\",\"IsPresent\":true,\"GPA\":3.8,\"Height\":170.5,\"Grades\":{\"Math\":90,\"Science\":85,\"English\":92},\"Subjects\":[\"Math\",\"Science\",\"English\"],\"CustomClasses\":[{\"ClassName\":\"History\",\"ClassId\":101},{\"ClassName\":\"Art\",\"ClassId\":102}]}";
-
-JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
-jsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-
-// Deserializing the JSON string back to a Student object
-Student deserializedJSON = JsonSerializer.Deserialize<Student>(json, jsonSerializerOptions);//Convert JSON String to an object
-...
-```
-##### Ignore All Null Properties With JSON.NET
-
-```cs
-//Ignore null value properties
-using Newtonsoft.Json;
-
-//JSON can be assigned as a string
-string json = "{\"Name\":\"John Doe\",\"Grade\":\"A\",\"IsPresent\":true,\"GPA\":3.8,\"Height\":170.5,\"Grades\":{\"Math\":90,\"Science\":85,\"English\":92},\"Subjects\":[\"Math\",\"Science\",\"English\"],\"CustomClasses\":[{\"ClassName\":\"History\",\"ClassId\":101},{\"ClassName\":\"Art\",\"ClassId\":102}]}";
-
-// Deserializing the JSON string back to a Student object
-Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Convert JSON String to an object
-...
-```
 
 ##### Allow Comments, Trailing Commas With JsonSerializer 
 
