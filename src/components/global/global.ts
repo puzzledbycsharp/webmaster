@@ -16,7 +16,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/',
     title:'The Best C# Deserializer To Convert JSON To An Object', 
     dateCreated:'2023-05-12T05:32:49-04:00',
-    dateModified:'2023-06-06T16:38:40-04:00',
+    dateModified:'2023-06-15T13:24:43-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-small.webp',
