@@ -675,7 +675,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/string/get-a-substring-before-or-after-a-certain-character/',
     title: 'In C#, Get A Substring Before Or After A Certain Character',
     dateCreated: '2022-06-26T00:08:56+00:00',
-    dateModified:'2023-05-10T22:40:09-04:00',
+    dateModified:'2023-06-23T12:18:14-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/string/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/string/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/string/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-small.webp',
