@@ -6,12 +6,18 @@ title: C# Dictionary Best Practices And What To Avoid
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 <ImageWrapper imageSource="../../../assets/dictionary/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-medium.webp" imageSrcSet="../../../assets/dictionary/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-small.webp 250w, ../../../assets/dictionary/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-medium.webp 500w, ../../../assets/dictionary/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Dictionary Best Practices And What To Avoid Page Banner Image" widthImage = "6000" heightImage = "4000" />
 
 ## Introduction
 
-Dictionary using best practices with the right key scales well over large datasets. Several pitfalls should be avoided. In C#, the dictionary is one of my favorite go-to data structures when I need top performance from my app.
+Dictionary using best practices with the right key scales well over large datasets. Several pitfalls should be avoided. In C#, the dictionary is one of my favorite go-to data structures when I need top performance from my app. I also learned this long ago and was one the consistant issues that I ran into until I started programming more defensively. I have also seen other developers make simliar mistakes by not using theses practices and erros occured. 
+
+### Video Code Walkthrough
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); }' youtubeId="AUfhKNGENnE"/>
+
+
 
 ### Dictionary Add Key-Value Pairs
 
@@ -68,7 +74,7 @@ Locker#:434, Contends:cell phone
 Locker#:2, Contends:basketball
 ```
 
-### Add Exceptions
+### Add Errors
 
 ###### System.ArgumentException:An item with the same key has already been added
 
@@ -105,6 +111,24 @@ public static bool CheckIfKeyExists(string key, string value, Dictionary<string,
 }
 ```
 
+##### Use TryAdd To Simply
+
+You can also use the TryAdd method to simply this. It checks if the key exists and adds if necessary. It doesn't throw an error. Let's see how it looks below.
+
+```cs
+public static bool CheckIfKeyExists(string key, string value, Dictionary<string, string> dictionary)
+{
+    if (dictionary.TryAdd(key, value))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+```
+
 Next, we add items to this dictionary. Let’s assume that we have a set of locker numbers that can only hold one item each. We will attempt to add 6 items but if a locker number already exists in our dictionary then that item will not be added.
 
 ```cs
@@ -127,6 +151,11 @@ static void Main(string[] args)
 As we can see that unique keys can be added to the dictionary. The items tennis racket and pillow could not be added because those keys already exist.
 
 
+###### Additional Information On ContainsKey and TryAdd
+
+I've written another article comparing TryAdd and ContainsKey in performance so see [Check If The Key Exists In The C# Dictionary](https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/)
+
+
 ### Get Value
 
 Accessing the dictionary is done by passing the key value in the brackets ‘[]’, which is called the indexer. The value is returned almost instantly without any search done. This speed is the main strength of the dictionary, this quick access to the values. You can see the syntax of the get value in lines 9-12 below.
@@ -146,7 +175,7 @@ static void Main(string[] args)
 }
 ```
 
-### Get Value Exceptions
+### Get Value Errors
 
 ###### System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary
 
@@ -228,3 +257,15 @@ GetValueByTryGetValue - Locker#:2, Contends:basketball
 GetValueByCheckIfKeyExists - Locker#:2444324, Contends:
 GetValueByTryGetValue - Locker#:32354, Contends:
 ```
+
+### Conclusion
+
+For adding you should use TryAdd because it does two things at once by checking the if they doesn't exist and then add.
+
+For getting the value, you should u
+
+You should be using these methods in some form or another because other wise you'll be open to errors from invalid inputs duplicated inputs. There will ensure that the inputs will be checked and create a better 
+
+###### Additional Information On ContainsKey and TryGetValue
+
+I've written another article comparing TryGetValue and ContainsKey in performance so see [TryGetValue Vs ContainsKey With Indexer In .NET](https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/)
