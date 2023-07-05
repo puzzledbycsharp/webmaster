@@ -15,13 +15,15 @@ import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 In .NET, Array vs Lists vs Linked Lists is a common collection comparison with each having its strengths and trade-offs so it’s important to understand these as we make our collection choices in our programming applications. There is typically no one size that fits all because application needs may depend on speed, memory(32bit or 64bit), CPU resources, size of the data, readability, and ease of use are all factors that can affect which collection. With small data sizes, the performance difference may not be noticeable but when the data becomes large then you’ll want to choose carefully.
 
+### Summary Video
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("MbNzMCBNMHo", {      height: "360",      width: "640",      videoId: "MbNzMCBNMHo"    }); }' youtubeId="MbNzMCBNMHo"/>
+
+
 ### Common Elements
 
 <Table header ="#,Analysis Type,Array,List,Linked List" rows="1,Item Search Speed,O(N),O(N),O(N);2,Index Speed,O(1),O(1),O(N);3,Initial Size,Yes,Yes,No;4,Automatic Resize,No,Yes,Yes;5,Size Property,	Count(),Count(),Count();6,Add,no,O(N)(If expansion is required),O(1);7,Insert,none,O(N) (If expansion is required),O(N) AddBefore() | AddAfter() | AddFirst() | AddLast();8,Delete,none,O(N),O(N);9,Duplicates,Yes,Yes,Yes;" />
 
-### Summary Video
-
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("MbNzMCBNMHo", {      height: "360",      width: "640",      videoId: "MbNzMCBNMHo"    }); }' youtubeId="MbNzMCBNMHo"/>
 
 Item search speed is the time it takes to find an item in the list. If we don't know where the item is in the list then for all the list we need to traverse the list until we find the item. The worst case is that we have to go through the entire list. This worst case is for these three types. For Array, and List there is a workaround to this worst case if we associate the item to a number or index but then we may have unused slots in our collection.
 

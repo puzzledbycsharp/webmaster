@@ -15,8 +15,6 @@ import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 In C#, we can use JSON to communicate data to and from applications. It is a string formatted with quotes It can be a web application to a backend service or REST endpoint. JSON is the format is a standardized format that doesn't require another .NET application on the other end. JSON is also considered lightweight and can be easily parsed. This gives you the flexibility to work with different programming languages on the application. So we need to understand the types and line them up with C# object to deserialize.
 
-.NET had provided a lot of different options to convert a JSON to an object but it is now down to two choices. Microsoft has phased out support for the vast majority of these other ways to deserialize a JSON. We'll go through each one and see how they compare.
-
 #### Video With Examples
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); }' youtubeId="NdpDkJy6M0s"/>
@@ -28,6 +26,8 @@ In C#, we can use JSON to communicate data to and from applications. It is a str
 
 
 ### Unsupported JSON Deserializers
+
+.NET had provided a lot of different options to convert a JSON to an object but it is now down to two choices. Microsoft has phased out support for the vast majority of these other ways to deserialize a JSON. We'll go through each one and see how they compare.
 
 I also looked into other ways to JSON implementations that were scattered across .NET at various points in time but they no longer work or are not supported. Below is a list of old JSON implementations no longer supported.
 
