@@ -15,9 +15,12 @@ import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 Dictionary using best practices with the right key scales well over large datasets. Several pitfalls should be avoided. In C#, the dictionary is one of my favorite go-to data structures when I need top performance from my app. I also learned this long ago and was one the consistant issues that I ran into until I started programming more defensively. I have also seen other developers make simliar mistakes by not using theses practices and erros occured. 
 
 ### Video Code Walkthrough
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); }' youtubeId="AUfhKNGENnE"/>
-
-
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
+player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
+player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
+player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="AUfhKNGENnE"/>
 
 ### Dictionary Add Key-Value Pairs
 
@@ -96,6 +99,19 @@ static void Main(string[] args)
 
 Before adding any key value combination to the dictionary check to see if the key already exists. Examine the code snippet below. There can not be two keys in the dictionary. Use the ContainsKey function to find if the key already exists in the dictionary.
 
+
+#### Check if Key Exists Video
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
+player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
+player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
+player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="H2sPv2iCU_8"/>
+
+
+
+#### Check if Key Exists Code
 ```cs
 public static bool CheckIfKeyExists(string key, string value, Dictionary<string, string> dictionary)
 {
@@ -111,9 +127,21 @@ public static bool CheckIfKeyExists(string key, string value, Dictionary<string,
 }
 ```
 
-##### Use TryAdd To Simply
+##### Use TryAdd To Simply The Code
 
 You can also use the TryAdd method to simply this. It checks if the key exists and adds if necessary. It doesn't throw an error. Let's see how it looks below.
+
+
+##### TryAdd Video Example
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
+player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
+player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
+player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="HjjOsIBayLA"/>
+
+##### TryAdd Code Example
 
 ```cs
 public static bool CheckIfKeyExists(string key, string value, Dictionary<string, string> dictionary)
@@ -195,7 +223,22 @@ static void Main(string[] args)
     Console.WriteLine($"Locker#:2444324, Contends:{lockerNumberContendsDictionary["2444324"]}");
 }
 ```
+
+
+#### Protect Get Code By ContainsKey
+
 There are two ways to guard against this exception. The first is the check to see if the key exists in the dictionary before trying to access that key.
+
+#### Protect Get Code By ContainsKey Video Example
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
+player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
+player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
+player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="GHCwiPR9vnE"/>
+
+#### Protect Get Code By ContainsKey Code Example
 
 ```cs
 public static string GetValueByCheckIfKeyExists(string key, ref Dictionary<string, string> dictionary)
@@ -210,8 +253,23 @@ public static string GetValueByCheckIfKeyExists(string key, ref Dictionary<strin
     }
 }
 ```
+#### Protect Get Code By TryGetValue
+
 
 The second safe way to get the value of a key is to use the TryGetValue function. I prefer this way too for two reasons. It checks if the key exists and returns true and the out parameter returns the value. This is slightly faster than checking for the key first and then getting the value in the previous method.
+
+
+#### Protect Get Code By TryGetValue Video Example
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
+player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
+player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
+player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="9uZy9AS-Jz8"/>
+
+#### Protect Get Code By TryGetValue Code Example
+
 
 ```cs
 public static string GetValueByTryGetValue(string key, ref Dictionary<string, string> dictionary)
@@ -257,6 +315,9 @@ GetValueByTryGetValue - Locker#:2, Contends:basketball
 GetValueByCheckIfKeyExists - Locker#:2444324, Contends:
 GetValueByTryGetValue - Locker#:32354, Contends:
 ```
+###### Additional Information On ContainsKey and TryGetValue
+
+I've written another article comparing TryGetValue and ContainsKey in performance so see [TryGetValue Vs ContainsKey With Indexer In .NET](https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/)
 
 ### Conclusion
 
@@ -266,6 +327,3 @@ For getting the value, you should u
 
 You should be using these methods in some form or another because other wise you'll be open to errors from invalid inputs duplicated inputs. There will ensure that the inputs will be checked and create a better 
 
-###### Additional Information On ContainsKey and TryGetValue
-
-I've written another article comparing TryGetValue and ContainsKey in performance so see [TryGetValue Vs ContainsKey With Indexer In .NET](https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/)

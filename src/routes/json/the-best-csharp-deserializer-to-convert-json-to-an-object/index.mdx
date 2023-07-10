@@ -17,7 +17,13 @@ In C#, we can use JSON to communicate data to and from applications. It is a str
 
 #### Video With Examples
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); }' youtubeId="NdpDkJy6M0s"/>
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5; var player6; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); 
+player2 = new YT.Player("ntGGn1nvpoY", {      height: "360",      width: "640",      videoId: "ntGGn1nvpoY"    });
+player3 = new YT.Player("yXXAx6LpgQo", {      height: "360",      width: "640",      videoId: "yXXAx6LpgQo"    });
+player4 = new YT.Player("Ym2uS9Svjpg", {      height: "360",      width: "640",      videoId: "Ym2uS9Svjpg"    });
+player5 = new YT.Player("jirasZ6vk1A", {      height: "360",      width: "640",      videoId: "jirasZ6vk1A"    });
+player6 = new YT.Player("3beTJMVYKAQ", {      height: "360",      width: "640",      videoId: "3beTJMVYKAQ"    });}' youtubeId="NdpDkJy6M0s"/>
 
 ### Summary Table
 
@@ -371,6 +377,16 @@ Class ID: 256
 
 This is a test to see how fast the JSON deserializers can create the object. It takes an average of 10 tests. Each test there 100 loops of the test function. Each test function will have 10000 JSONs to convert into objects.
 
+#### Speed Test Video
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5; var player6; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); 
+player2 = new YT.Player("ntGGn1nvpoY", {      height: "360",      width: "640",      videoId: "ntGGn1nvpoY"    });
+player3 = new YT.Player("yXXAx6LpgQo", {      height: "360",      width: "640",      videoId: "yXXAx6LpgQo"    });
+player4 = new YT.Player("Ym2uS9Svjpg", {      height: "360",      width: "640",      videoId: "Ym2uS9Svjpg"    });
+player5 = new YT.Player("jirasZ6vk1A", {      height: "360",      width: "640",      videoId: "jirasZ6vk1A"    });
+player6 = new YT.Player("3beTJMVYKAQ", {      height: "360",      width: "640",      videoId: "3beTJMVYKAQ"    });}' youtubeId="ntGGn1nvpoY"/>
+
 #### JsonSerializer Deserialize Speed Test Code
 
 ```cs
@@ -648,6 +664,17 @@ JsonSerializer default is case sensitive which helps to improve speed. While New
 
 Case-insensitive property names can be enabled by using the JsonSerializerOptions and passing it to the method.
 
+#### Case-Insensitive Video
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5; var player6; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); 
+player2 = new YT.Player("ntGGn1nvpoY", {      height: "360",      width: "640",      videoId: "ntGGn1nvpoY"    });
+player3 = new YT.Player("yXXAx6LpgQo", {      height: "360",      width: "640",      videoId: "yXXAx6LpgQo"    });
+player4 = new YT.Player("Ym2uS9Svjpg", {      height: "360",      width: "640",      videoId: "Ym2uS9Svjpg"    });
+player5 = new YT.Player("jirasZ6vk1A", {      height: "360",      width: "640",      videoId: "jirasZ6vk1A"    });
+player6 = new YT.Player("3beTJMVYKAQ", {      height: "360",      width: "640",      videoId: "3beTJMVYKAQ"    });}' youtubeId="yXXAx6LpgQo"/>
+
+
 
 ##### Case-Insensitive JsonSerializer
 ```cs
@@ -681,6 +708,18 @@ Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Conver
 
 Camel case is when the first letter of the first word is lower case and then all following word's first letters are upper case. The JSON can be camel case when the class properties don't need to be changed. We'll use JsonSerializerOptions to set the JSON properties.
 
+
+#### Camel Case Property Names Video
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5; var player6; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); 
+player2 = new YT.Player("ntGGn1nvpoY", {      height: "360",      width: "640",      videoId: "ntGGn1nvpoY"    });
+player3 = new YT.Player("yXXAx6LpgQo", {      height: "360",      width: "640",      videoId: "yXXAx6LpgQo"    });
+player4 = new YT.Player("Ym2uS9Svjpg", {      height: "360",      width: "640",      videoId: "Ym2uS9Svjpg"    });
+player5 = new YT.Player("jirasZ6vk1A", {      height: "360",      width: "640",      videoId: "jirasZ6vk1A"    });
+player6 = new YT.Player("3beTJMVYKAQ", {      height: "360",      width: "640",      videoId: "3beTJMVYKAQ"    });}' youtubeId="Ym2uS9Svjpg"/>
+
+
 ##### Camel Case JsonSerializer
 ```cs
 //Camel case
@@ -708,6 +747,16 @@ string json = "{\"name\":\"John Doe\",\"age\":18,\"grade\":\"A\",\"isPresent\":t
 Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Convert JSON String to an object
 ...
 ```
+
+#### Allow Comments, Trailing Commas With JsonSerializer Video
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5; var player6; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); 
+player2 = new YT.Player("ntGGn1nvpoY", {      height: "360",      width: "640",      videoId: "ntGGn1nvpoY"    });
+player3 = new YT.Player("yXXAx6LpgQo", {      height: "360",      width: "640",      videoId: "yXXAx6LpgQo"    });
+player4 = new YT.Player("Ym2uS9Svjpg", {      height: "360",      width: "640",      videoId: "Ym2uS9Svjpg"    });
+player5 = new YT.Player("jirasZ6vk1A", {      height: "360",      width: "640",      videoId: "jirasZ6vk1A"    });
+player6 = new YT.Player("3beTJMVYKAQ", {      height: "360",      width: "640",      videoId: "3beTJMVYKAQ"    });}' youtubeId="jirasZ6vk1A"/>
 
 
 ##### Allow Comments, Trailing Commas With JsonSerializer 
@@ -745,9 +794,20 @@ Student deserializedJSON = JsonConvert.DeserializeObject<Student>(json);//Conver
 
 ### JSON Tips 
 
-You can get a class structure based on the JSON through visual studio.
+You can get a class structure based on the JSON through Visual Studio.
 
-Once you copy the JSON, then go to visual studio. Edit -> Past Special -> Past JSON as Classes will create the class structure for you. There's an example of the output. If I have the following JSON, visual studio will convert it into the following.
+#### Generate A Class Structure For Your JSON
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5; var player6; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("NdpDkJy6M0s", {      height: "360",      width: "640",      videoId: "NdpDkJy6M0s"    }); 
+player2 = new YT.Player("ntGGn1nvpoY", {      height: "360",      width: "640",      videoId: "ntGGn1nvpoY"    });
+player3 = new YT.Player("yXXAx6LpgQo", {      height: "360",      width: "640",      videoId: "yXXAx6LpgQo"    });
+player4 = new YT.Player("Ym2uS9Svjpg", {      height: "360",      width: "640",      videoId: "Ym2uS9Svjpg"    });
+player5 = new YT.Player("jirasZ6vk1A", {      height: "360",      width: "640",      videoId: "jirasZ6vk1A"    });
+player6 = new YT.Player("3beTJMVYKAQ", {      height: "360",      width: "640",      videoId: "3beTJMVYKAQ"    });}' youtubeId="3beTJMVYKAQ"/>
+
+
+Once you copy the JSON, then go to Visual Studio. Edit -> Past Special -> Past JSON as Classes will create the class structure for you. There's an example of the output. If I have the following JSON, visual studio will convert it into the following.
 ```json
 {"Name":"John Doe", "Age":18,"Grade":"A","IsPresent":true,"GPA":3.8,"Height":170.5,"Grades":{"Math":90,"Science":85,"English":92},"Subjects":["Math","Science","English"],"CustomClasses":[{"ClassName":"History","ClassId":101},{"ClassName":"Art","ClassId":102}]}
 

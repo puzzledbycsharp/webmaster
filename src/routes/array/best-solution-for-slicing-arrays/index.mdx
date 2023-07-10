@@ -14,6 +14,9 @@ import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 The C# array slice methods I'm going to look at are ArraySegment, Span Slice, Range Operator, and LINQ Skip Take. Each of these has pros and cons which I will get into and also test the performance of each. Slicing arrays is an important topic since a lot of data is array-based and we may not want all the data in an array but different portions of it. Some common examples of array slices could be string related since strings are an array of characters. Another place could be file-based CSV parsing and file IO operations or even parsing data from a database. We're going to start with ArraySegment for our first analysis.
 
+### Video With Examples
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("HAfJpmg-ARw", {      height: "360",      width: "1280",      videoId: "HAfJpmg-ARw"    });   player2 = new YT.Player("BgpuYa4VKqs", {      height: "360",      width: "640",      videoId: "BgpuYa4VKqs"    });}' youtubeId ="HAfJpmg-ARw"/>
 
 ### Summary Table
 
@@ -21,9 +24,6 @@ The C# array slice methods I'm going to look at are ArraySegment, Span Slice, Ra
 
 {/*NOTE: maybe add array copy some day */}
 
-### Video With Examples
-
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("HAfJpmg-ARw", {      height: "360",      width: "1280",      videoId: "HAfJpmg-ARw"    });   player2 = new YT.Player("BgpuYa4VKqs", {      height: "360",      width: "640",      videoId: "BgpuYa4VKqs"    });}' youtubeId ="HAfJpmg-ARw"/>
 
 
 ### ArraySegment Method For Slicing Arrays

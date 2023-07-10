@@ -17,9 +17,11 @@ This scenario is common in parsing strings, user data, database data, and automa
 
 #### Video With Examples
 
-{/* <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("8GFjuHgdOks", {      height: "360",      width: "640",      videoId: "8GFjuHgdOks"    }); }' youtubeId="8GFjuHgdOks"/> */}
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player2;  function onYouTubePlayerAPIReady() {  player1 = new YT.Player("8GFjuHgdOks", {      height: "360",      width: "640",      videoId: "8GFjuHgdOks"    });   player2 = new YT.Player("sgjr30pF9hE", {      height: "360",      width: "640",      videoId: "sgjr30pF9hE"    }); }' youtubeId="8GFjuHgdOks"/>
-
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("8GFjuHgdOks", {      height: "360",      width: "640",      videoId: "8GFjuHgdOks"    }); 
+player2 = new YT.Player("Pzi1an0a75o", {      height: "360",      width: "640",      videoId: "Pzi1an0a75o"    });
+player3 = new YT.Player("sgjr30pF9hE", {      height: "360",      width: "640",      videoId: "sgjr30pF9hE"    });
+player4 = new YT.Player("I_rwVAFseb0", {      height: "360",      width: "640",      videoId: "I_rwVAFseb0"    });}' youtubeId="8GFjuHgdOks"/>
 
 ### Summary Table
 
@@ -27,9 +29,21 @@ This scenario is common in parsing strings, user data, database data, and automa
 
 
 ### Get A Substring After A Certain Character
+
 #### Substring After By IndexOf and Substring
 
 The first step is to dynamically find a certain character's index using IndexOf then with the index use the start of a new substring. The rest of the characters are taken and returned as a new substring.
+
+
+##### Substring After By IndexOf and Substring Video
+
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("8GFjuHgdOks", {      height: "360",      width: "640",      videoId: "8GFjuHgdOks"    }); 
+player2 = new YT.Player("Pzi1an0a75o", {      height: "360",      width: "640",      videoId: "Pzi1an0a75o"    });
+player3 = new YT.Player("sgjr30pF9hE", {      height: "360",      width: "640",      videoId: "sgjr30pF9hE"    });
+player4 = new YT.Player("I_rwVAFseb0", {      height: "360",      width: "640",      videoId: "I_rwVAFseb0"    });}' youtubeId="Pzi1an0a75o"/>
+
 
 ###### Starting String
 <Table header ="0,1,2,3,4,5,6,7,8" rows="s,i,x,t,y,-,t,w,o" />
@@ -187,10 +201,14 @@ example.com
 
 #### Substring After By String Split
 
-###### Video:Performance Minded Coding | Avoid String Split for C# Substring After A Character
+#### Video:Performance Minded Coding | Avoid String Split for C# Substring After A Character
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player2;  function onYouTubePlayerAPIReady() {  player1 = new YT.Player("8GFjuHgdOks", {      height: "360",      width: "640",      videoId: "8GFjuHgdOks"    });   player2 = new YT.Player("sgjr30pF9hE", {      height: "360",      width: "640",      videoId: "sgjr30pF9hE"    }); }' youtubeId="sgjr30pF9hE"/>
-
+https://youtube.com/shorts/sgjr30pF9hE?feature=share
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("8GFjuHgdOks", {      height: "360",      width: "640",      videoId: "8GFjuHgdOks"    }); 
+player2 = new YT.Player("Pzi1an0a75o", {      height: "360",      width: "640",      videoId: "Pzi1an0a75o"    });
+player3 = new YT.Player("sgjr30pF9hE", {      height: "360",      width: "640",      videoId: "sgjr30pF9hE"    });
+player4 = new YT.Player("I_rwVAFseb0", {      height: "360",      width: "640",      videoId: "I_rwVAFseb0"    });}' youtubeId="sgjr30pF9hE"/>
 
 ```cs
 string fileNameWithExtension = "Street430_10302001.csv";//Orignal filename with extension before manipulation 
@@ -345,8 +363,19 @@ fileNameWithExtension:Drive5405.12042021.xls, fileName:Drive5405.12042021
 
 The corrected code now returns the corrected full file name without the extension.
 
-#### Substring After By String Concat And LINQ
+#### Substring Before By String Concat And LINQ
 
+
+#### Video With Code Example
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("8GFjuHgdOks", {      height: "360",      width: "640",      videoId: "8GFjuHgdOks"    }); 
+player2 = new YT.Player("Pzi1an0a75o", {      height: "360",      width: "640",      videoId: "Pzi1an0a75o"    });
+player3 = new YT.Player("sgjr30pF9hE", {      height: "360",      width: "640",      videoId: "sgjr30pF9hE"    });
+player4 = new YT.Player("I_rwVAFseb0", {      height: "360",      width: "640",      videoId: "I_rwVAFseb0"    });}' youtubeId="I_rwVAFseb0"/>
+
+
+####  Code Example
 ```cs
 string startingText = "Matthew.Smith@example.com";
 

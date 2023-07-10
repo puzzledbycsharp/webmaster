@@ -15,15 +15,17 @@ import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 If you have two arrays and need to combine them into one array in C#, then there are many built-in options to use like Concat, CopyTo, AddRange, and BlockCopy. Some of these produce a new array or reuse an existing array. Most of these are one line of code but we'll examine the conciseness of the code. I'll also take a look at the performance and how each of these methods scales.
 
+### Video With Examples 
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="8r43IETaIPQ"/>
+
+
 ### Summary Table
 
 <Table header ="Analysis Type,Enumerable Concat,Array CopyTo,List AddRange,Buffer BlockCopy" rows="Rank,1,2,3,4;.NET Framework Version Available,>= .NET 3.5,>= .NET 1.1,>= .NET 2.0,>= .NET 1.1;Lines Of Code,1,5,4,6;Duplicates Removed,No,No,No,No;Speed Test,14769ms,15608ms,28993ms,N/A;Value Type Speed Test,7172ms,7240ms,12272ms,7123ms;Limitations,None,None,None,Only Value Types Supported;" />
 
 {/* not an exhastive list- wanted to add two more including a manual method. */}
 
-### Video With Examples 
-
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="8r43IETaIPQ"/>
 
 ### Combine Two Arrays Into One With The Enumerable Concat Method
 
@@ -40,6 +42,9 @@ This method will combine the second array with the first. So in the output, you'
 {/* ### Enumerable Concat Video Example
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player2;  function onYouTubePlayerAPIReady() { player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    });   player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="ZLLXo9hhVV8"/> */}
+#### The Enumerable Concat Method Video Example
+
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="ZLLXo9hhVV8"/>
 
 #### The Enumerable Concat Method Code Example
 
