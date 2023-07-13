@@ -7,12 +7,21 @@ title: Check If The Key Exists In The C# Dictionary
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 <ImageWrapper imageSource="../../../../assets/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp" imageSrcSet="../../../../assets/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-small.webp 500w, ../../../../assets/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-medium.webp 1000w, ../../../../assets/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Check If The Key Exists In The Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
 
 Checking the C# dictionary if the key exists is an essential tool because it guards against exceptions if you try to access the dictionary and the key does not exist. I will go into the different ways you can see if the key is already there and then take the appropriate action. Generally, if the key already exists then it is safe to access that value from the dictionary but if the key doesn't then you'll want to add a key and value to the dictionary or not do any operation.
+
+### Video Code Walkthrough
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("omqc2_YJKyg", {      height: "360",      width: "640",      videoId: "omqc2_YJKyg"    }); }' youtubeId="omqc2_YJKyg"/>
+
+### Summary Table 
+
+<Table header ="Overall Rank,Method,Speed" rows="1,TryGetValue With Get Operation,7978ms;2,ContainsKey With Get Operation,8389ms;3,TryAdd With Add Operation,9257ms;4,ContainsKey With Add Operation,9433ms;" />
 
 ### ContainsKey Method
 
@@ -128,9 +137,137 @@ if (salaryDictionary.TryAdd(1999, 52000))//If it can add key value pair then key
 1999 salary:52000
 ```
 
+### Performance Test
+
+This will be a test where 10 tests are run where each test will have 10 loops. In each loop, will be a test method run that has 5 million items in a dictionary. 
+
+#### ContainsKey Speed Get Operation Test Code
+
+```cs
+void TestMethod(Dictionary<string, DateTime> sourceDictionary, Dictionary<string, DateTime> destinationDictionary)
+{
+    if (destinationDictionary.ContainsKey(keyToCheck))
+    {
+        DateTime currentValue = destinationDictionary[keyToCheck].AddHours(1)   ;
+    }
+}
+```
+
+#### TryGetValue Speed Get Operation Test Code
+
+```cs
+void TestMethod(Dictionary<string, DateTime> sourceDictionary, Dictionary<string, DateTime> destinationDictionary)
+{
+    if (destinationDictionary.TryGetValue(keyToCheck, out DateTime value))
+    {
+        DateTime currentValue = value.AddHours(1)   ;
+    }
+}
+```
+
+
+#### ContainsKey Speed Get Operation Test Code Output
+```
+Test 1: In 0m 8s 408ms
+Test 2: In 0m 8s 698ms
+Test 3: In 0m 8s 438ms
+Test 4: In 0m 8s 670ms
+Test 5: In 0m 8s 575ms
+Test 6: In 0m 8s 357ms
+Test 7: In 0m 8s 375ms
+Test 8: In 0m 8s 179ms
+Test 9: In 0m 8s 116ms
+Test 10: In 0m 8s 72ms
+ContainsKey Get Average Speed:8389ms, In 10 Tests
+```
+
+#### TryGetValue Speed Get Operation Test Code Output
+```
+Test 1: In 0m 8s 256ms
+Test 2: In 0m 8s 201ms
+Test 3: In 0m 8s 194ms
+Test 4: In 0m 8s 441ms
+Test 5: In 0m 7s 985ms
+Test 6: In 0m 7s 697ms
+Test 7: In 0m 7s 627ms
+Test 8: In 0m 7s 757ms
+Test 9: In 0m 7s 803ms
+Test 10: In 0m 7s 811ms
+TryGetValue Get Average Speed:7978ms, In 10 Tests
+```
+
+#### ContainsKey Speed Add Operation Test Code
+
+```cs
+void TestMethod(Dictionary<string, DateTime> sourceDictionary, Dictionary<string, DateTime> destinationDictionary)
+{
+    foreach (KeyValuePair<string,DateTime> sourceKeyValue in sourceDictionary)
+    {
+        if (!destinationDictionary.ContainsKey(sourceKeyValue.Key))
+        {
+            destinationDictionary.Add(sourceKeyValue.Key, sourceKeyValue.Value);
+        }
+    }
+}
+```
+
+#### TryAdd Speed Get Test Code
+
+```cs
+void TestMethod(Dictionary<string, DateTime> sourceDictionary, Dictionary<string, DateTime> destinationDictionary)
+{
+    foreach (KeyValuePair<string, DateTime> sourceEntry in sourceDictionary)//loop through each source dictionary entries
+    {
+        if(destinationDictionary.TryGetValue(sourceEntry.Key, out DateTime value))
+        {
+            DateTime newValue = value.AddHours(1);
+        }
+        else
+        {
+            destinationDictionary.Add(sourceEntry.Key, sourceEntry.Value);//Add key value pair to dictionary
+        }
+    }
+}
+```
+
+
+#### ContainsKey Speed Test Code Output
+```
+Test 1: In 0m 9s 915ms
+Test 2: In 0m 9s 450ms
+Test 3: In 0m 9s 313ms
+Test 4: In 0m 9s 478ms
+Test 5: In 0m 9s 377ms
+Test 6: In 0m 9s 337ms
+Test 7: In 0m 9s 377ms
+Test 8: In 0m 9s 308ms
+Test 9: In 0m 9s 462ms
+Test 10: In 0m 9s 306ms
+ContainsKey Add Average Speed:9433ms, In 10 Tests
+```
+
+#### TryGetValue Speed Test Code Output
+```
+Test 1: In 0m 9s 343ms
+Test 2: In 0m 9s 24ms
+Test 3: In 0m 9s 246ms
+Test 4: In 0m 9s 508ms
+Test 5: In 0m 9s 287ms
+Test 6: In 0m 9s 153ms
+Test 7: In 0m 9s 789ms
+Test 8: In 0m 8s 830ms
+Test 9: In 0m 9s 104ms
+Test 10: In 0m 9s 283ms
+TryAdd Add Average Speed:9257ms, In 10 Tests
+```
+
+
+
+
+
 ### Conclusion
 
-<Table header ="Overall Rank,Method" rows="1,TryGetValue;2,ContainsKey;3,TryAdd;" />
+
 
 The best method suited for checking if the key exists in the dictionary is the TryGetValue Method. It does two things at time which is helpful in most cases. It checks if the keys exists and if it does then returns the value of that key which most often the case what we're trying to do.
 
