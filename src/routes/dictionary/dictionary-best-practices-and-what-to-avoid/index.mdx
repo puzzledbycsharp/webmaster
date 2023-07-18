@@ -97,6 +97,9 @@ static void Main(string[] args)
 ```
 ### Check if Key Exists Already
 
+<ImageWrapper imageSource="../../../../assets/dictionary/containskey-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/containskey-method-chart-small.webp 500w, ../../../../assets/dictionary/containskey-method-chart-medium.webp 1000w, ../../../../assets/dictionary/containskey-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "ContainsKey Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
+
 Before adding any key value combination to the dictionary check to see if the key already exists. Examine the code snippet below. There can not be two keys in the dictionary. Use the ContainsKey function to find if the key already exists in the dictionary.
 
 
@@ -112,6 +115,11 @@ player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640", 
 
 
 #### Check if Key Exists Code
+
+<ImageWrapper imageSource="../../../../assets/dictionary/containskey-syntax-image-medium.webp" imageSrcSet="../../../../assets/dictionary/containskey-syntax-image-small.webp 500w, ../../../../assets/dictionary/containskey-syntax-image-medium.webp 1000w, ../../../../assets/dictionary/containskey-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
+
+
 ```cs
 public static bool CheckIfKeyExists(string key, string value, Dictionary<string, string> dictionary)
 {
@@ -129,6 +137,8 @@ public static bool CheckIfKeyExists(string key, string value, Dictionary<string,
 
 ##### Use TryAdd To Simply The Code
 
+<ImageWrapper imageSource="../../../../assets/dictionary/tryadd-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/tryadd-method-chart-small.webp 500w, ../../../../assets/dictionary/tryadd-method-chart-medium.webp 1000w, ../../../../assets/dictionary/tryadd-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryAdd Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
 You can also use the TryAdd method to simply this. It checks if the key exists and adds if necessary. It doesn't throw an error. Let's see how it looks below.
 
 
@@ -142,6 +152,9 @@ player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640", 
 player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="HjjOsIBayLA"/>
 
 ##### TryAdd Code Example
+
+<ImageWrapper imageSource="../../../../assets/dictionary/tryadd-syntax-image-medium.webp" imageSrcSet="../../../../assets/dictionary/tryadd-syntax-image-small.webp 500w, ../../../../assets/dictionary/tryadd-syntax-image-medium.webp 1000w, ../../../../assets/dictionary/tryadd-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
 
 ```cs
 public static bool CheckIfKeyExists(string key, string value, Dictionary<string, string> dictionary)
@@ -240,6 +253,10 @@ player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640", 
 
 #### Protect Get Code By ContainsKey Code Example
 
+<ImageWrapper imageSource="../../../../assets/dictionary/containskey-syntax-image-medium.webp" imageSrcSet="../../../../assets/dictionary/containskey-syntax-image-small.webp 500w, ../../../../assets/dictionary/containskey-syntax-image-medium.webp 1000w, ../../../../assets/dictionary/containskey-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
+
+
 ```cs
 public static string GetValueByCheckIfKeyExists(string key, ref Dictionary<string, string> dictionary)
 {
@@ -269,6 +286,9 @@ player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640", 
 player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="9uZy9AS-Jz8"/>
 
 #### Protect Get Code By TryGetValue Code Example
+
+<ImageWrapper imageSource="../../../../assets/dictionary/trygetvalue-syntax-image-medium.webp" imageSrcSet="../../../../assets/dictionary/trygetvalue-syntax-image-small.webp 500w, ../../../../assets/dictionary/trygetvalue-syntax-image-medium.webp 1000w, ../../../../assets/dictionary/trygetvalue-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
 
 
 ```cs
@@ -317,13 +337,13 @@ GetValueByTryGetValue - Locker#:32354, Contends:
 ```
 ###### Additional Information On ContainsKey and TryGetValue
 
-I've written another article comparing TryGetValue and ContainsKey in performance so see [TryGetValue Vs ContainsKey With Indexer In .NET](https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/)
+I've written another article comparing TryGetValue and ContainsKey in performance so see [TryGetValue Vs ContainsKey With Indexer In .NET](https://puzzledbycsharp.com/dictionary/trygetvalue-vs-containskey-with-indexer/)
 
 ### Conclusion
 
 For adding you should use TryAdd because it does two things at once by checking the if they doesn't exist and then add.
 
-For getting the value, you should u
+For getting the value, you should use TryGetValue because it checks if it is safe to get the value from that key.
 
 You should be using these methods in some form or another because other wise you'll be open to errors from invalid inputs duplicated inputs. There will ensure that the inputs will be checked and create a better 
 

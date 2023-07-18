@@ -25,9 +25,14 @@ player1 = new YT.Player("omqc2_YJKyg", {      height: "360",      width: "640", 
 
 ### ContainsKey Method
 
+<ImageWrapper imageSource="../../../../assets/dictionary/containskey-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/containskey-method-chart-small.webp 500w, ../../../../assets/dictionary/containskey-method-chart-medium.webp 1000w, ../../../../assets/dictionary/containskey-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "ContainsKey Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
 The first go-to method of checking the existents of the key is the ContainsKey method. You pass into a key you want to check and it returns a bool value of true or false if the key exists in the dictionary. It is very fast and very readable so this is an excellent method to check keys.
 
 #### ContainsKey Method Example Code
+
+<ImageWrapper imageSource="../../../../assets/dictionary/containskey-syntax-image-medium.webp" imageSrcSet="../../../../assets/dictionary/containskey-syntax-image-small.webp 500w, ../../../../assets/dictionary/containskey-syntax-image-medium.webp 1000w, ../../../../assets/dictionary/containskey-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
 
 This example shows a dictionary with the year as the key and the salary per year as the value. Before each operation, I use the ContainsKey method to check if the key exists. In the first operations set, if the key exists then does an update and prints the value from the dictionary
 
@@ -64,9 +69,15 @@ As expected the printed values for the updated and added key-value pairs.
 
 ### TryGetValue Method
 
+<ImageWrapper imageSource="../../../../assets/dictionary/trygetvalue-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/trygetvalue-method-chart-small.webp 500w, ../../../../assets/dictionary/trygetvalue-method-chart-medium.webp 1000w, ../../../../assets/dictionary/trygetvalue-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
+
 TryGetValue is another way that we can check if the key exists. It does two things at the same time. It checks if the key exists then if the key exists it returns true and the value is pushed on the out parameter. If the key does not exist then it returns false and pushes null on the out parameters. I tend to use this more than ContainsKey because usually, we don't just want to check if the key exists in the dictionary only but we want to do other operations such uses the value in the dictionary. Let's look at an example.
 
-#### TryGetValue Method Code example
+#### TryGetValue Method Code Example
+
+<ImageWrapper imageSource="../../../../assets/dictionary/trygetvalue-syntax-image-medium.webp" imageSrcSet="../../../../assets/dictionary/trygetvalue-syntax-image-small.webp 500w, ../../../../assets/dictionary/trygetvalue-syntax-image-medium.webp 1000w, ../../../../assets/dictionary/trygetvalue-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
 
 In this example code, TryGetValue does the key check and if true returns the salary. I then use the salary to add 5k to it and assign it to the dictionary.
 
@@ -104,9 +115,14 @@ We see that the first salary item has 5k correctly added.
 
 ### TryAdd Method
 
+<ImageWrapper imageSource="../../../../assets/dictionary/tryadd-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/tryadd-method-chart-small.webp 500w, ../../../../assets/dictionary/tryadd-method-chart-medium.webp 1000w, ../../../../assets/dictionary/tryadd-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryAdd Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
 This method checks if the key exists then if it does then it will return false, but if the key does not exist then it will add the given key-value pair.
 
 #### TryAdd Method Code Example
+
+<ImageWrapper imageSource="../../../../assets/dictionary/tryadd-syntax-image-medium.webp" imageSrcSet="../../../../assets/dictionary/tryadd-syntax-image-small.webp 500w, ../../../../assets/dictionary/tryadd-syntax-image-medium.webp 1000w, ../../../../assets/dictionary/tryadd-syntax-image-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Syntax Image" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15" />
+
 
 In the first set, if the key does exist then it will not add a key-value pair so we can access the dictionary with that key.
 
