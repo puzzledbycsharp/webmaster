@@ -7,16 +7,23 @@ title: How To Update Dictionary Values In C#
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 
 <ImageWrapper imageSource="../../../../assets/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-medium.webp" imageSrcSet="../../../../assets/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-small.webp 250w, ../../../../assets/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-medium.webp 500w, ../../../../assets/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "How To Update Dictionary Values Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
 
 In C#, once a dictionary is intialized and have some data in it. You may want to update the values. There could be a counter or tracking some text from user input or have a flag in the dictionary value. All of these values can be updated in the dictionary if it isn't in a loop. 
 
+### Video Code Walkthrough
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1; function onYouTubePlayerAPIReady() {    
+player1 = new YT.Player("gne1a1NcSdM", {      height: "360",      width: "640",      videoId: "gne1a1NcSdM"    }); }' youtubeId="gne1a1NcSdM"/>
+
+### Summary Table
+<Table header ="Overall Rank,Method,Speed" rows="1,TryGetValue And Indexer,32ms;2,ContainsKey and Indexer,40ms;3,ContainsKey Then Indexer and Increment,41ms;4,TryAdd,41ms" />
+
 ### Can A Dictionary Values Be Changed?
 
 There is only one way update the value which by the indexer. [The indexer is where the key is passed and the return item is the value.](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-7.0#examples) Below the sample code to update or insert a dictionary value.
-
 
 ### Example Dictionary Indexer Code
 ```cs
@@ -62,6 +69,9 @@ System.Collections.Generic.KeyNotFoundException: 'The given key '1/20/2020' was 
 Cases like this are the reason why we are through the next methods that add addtional protection. If you want to know more about what the best practices are for dictionary I created another article that goes into more detail called [Dictionary Best Practices And What To Avoid](https://puzzledbycsharp.com/dictionary/dictionary-best-practices-and-what-to-avoid/)
 
 ### TryGetValue And Indexer
+
+<ImageWrapper imageSource="../../../../assets/dictionary/trygetvalue-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/trygetvalue-method-chart-small.webp 500w, ../../../../assets/dictionary/trygetvalue-method-chart-medium.webp 1000w, ../../../../assets/dictionary/trygetvalue-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
 
 TryGetValue is used as an check and to get the value. If it succeeds in getting the value it returns the bool true. We place this into an if statement then update the value and assign it in the dictionary. 
 
@@ -189,6 +199,9 @@ TryGetValue And Indexer Average speed:32ms, In 10 tests
 This it the result of the test with TryGetValue and Indexer completes the test in 32ms. This will be the baseline speed to compare against the rest of the methods.
 
 ### ContainsKey and Indexer Method
+
+<ImageWrapper imageSource="../../../../assets/dictionary/containskey-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/containskey-method-chart-small.webp 500w, ../../../../assets/dictionary/containskey-method-chart-medium.webp 1000w, ../../../../assets/dictionary/containskey-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "ContainsKey Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
 
 Another way we can check if a key exists is to use ContainsKey. It does not get return the value but only checks if the key exists and returns true or false based on that. But in this context, I can use the ContainsKey to check to see if the key already exists then use the indexer to get the value then update the value.
 
@@ -445,6 +458,10 @@ Using this method we can shorten the code and not lose any performance as the pr
 
 ### TryAdd Method
 
+<ImageWrapper imageSource="../../../../assets/dictionary/tryadd-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/tryadd-method-chart-small.webp 500w, ../../../../assets/dictionary/tryadd-method-chart-medium.webp 1000w, ../../../../assets/dictionary/tryadd-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryAdd Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
+
+
 With this method will try to add a dictionary key and value pair to the dictionary. Then it returns a true or false bool if the operation was successful. This also gives us an indication to whether or not the key exists in the dictionary and is therefore safe to access that key. Sample code below.
 
 ```cs
@@ -575,7 +592,6 @@ TryAdd is in line with the some of the other methods which right around 40ms.
 
 ### Conclusion
 
-<Table header ="Overall Rank,Method,Speed" rows="1,TryGetValue And Indexer,32ms;2,ContainsKey and Indexer,40ms;3,ContainsKey Then Indexer and Increment,41ms;4,TryAdd,41ms" />
 
 The best method for updating a dictionary is the TryGetValue. It does two things at the same, it checks if the key exists in the dictionary. Then it retrives the value and returns the value. This helps with performance and ease of writing the code. Once the value is obtain we can add the update logic. The other methods are pretty much the same perfermance so it wouldn't make much difference if you perfer one over the other.
 

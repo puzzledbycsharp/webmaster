@@ -272,6 +272,9 @@ public static string GetValueByCheckIfKeyExists(string key, ref Dictionary<strin
 ```
 #### Protect Get Code By TryGetValue
 
+<ImageWrapper imageSource="../../../../assets/dictionary/trygetvalue-method-chart-medium.webp" imageSrcSet="../../../../assets/dictionary/trygetvalue-method-chart-small.webp 500w, ../../../../assets/dictionary/trygetvalue-method-chart-medium.webp 1000w, ../../../../assets/dictionary/trygetvalue-method-chart-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "TryGetValue Method Chart" widthImage = "1024" heightImage = "768" classInfo ="mx-auto p-15"/>
+
+
 
 The second safe way to get the value of a key is to use the TryGetValue function. I prefer this way too for two reasons. It checks if the key exists and returns true and the out parameter returns the value. This is slightly faster than checking for the key first and then getting the value in the previous method.
 
