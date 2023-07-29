@@ -9,7 +9,9 @@ export const ROUTE_DATA = [
     image: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/visual-studio/how-to-install-visual-studio/how-to-install-visual-studio-banner-large.webp',
-    description:'This is a step-by-step guild to install Visual Studio. It is a great IDE to work with and has rich features and debugging tools.'
+    description:'This is a step-by-step guild to install Visual Studio. It is a great IDE to work with and has rich features and debugging tools.',
+    pageCount:0,
+    feedDescription:'',
   },
   { 
     location:'json/the-best-csharp-deserializer-to-convert-json-to-an-object', 
@@ -22,7 +24,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/json/the-best-csharp-deserializer-to-convert-json-to-an-object/the-best-csharp-deserializer-to-convert-json-to-an-object-banner-large.webp',
     description:'In C#, JsonSerializer Deserialize is the best JSON Deserializer method as it is the fastest based on my testing. It has native C# support.',
-    pageCount:0,
+    pageCount:41,
     feedDescription:'',
   },
   { 
@@ -50,7 +52,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/how-to-combine-two-arrays-into-one/how-to-combine-two-arrays-into-one-banner-large.webp',
     description: 'The best method for combining two arrays into one in C# is Enumerable Concat. It is fast, easy to read, and fits on one line.',
-    pageCount:9,
+    pageCount:0,
     feedDescription:'If you have two arrays and need to combine them into one array then there are many built-in C# options to use like Concat, CopyTo, AddRange, and BlockCopy. Some of these produce a new array or reuse an existing array. Most of these are one line of code but we\'ll examine the conciseness of the code. I\'ll also take a look at the performance and how each of these methods scales.',
   },
   {
@@ -58,7 +60,7 @@ export const ROUTE_DATA = [
     url: 'https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/',
     title: 'Solutions For Fill The Array With One Value In C#',
     dateCreated: '2023-03-31T00:15:53+00:00',
-    dateModified:'2023-05-09T16:00:54-04:00',
+    dateModified:'2023-07-29T03:54:04-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-twitter.webp',
     image: 'https://puzzledbycsharp.com/assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-medium.webp',
     imageSmall: 'https://puzzledbycsharp.com/assets/array/solutions-for-fill-the-array-with-one-value/solutions-for-fill-the-array-with-one-value-small.webp',
@@ -78,7 +80,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/best-solution-for-slicing-arrays/best-solution-for-slicing-arrays-large.webp',
     description: 'The C# ArraySegment Method is the fastest for slicing an array, with many other good ones to choose from. With a short syntax and has a long framework support.',
-    pageCount:5,
+    pageCount:11,
     feedDescription:'The C# array slice methods I\'m going to look at are ArraySegment, Span Slice, Range Operator, and LINQ Skip Take. Each of these has pros and cons which I will get into and also test the performance of each. Slicing arrays is an important topic since a lot of data is array-based and we may not want all the data in an array but different portions of it. Some common examples of array slices could be string related since strings are an array of characters. Another place could be file-based CSV parsing and file IO operations or even parsing data from a database. ',
   },
   {
@@ -92,7 +94,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/best-removal-method-of-duplicates-from-an-array/best-removal-method-of-duplicates-from-an-array-large.webp',
     description: 'In C#, LINQ Distinct is the best method for removing duplicate items from an array. It is the fastest method,and really compact and readably.',
-    pageCount:7,
+    pageCount:0,
     feedDescription:'',
   },
   {
@@ -106,7 +108,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/search-an-array-if-it-contains-the-keyword/search-an-array-if-it-contains-the-keyword-large.webp',
     description: 'In C#, LINQ Contains provides the fastest method for searching an array for an element match. it is on one line but it is not as flexible as Array Exits.',
-    pageCount:9,
+    pageCount:0,
     feedDescription:'',
   },
   {
@@ -120,7 +122,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/check-if-the-text-contains-a-keyword-from-the-array/check-if-the-text-contains-a-keyword-from-the-array-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/check-if-the-text-contains-a-keyword-from-the-array/check-if-the-text-contains-a-keyword-from-the-array-large.webp',
     description: 'In C#, LINQ Any provides a quick and compact syntax for checking if the text contains a keyword from a string array.',
-    pageCount:4,
+    pageCount:0,
     feedDescription:'',
   },
   {
@@ -134,7 +136,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/initializers-to-get-an-empty-array/initializers-to-get-an-empty-array-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/initializers-to-get-an-empty-array/initializers-to-get-an-empty-array-large.webp',
     description: 'In C#, the static array empty method is the best initializer for an empty array. It does what it says and quick to use by using one step.',
-    pageCount:0,
+    pageCount:13,
     feedDescription:'',
   },
   {
@@ -148,7 +150,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/how-to-initialize-arrays/how-to-initialize-arrays-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/how-to-initialize-arrays/how-to-initialize-arrays-large.webp',
     description: 'There are 4 main ways to initialize a C# array. One initializes to null or default, array initializers, shorthand and new operator.',
-    pageCount:0,
+    pageCount:18,
     feedDescription:'',
   },
   {
@@ -176,7 +178,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/array/how-to-assign-values-to-an-array/how-to-assign-values-to-an-array-large.webp',
     description: 'The Array Indexer is the best way in C# to assign values for the entire array. It\'s fast, less code and no need to convert between types.',
-    pageCount:8,
+    pageCount:0,
     feedDescription:'',
   },
   {
@@ -204,7 +206,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/trygetvalue-vs-containskey-with-indexer/trygetvalue-vs-containskey-with-indexer-large.webp',
     description: 'TryGetValue is the best .NET method for getting values from a dictionary. It performs better and takes up less code than using ContainsKey with Indexer.',
-    pageCount:0,
+    pageCount:20,
     feedDescription:'',
   },
   {
@@ -274,7 +276,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/how-to-change-a-dictionary-key/how-to-change-a-dictionary-key-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/how-to-change-a-dictionary-key/how-to-change-a-dictionary-key-large.webp',
     description: 'Changing the C# dictionary key is only possible by removing the existing key and adding the new key and existing value. This has the best performance.',
-    pageCount:0,
+    pageCount:15,
     feedDescription:'',
   },
   {
@@ -288,7 +290,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-large.webp',
     description: 'Mapping two lists into a dictionary is best done manually. It has the best performance and also can handle duplicate keys without throwing exceptions.',
-    pageCount:0,
+    pageCount:49,
     feedDescription:'',
   },
   {
@@ -316,7 +318,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/best-merging-method-for-two-dictionaries/best-merging-method-for-two-dictionaries-large.webp',
     description: 'The best dictionary merge method is the merge loop method. You can write yourself and it is faster than the C# LINQ methods.',
-    pageCount:0,
+    pageCount:33,
     feedDescription:'',
   },
   {
@@ -330,7 +332,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/get-dictionary-element-by-index/get-dictionary-element-by-index-large.webp',
     description: 'ElemenatAt lets a dictionary be accessed by numeric values, but this is far not the best way in C#',
-    pageCount:0,
+    pageCount:35,
     feedDescription:'',
   },
   {
@@ -372,7 +374,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/check-if-the-key-exists-in-the-dictionary/check-if-the-key-exists-in-the-dictionary-large.webp',
     description: 'In C#, TryGetValue is best suited for the check if the key exists in the dictionary because it checks then returns the value too.',
-    pageCount:0,
+    pageCount:19,
     feedDescription:'',
   },
   {
@@ -400,7 +402,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/how-to-update-dictionary-values/how-to-update-dictionary-values-banner-image-large.webp',
     description: 'TryGetValue is the best method in C# for updating a value because it checks if the key exists and retrieves and returns the value to use right away.',
-    pageCount:0,
+    pageCount:89,
     feedDescription:'',
   },
   {
@@ -428,7 +430,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/best-way-to-iterate-through-a-dictionary/best-way-to-iterate-through-a-dictionary-banner-image-large.webp',
     description: 'Dictionary fastest C# methods are iterating over just the Keys and Values but looping through both Key and Value a list with a class container performs better',
-    pageCount:0,
+    pageCount:32,
     feedDescription:'',
   },
   {
@@ -442,7 +444,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/list/a-comparison-between-ienumerable-and-list/a-comparison-between-ienumerable-and-list-banner-image-large.webp',
     description: 'In C#, When comparing List to IEnumerable, List has more functionality but using LINQ with IEnumerable it has better performance than List.',
-    pageCount:0,
+    pageCount:14,
     feedDescription:'',
   },
   {
@@ -470,7 +472,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/list/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/list/array-vs-list-vs-linked-list/array-vs-list-vs-linked-list-large.webp',
     description: 'In .NET, Array vs Lists vs Linked Lists is a common collection type, each has pros and cons so it is important to understand these as we make our collection choices.',
-    pageCount:0,
+    pageCount:50,
     feedDescription:'',
   },
   {
@@ -484,7 +486,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/code-snippets/default-parameter-value-not-compile-time-constant/parameter-value-not-compile-time-constant-error-large.webp',
     description: 'In C#, the exception CS1736:Default parameter value must be a compile-time constant comes when assigning an optional parameter value is not a constant or default value.',
-    pageCount:117,
+    pageCount:159,
     feedDescription:'',
   },
   {
@@ -498,7 +500,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/dictionary/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/dictionary/dictionary-best-practices-and-what-to-avoid/dictionary-best-practices-and-what-to-avoid-large.webp',
     description: 'C# Dictionary using best practices with the right key scales well over large datasets. There are several pitfalls that should be avoided.',
-    pageCount:6,
+    pageCount:36,
     feedDescription:'',
   },
   {
@@ -596,7 +598,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/code-snippets/open-file-programmatically/open-a-file-programmatically-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/code-snippets/open-file-programmatically/open-a-file-programmatically-large.webp',
     description: 'When testing or writing programs that generate files you may want automate opening the file in code than manually opening those files.',
-    pageCount:6,
+    pageCount:0,
     feedDescription:'',
   },
   {
@@ -681,7 +683,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/string/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/string/get-a-substring-before-or-after-a-certain-character/get-a-substring-before-or-after-a-certain-character-page-header-banner-large.webp',
     description: 'Getting a substring before or after a certain character is common in parsing C# strings, user data, database data, and automatic data generated by scripts.',
-    pageCount:19,
+    pageCount:162,
     feedDescription:'',
   },
   {
@@ -765,7 +767,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/string/get-a-substring-between-two-strings/get-a-substring-between-two-strings-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/string/get-a-substring-between-two-strings/get-a-substring-between-two-strings-large.webp',
     description: 'The most effective function for getting a substring between two C# strings is the span slice. Speed is an important factor because that has an impact on the end user.',
-    pageCount:10,
+    pageCount:110,
     feedDescription:'',
   },
   {
@@ -833,7 +835,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/list/how-to-find-an-item-in-the-list/how-to-find-an-item-in-the-list-large.webp',
     description: 'The best C# method for finding an item in a list is the List Find method, however, the best collection type for finding an item in the dictionary.',
-    pageCount:0,
+    pageCount:13,
     feedDescription:'',
   },
   {
@@ -876,7 +878,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/list/clone-a-list-in-depth-review/clone-a-list-in-depth-review-large.webp',
     description: 'Cloning a C# list is a matter of understanding the differences in shallow, and deep copies and the difference between value and reference types.',
-    pageCount:0,
+    pageCount:13,
     feedDescription:'',
   }
 
@@ -949,7 +951,7 @@ export const ROUTE_DATA = [
     imageSmall: '',
     imageLarge: '',
     description: '',
-    pageCount:11,
+    pageCount:0,
     feedDescription:'',
   }
   ,
@@ -1036,7 +1038,7 @@ export const ROUTE_DATA = [
     imageSmall: 'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-small.webp',
     imageLarge: 'https://puzzledbycsharp.com/assets/code-snippets/code-snippets-banner-image-large.webp',
     description: 'Code snippet is is sections of brief code and explanation that could be useful to you for simple yet fundamental issues that could arise.',
-    pageCount:5,
+    pageCount:0,
     feedDescription:'',
   }
 ] as const;
