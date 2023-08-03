@@ -21,11 +21,11 @@ player1 = new YT.Player("gne1a1NcSdM", {      height: "360",      width: "640", 
 ### Summary Table
 <Table header ="Overall Rank,Method,Speed" rows="1,TryGetValue And Indexer,32ms;2,ContainsKey and Indexer,40ms;3,ContainsKey Then Indexer and Increment,41ms;4,TryAdd,41ms" />
 
-### Can A Dictionary Values Be Changed?
+#### Can A Dictionary Values Be Changed?
 
 There is only one way update the value which by the indexer. [The indexer is where the key is passed and the return item is the value.](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-7.0#examples) Below the sample code to update or insert a dictionary value.
 
-### Example Dictionary Indexer Code
+#### Example Dictionary Indexer Code
 ```cs
 Dictionary<string, string> dateMonthDictionary = new Dictionary<string, string>();
 string key = "1/20/2020";//starting key
@@ -95,7 +95,7 @@ Console.WriteLine($"key:{key}, value:{dateMonthDictionary[key]}");
 key:1/20/2020, value:Jan
 key:1/20/2020, value:Jan 1 2020
 ```
-### TryGetValue And Indexer Speed Test
+#### TryGetValue And Indexer Speed Test
 
 Next to test this sequence's performance, I have to take test parameters to the large numbers. The time is measured on average of 10 tests with each test loop through the method 1 million times and each method will have 1 million objects for data. Since dictionary has very fast indexer operations this is why test parameters have to be so large. Let's look at the test code.
 
