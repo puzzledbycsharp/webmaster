@@ -1,0 +1,118 @@
+---
+title: Why You Should Not Try To Modify A IEnumerable Collection
+---
+
+# Why You Should Not Try To Modify A IEnumerable Collection
+
+import { useStore} from '@builder.io/qwik';
+import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+
+
+
+<ImageWrapper imageSource="../../../../assets/list/why-you-should-not-try-to-modify-a-ienumerable-collection/why-you-should-not-try-to-modify-a-ienumerable-collection-medium.webp" imageSrcSet="../../../../assets/list/why-you-should-not-try-to-modify-a-ienumerable-collection/why-you-should-not-try-to-modify-a-ienumerable-collection-small.webp 500w, ../../../../assets/list/why-you-should-not-try-to-modify-a-ienumerable-collection/why-you-should-not-try-to-modify-a-ienumerable-collection-medium.webp 1000w, ../../../../assets/list/why-you-should-not-try-to-modify-a-ienumerable-collection/why-you-should-not-try-to-modify-a-ienumerable-collection-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Why You Should Not Try To Modifiy A IEnumerable Collection Banner Image" widthImage = "2304" heightImage = "1728" />
+
+
+## Introduction
+
+In C#, there are some things you shouldn't try to do. Trying to add an item to an IEnumerable is one of those things. IEnumerable comes up many times when we work with LINQ. For example, if I wrote a LINQ command that filters out values from a list. I'll get back an IEnumerable. Then I can convert it to a valid collection. This is a general flow that we end up using for IEnumerable. We'll go through the other reasons why it is not a good idea to try to add, delete or modify an IEnumerable.
+
+
+### IEnumerable Is An Interface
+
+IEnumerable is an abstract class so there are limitations in what it can do. It is generally an outline or blueprint in the code of the class for other classes to implement. Examine the code below. This is all IEnumerable was designed to.
+
+```cs
+namespace System.Collections.Generic
+{
+    //
+    // Summary:
+    //     Exposes the enumerator, which supports a simple iteration over a collection of
+    //     a specified type.
+    //
+    // Type parameters:
+    //   T:
+    //     The type of objects to enumerate.
+    public interface IEnumerable<out T> : IEnumerable
+    {
+        //
+        // Summary:
+        //     Returns an enumerator that iterates through the collection.
+        //
+        // Returns:
+        //     An enumerator that can be used to iterate through the collection.
+        IEnumerator<T> GetEnumerator();
+    }
+}
+```
+
+This expects that the classes that are derived from IEnumerable will be the ones with the add, remove methods.
+
+### IEnumerable Only Iterates Through The Collection
+
+```cs
+    //
+    // Summary:
+    //     Returns an enumerator that iterates through the collection.
+    //
+    // Returns:
+    //     An enumerator that can be used to iterate through the collection.
+    IEnumerator<T> GetEnumerator();
+```
+
+Another way to look at it is that IEnumerable does one thing and that is to loop through the collection. There isn't an add method. This was only designed to be placed in a for or foreach looping method. See example below. 
+
+```cs
+List<string> keys = new List<string>() {"xyz","abc","xy", "yz" };//Create a new list with these values
+
+IEnumerable<string> filteredKeys = keys.Where(x => x.Contains("x"));//Filter the list and return an IEnumerable
+
+foreach (var item in filteredKeys)//Loop through the filtered list
+{
+    Console.WriteLine(item);//Print each item
+}
+```
+
+###### Code Output
+```
+xyz
+xy
+```
+
+If I try add to IEnumerable an option does not come up for it, in Visual Studio.
+
+
+
+### Use List Instead
+
+If you want to add to a collection then use List instead of IEnumerable. Even though you may get an IEnumerable back after a LINQ operation. If you want to add to that collection then use ToList() to convert the IEnumerable to a List then add the items that way. See the example below.
+
+```cs
+List<string> keys = new List<string>() {"xyz","abc","xy", "yz" };//Create a new list with these values
+
+IEnumerable<string> filteredKeys = keys.Where(x => x.Contains("x"));//Filter the list and return an IEnumerable
+
+
+List<string> convertedList = filteredKeys.ToList();//Convert IEnumerable to List
+
+convertedList.Add("newItem1");//Add items to the list
+convertedList.Add("newItem2");//Add items to the list
+
+foreach (var item in convertedList)//Loop through the filtered list
+{
+    Console.WriteLine(item);//Print each item
+}
+```
+
+###### Code Output
+```
+xyz
+xy
+newItem1
+newItem2
+```
+
+### Conclusion
+
+If you want to modify a IEnumerable collection then convert it to a List then add or remove the items from the list. IEnumerable was not designed for collection manipulation as it only has one method for looping through its items.
+
+How often do you use IEnumerable and in what way? Let me know in the comments below.

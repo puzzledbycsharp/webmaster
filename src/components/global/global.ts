@@ -1,5 +1,15 @@
 export const ROUTE_DATA = [
   { 
+    location:'fundamentals//why-you-should-not-try-to-modify-a-ienumerable-collection', 
+    url: 'https://puzzledbycsharp.com/list/why-you-should-not-try-to-modify-a-ienumerable-collection/',
+    title:'Why You Should Not Try To Modify A IEnumerable Collection', 
+    dateCreated:'2023-08-05T04:27:56-04:00',
+    dateModified:'2023-08-05T02:45:58-04:00',
+    pageCount:0,
+    description:'In C#, IEnumerable was not designed to be modified so it is best to use List when trying to modify a collection',
+    feedDescription:'',
+  },
+  { 
     location:'visual-studio/how-to-install-visual-studio', 
     url: 'https://puzzledbycsharp.com/visual-studio/how-to-install-visual-studio/',
     title:'How To Install Visual Studio', 

@@ -17,6 +17,7 @@
 - [A Comparison Between IEnumerable<T> and List<T>](list/a-comparison-between-ienumerable-and-list/index.mdx)
 - [Array vs List vs Linked List](list/array-vs-list-vs-linked-list/index.mdx)
 - [List vs Dictionary Collection Types](list/list-vs-dictionary/index.mdx)
+- [Why You Should Not Try To Modifiy A IEnumerable Collection](list/why-you-should-not-try-to-modify-a-ienumerable-collection/index.mdx)
 
 ## Dictionary
 - [Dictionary](dictionary/index.mdx)
