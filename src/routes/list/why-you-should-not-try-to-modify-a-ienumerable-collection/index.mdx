@@ -84,7 +84,10 @@ If I try add to IEnumerable an option does not come up for it, in Visual Studio.
 
 ### Use List Instead
 
-If you want to add to a collection then use List instead of IEnumerable. Even though you may get an IEnumerable back after a LINQ operation. If you want to add to that collection then use ToList() to convert the IEnumerable to a List then add the items that way. See the example below.
+If you want to add to a collection then use List instead of IEnumerable. Even though you may get an IEnumerable back after a LINQ operation. If you want to add to that collection then use ToList() to convert the IEnumerable to a List then add the items that way. To see the basic operations of a list see the following link at [Introduction to C# Lists](https://puzzledbycsharp.com/list/introduction-to-lists/)
+
+
+The example below shows what you might want to do if have a IEnumerable and want to convert it to a list to modify the collection. See the example below.
 
 ```cs
 List<string> keys = new List<string>() {"xyz","abc","xy", "yz" };//Create a new list with these values
@@ -110,6 +113,7 @@ xy
 newItem1
 newItem2
 ```
+
 
 ### Conclusion
 

@@ -1,6 +1,6 @@
 export const ROUTE_DATA = [
   { 
-    location:'fundamentals//why-you-should-not-try-to-modify-a-ienumerable-collection', 
+    location:'list/why-you-should-not-try-to-modify-a-ienumerable-collection', 
     url: 'https://puzzledbycsharp.com/list/why-you-should-not-try-to-modify-a-ienumerable-collection/',
     title:'Why You Should Not Try To Modify A IEnumerable Collection', 
     dateCreated:'2023-08-05T04:27:56-04:00',
