@@ -18,9 +18,8 @@ export const Heroaffiliatemain = component$(() => {
           <ImageWrapper imageSource={image} imageSrcSet={imageSmall + " 500w, " + image + " 1000w, " + imageLarge + " 2000w "} imageSizes="(max-width: 500w) 80vw, (max-width: 1000px) 25vw, (max-width: 2000px) 10vw" altImage={title} widthImage="6000" heightImage="4000" classInfo='rounded-t-lg' lazyLoad={true} />
         </a>
         <div >
-        <a rel="sponsored" href={url} aria-label={title}>
             <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">COURSERA</h3>
-          </a>
+
           <a rel="sponsored" href={url} aria-label={title}>
             <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h4>
           </a>
