@@ -6,6 +6,7 @@ title: Walkthrough of the String Trim Function In C#
 
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
+import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain";
 
 <ImageWrapper imageSource="../../../assets/string/walkthrough-of-the-string-trim-function/string-trim-page-header-banner-medium.webp" imageSrcSet="../../../assets/string/walkthrough-of-the-string-trim-function/string-trim-page-header-banner-small.webp 250w, ../../../assets/string/walkthrough-of-the-string-trim-function/string-trim-page-header-banner-medium.webp 500w, ../../../assets/string/walkthrough-of-the-string-trim-function/string-trim-page-header-banner-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Walkthrough of the String Trim Function Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -99,6 +100,9 @@ Console.WriteLine(trimmedOutput);//Write to screen
 ```
 CSharpDevelopers
 ```
+
+<Heroaffiliatemain/>
+
 ### How does String Trim Work?
 The are many ways to approach writing a trim function. The text is looped through twice. In the first pass, the text is grouped into whitespace and non-whitespace. The grouping of whitespace is considered to have the potential to be trimmed, but not all whitespace may be trimmed if it is in between text. Then each grouping is checked to see if it is at the beginning or the end and also has the potential to be trimmed. See the example below.
 

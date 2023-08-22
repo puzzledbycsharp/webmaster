@@ -7,12 +7,18 @@ title: Get A Substring Between Two Strings In C#
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain";
 
 <ImageWrapper imageSource="../../../../assets/string/get-a-substring-between-two-strings/get-a-substring-between-two-strings-medium.webp" imageSrcSet="../../../../assets/string/get-a-substring-between-two-strings/get-a-substring-between-two-strings-small.webp 250w, ../../../../assets/string/get-a-substring-between-two-strings/get-a-substring-between-two-strings-medium.webp 500w, ../../../../assets/string/get-a-substring-between-two-strings/get-a-substring-between-two-strings-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Get A Substring Between Two Strings Banner Image" widthImage = "2304" heightImage = "1728" />
 
 ## Introduction
 
 In C#, Sometimes we need to get a substring between two strings. These are often repeated patterns, but there are a variety of ways to do this and we look at the different methods that can be used and the pros and cons of each. Some functions are substring, split, range operator, slice, and regex. Let's start with substring.
+
+### Summary Table
+
+<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,2092ms,5 lines,3;2,String Split,9753ms,3 lines,2;3,Range Operator,10234ms,4 lines,3;4,String Substring,10139ms,5 lines,4;5,Regex,67127ms,1 line,1" />
+
 
 ### Substring Method
 
@@ -197,6 +203,8 @@ Split Average speed:9753ms, In 10 tests
 ```
 
 Split is slightly faster than substring and so far it is the fastest method and also has the most concise code but let's take a look at the other methods to see what they can offer.
+
+<Heroaffiliatemain/>
 
 ### Range Operator Method
 
@@ -469,6 +477,5 @@ Regex Average speed:67127ms, In 10 tests
 Wow, regex is incredibly slow, taking about a 1 minute in the test. Even though it is compact avoid this method if you can because it is not worth the performance hit in the long term.
 
 ### Conclusion
-<Table header ="Overall Rank,Method,Speed,Concise,Readability(1-5)" rows="1,Span Slice,2092ms,5 lines,3;2,String Split,9753ms,3 lines,2;3,Range Operator,10234ms,4 lines,3;4,String Substring,10139ms,5 lines,4;5,Regex,67127ms,1 line,1" />
 
 The most effective function for getting a substring between two strings is the span slice. Speed is the most important factor in comparing the methods because that has the biggest impact on the end user. Span Slice is by far the fastest if that setup works for your use case. It has some limitations so be aware of those. The next best is string split. It is the next best in performance but also has a compact form and speeds up productivity since you would be writing less code. The setup is one line and the function call is one so it is the most compact. The third best is the range operator and which is close to the substring but the range operator edges out the substring because it can save an additional line in the setup and the syntax is compact so it would work well for a long time. Regex was extremely slow in our testing and it should be avoided because there are much faster methods out there that do the same thing.

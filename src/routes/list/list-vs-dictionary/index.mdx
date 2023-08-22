@@ -7,6 +7,7 @@ title: List vs Dictionary .NET Collection Types
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain";
 
 <ImageWrapper imageSource="../../../assets/list/list-vs-dictionary/list-vs-dictionary-medium.webp" imageSrcSet="../../../assets/list/list-vs-dictionary/list-vs-dictionary-small.webp 250w, ../../../assets/list/list-vs-dictionary/list-vs-dictionary-medium.webp 500w, ../../../assets/list/list-vs-dictionary/list-vs-dictionary-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "List vs Dictionary Collection Types Page Banner Image" widthImage = "6000" heightImage = "4000" />
 
@@ -145,4 +146,4 @@ You need to know the key ahead of time or else you end up just looping through t
 
 Reading database entries that have a unique index value and associated values. The index will be used later to find the values. I would use a dictionary for this because there is a unique index that I can use as a key. Gather all the values of a type and display them in a drop-down list on the UI. I would use a list of this since I’m just gathering the values and displaying them on the UI. I would use a List A collection of different soda inventory and the count of each type of soda. I would use a Dictionary string, int so that the keys can be the type of soda and the values are the count of each soda. Display the data on the top 10 laptops and specs from the database. I would use a list of this. I would have an object that holds all the data of the specs and query the database to get the top laptops and their specs from the database. You need to search through a large collection of grocery store items. The UI searches by the exact name of the item. If the item is not in stock then show the item not found. If the item is in stock then show all information related to the item. I would use a dictionary for this. The item name would the be key and the associated information would be in an object. If the name is not found in the dictionary then the item would be considered not in stock.
 
-
+<Heroaffiliatemain/>

@@ -6,6 +6,7 @@ import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{YoutubeWrapper} from "~/components/youtubewrapper/youtubewrapper";
 import{Table} from "~/components/table/table";
+import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain";
 
 
 # Fix For C# Default Parameter Value Not Compile Time Constant Error
@@ -131,6 +132,8 @@ private static void AddPoints(Graphics graphics, Color color = default)
 }
 ```
 
+
+
 ### Color with Nullable Solution
 
 Another solution to this is to change the parameter Color to Color? [which is a nullable type in .NET 6 and above](https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references) and then set it to equal null. Null is a default value then the compiler will allow this type of optional parameter. This is changed to the following in the function.
@@ -158,6 +161,8 @@ private static void AddPoints(Graphics graphics, Color? color = null)
     }
 }
 ```
+<Heroaffiliatemain/>
+
 
 <details>
 <summary>Full Code Color Sample</summary>

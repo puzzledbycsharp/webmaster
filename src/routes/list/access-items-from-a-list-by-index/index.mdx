@@ -7,6 +7,7 @@ title: Access Items From A C# List By Index
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain";
 
 <ImageWrapper imageSource="../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp" imageSrcSet="../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-small.webp 250w, ../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-medium.webp 500w, ../../../../assets/list/access-items-from-a-list-by-index/access-items-from-a-list-by-index-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Access Items From A List By Index Banner Image" widthImage = "2304" heightImage = "1728" />
 ## Introduction
@@ -103,6 +104,8 @@ Second Value: second
 ```
     
 This code also gives exactly what we want in a straightforward manner. Next, we'll test the speed of the function.
+
+<Heroaffiliatemain/>
 
 ###### Get Item By List ElementAt Speed Test
 We will also perform the same speed test as for Indexer. We would expect ElementAt to be slightly slower since it is a more general implementation across different collection types.

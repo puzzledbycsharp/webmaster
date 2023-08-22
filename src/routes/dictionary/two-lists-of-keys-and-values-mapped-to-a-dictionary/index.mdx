@@ -7,6 +7,7 @@ title: Two Lists of Keys and Values Mapped To a Dictionary In C#
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain";
 
 <ImageWrapper imageSource="../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-medium.webp" imageSrcSet="../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-small.webp 500w, ../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-medium.webp 1000w, ../../../../assets/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary-large.webp 2000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "Two Lists of Keys and Values Mapped To a Dictionary Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -281,6 +282,8 @@ Dictionary<string, string> MapListToDictionary(List<string> movieNames, List<str
 ```
 
 We get the same result as the manual approach. Next is to test the speed of this function.
+
+<Heroaffiliatemain/>
 
 #### LINQ Zip + ToDictionary Method Speed Test
 

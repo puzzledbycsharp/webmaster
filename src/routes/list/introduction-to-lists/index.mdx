@@ -7,6 +7,7 @@ title: Introduction to C# Lists
 import { useStore} from '@builder.io/qwik';
 import{ImageWrapper} from "~/components/imagewrapper/imagewrapper";
 import{Table} from "~/components/table/table";
+import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain";
 
 <ImageWrapper imageSource="../../../assets/list/introduction-to-lists/list-banner-image-medium.webp" imageSrcSet="../../../assets/list/introduction-to-lists/list-banner-image-small.webp 250w, ../../../assets/list/introduction-to-lists/list-banner-image-medium.webp 500w, ../../../assets/list/introduction-to-lists/list-banner-image-large.webp 1000w" imageSizes="(max-width: 250px) 80vw, (max-width: 500px) 25vw, (max-width: 1000px) 10vw" altImage = "List Banner Image" widthImage = "2304" heightImage = "1728" />
 
@@ -157,6 +158,8 @@ Capacity List Average speed:317ms, In 10 tests
 ```
       
 As we see from the setting the capacity that it is faster if we known ahead of time the count of the items we intend to add to the list then this would be a faster approach.
+
+<Heroaffiliatemain/>
 
 ### Create List With From Another List
 Another useful feature of the list constructor is to pass another list to create a copy of a list. If we have a list that starts at 10 and counts down to t 1 and then copy that list we should see that the newest list has the same values. See example below.
