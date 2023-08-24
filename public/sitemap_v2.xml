@@ -1,193 +1,205 @@
 ﻿<urlset xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
+		<loc>https://puzzledbycsharp.com/json/serialization-by-transforming-objects-into-a-json-string/</loc>
+		<lastmod>2023-08-24T15:08:48-04:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://puzzledbycsharp.com/list/why-you-should-not-try-to-modify-a-ienumerable-collection/</loc>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
 		<loc>https://puzzledbycsharp.com/visual-studio/how-to-install-visual-studio/</loc>
-		<lastmod>2023-05-16T02:45:58-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/json/the-best-csharp-deserializer-to-convert-json-to-an-object/</loc>
-		<lastmod>2023-07-10T22:32:24-04:00</lastmod>
+		<lastmod>2023-08-24T15:04:49-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/copy-part-of-an-array-to-another-array/</loc>
-		<lastmod>2023-07-10T22:32:24-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-combine-two-arrays-into-one/</loc>
-		<lastmod>2023-07-10T22:32:24-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/solutions-for-fill-the-array-with-one-value/</loc>
-		<lastmod>2023-07-29T03:54:04-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/best-solution-for-slicing-arrays/</loc>
-		<lastmod>2023-07-10T22:32:24-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/best-removal-method-of-duplicates-from-an-array/</loc>
-		<lastmod>2023-07-10T22:32:24-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/search-an-array-if-it-contains-the-keyword/</loc>
-		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/check-if-the-text-contains-a-keyword-from-the-array/</loc>
-		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/initializers-to-get-an-empty-array/</loc>
-		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-initialize-arrays/</loc>
-		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-encode-strings-and-decode-byte-arrays/</loc>
-		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/how-to-assign-values-to-an-array/</loc>
-		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/dictionary-with-one-to-many-relationship/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/trygetvalue-vs-containskey-with-indexer/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/fix-for-collection-was-modified-and-enumeration-not-executed/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/get-a-list-of-dictionary-keys/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/declare-a-new-dictionary-in-function-calls/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/make-a-dictionary-key-case-insensitive/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/how-to-change-a-dictionary-key/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/two-lists-of-keys-and-values-mapped-to-a-dictionary/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/convert-a-list-into-a-dictionary/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/best-merging-method-for-two-dictionaries/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/get-dictionary-element-by-index/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/how-to-initialize-a-dictionary/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/dictionary-vs-hashtable-comparison/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/</loc>
-		<lastmod>2023-07-18T02:51:18-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/best-sort-method-for-dictionary-values/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/how-to-update-dictionary-values/</loc>
-		<lastmod>2023-07-28T05:39:13-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/get-the-dictionary-keys-by-their-value/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/best-way-to-iterate-through-a-dictionary/</loc>
-		<lastmod>2023-05-04T02:09:34-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/a-comparison-between-ienumerable-and-list/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -199,19 +211,19 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/array-vs-list-vs-linked-list/</loc>
-		<lastmod>2023-07-05T16:17:14-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/code-snippets/exceptions/default-parameter-value-not-compile-time-constant/</loc>
-		<lastmod>2023-05-11T03:05:11-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/dictionary/dictionary-best-practices-and-what-to-avoid/</loc>
-		<lastmod>2023-07-28T05:39:13-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -229,7 +241,7 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/list-vs-dictionary/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -247,7 +259,7 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/string-vs-stringbuilder-comparison/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -265,97 +277,97 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/using-string-insert-effectively/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/walkthrough-of-the-string-trim-function/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/examining-string-equals-in-detail/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/string-replace-in-depth/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/get-a-substring-before-or-after-a-certain-character/</loc>
-		<lastmod>2023-07-10T22:32:24-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/best-first-character-removal-function-in-a-string/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/efficiently-remove-the-first-keyword-occurrence-from-a-string/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/get-substring-after-finding-a-keyword/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/how-best-to-get-last-n-characters/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/analysis-of-getting-first-n-characters-methods/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/get-a-substring-between-two-strings/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T22:16:17-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/best-way-to-sort-a-list/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/access-items-from-a-list-by-index/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/how-to-initialize-a-list/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/convert-list-to-string-with-a-delimiter/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/how-to-find-an-item-in-the-list/</loc>
-		<lastmod>2023-05-05T03:29:57-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -373,31 +385,31 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/clone-a-list-in-depth-review/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/remove-duplicate-items-from-a-list/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/understanding-the-best-set-theory-methods-between-lists/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/convert-a-system-array-to-a-list/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/array/introduction-to-arrays/</loc>
-		<lastmod>2023-05-03T14:36:22-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
@@ -409,25 +421,25 @@
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/introduction-to-lists/</loc>
-		<lastmod>2023-05-05T03:29:23-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/list/</loc>
-		<lastmod>2023-04-25T17:56:07-04:00</lastmod>
+		<lastmod>2023-08-07T02:52:19-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/how-to-use-substring/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
 	<url>
 		<loc>https://puzzledbycsharp.com/string/best-ways-to-use-string-remove/</loc>
-		<lastmod>2023-05-10T22:40:09-04:00</lastmod>
+		<lastmod>2023-08-22T20:26:08-04:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
