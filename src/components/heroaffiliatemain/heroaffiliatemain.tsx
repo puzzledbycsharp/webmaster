@@ -10,7 +10,7 @@ export const Heroaffiliatemain = component$(() => {
   const image = '../../../../assets/affiliate/introduction-to-c-programming-and-unity-image-trans-medium.webp';
   const imageSmall = '../../../../assets/affiliate/introduction-to-c-programming-and-unity-image-trans-small.webp';
   const imageLarge = '../../../../assets/affiliate/introduction-to-c-programming-and-unity-image-trans-large.webp';
-  const description = 'You can get started with programming using C# and apply it to Unity games in this beginner-level program. Facilitated by the University of Colorado, the program offers a chance to grasp the basics of C# and utilizes the knowledge to develop Unity games.';
+  const description = 'You can get started with programming using C# and apply it to Unity games in this beginner-level program. Facilitated by the University of Colorado, the program offers a chance to grasp the basics of C# and utilize the knowledge to develop Unity games.';
   return (
     <>
       <div class="max-w-md bg-customdark1 border-2 border-customdark2 rounded-lg shadow-lg mx-auto py-3">
@@ -64,7 +64,7 @@ export const Heroaffiliatemain = component$(() => {
   <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
 </svg>            <span class="flex-auto">
               <p class="font-bold">
-              No previous experience necessary
+              No previous experience is necessary
 
               </p>
             </span>
@@ -75,7 +75,7 @@ export const Heroaffiliatemain = component$(() => {
   <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
 </svg>            <span class="flex-auto">
               <p class="font-bold">
-              3 months at 10 hours a week (At your pace)
+              3-months at 10 hours a week (At your pace)
 
               </p>
             </span>
@@ -98,7 +98,7 @@ export const Heroaffiliatemain = component$(() => {
           <p class="mb-4 font-normal text-gray-700 dark:text-gray-400">{description}</p>
           <p class="mb-4 font-small text-gray-700 dark:text-gray-400 italic">[Full Disclosure: As an affiliate, I receive compensation if you purchase through this link]</p>
           <a rel="sponsored" href={url} class="inline-flex items-center mx-4 my-4 px-3 py-2 text-sm text-center border-2 bg-customdark1  hover:bg-customdark6 hover:text-customdark5 leading-5 rounded-md font-semibold text-customdark7 duration-300" aria-label={title}>
-            Start Your 7 day Free Trial
+            Start Your 7-day Free Trial
             <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </a>
 

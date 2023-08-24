@@ -86,6 +86,7 @@
 ## JSON
 - [JSON](json/index.mdx)
 - [The Best C# Deserializer To Convert JSON To An Object](json/the-best-csharp-deserializer-to-convert-json-to-an-object/index.mdx)
+- [Serialization By Transforming Objects into A JSON String](json/serialization-by-transforming-objects-into-a-json-string/index.mdx)
 
 ## Visual Studio
 - [Visual Studio](visual-studio/index.mdx)

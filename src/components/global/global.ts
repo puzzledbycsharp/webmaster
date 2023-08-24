@@ -1,5 +1,18 @@
 export const ROUTE_DATA = [
   { 
+    location:'json/serialization-by-transforming-objects-into-a-json-string', 
+    url: 'https://puzzledbycsharp.com/json/serialization-by-transforming-objects-into-a-json-string/',
+    title:'Serialization By Transforming Objects into A JSON String', 
+    dateCreated:'2023-08-23T04:27:56-04:00',
+    dateModified:'2023-08-23T02:45:58-04:00',
+    twitterImage: 'https://puzzledbycsharp.com/assets/json/serialization-by-transforming-objects-into-a-json-string/serialization-by-transforming-objects-into-a-json-string-twitter.webp',
+    image: 'https://puzzledbycsharp.com/assets/json/serialization-by-transforming-objects-into-a-json-string/serialization-by-transforming-objects-into-a-json-string-medium.webp',
+    imageSmall: 'https://puzzledbycsharp.com/assets/json/serialization-by-transforming-objects-into-a-json-string/serialization-by-transforming-objects-into-a-json-string-small.webp',
+    imageLarge: 'https://puzzledbycsharp.com/assets/json/serialization-by-transforming-objects-into-a-json-string/serialization-by-transforming-objects-into-a-json-string-large.webp',
+    pageCount:0,
+    description:'C# has a fast and easy-to-implement object serialization into JSON with the help of JsonSerializer.'
+  },
+  { 
     location:'list/why-you-should-not-try-to-modify-a-ienumerable-collection', 
     url: 'https://puzzledbycsharp.com/list/why-you-should-not-try-to-modify-a-ienumerable-collection/',
     title:'Why You Should Not Try To Modify A IEnumerable Collection', 
