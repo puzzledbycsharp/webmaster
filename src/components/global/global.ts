@@ -2,7 +2,7 @@ export const ROUTE_DATA = [
   { 
     location:'json/serialization-by-transforming-objects-into-a-json-string', 
     url: 'https://puzzledbycsharp.com/json/serialization-by-transforming-objects-into-a-json-string/',
-    title:'Serialization By Transforming Objects into A JSON String', 
+    title:'C# Serialization By Transforming Objects into A JSON String', 
     dateCreated:'2023-08-23T04:27:56-04:00',
     dateModified:'2023-08-24T15:08:48-04:00',
     twitterImage: 'https://puzzledbycsharp.com/assets/json/serialization-by-transforming-objects-into-a-json-string/serialization-by-transforming-objects-into-a-json-string-twitter.webp',
