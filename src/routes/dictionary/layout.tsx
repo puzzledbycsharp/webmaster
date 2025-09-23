@@ -48,7 +48,7 @@ export default component$(() => {
               {/* <h6>
                 Comments Section
               </h6> */}
-              <CommentsSection />
+              {/* <CommentsSection /> */}
             </div>
           </div>
           <div class="hidden lg:block md:visible md:col-span-1 ">
