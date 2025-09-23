@@ -39,7 +39,7 @@ export const RightAside = component$(() => {
       <h6>Connect</h6>
       <div class="border-2 border-customdark1 border-l-customdark3 px-3 hover:border-l-customdark2 duration-300">
 
-      <a class="mx-auto p-5" href="https://www.youtube.com/@puzzledbycsharp"><img class="w-full md:w-4/5 lg:w-3/4 xl:w-2/3" loading="lazy" alt='Youtube Icon Image' src='https://puzzledbycsharp.com/assets/socialmedia/youtube/yt_logo_rgb_dark.png' ></img></a>
+      <a class="mx-auto p-5" href="https://www.youtube.com/@https://puzzledbycsharpcode.com"><img class="w-full md:w-4/5 lg:w-3/4 xl:w-2/3" loading="lazy" alt='Youtube Icon Image' src='https://https://puzzledbycsharpcode.com.com/assets/socialmedia/youtube/yt_logo_rgb_dark.png' ></img></a>
       </div>
     </aside>
   );

@@ -12,7 +12,7 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [
       staticAdapter({
-        origin: 'https://puzzledbycsharp.com',
+        origin: 'https://https://puzzledbycsharpcode.com.com',
       }),
     ],
   };
