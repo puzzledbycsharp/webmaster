@@ -1,7 +1,7 @@
 import { component$, Slot } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { Breadcrumbs } from "~/components/breadcrumbs/breadcrumbs";
-import { CommentsSection } from '~/components/commentssection/commentssection';
+
 import { RightAside } from '~/components/right-aside/right-aside';
 import { SubscribeForm } from '~/components/subscribeform/subscribeform';
 import { MobileSocialShare } from '~/components/mobilesocialshare/mobilesocialshare';
