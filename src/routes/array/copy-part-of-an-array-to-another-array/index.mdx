@@ -23,9 +23,9 @@ In general, it is good programming practice to only do what is needed. The other
 
 Also, another area is that copying only part of the array could lead to more efficient code. Let me explain. If you have a subsection of data in an array.  It could lead to less complicated code if you have an array that is dedicated to the task.
 
-### Video With Examples 
+{/* ### Video With Examples 
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("_t6-4GAIMgM", {      height: "360",      width: "640",      videoId: "_t6-4GAIMgM"    }); player2 = new YT.Player("wsouK62NnXA", {      height: "360",      width: "640",      videoId: "wsouK62NnXA"    }); }' youtubeId="_t6-4GAIMgM"/>
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("_t6-4GAIMgM", {      height: "360",      width: "640",      videoId: "_t6-4GAIMgM"    }); player2 = new YT.Player("wsouK62NnXA", {      height: "360",      width: "640",      videoId: "wsouK62NnXA"    }); }' youtubeId="_t6-4GAIMgM"/> */}
 
 
 ### Is The Destination Array Length Equal To Source Array Length?
@@ -525,4 +525,4 @@ Buffer BlockCopy Average Speed:103ms, In 10 Tests
 
 The best method for copying and pasting part of an array to another array is Array Copy. Array Copy is a one-liner and still just a buffer block copy. Array Copy has no limitation and has been around a long time since .NET 1.1 so it will be in your code base. Even though in the second test of value types Array Copy and Buffer BlockCopy are essentially the same. Block copy doesn't support reference types and so I can't recommend it for this use case.
 
-Know any other ways to copy part of an array to another array? Let me know in the comments below.
+Know any other ways to copy part of an array to another array? 

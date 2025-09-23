@@ -17,11 +17,11 @@ import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain
 
 To remove duplicate items from a list we have a couple of options in C#. One is to use LINQ Distinct to remove the items and then apply ToArray to convert the IEnumerable to an array. The other option is to write a method. Sometimes LINQ doesn't perform well and I'm going to test both of these methods to see which is faster. For one smaller array, it may not matter so much which one we choose, but if you are working with large datasets then you'll pick the fastest method.
 
-### Video With Examples 
+{/* ### Video With Examples  */}
 
 {/* <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player;  function onYouTubePlayerAPIReady() {    player = new YT.Player("l2l0FBIpcXU", {      height: "360",      width: "640",      videoId: "l2l0FBIpcXU"    }); }' youtubeId="l2l0FBIpcXU"/> */}
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("l2l0FBIpcXU", {      height: "360",      width: "640",      videoId: "l2l0FBIpcXU"    }); player2 = new YT.Player("KkcLTuNOzDE", {      height: "360",      width: "640",      videoId: "KkcLTuNOzDE"    }); }' youtubeId="l2l0FBIpcXU"/>
+{/* <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("l2l0FBIpcXU", {      height: "360",      width: "640",      videoId: "l2l0FBIpcXU"    }); player2 = new YT.Player("KkcLTuNOzDE", {      height: "360",      width: "640",      videoId: "KkcLTuNOzDE"    }); }' youtubeId="l2l0FBIpcXU"/> */}
 
 ### Summary Table
 <Table header ="Analysis Type,LINQ Distinct,For Loop With HashSet And List" rows=".NET Version Available,>= .NET 3.5,>= .NET 3.5;Performance,Approaches O(N),Approaches O(N);Lines Of Code,1,11;Order Maintained,No,Yes" />
@@ -31,10 +31,10 @@ To remove duplicate items from a list we have a couple of options in C#. One is 
 
 This is a two-step process. LINQ Distinct returns an IEnumerable which then has to be converted to an array. [This method also returns an unordered sequence that has no duplicates.](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-8.0#remarks) The nice thing about this method it only takes up one line of code and is very readable since it does exactly what it says it does. And since it has been available since .NET 3.5, it should be available on you're system unless your using something much older. In terms of performance, it needs to go through the entire array to find any duplicates and remove them.
 
-#### LINQ Distinct Video Example
+{/* #### LINQ Distinct Video Example
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("l2l0FBIpcXU", {      height: "360",      width: "640",      videoId: "l2l0FBIpcXU"    }); player2 = new YT.Player("KkcLTuNOzDE", {      height: "360",      width: "640",      videoId: "KkcLTuNOzDE"    }); }' youtubeId="KkcLTuNOzDE"/>
-
+ */}
 
 #### LINQ Distinct Code Example
 
@@ -279,4 +279,4 @@ The best method for removing duplicates is LINQ Distinct. It is the fastest meth
 
 For Loop With HashSet And List is two seconds slower with a million objects isn't that bad but it does preserve the order since a list is involved. It does have more code with it so this is good if you need to order the array preserved otherwise it's better to go with LINQ Distinct in most cases.
 
-Know any other ways to remove duplicates from an array? Let me know in the comments below.
+Know any other ways to remove duplicates from an array? 

@@ -17,9 +17,9 @@ import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain
 
 If you have two arrays and need to combine them into one array in C#, then there are many built-in options to use like Concat, CopyTo, AddRange, and BlockCopy. Some of these produce a new array or reuse an existing array. Most of these are one line of code but we'll examine the conciseness of the code. I'll also take a look at the performance and how each of these methods scales.
 
-### Video With Examples 
+{/* ### Video With Examples 
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="8r43IETaIPQ"/>
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="8r43IETaIPQ"/> */}
 
 
 ### Summary Table
@@ -44,9 +44,9 @@ This method will combine the second array with the first. So in the output, you'
 {/* ### Enumerable Concat Video Example
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player2;  function onYouTubePlayerAPIReady() { player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    });   player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="ZLLXo9hhVV8"/> */}
-#### The Enumerable Concat Method Video Example
+{/* #### The Enumerable Concat Method Video Example
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="ZLLXo9hhVV8"/>
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2;  function onYouTubePlayerAPIReady() {    player1 = new YT.Player("8r43IETaIPQ", {      height: "360",      width: "640",      videoId: "8r43IETaIPQ"    }); player2 = new YT.Player("ZLLXo9hhVV8", {      height: "360",      width: "640",      videoId: "ZLLXo9hhVV8"    }); }' youtubeId="ZLLXo9hhVV8"/> */}
 
 #### The Enumerable Concat Method Code Example
 
@@ -726,4 +726,4 @@ The List AddRange method, I wouldn't recommend using it because it is so slow. i
 
 Also for Buffer BlockCopy, I can't recommend this either because it only works on reference types. It wouldn't work with strings or the class that you write so it's a big disappointment because it was fast. Another pain with this method is the setup, it takes the longest to set up and it is more method parameters to set up.
 
-Know any other ways to combine two arrays into one array? Let me know in the comments below.
+Know any other ways to combine two arrays into one array? 

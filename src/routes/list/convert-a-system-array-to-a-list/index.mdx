@@ -342,4 +342,4 @@ This ends up being the slowest method and even slower than just looping through 
 
 The best method for converting a system array to a list is to cast it to an array of that type and then use ToList. It has a really good performance that is far better than the other two methods. This call all be done on one line so it's compact and readable. Looping through the array and adding to a list is almost as slow as using OfType it isn't worth it to write unless you need to. Even though the type and ToList can fit one line of code, it is too slow and shouldn't be used compared to the other methods.
 
-Know any other methods of doing this? Let me know in the comments.
+Know any other methods of doing this? 

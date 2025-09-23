@@ -15,13 +15,13 @@ import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain
 
 Dictionary using best practices with the right key scales well over large datasets. Several pitfalls should be avoided. In C#, the dictionary is one of my favorite go-to data structures when I need top performance from my app. I also learned this long ago and was one the consistant issues that I ran into until I started programming more defensively. I have also seen other developers make simliar mistakes by not using theses practices and erros occured. 
 
-### Video Code Walkthrough
+{/* ### Video Code Walkthrough
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
 player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
-player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="AUfhKNGENnE"/>
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="AUfhKNGENnE"/> */}
 
 ### Dictionary Add Key-Value Pairs
 
@@ -104,14 +104,14 @@ static void Main(string[] args)
 Before adding any key value combination to the dictionary check to see if the key already exists. Examine the code snippet below. There can not be two keys in the dictionary. Use the ContainsKey function to find if the key already exists in the dictionary.
 
 
-#### Check if Key Exists Video
+{/* #### Check if Key Exists Video
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
 player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
-player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="H2sPv2iCU_8"/>
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="H2sPv2iCU_8"/> */}
 
 
 
@@ -143,14 +143,14 @@ public static bool CheckIfKeyExists(string key, string value, Dictionary<string,
 You can also use the TryAdd method to simply this. It checks if the key exists and adds if necessary. It doesn't throw an error. Let's see how it looks below.
 
 
-##### TryAdd Video Example
+{/* ##### TryAdd Video Example
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
 player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
-player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="HjjOsIBayLA"/>
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="HjjOsIBayLA"/> */}
 
 ##### TryAdd Code Example
 
@@ -243,14 +243,14 @@ static void Main(string[] args)
 
 There are two ways to guard against this exception. The first is the check to see if the key exists in the dictionary before trying to access that key.
 
-#### Protect Get Code By ContainsKey Video Example
+{/* #### Protect Get Code By ContainsKey Video Example
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
 player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
-player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="GHCwiPR9vnE"/>
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="GHCwiPR9vnE"/> */}
 
 #### Protect Get Code By ContainsKey Code Example
 
@@ -280,14 +280,14 @@ public static string GetValueByCheckIfKeyExists(string key, ref Dictionary<strin
 The second safe way to get the value of a key is to use the TryGetValue function. I prefer this way too for two reasons. It checks if the key exists and returns true and the out parameter returns the value. This is slightly faster than checking for the key first and then getting the value in the previous method.
 
 
-#### Protect Get Code By TryGetValue Video Example
+{/* #### Protect Get Code By TryGetValue Video Example
 
 <YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
 player4 = new YT.Player("GHCwiPR9vnE", {      height: "360",      width: "640",      videoId: "GHCwiPR9vnE"    });
-player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="9uZy9AS-Jz8"/>
+player4 = new YT.Player("9uZy9AS-Jz8", {      height: "360",      width: "640",      videoId: "9uZy9AS-Jz8"    });}' youtubeId="9uZy9AS-Jz8"/> */}
 
 #### Protect Get Code By TryGetValue Code Example
 

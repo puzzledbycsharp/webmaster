@@ -44,11 +44,11 @@ export default component$(() => {
               </h6>
               <SubscribeForm />
             </div>
-            <div class="py-3 md:border-2 md:border-customdark1 md:border-t-customdark3 md:hover:border-t-customdark2 duration-300">
+            <div class="py-8 md:border-2 md:border-customdark1 md:border-t-customdark3 md:hover:border-t-customdark2 duration-300">
               {/* <h6>
                 Comments Section
               </h6> */}
-              <CommentsSection />
+              {/* <CommentsSection /> */}
             </div>
           </div>
           <div class="hidden lg:block md:visible md:col-span-1 ">
