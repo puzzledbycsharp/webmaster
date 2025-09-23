@@ -9,7 +9,7 @@ interface State {
 export const Copyurl = component$(() => {
 
   const loc = useLocation();
-  const completeUri = `https://puzzledbycsharp.com${loc.url.pathname}`;
+  const completeUri = `https://puzzledbycsharpcode.com${loc.url.pathname}`;
   const props = useStore({
     url: completeUri,
   });

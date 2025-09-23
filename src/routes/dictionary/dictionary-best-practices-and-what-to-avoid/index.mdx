@@ -16,7 +16,7 @@ import{Heroaffiliatemain} from "~/components/heroaffiliatemain/heroaffiliatemain
 Dictionary using best practices with the right key scales well over large datasets. Several pitfalls should be avoided. In C#, the dictionary is one of my favorite go-to data structures when I need top performance from my app. I also learned this long ago and was one the consistant issues that I ran into until I started programming more defensively. I have also seen other developers make simliar mistakes by not using theses practices and erros occured. 
 
 ### Video Code Walkthrough
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
@@ -106,7 +106,7 @@ Before adding any key value combination to the dictionary check to see if the ke
 
 #### Check if Key Exists Video
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
@@ -145,7 +145,7 @@ You can also use the TryAdd method to simply this. It checks if the key exists a
 
 ##### TryAdd Video Example
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
@@ -195,7 +195,7 @@ As we can see that unique keys can be added to the dictionary. The items tennis 
 
 ###### Additional Information On ContainsKey and TryAdd
 
-I've written another article comparing TryAdd and ContainsKey in performance so see [Check If The Key Exists In The C# Dictionary](https://puzzledbycsharp.com/dictionary/check-if-the-key-exists-in-the-dictionary/)
+I've written another article comparing TryAdd and ContainsKey in performance so see [Check If The Key Exists In The C# Dictionary](https://puzzledbycsharpcode.com/dictionary/check-if-the-key-exists-in-the-dictionary/)
 
 
 ### Get Value
@@ -245,7 +245,7 @@ There are two ways to guard against this exception. The first is the check to se
 
 #### Protect Get Code By ContainsKey Video Example
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
@@ -282,7 +282,7 @@ The second safe way to get the value of a key is to use the TryGetValue function
 
 #### Protect Get Code By TryGetValue Video Example
 
-<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharp.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
+<YoutubeWrapper youtubescript='var tag = document.createElement("script");  tag.src = "https://puzzledbycsharpcode.com/youtubeapi.js";  var firstScriptTag = document.getElementsByTagName("script")[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  var player1;  var player2; var player3; var player4; var player5;  function onYouTubePlayerAPIReady() {    
 player1 = new YT.Player("AUfhKNGENnE", {      height: "360",      width: "640",      videoId: "AUfhKNGENnE"    }); 
 player2 = new YT.Player("H2sPv2iCU_8", {      height: "360",      width: "640",      videoId: "H2sPv2iCU_8"    });
 player3 = new YT.Player("HjjOsIBayLA", {      height: "360",      width: "640",      videoId: "HjjOsIBayLA"    });
@@ -341,7 +341,7 @@ GetValueByTryGetValue - Locker#:32354, Contends:
 ```
 ###### Additional Information On ContainsKey and TryGetValue
 
-I've written another article comparing TryGetValue and ContainsKey in performance so see [TryGetValue Vs ContainsKey With Indexer In .NET](https://puzzledbycsharp.com/dictionary/trygetvalue-vs-containskey-with-indexer/)
+I've written another article comparing TryGetValue and ContainsKey in performance so see [TryGetValue Vs ContainsKey With Indexer In .NET](https://puzzledbycsharpcode.com/dictionary/trygetvalue-vs-containskey-with-indexer/)
 
 
 
