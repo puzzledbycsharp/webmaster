@@ -47,11 +47,11 @@ dangerouslySetInnerHTML={'algoliasearchNetlify({appId: \'CXWBWJV7NI\', apiKey: \
   
 </script> 
 
-<link rel="alternate" type="application/rss+xml" href="https://https://puzzledbycsharpcode.com.com/feed.xml" title="Home Page | Puzzled By CSharp"/>
+<link rel="alternate" type="application/rss+xml" href="https://puzzledbycsharp.com/feed.xml" title="Home Page | Puzzled By CSharp"/>
 
 
 {/* 
-<script type="text/partytown" src="http://www.https://puzzledbycsharpcode.com.com/youtubescript.js">
+<script type="text/partytown" src="http://www.puzzledbycsharp.com/youtubescript.js">
 
 </script> */}
 
