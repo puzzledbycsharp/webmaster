@@ -63,7 +63,7 @@ export default component$(() => {
             {/* === ABOUT / PROFESSIONAL SUMMARY === */}
             <section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
               <p class="mb-4 text-base sm:text-lg leading-relaxed text-slate-400 !mx-0">
-                Software Engineer with over 13 years of experience designing, developing, and maintaining high-performance backend systems and data pipelines. Deep expertise in .NET, complemented by 3 years of hands-on experience modernizing a Java-based application that uses Docker and Kubernetes. 
+                Software Engineer with over 9 years of experience designing, developing, and maintaining high-performance backend systems and data pipelines. Deep expertise in .NET, complemented by 3 years of hands-on experience modernizing a Java-based application that uses Docker and Kubernetes. 
               </p>
               <p class="mt-4 text-base sm:text-lg leading-relaxed text-slate-400 !mx-0">
                 I’m passionate about building robust, scalable software solutions. Author of the technical blog "Puzzled by C# Code," exploring advanced topics in the .NET ecosystem.
