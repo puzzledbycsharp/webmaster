@@ -1,136 +1,89 @@
-# Qwik City App ⚡️
+# Puzzled By CSharp
 
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
+A C# programming blog at [puzzledbycsharpcode.com](https://puzzledbycsharpcode.com). Each article takes one focused C# question (for example "how to remove duplicates from an array" or "dictionary vs hashtable"), compares the common approaches, and shows code samples, benchmark-style comparison tables and screenshots.
+
+The site is built with [Qwik](https://qwik.builder.io/) and [Qwik City](https://qwik.builder.io/qwikcity/overview/), styled with Tailwind CSS, authored in MDX, and deployed to Netlify.
 
 ---
 
-## Project Structure
+## What to expect from the blog
 
-This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just a extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
+- **Articles live under `/blog/`**, grouped by topic:
 
-Inside your project, you'll see the following directory structure:
+  | Topic | URL |
+  | --- | --- |
+  | Arrays | `/blog/array/` |
+  | Lists | `/blog/list/` |
+  | Dictionaries | `/blog/dictionary/` |
+  | Strings | `/blog/string/` |
+  | JSON | `/blog/json/` |
+  | Visual Studio | `/blog/visual-studio/` |
+  | Code snippets (project build, exceptions, misc.) | `/blog/code-snippets/` |
+
+- Each topic has an index page that lists its articles, and each article has a breadcrumb trail, a left-hand topic menu, an "On this page" outline, social share buttons, a subscribe form and a comments section.
+- Other pages: the home page (hero cards and most-popular carousels), `/about/` and `/privacy-policy/`.
+- Site search is provided by Algolia (Netlify crawler plugin), and analytics scripts are loaded off the main thread with Partytown.
+- Old `/fundamentals/...` URLs are permanently redirected (301) to their current `/blog/...` locations via `netlify.toml`.
+
+## Project structure
 
 ```
 ├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
+│   └── assets/<topic>/<article>/   images (…-small / -medium / -large / -twitter .webp)
+├── src/
+│   ├── components/                 shared UI (header, footer, herocards, imagewrapper, table, ...)
+│   │   └── global/global.ts        ROUTE_DATA: metadata for every article
+│   └── routes/
+│       ├── index.tsx               home page
+│       ├── about/, privacy-policy/
+│       ├── menu.md                 sidebar menu definition
+│       └── blog/
+│           └── <topic>/
+│               ├── layout.tsx      topic layout (header, menu, breadcrumbs, footer)
+│               ├── index.mdx       topic index listing its articles
+│               └── <article>/index.mdx   the article
+├── adapters/static/                static site generation config
+├── netlify.toml                    build settings, Node version and redirects
+└── vite.config.ts
 ```
 
-- `src/routes`: Provides the directory based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.builder.io/qwikcity/routing/overview/) for more info.
+## Adding or editing an article
 
-- `src/components`: Recommended directory for components.
+1. Create `src/routes/blog/<topic>/<article-slug>/index.mdx`. Use an existing article as the template (front matter, `ImageWrapper`, `Table`, code blocks).
+2. Add the images to `public/assets/<topic>/<article-slug>/` in the `small`, `medium`, `large` and `twitter` sizes.
+3. Reference images with a relative path whose `../` count matches the page depth. For `blog/<topic>/<article>/index.mdx` that is four levels: `../../../../assets/<topic>/<article>/<image>-medium.webp`. A wrong depth makes the image 404 (for example `/blog/assets/...`).
+4. Link the article from its topic `index.mdx` using a path relative to that file (`<article-slug>/index.mdx`, with no topic prefix), otherwise the build reports "does not have a matching source file".
+5. Add an entry to `ROUTE_DATA` in `src/components/global/global.ts` (title, URL, images, description, dates) so it appears in hero cards, search views and meta tags. Hero card links are rewritten to include `/blog/`.
+6. Add it to `src/routes/menu.md` if it should appear in the side menu.
 
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
+## Requirements
 
-## Add Integrations and deployment
+- Node.js 22 (pinned in `.node-version`, `.nvmrc` and `netlify.toml`). Vite 7 and sharp need Node 20.19+ or 22.12+; Netlify's default Node 16 fails the build.
+- `ALGOLIA_API_KEY` and `ALGOLIA_BASE_URL` environment variables for the Algolia crawler plugin on Netlify.
 
-Use the `npm run qwik add` command to add additional integrations. Some examples of integrations include: Cloudflare, Netlify or Express server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/static-site-generation/static-site-config/).
+## Commands
 
 ```shell
-npm run qwik add # or `yarn qwik add`
+npm install          # install dependencies
+npm start            # dev server (SSR mode) and open the browser
+npm run build        # production build (client + type check)
+npm run build.server # static site generation (adapters/static)
+npm run preview      # build and preview locally
+npm run lint         # eslint
+npm run fmt          # prettier
 ```
 
-## Development
+> In dev mode Vite requests many `.js` files; this is not representative of a production build.
 
-Development mode uses [Vite's development server](https://vitejs.dev/). During development, the `dev` command will server-side render (SSR) the output.
+## Deployment
 
-```shell
-npm start # or `yarn start`
-```
+The site deploys to Netlify from the `main` branch. `netlify.toml` defines the build command (`npm run build`), publish directory (`dist`), Node version and redirects. Every push to `main` triggers a build.
 
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
+To preview a production build locally, run `npm run preview`.
 
-## Preview
+## Useful links
 
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to locally preview a production build, and it should not be used as a production server.
-
-```shell
-npm run preview # or `yarn preview`
-```
-
-## Production
-
-The production build will generate client and server modules by running both client and server build commands. Additionally, the build command will use Typescript to run a type check on the source code.
-
-```shell
-npm run build # or `yarn build`
-```
-
-## Netlify
-
-This starter site is configured to deploy to [Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/), which means it will be rendered at an edge location near to your users.
-
-### Local development
-
-The [Netlify CLI](https://docs.netlify.com/cli/get-started/) can be used to preview a production build locally. To do so: First build your site, then to start a local server, run:
-
-1. Install Netlify CLI globally `npm i -g netlify-cli`.
-2. Build your site with both ssr and static `npm run build`.
-3. Start a local server with `npm run serve`.
-   In this project, `npm run serve` uses the `netlify dev` command to spin up a server that can handle Netlify's Edge Functions locally.
-4. Visit [http://localhost:8888/](http://localhost:8888/) to check out your site.
-
-### Edge Functions Declarations
-
-[Netlify Edge Functions declarations](https://docs.netlify.com/edge-functions/declarations/)
-can be configured to run on specific URL patterns. Each edge function declaration associates
-one site path pattern with one function to execute on requests that match the path. A single request can execute a chain of edge functions from a series of declarations. A single edge function can be associated with multiple paths across various declarations.
-
-This is useful to determine if a page response should be Server-Side Rendered (SSR) or
-if the response should use a static-site generated (SSG) `index.html` file instead.
-
-By default, the Netlify Edge adaptor will generate a `.netlify/edge-middleware/manifest.json` file, which is used by the Netlify deployment to determine which paths should, and should not, use edge functions.
-
-To override the generated manifest, you can [add a declaration](https://docs.netlify.com/edge-functions/declarations/#add-a-declaration) to the `netlify.toml` using the `[[edge_functions]]` config. For example:
-
-```toml
-[[edge_functions]]
-  path = "/admin"
-  function = "auth"
-```
-
-### Deployments
-
-You can [deploy your site to Netlify](https://docs.netlify.com/site-deploys/create-deploys/) either via a Git provider integration or through the Netlify CLI. This starter site includes a `netlify.toml` file to configure your build for deployment.
-
-#### Deploying via Git
-
-Once your site has been pushed to your Git provider, you can either link it [in the Netlify UI](https://app.netlify.com/start) or use the CLI. To link your site to a Git provider from the Netlify CLI, run the command:
-
-```shell
-netlify link
-```
-
-This sets up [continuous deployment](https://docs.netlify.com/site-deploys/create-deploys/#deploy-with-git) for your site's repo. Whenever you push new commits to your repo, Netlify starts the build process..
-
-#### Deploying manually via the CLI
-
-If you wish to deploy from the CLI rather than using Git, you can use the command:
-
-```shell
-netlify deploy --build
-```
-
-You must use the `--build` flag whenever you deploy. This ensures that the Edge Functions that this starter site relies on are generated and available when you deploy your site.
-
-Add `--prod` flag to deploy to production.
-
-## Static Site Generator (Node.js)
-
-```
-npm run build.server
-```
-
-## Static Site Generator (Node.js)
-
-```
-npm run build.server
-```
+- [Qwik docs](https://qwik.builder.io/)
+- [Qwik City routing](https://qwik.builder.io/qwikcity/routing/overview/)
+- [Vite](https://vitejs.dev/)
+- [Netlify docs](https://docs.netlify.com/)
