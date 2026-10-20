@@ -58,7 +58,7 @@ if(routeData){
   content="default-src 'self'; img-src https://*;  child-src 'none';" /> */}
 
       {head.meta.map((m) => (
-        <meta {...m} />
+        <meta key={m.key} {...m} />
       ))}
 <meta name="description"  content={routeData.description}></meta>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -78,11 +78,11 @@ if(routeData){
                       <script type="application/ld+json" dangerouslySetInnerHTML={structuredDataSingle(routeData)} ></script>
 
       {head.links.map((l) => (
-        <link {...l} />
+        <link key={l.key} {...l} />
       ))}
 
-      {head.styles.map((s) => (
-        <style {...s.props} dangerouslySetInnerHTML={s.style} />
+      {head.styles.map(({ key, props, style }) => (
+        <style key={key} {...props} dangerouslySetInnerHTML={style} />
       ))}
     </>
   );
@@ -109,15 +109,15 @@ else{
 
 
       {head.meta.map((m) => (
-        <meta {...m} />
+        <meta key={m.key} {...m} />
       ))}
 <meta name="msvalidate.01" content="065C1A05829A556A5E9CBA4F90CFD57B" />
       {head.links.map((l) => (
-        <link {...l} />
+        <link key={l.key} {...l} />
       ))}
 
-      {head.styles.map((s) => (
-        <style {...s.props} dangerouslySetInnerHTML={s.style} />
+      {head.styles.map(({ key, props, style }) => (
+        <style key={key} {...props} dangerouslySetInnerHTML={style} />
       ))}
     </>
   );

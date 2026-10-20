@@ -14,7 +14,7 @@ export default component$(() => {
           <h6>On This Page</h6>
           <div class="flex flex-col">
             {contentHeadings.map((h) => (
-                <a class="border-2 border-customdark1 border-l-customdark3 px-2 hover:border-l-customdark2"
+                <a key={h.id} class="border-2 border-customdark1 border-l-customdark3 px-2 hover:border-l-customdark2"
                   href={`#${h.id}`}
                 >
                   {h.text}

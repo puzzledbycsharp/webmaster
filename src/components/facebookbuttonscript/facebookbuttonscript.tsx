@@ -43,7 +43,7 @@ if(document)
   //  window.dispatchEvent(new CustomEvent('ptupdate'));
   }
 }
-   });
+   }, { strategy: 'document-idle' });
 
   return (
 <>

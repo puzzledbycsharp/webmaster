@@ -30,8 +30,8 @@ let first = 0;
           <tr>
             <>
             {headers
-              ? headers?.map((item) => (
-                  <th scope="col"  class="border-b-customdark2 font-semibold py-3 px-6">{item}</th>
+              ? headers?.map((item, i) => (
+                  <th key={i} scope="col"  class="border-b-customdark2 font-semibold py-3 px-6">{item}</th>
                   ))
                   : null}
                   </>
@@ -41,13 +41,13 @@ let first = 0;
 
           <>
         {rows
-              ? rows?.map((row) => (
+              ? rows?.map((row, r) => (
                 
-                          <tr class="border border-b-customdark2 border-t-customdark1 border-r-customdark1 border-l-customdark1 py-4 px-6 hover:bg-customdark3 hover:border-l-customdark3 hover:border-r-customdark3 duration-300">
+                          <tr key={r} class="border border-b-customdark2 border-t-customdark1 border-r-customdark1 border-l-customdark1 py-4 px-6 hover:bg-customdark3 hover:border-l-customdark3 hover:border-r-customdark3 duration-300">
         {row
-          ? row.split(',').map((col) => (
+          ? row.split(',').map((col, c) => (
            
-            <td scope={first++ % firstRowSplitCount == 0 ? "row" : "" } class=" py-4 px-6">{col}</td>
+            <td key={c} scope={first++ % firstRowSplitCount == 0 ? "row" : "" } class=" py-4 px-6">{col}</td>
             ))
             : null}
               </tr>

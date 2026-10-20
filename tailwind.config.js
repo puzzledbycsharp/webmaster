@@ -1,4 +1,7 @@
 module.exports = {
+  // ADDED: Forces Tailwind to listen to the manual .dark class toggle
+  darkMode: 'class',
+  
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontSize: {
@@ -23,7 +26,6 @@ module.exports = {
       'extra-bold': 800,
       black: 900,
     },
-
     borderRadius: {
       'none': '0',
       'sm': '0.125rem',
@@ -50,13 +52,14 @@ module.exports = {
       'gray-dark': '#273444',
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
-      'blue-600':'rgb(37 99 235);',
-      'blue-400':'rgb(96 165 250);',
-      'blue-700':'rgb(29 78 216);',
+      // FIXED: Removed trailing semicolons from RGB strings
+      'blue-600':'rgb(37 99 235)',
+      'blue-400':'rgb(96 165 250)',
+      'blue-700':'rgb(29 78 216)',
       'ivory-100':'#FBFFF1',
       'blue-100':'#FBFFF1',
       'blockcoffee':'#3c3744',
-      'white':'rgb(255,255,255);',
+      'white':'rgb(255,255,255)',
       'lightsteelblue':'#b4c5e4',
       'irisblue':'#3D52D5',
       'customdark1':'#1e1c21',
@@ -67,7 +70,6 @@ module.exports = {
       'customdark6':'#413b4a',
       'customdark7':'#85C8E1',
       'customdark8':'#a0ddf3'
-
     },
     fontFamily: {
       sans: ['Poppins', 'sans-serif'],

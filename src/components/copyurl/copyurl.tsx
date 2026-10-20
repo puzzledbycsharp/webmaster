@@ -1,4 +1,4 @@
-import { component$, useStore, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useStore } from '@builder.io/qwik';
 import { useLocation } from '@builder.io/qwik-city';
 
 
@@ -32,26 +32,11 @@ export const Copyurl = component$(() => {
   //   };
   // });
 
-    // The `useVisibleTask$` hook is used to create a task that runs eagarly on the client.
-    useVisibleTask$((taskContext) => {
-      // Since this VisibleTask is not tracking any signals, it will only run once.
-   
-      const interval = setInterval(() => {
-        if(store.check)
-        {
-          store.check = false;
-        }
-      }, 3000);
-   
-      // The `cleanup` function is called when the component is unmounted, or when the task is re-run.
-      taskContext.cleanup(() => clearInterval(interval));
-    });
-
-  
   return (
 <>
 <button class="flex flex-row" aria-label="Copy Url Button" onClick$={() => {
          store.check = true;
+         setTimeout(() => { store.check = false; }, 3000);
          if(props != null && props.url !=null &&  props.url.length > 0 ){
            navigator.clipboard.writeText(props.url);
           }

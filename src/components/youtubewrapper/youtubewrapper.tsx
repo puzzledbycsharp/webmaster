@@ -28,7 +28,7 @@ export const YoutubeWrapper = component$((props: YoutubeItemProps) => {
   const firstScriptTag = document.getElementById(props.youtubeId); 
   firstScriptTag?.parentNode?.insertBefore(tag,firstScriptTag );
   // </script>
-   });
+   }, { strategy: 'intersection-observer' });
 
   return (
     <>
